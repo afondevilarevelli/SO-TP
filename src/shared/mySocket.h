@@ -19,6 +19,9 @@ int connectTo( int ip, int port );
 int listenOn( int ip, int port );												
 //devuelve el socket "escucha" listo para aceptar conexiones que busquen ese IP y ese puerto
 
+int acceptClient( int listener);
+//acepta conexion entrante y devuelve el socket con la nueva conexion
+
 void setAddrStruct( struct sockaddr_in * myAddr, int ip, int port);
 //completa la estructura con la direccion completa de puerto e IP
 
