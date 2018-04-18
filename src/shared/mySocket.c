@@ -45,6 +45,17 @@ int connectTo( int ip, int port )
 	return clientSocket;
 }
 
+
+int acceptClient( int listener)
+{
+	struct sockaddr_in their_addr;
+	int new_socket = accept(socket, (struct sockaddr *)&their_addr, sizeof(struct sockaddr_in));
+	if (new_socket == -1 )
+		normalErrorHandling("CLIENT_ACCEPT_FAILED");
+	
+	return new_socket;
+}
+
 int recvWithBasicProtocol( int socket, void ** pBuffer ) // el protocolo basico es que primero recibo un entero de 4 bytes con el tamanio del mensaje a recibir y luego envio el mensaje. Asi : [ SIZE | ACTUAL_MESSAGE ]
 {
 	int tam, bytes;
