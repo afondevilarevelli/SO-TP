@@ -1,14 +1,13 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h> // Para malloc
-#include <sys/socket.h> // Para crear sockets, enviar, recibir, etc
 #include <unistd.h> // Para close
-#include <readline/readline.h> // Para usar readline
+#include <readline/readline.h>
 #include <commons/log.h>
 #include <commons/collections/list.h>
 #include <commons/string.h>
-#include <sys/types.h>
-#include <netinet/in.h>
+
+#include "shared/mySocket.h"
 
 #define PORT 8080;
 #define IP "127.5.5.4";
@@ -26,41 +25,19 @@ void comunicacionESI(){
 	int socket_servidor, new_socket;
 	struct sockaddr_in my_addr, their_addr;
 	int result;
+	void * buffer[256];
 
-	socket_servidor = socket(AF_INET,SOCK_STREAM,0);
-	if(socket_servidor == -1){
-		perror("error al crear socket");
-		exit(1);
-	}
+	socket_servidor = listenOn(inet_addr(IP), PORT);
 
-	my_addr.sin_family = AF_INET;
-	my_addr.sin_port = htons(PORT);
-	my_addr.sin_addr.s_addr = inet_addr(IP);
-	memset(&(my_addr.sin_zero),'\0',8);
+	new_socket = acceptClient(socket_servidor);
 
-	if ( (bind(socket_servidor, (struct sockaddr *) &my_addr, 0)) == -1 ){
-		perror("error al bindear el socket");
-		exit(1);
-	}
-
-	if ( (listen(socket_servidor,10)) == -1 ){
-		perror("error al escuchar");
-		exit(1);
-	}
-
-	new_socket = accept(socket, (struct sockaddr *)&their_addr, sizeof(struct sockaddr_in));
-	if (new_socket == -1 ){
-		perror("conexion no aceptada");
-		exit(1);
-	}
-
-	result = recv(socket_servidor, /*buffer*/, /*tamaño maximo del buffer*/, 0);
+	result = recv(socket_servidor, buffer, sizeof(buffer), 0);
 	if(result == -1){
 		perror("error al recibir datos");
 		exit(1);
 	}
 
-	result = send(socket_servidor,/*puntero a lo que quiero enviar*/, sizeof(/*lo que quiero enviar*/), 0);
+	result = send(socket_servidor, msg, strlen(msg), 0);
 	if(result == -1){
 		perror("error al enviar datos");
 		exit(1);
@@ -71,7 +48,7 @@ void comunicacionESI(){
 }
 
 void comunicacionCoord(){
-	int listener, new_socket, fdmax, i;
+	int listener, new_socket, fdmax, i,;
 	struct sockaddr_in my_addr;
 	int yes = 1;
 	fd_set master, read_fds;
@@ -95,14 +72,13 @@ void comunicacionCoord(){
 	my_addr.sin_addr.s_addr = inet_addr(IP);
 	memset(&(my_addr.sin_zero), 8);
 
-	if ( bind(listener, (struct sockaddr *)&my_addr, sizeof(struct sockaddr)) == -1 ) {
+	if ( ( bind(listener, (struct sockaddr *)&my_addr, sizeof(struct sockaddr)) )  == -1 ) {
 		perror("error al bindear");
 		exit(1);
 	}
 
 	if ( listen(listener,10) == -1) {
 		perror("error al escuchar");
-		exit(1);
 	}
 
 	FD_SET(listener, &master);
