@@ -39,7 +39,7 @@ int connectTo( int ip, int port )
 	if( clientSocket == -1)
 		normalErrorHandling("CLIENT_SOCKET_CREATION_FAILED");
 
-	if( connect( clientSocket, (struct sockaddr *)&theirAddr, sizeof(struct sockaddr) ) == -1)
+	if( connect( clientSocket, (struct sockaddr *)&theirAddr,  sizeof(struct sockaddr) ) == -1)
 		normalErrorHandling("CONNECTION_TO_SERVER_FAILED");
 
 	return clientSocket;
@@ -49,7 +49,8 @@ int connectTo( int ip, int port )
 int acceptClient( int listener)
 {
 	struct sockaddr_in their_addr;
-	int new_socket = accept(socket, (struct sockaddr *)&their_addr, sizeof(struct sockaddr_in));
+	int sin_size = sizeof(struct sockaddr_in);
+	int new_socket = accept(listener, (struct sockaddr *)&their_addr, &sin_size);
 	if (new_socket == -1 )
 		normalErrorHandling("CLIENT_ACCEPT_FAILED");
 	
@@ -59,7 +60,7 @@ int acceptClient( int listener)
 int recvWithBasicProtocol( int socket, void ** pBuffer ) // el protocolo basico es que primero recibo un entero de 4 bytes con el tamanio del mensaje a recibir y luego envio el mensaje. Asi : [ SIZE | ACTUAL_MESSAGE ]
 {
 	int tam, bytes;
-	bytes = recv( socket, &tam, sizeof(int32_t), MSG_WAITALL);
+	bytes = recv( socket, &tam, sizeof(int32_t), 0);
 	if( bytes == -1)	
 		normalErrorHandling("MSG_SIZE_RECEPTION_FAILED");
 	else if( bytes == 0)
@@ -67,7 +68,7 @@ int recvWithBasicProtocol( int socket, void ** pBuffer ) // el protocolo basico 
 
 	*pBuffer = malloc(tam);
 
-	if( recv( socket, *pBuffer, tam, MSG_WAITALL) == -1)
+	if( recv( socket, *pBuffer, tam, 0) == -1)
 		normalErrorHandling("MSG_CONTENTS_RECEPTION_FAILED");
 
 	return tam;
@@ -79,7 +80,7 @@ void sendWithBasicProtocol( int socket, void * msg, int size)
 	addToBuffer( pBuffer, (void*)&size, sizeof(int32_t));
 	addToBuffer( pBuffer, msg, size);
 
-	send( socket, pBuffer->data, pBuffer->size, MSG_WAITALL);
+	send( socket, pBuffer->data, pBuffer->size, 0);
 
 	freeBuffer(pBuffer);
 }
