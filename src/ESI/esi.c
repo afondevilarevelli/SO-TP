@@ -60,3 +60,52 @@ char *obtenerIP(t_config*, char* key,){
 	//crear socket a c
 	//conect con C
 	//conect con P
+	int enviarSentenciaParseada(int socket_servidor)
+{
+  int result;
+	int msg =2;
+  result = send(socket_servidor, msg, strlen(msg), 0);
+    if(result == -1){
+      perror("error al enviar datos");
+      exit(1);
+    }
+
+  close(socket_servidor);
+  close(new_socket);
+    return result;
+}
+int recibirResultadoDeSentencia(int socket_servidor)
+{
+  int result;
+  void * buffer[256];
+  result = recv(socket_servidor, buffer, sizeof(buffer), 0);
+	if(result ==5){puts("funciono 5");}//Verificacion de q funciona
+    if(result == -1){
+      perror("error al recibir datos");
+      exit(1);
+    }
+  return result;
+}
+
+int enviarESIResultadoDeEjecucion(int socket_servidor)
+{
+int result;
+int msg =6;
+result = send(socket_servidor, msg, strlen(msg), 0);
+	if(result == -1){
+		perror("error al enviar datos");
+		exit(1);
+	}
+
+close(socket_servidor);
+close(new_socket);
+	return result;
+}
+int recibirEjecurtarProximaSentenciaESI(int socket_servidor)
+{
+int result;
+void * buffer[256];
+result = recv(socket_servidor, buffer, sizeof(buffer), 0);
+if(result ==1){puts("funciono 1");}//Verificacion de q funciona
+return result;
+}
