@@ -1,1 +1,0 @@
-miproyecto.o: ../miproyecto.c
