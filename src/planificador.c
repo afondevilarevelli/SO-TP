@@ -25,27 +25,42 @@ void comunicacionESI(){
 	int socket_servidor, new_socket;
 	struct sockaddr_in my_addr, their_addr;
 	int result;
-	void * buffer[256];
+
 
 	socket_servidor = listenOn(inet_addr(IP), PORT);
 
 	new_socket = acceptClient(socket_servidor);
 
-	result = recv(socket_servidor, buffer, sizeof(buffer), 0);
-	if(result == -1){
-		perror("error al recibir datos");
-		exit(1);
-	}
-
-	result = send(socket_servidor, msg, strlen(msg), 0);
-	if(result == -1){
-		perror("error al enviar datos");
-		exit(1);
-	}
+	enviarMensajeESI(socket_servidor);
+	recibirMensajeESI(socket_servidor);
 
 	close(socket_servidor);
 	close(new_socket);
 }
+
+int enviarMensajeESI(int socket_servidor)
+{
+	int result;
+
+	result = send(socket_servidor, msg, strlen(msg), 0);
+		if(result == -1){
+			perror("error al enviar datos");
+			exit(1);
+		}
+		return result;
+}
+int recibirMensajeESI(int socket_servidor)
+{
+	int result;
+	void * buffer[256];
+	result = recv(socket_servidor, buffer, sizeof(buffer), 0);
+		if(result == -1){
+			perror("error al recibir datos");
+			exit(1);
+		}
+	return result;
+}
+
 
 void comunicacionCoord(){
 	int listener, new_socket, fdmax, i,;
@@ -101,27 +116,50 @@ void comunicacionCoord(){
 					}
 				}
 				else{
-					void buffer[256];
-					if( ( result = recv(i, buffer, sizeof(buffer), 0) ) == -1){
-						perror("error al recibir datos");
-						exit(1);
-					}
+
+					result = recibirMensajeCoordiandor();
 					if(result == 0){
 						close(i);
 					}
-					else{
-						printf("se recibieron %d bytes", result);
-					}
 
-					if( ( result = send(i, msg, strlen(msg), 0) ) == -1 ){
-						perror("error al enviar datos");
-						exit(1);
-					}
-					printf("se enviaron %d bytes", result);
+					enviarMensajeCoordiandor()
+
 				}
 			}
 		}
 	}
 	close(sockfd);
 }
+int enviarMensajeCoordiandor()
+{
+
+	int result;
+
+	 if(result = send(i, msg, strlen(msg), 0)==-1 ){
+			perror("error al enviar datos");
+			exit(1);
+		}
+	printf("se enviaron %d bytes", result);
+	return result;
+
+}
+int recibirMensajeCoordiandor()
+{
+	int result;
+
+	void buffer[256];
+	if( ( result = recv(i, buffer, sizeof(buffer), 0) ) == -1){
+			perror("error al recibir datos");
+			exit(1);
+		}
+	if(result == 0){
+		return result;
+		}
+	else{
+		printf("se recibieron %d bytes", result);
+		}
+	return result;
+
+}
+
 
