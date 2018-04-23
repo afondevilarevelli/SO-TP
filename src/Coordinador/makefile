@@ -3,9 +3,10 @@ CFLAGS = -g
 VPATH= ../shared
 
 objects =  coordinador.o ../shared/mySocket.o ../shared/buffer.o ../shared/testConnection.o
+pathLibraries = -lpthread -lcommons
 
 coordinador: $(objects)
-	gcc -g -o coordinador $(objects)
+	gcc -g -o coordinador $(objects) $(pathLibraries)
 
 coordinador.o: mySocket.h testConnection.h
 

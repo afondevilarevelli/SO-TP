@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include <collections/list.h>
+#include <pthread.h>
+#include <commons/collections/list.h>
 
 #include "../shared/testConnection.h"
 #include "../shared/mySocket.h"
@@ -7,15 +8,6 @@
 
 #define IP_COORD INADDR_ANY
 #define PORT_COORD 8000
-
-int registrarConexionEntrante(int listener);
-void registrarNuevoESI( int ESI_socket );
-ESI_t * new_ESI( int id, int socket );
-
-void procesarSolicitud(void * pData, int sizeOfData);
-void procesarSolicitudESI(void * solicitud, int size);
-void procesarSolicitudInstancia(void * solicitud, int size);
-void procesarSolicitudPlanificador(void * solicitud, int size);
 
 typedef struct
 		{
@@ -30,77 +22,281 @@ typedef struct
 			int id;
 			int socket;
 			bool connected;
-		} instancia_t;
-t_list * coord_instancias;
+		} inst_t;
+t_list * coord_Insts;
+
+int socket_planificador;
+
+t_list * hilos;
+
+void atenderConexionEntrante(int listener);
+
+void atenderInstancia(int socket);
+void registrarNuevaInstancia( int inst_socket, int id );
+inst_t * new_Inst( int id, int socket );
+void instanciaDesconectada(int inst_ID);
+inst_t * get_instancia_by_ID( t_list * instancias, int id );
+bool is_instancia_ID_equal( inst_t * pInst, int id );
+
+void atenderPlanificador(int socket);
+void registrarPlanificador(int socket);
+void planificadorDesconectado(void);
+
+void atenderESI(int socket);
+void registrarNuevoESI( int ESI_socket, int id );
+ESI_t * new_ESI( int id, int socket );
+void ESIDesconectado( int ESI_ID );
+ESI_t * get_ESI_by_ID( t_list * ESIs, int id );
+bool is_ESI_ID_equal( ESI_t * pESI, int id );
+
+void procesarSolicitudESI(void * solicitud, int size);
+void procesarSolicitudInstancia(void * solicitud, int size);
+void procesarSolicitudPlanificador(void * solicitud, int size);
+
+
+/*-------------GENERAL--------------*/
+
+void terminarHilo( pthread_t * pHilo );
 
 int main(void)
 {
-	esis = list_create();
+	//iniciare todas las variables globales de listas
+	coord_Insts = list_create();
+	coord_ESIs = list_create();
+	hilos = list_create();
+
+	//dejare al coordinador escuchar nuevas conexiones a traves del IP y PUERTO indicados
 	int listener = listenOn(IP_COORD, PORT_COORD), i;
 	int max_fd = listener;
 	fd_set master_set, read_set;
 	FD_ZERO(&master_set);
 	FD_SET(listener, &master_set);
 
+	//lo dejare atender las conexiones entrantes que detecta el listener
 	while(1)
 	{
 		read_set = master_set;
-		select(max_fd + 1, &read_set, NULL, NULL, NULL);
+		select(listener  + 1, &read_set, NULL, NULL, NULL);
 
-		for(i=0; i <= max_fd; i++)
-		{
-			if( FD_ISSET( i, &read_set) )
-			{
-				if( i == listener)
-				{
-					int new_socket = registrarConexionEntrante(listener);
-	
-					/*char * question = "Who are you?";
-					questionWithBasicProtocol(new_socket, question, strlen(question) +1, (void*)&puts);*/
-					FD_SET(new_socket, &master_set);
-					if( max_fd < new_socket ) max_fd = new_socket;
-				}
-				else
-				{
-					void * data;
-					int sizeOfData = recvWithBasicProtocol(i, &data);
-	
-					if( sizeOfData != 0)
-					{
-						procesarSolicitud(data, sizeOfData);
-						free(data);
-					}
-					else
-					{
-						gestionarDesconexion( i );
-						puts("DESCONEXION DE CLIENTE");
-						FD_CLR(i, &master_set);
-						close(i);
-					}
-				}
-			}
-		}
+		atenderConexionEntrante(listener);
 	}
 
+	//cuando salga del ciclo de atender conexiones, esperara a que terminen todos los hilos antes de cerrar el programa
+	list_iterate( hilos, (void *)&terminarHilo );
 }
 
-int registrarConexionEntrante( int listener)
+void atenderConexionEntrante( int listener)
 {
-	int nuevaConexion = acceptClient(listener);
+	tipoDeProceso_t tipoDeProceso;
+	void * identificacion;
+
+	pthread_t * pNuevoHilo = malloc(sizeof(pthread_t));
+
+	//acepto la conexion
+	int nuevaConexion = acceptClient(listener);	
+
+	//el proceso conectado me enviara su tipo
+	recvWithBasicProtocol( nuevaConexion, &identificacion);
+	tipoDeProceso = *( (tipoDeProceso_t *)identificacion );
 	
-	registrarNuevoESI( nuevaConexion );
+	//iniciare un hilo para atender al proceso segun su tipo
+	switch(tipoDeProceso)
+	{
+		case ESI:
+			pthread_create( pNuevoHilo, NULL, (void *)&atenderESI, (void *)nuevaConexion );
+			break;
+		case INSTANCIA:
+			pthread_create( pNuevoHilo, NULL, (void *)&atenderInstancia, (void *)nuevaConexion );
+			break;
+		case PLANIFICADOR:
+			pthread_create( pNuevoHilo, NULL, (void *)&atenderPlanificador, (void *)nuevaConexion );
+			break;
+		default:
+			puts("Tremendo error");
+			exit(1);
+	}
 
-	puts("registrada");
-
-	return nuevaConexion;
+	//agregare el hilo a la lista global de hilos del coordinador
+	list_add(hilos, (void*)pNuevoHilo);
 }
 
-void registrarNuevoESI( int ESI_socket )
+/*----------INSTANCIA----------*/
+
+void atenderInstancia( int socket )
 {
-	//recibir id del ESI
+	int * pID, id;
 
-	ESI_t * pESI = new_ESI( nuevo_id, ESI_socket);
+	recvWithBasicProtocol( socket, (void**)&pID);
+	id = *pID;
+	registrarNuevaInstancia( socket, id);
 
+	fd_set read_fds, master_fds;
+	FD_ZERO(&read_fds);
+	FD_ZERO(&master_fds);
+
+	FD_SET(socket, &master_fds);
+
+	while(1)
+	{
+		int size;
+		void * solicitud;
+
+		read_fds = master_fds;
+		select( socket + 1, &read_fds, NULL, NULL, NULL);
+
+		size = recvWithBasicProtocol( socket, &solicitud);
+
+		if( size ) // SI NO SE DESCONECTO
+			procesarSolicitudInstancia( solicitud, size);
+		else
+			instanciaDesconectada( id );
+
+		free(solicitud);
+	}
+	
+}
+
+void registrarNuevaInstancia( int Inst_socket, int id )
+{
+	inst_t * pInst = new_Inst( id, Inst_socket);
+	list_add( coord_Insts, pInst);
+}
+
+
+inst_t * new_Inst( int id, int socket )
+{
+	inst_t * pInst = malloc(sizeof(inst_t));
+	pInst->id = id;
+	pInst->socket = socket;
+	pInst->connected = true;
+
+	return pInst;
+}
+
+void procesarSolicitudInstancia(void * solicitud, int size)
+{
+	puts("Solicitud de Instancia procesada");
+}
+
+void instanciaDesconectada( int inst_ID )
+{
+	//buscar al ESI, Instancia o Planificador al que pudo pertenecer ese socket deconectado
+	inst_t * pInst = get_instancia_by_ID( coord_Insts, inst_ID);
+
+	//cambiar el estado de connected a false
+	pInst->connected = false;
+}
+
+inst_t * get_instancia_by_ID( t_list * instancias, int id )
+{
+	t_link_element * pAct = instancias->head;
+	inst_t * pInst;
+
+	while( pAct != NULL )
+	{
+		pInst = (inst_t *)(pAct->data);
+
+		if( is_instancia_ID_equal( pInst, id) )
+			return pInst;
+
+		pAct = pAct->next;
+	}
+
+	return NULL;
+}
+
+bool is_instancia_ID_equal( inst_t * pInst, int id )
+{
+	return pInst->id == id;
+}
+
+
+/*------------PLANIFICADOR------------*/
+
+void atenderPlanificador( int socket )
+{
+	registrarPlanificador( socket );
+
+	fd_set read_fds, master_fds;
+	FD_ZERO(&read_fds);
+	FD_ZERO(&master_fds);
+
+	FD_SET(socket, &master_fds);
+
+	while(1)
+	{
+		int size;
+		void * solicitud;
+
+		read_fds = master_fds;
+		select( socket + 1, &read_fds, NULL, NULL, NULL);
+
+		size = recvWithBasicProtocol( socket, &solicitud);
+
+		if( size ) // SI NO SE DESCONECTO
+			procesarSolicitudPlanificador( solicitud, size);
+		else
+			planificadorDesconectado();
+
+		free(solicitud);
+	}
+	
+}
+
+void registrarPlanificador( int socket )
+{
+	socket_planificador = socket;
+}
+
+void procesarSolicitudPlanificador(void * solicitud, int size)
+{
+	puts("Solicitud de Planificador procesada");
+}
+
+void planificadorDesconectado()
+{
+	socket_planificador = -1;
+}
+
+/*------------ESI-----------*/
+
+void atenderESI( int socket )
+{
+	int * pID, id;
+
+	recvWithBasicProtocol( socket, (void **)&pID);
+	id = *pID;
+	registrarNuevoESI( socket, id);
+
+	fd_set read_fds, master_fds;
+	FD_ZERO(&read_fds);
+	FD_ZERO(&master_fds);
+
+	FD_SET(socket, &master_fds);
+
+	while(1)
+	{
+		int size;
+		void * solicitud;
+
+		read_fds = master_fds;
+		select( socket + 1, &read_fds, NULL, NULL, NULL);
+
+		size = recvWithBasicProtocol( socket, &solicitud);
+
+		if( size ) // SI NO SE DESCONECTO
+			procesarSolicitudESI( solicitud, size);
+		else
+			ESIDesconectado( id );
+
+		free(solicitud);
+	}
+	
+}
+
+void registrarNuevoESI( int ESI_socket, int id )
+{
+	ESI_t * pESI = new_ESI( id, ESI_socket);
 	list_add( coord_ESIs, pESI);
 }
 
@@ -114,51 +310,46 @@ ESI_t * new_ESI( int id, int socket )
 	return pESI;
 }
 
-void procesarSolicitud( void * pData, int sizeOfData)
-{
-	tipoDeProceso_t tipoDeProceso = *( (int *)pData );
-	void * solicitud = pData + sizeof(tipoDeProceso_t);
-	int size = sizeOfData - sizeof(tipoDeProceso_t);
-
-	switch(tipoDeProceso)
-	{
-		case ESI:
-			procesarSolicitudESI(solicitud, size);
-			break;
-
-		case INSTANCIA:
-			procesarSolicitudInstancia(solicitud, size);
-			break;
-
-		case PLANIFICADOR:
-			procesarSolicitudPlanificador(solicitud, size);
-			break;
-
-		default:
-			puts("ERROR: TIPO DE PROCESO NO RECONOCIDO");
-			exit(1);
-	}
-}
-
 void procesarSolicitudESI(void * solicitud, int size)
 {
-	ESI_t esi;
-	esi.id = *((int*)solicitud);
+	puts("Solicitud ESI procesada");
 }
 
-void procesarSolicitudInstancia(void * solicitud, int size)
-{
-	instancia_t instancia;
-	instancia.id = *((int*)solicitud);
-}
-
-void procesarSolicitudPlanificador(void * solicitud, int size)
-{
-	//no necesitamos su id pues solo es uno
-}
-
-void gestionarDesconexion( int socketDesc )
+void ESIDesconectado( int ESI_ID )
 {
 	//buscar al ESI, Instancia o Planificador al que pudo pertenecer ese socket deconectado
+	ESI_t * pESI = get_ESI_by_ID( coord_ESIs, ESI_ID);
+
 	//cambiar el estado de connected a false
+	pESI->connected = false;
+}
+
+ESI_t * get_ESI_by_ID( t_list * ESIs, int id )
+{
+	t_link_element * pAct = ESIs->head;
+	ESI_t * pESI;
+
+	while( pAct != NULL )
+	{
+		pESI = (ESI_t *)(pAct->data);
+
+		if( is_ESI_ID_equal( pESI, id) )
+			return pESI;
+
+		pAct = pAct->next;
+	}
+
+	return NULL;
+}
+
+bool is_ESI_ID_equal( ESI_t * pESI, int id )
+{
+	return pESI->id == id;
+}
+
+/*-------------GENERAL--------------*/
+
+void terminarHilo( pthread_t * pHilo )
+{
+	pthread_join(*pHilo, NULL);
 }
