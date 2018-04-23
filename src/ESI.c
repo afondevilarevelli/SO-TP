@@ -14,28 +14,27 @@
 //#define IP_P "127.0.0.2";
 //#define Puerto_C "8000";
 //#define Puerto_P "8001";
-int IP_C;
-int IP_P;
+char IP_C[8];
+char IP_P[8];
 int Puerto_C;
 int Puerto_P;
 int main(){
-	IP_C=obtenerIP("ESI.config","IP_Coordinador");// me da  IP de coordinador
+	IP_C=obtenerIP(ESI.config,"IP de coordinador");// me da  IP de coordinador
 
 	IP_P=obtenerIP (archivo,IP_P,8);// me da  IP de planificador
 	Puerto_C=obtenerPuerto(archivo,Puerto_C,4)// me da  Puerto de coordinador
 	Puerto_P=obtenerPuerto(archivo,Puerto_P,4)// me da  Puerto de planificador*/
 	conexionA_Coordinador(IP_C,Puerto_C);
 	conexionA_Planificador();
-return 0;
+
 }
 //buscar IP
-int obtenerIP(char* arch_confi,char* key){
-	char *a;t_config *p;
-	p= config_create(arch_confi);
-			if (config_has_property(p,key))
-			a=config_get_string_value(p, key);
-			return inet_aton(a);//transformado de string a int por inet_aton
-}
+char *obtenerIP(t_config*, char* key,){
+
+		if (config_has_property(t_config,key)!=1)
+			return config_get_string_value(t_config, key);
+		}
+//transformar strign a int
 
 
 	int obtenerPuerto(archivo,buscar palabaclave){
