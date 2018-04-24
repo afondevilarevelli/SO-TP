@@ -147,11 +147,15 @@ void atenderInstancia( int socket )
 		size = recvWithBasicProtocol( socket, &solicitud);
 
 		if( size ) // SI NO SE DESCONECTO
+		{
 			procesarSolicitudInstancia( solicitud, size);
+			free(solicitud);
+		}
 		else
+		{
 			instanciaDesconectada( id );
-
-		free(solicitud);
+			return;
+		}
 	}
 	
 }
@@ -185,6 +189,8 @@ void instanciaDesconectada( int inst_ID )
 
 	//cambiar el estado de connected a false
 	pInst->connected = false;
+
+	printf("La instancia de id %d, se ha desconectado\n", inst_ID);
 }
 
 inst_t * get_instancia_by_ID( t_list * instancias, int id )
