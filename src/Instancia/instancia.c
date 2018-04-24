@@ -7,6 +7,13 @@
 
 int main(void)
 {
+	int coord_socket = conexionA_Coordinador();
+
+	return 0;	
+}
+
+int conexionA_Coordinador(void)
+{
 	int coord_socket = connectTo(COORD_IP, COORD_PORT);
 
 	tipoDeProceso_t tipoDeProceso = INSTANCIA;
@@ -15,5 +22,5 @@ int main(void)
 	sendWithBasicProtocol( coord_socket, &tipoDeProceso, sizeof(tipoDeProceso_t));
 	sendWithBasicProtocol( coord_socket, &instancia_ID, sizeof(int));
 
-	return 0;	
+	return coord_socket;
 }

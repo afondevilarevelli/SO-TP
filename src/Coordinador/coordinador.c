@@ -53,9 +53,6 @@ void procesarSolicitudESI(void * solicitud, int size);
 void procesarSolicitudInstancia(void * solicitud, int size);
 void procesarSolicitudPlanificador(void * solicitud, int size);
 
-
-/*-------------GENERAL--------------*/
-
 void terminarHilo( pthread_t * pHilo );
 
 int main(void)
@@ -291,11 +288,16 @@ void atenderESI( int socket )
 		size = recvWithBasicProtocol( socket, &solicitud);
 
 		if( size ) // SI NO SE DESCONECTO
+		{
 			procesarSolicitudESI( solicitud, size);
+			free(solicitud);
+		}
 		else
+		{
 			ESIDesconectado( id );
+			return;
+		}
 
-		free(solicitud);
 	}
 	
 }
@@ -328,6 +330,8 @@ void ESIDesconectado( int ESI_ID )
 
 	//cambiar el estado de connected a false
 	pESI->connected = false;
+
+	printf("El ESI de id %d, se ha desconectado\n", ESI_ID);
 }
 
 ESI_t * get_ESI_by_ID( t_list * ESIs, int id )
