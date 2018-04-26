@@ -1,0 +1,138 @@
+
+
+*Planificador*
+void ejecutarProxSentencia(int socket_esi, criterios){
+int result,resultadoSentencia;
+
+//le manda la orden de ejecución al esi para q le mande la siguiente instruccion
+	result = send(socket_esi, 1, strlen(1), 0);
+		if((result) == -1){
+			perror("error al enviar datos");
+}
+resultadoSentencia =recv(socket_esi, buffer, sizeof(buffer), 0);
+if(result == -1){
+  perror("error al recibir datos");
+  exit(1);
+}
+if(resultadoSentencia==EXITO)//Hacer enum de Exito
+{
+//Bien hecho?? salen fuegos artificales en la consola?
+
+}
+}
+
+
+
+
+
+
+
+
+
+
+*ESI*
+
+void ordenDeEjecucion(int socket_cord,int socket_plan )
+{//Obeter la siguiente sentencia y mandar al coordinador
+	int resultado, ordenDeEjecucion;
+  char prox_sent [40];
+	void * buffer[256];
+	ordenDeEjecucion= recv(socket_plan, buffer, sizeof(buffer), 0);
+	if(ordenDeEjecucion ==1){
+prox_sent= sentenciaParseada();
+send(socket_cord, prox_sent, strlen(prox_sent), 0);
+		if(ordenDeEjecucion == -1){
+			perror("error al enviar datos");}
+      return;
+}
+resultado = recv(socket_cord, buffer, sizeof(buffer), 0);
+if(resultado == -1){
+  perror("error al recibir datos");
+  exit(1);
+}
+		if((send(socket_plan, resultado, strlen(resultado), 0))) == -1){
+			perror("error al enviar datos");
+
+}//Verificacion de q funciona
+		if(result == -1){
+			perror("error al recibir datos");
+			exit(1);
+		}
+return 1;
+}
+
+
+int sentenciaParseada(){
+//obtiene la sentencia del script
+char sentencia [40]= ”set materias:K3001 ‘Fisisca 2’”;
+return sentencia;
+}
+
+
+
+
+
+
+
+*INSTANCIA*
+int resolverSentencia(socket_cord)
+{
+char sentencia[40];//???? esto le llega?
+int resultado;
+void * buffer[256];
+sentencia = recv(socket_cord, buffer, sizeof(buffer), 0);
+  if(sentencia == -1){
+    perror("error al recibir datos");
+    exit(1);
+  }
+  resultado=llevarACaboLaSentencia(sentencia);
+    if((send(socket_cord, resultado, strlen(resultado), 0)) == -1){
+      perror("error al enviar datos");
+      exit(1);
+    }
+return 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+*COORDINADOR*
+void elegirInstancia(int socket_inst, int socket_esi){
+
+//Se elije cual... y se le manda los sockets
+mandarAInstancia(socket_inst, int socket_esi)
+}
+
+int mandarAInstancia(int socket_inst, int socket_esi)
+{
+char sentencia[40];//???? esto le llega?
+int resultado;
+void * buffer[256];
+sentencia = recv(socket_esi, buffer, sizeof(buffer), 0);
+  if(sentencia == -1){
+    perror("error al recibir datos");
+    exit(1);
+  }
+  if((send(socket_inst, sentencia, strlen(sentencia), 0)) == -1){
+    perror("error al enviar datos");
+    exit(1);
+  }
+  resultado = recv(socket_inst, buffer, sizeof(buffer), 0);
+    if(resultado == -1){
+      perror("error al recibir datos");
+      exit(1);
+    }
+    if((send(socket_esi, resultado, strlen(resultado), 0)) == -1){
+      perror("error al enviar datos");
+      exit(1);
+    }
+
+return;
+}
