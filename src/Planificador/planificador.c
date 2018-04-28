@@ -7,35 +7,81 @@
 #include <commons/collections/list.h>
 #include <commons/string.h>
 
+#include "shared/protocolo.h"
 #include "shared/mySocket.h"
 
-#define PORT 8080;
+#define PORT 8080; 
 #define IP "127.5.5.4";
-#define msg "recibi todo piola";
+#define msgCoord "Hola Coordinador";
+#define msgESI "Hola ESI";
 
 int main(){
-	comunicacionESI(); //creo servidor
+/*	comunicacionESI(); //creo servidor
 	comunicacionCoord(); //creo servidor
 	consola();
-
-	return 0;
-}
-
-void comunicacionESI(){
-	int socket_servidor, new_socket;
-	struct sockaddr_in my_addr, their_addr;
+*/
+	int listener, new_socket;
+	int fdmax;
 	int result;
 
+	listener = listenOn(inet_addr(IP), PORT);
+	FD_S *master, *read_fds;
 
-	socket_servidor = listenOn(inet_addr(IP), PORT);
+	FD_ZERO(master);
+	FD_ZERO(read_fds);
 
-	new_socket = acceptClient(socket_servidor);
+	FD_SET(listener, &master);
+	fdmax = listener;
 
-	enviarMensajeESI(socket_servidor);
-	recibirMensajeESI(socket_servidor);
+	while(1){
+		int i;
+		read_fds = master;
+		if( (select(fdmax+1, &read_fds, NULL, NULL, NULL)) == -1 ){
+			perror("error en el select");
+			exit(1);
+		}
 
-	close(socket_servidor);
-	close(new_socket);
+		for(i = 0; i <= fdmax; i++){
+			if(FD_ISSET(i, read_fds)){
+				if(i == listener){
+					new_socket = acceptClient(i);	
+					FD_SET(new_socket, &master);
+					if(new_socket > fdmax){
+						fdmax = new_socket;
+					}
+				}
+				else{
+					int bufferHeader; 
+					if( ( result = recv(i, bufferHeader, sizeof(bufferHeader), 0) ) == -1){ //hay que verificar si es ESI o COORDINADOR
+						perror("error al recibir datos");
+						exit(1);
+					}
+					if(result == 0){
+						close(i);
+					}
+					else{
+						if(bufferHeader == COORDINADOR){//se conectó el coordinador
+							printf("se conecto el coordinador\n");
+							if( ( result = send(i, msgCoord, strlen(msgCoord), 0) ) == -1 ){
+								perror("error al enviar datos");
+								exit(1);
+							}							
+						}
+						else{// se conectó el esi
+							printf("se conecto el ESI\n");
+							if( ( result = send(i, msgESI, strlen(msgESI), 0) ) == -1 ){
+								perror("error al enviar datos");
+								exit(1);
+							}	
+						}
+					}
+				}
+			}
+		}
+	}
+	close(listener);
+	
+	return 0;
 }
 
 int enviarEjecutarProxSentenciaESI(int socket_servidor)
@@ -60,49 +106,4 @@ int recibirResultadoDeEjecucionESI(int socket_servidor)
 			exit(1);
 		}
 	return result;
-}
-
-
-FD_SET(listener, &master);
-fdmax = listener;
-
-while(1){
-	read_fds = master;
-	if( (select(fdmax+1, &read_fds, NULL, NULL, NULL)) == -1 ){
-		perror("error en el select");
-		exit(1);
-	}
-
-	for(i = 0; i <= fdmax; i++){
-		if(FD_ISSET(i, read_fds)){
-			if(i == listener){
-				new_socket = accept(i, (struct sockaddr *)&their_addr, sizeof(struct sockaddr_in));
-				FD_SET(new_socket, &master);
-				if(new_socket > fdmax){
-					fdmax = new_socket;
-				}
-			}
-			else{
-				void buffer[256];
-				if( ( result = recv(i, buffer, sizeof(buffer), 0) ) == -1){
-					perror("error al recibir datos");
-					exit(1);
-				}
-				if(result == 0){
-					close(i);
-				}
-				else{
-					printf("se recibieron %d bytes", result);
-				}
-
-				if( ( result = send(i, msg, strlen(msg), 0) ) == -1 ){
-					perror("error al enviar datos");
-					exit(1);
-				}
-				printf("se enviaron %d bytes", result);
-			}
-		}
-	}
-}
-close(sockfd);
 }
