@@ -6,31 +6,29 @@
 #include <commons/log.h>
 #include <commons/collections/list.h>
 #include <commons/string.h>
+#include <arpa/inet.h>
 
-#include "shared/protocolo.h"
-#include "shared/mySocket.h"
+//#include "../shared/protocolo.h"
+#include "../shared/mySocket.h"
 
-#define PORT 8080; 
-#define IP "127.5.5.4";
-#define msgCoord "Hola Coordinador";
-#define msgESI "Hola ESI";
+#define PORT 123456
+#define IP INADDR_ANY
+#define msgCoord "Hola Coordinador"
+#define msgESI "Hola ESI"
 
 int main(){
-/*	comunicacionESI(); //creo servidor
-	comunicacionCoord(); //creo servidor
-	consola();
-*/
 	int listener, new_socket;
 	int fdmax;
 	int result;
+	int ip = inet_addr(IP);
 
-	listener = listenOn(inet_addr(IP), PORT);
-	FD_S *master, *read_fds;
+	listener = listenOn(ip , PORT);
+	fd_set master, read_fds;
 
-	FD_ZERO(master);
-	FD_ZERO(read_fds);
+	FD_ZERO(&master);
+	FD_ZERO(&read_fds);
 
-	FD_SET(listener, &master);
+	FD_SET(listener,&master);
 	fdmax = listener;
 
 	while(1){
@@ -42,7 +40,7 @@ int main(){
 		}
 
 		for(i = 0; i <= fdmax; i++){
-			if(FD_ISSET(i, read_fds)){
+			if(FD_ISSET(i, &read_fds)){
 				if(i == listener){
 					new_socket = acceptClient(i);	
 					FD_SET(new_socket, &master);
@@ -51,7 +49,7 @@ int main(){
 					}
 				}
 				else{
-					int bufferHeader; 
+					void *bufferHeader = malloc(sizeof(int)); 
 					if( ( result = recv(i, bufferHeader, sizeof(bufferHeader), 0) ) == -1){ //hay que verificar si es ESI o COORDINADOR
 						perror("error al recibir datos");
 						exit(1);
@@ -60,7 +58,7 @@ int main(){
 						close(i);
 					}
 					else{
-						if(bufferHeader == COORDINADOR){//se conectó el coordinador
+						if(*( (int *) bufferHeader ) == 1/*COORDINADOR*/){//se conectó el coordinador
 							printf("se conecto el coordinador\n");
 							if( ( result = send(i, msgCoord, strlen(msgCoord), 0) ) == -1 ){
 								perror("error al enviar datos");
@@ -69,12 +67,13 @@ int main(){
 						}
 						else{// se conectó el esi
 							printf("se conecto el ESI\n");
-							if( ( result = send(i, msgESI, strlen(msgESI), 0) ) == -1 ){
+							if( ( result = send(i, (void *) msgESI, strlen(msgESI), 0) ) == -1 ){
 								perror("error al enviar datos");
 								exit(1);
 							}	
 						}
 					}
+					free(bufferHeader);
 				}
 			}
 		}
@@ -83,12 +82,12 @@ int main(){
 	
 	return 0;
 }
-
+/*
 int enviarEjecutarProxSentenciaESI(int socket_servidor)
 {
 	int result;
    int mensaje =1;
-	result = send(socket_servidor, mensaje, strlen(msg), 0);
+	result = send(socket_servidor, mensaje, strlen(msgESI), 0);
 		if(result == -1){
 			perror("error al enviar datos");
 			exit(1);
@@ -106,4 +105,4 @@ int recibirResultadoDeEjecucionESI(int socket_servidor)
 			exit(1);
 		}
 	return result;
-}
+} */
