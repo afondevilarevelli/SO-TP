@@ -11,18 +11,17 @@
 //#include "../shared/protocolo.h"
 #include "../shared/mySocket.h"
 
-#define PORT 123456
+#define PORT 8086
 #define IP INADDR_ANY
 #define msgCoord "Hola Coordinador"
 #define msgESI "Hola ESI"
 
 int main(){
-	int listener, new_socket;
+	int listener, new_socket, i;
 	int fdmax;
 	int result;
-	int ip = inet_addr(IP);
 
-	listener = listenOn(ip , PORT);
+	listener = listenOn(IP , PORT);
 	fd_set master, read_fds;
 
 	FD_ZERO(&master);
@@ -32,10 +31,9 @@ int main(){
 	fdmax = listener;
 
 	while(1){
-		int i;
 		read_fds = master;
 		if( (select(fdmax+1, &read_fds, NULL, NULL, NULL)) == -1 ){
-			perror("error en el select");
+			perror("error en el select\n");
 			exit(1);
 		}
 
@@ -49,26 +47,26 @@ int main(){
 					}
 				}
 				else{
-					void *bufferHeader = malloc(sizeof(int)); 
-					if( ( result = recv(i, bufferHeader, sizeof(bufferHeader), 0) ) == -1){ //hay que verificar si es ESI o COORDINADOR
-						perror("error al recibir datos");
+					int *bufferHeader = malloc(sizeof(int)); 
+					if( ( result = recv(i, (void *) bufferHeader, sizeof(bufferHeader), 0) ) == -1){ //hay que verificar si es ESI o COORDINADOR
+						perror("error al recibir datos\n");
 						exit(1);
 					}
 					if(result == 0){
 						close(i);
 					}
 					else{
-						if(*( (int *) bufferHeader ) == 1/*COORDINADOR*/){//se conectó el coordinador
+						if( *bufferHeader == 1/*COORDINADOR*/){ //se conectó el coordinador
 							printf("se conecto el coordinador\n");
-							if( ( result = send(i, msgCoord, strlen(msgCoord), 0) ) == -1 ){
-								perror("error al enviar datos");
+							if( ( result = send(i, (void *) msgCoord, strlen(msgCoord)+1 , 0) ) == -1 ){
+								perror("error al enviar datos\n");
 								exit(1);
 							}							
 						}
 						else{// se conectó el esi
 							printf("se conecto el ESI\n");
-							if( ( result = send(i, (void *) msgESI, strlen(msgESI), 0) ) == -1 ){
-								perror("error al enviar datos");
+							if( ( result = send(i, (void *) msgESI, strlen(msgESI)+1 , 0) ) == -1 ){
+								perror("error al enviar datos\n");
 								exit(1);
 							}	
 						}
