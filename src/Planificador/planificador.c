@@ -8,7 +8,7 @@
 #include <commons/string.h>
 #include <arpa/inet.h>
 
-//#include "../shared/protocolo.h"
+#include "../shared/protocolo.h"
 #include "../shared/mySocket.h"
 
 #define PORT 8086
@@ -56,19 +56,20 @@ int main(){
 						close(i);
 					}
 					else{
-						if( *bufferHeader == 1/*COORDINADOR*/){ //se conectó el coordinador
-							printf("se conecto el coordinador\n");
-							if( ( result = send(i, (void *) msgCoord, strlen(msgCoord)+1 , 0) ) == -1 ){
-								perror("error al enviar datos\n");
-								exit(1);
-							}							
-						}
-						else{// se conectó el esi
+						if( *bufferHeader == ESI){ //se conectó el ESI
 							printf("se conecto el ESI\n");
 							if( ( result = send(i, (void *) msgESI, strlen(msgESI)+1 , 0) ) == -1 ){
 								perror("error al enviar datos\n");
 								exit(1);
-							}	
+							}							
+						}
+						else{// se conectó el coordinador
+							printf("se conecto el coordinador\n");
+							if( ( result = send(i, (void *) msgCoord, strlen(msgCoord)+1 , 0) ) == -1 ){
+								perror("error al enviar datos\n");
+								exit(1);
+							}
+							
 						}
 					}
 					free(bufferHeader);
