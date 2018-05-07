@@ -7,6 +7,7 @@
 #include <commons/collections/list.h>
 #include <commons/string.h>
 #include <arpa/inet.h>
+#include <sys/types.h>
 
 #include "../shared/protocolo.h"
 #include "../shared/mySocket.h"
