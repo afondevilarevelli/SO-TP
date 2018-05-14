@@ -11,4 +11,17 @@ typedef enum{
 
 	} tipoDeProceso_t;
 
+
+typedef enum{GET, SET, STORE} op_t;
+
+typedef struct{
+
+	op_t operacion;
+
+	char * clave;
+
+	char * valor;
+
+	} ESISentenciaParseada_t;
+
 #endif
