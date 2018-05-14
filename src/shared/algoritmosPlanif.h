@@ -1,3 +1,6 @@
+#ifndef ALGORITMOS_PLANIF_H
+#define ALGORITMOS_PLANIF_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <commons/collections/queue.h>
@@ -11,3 +14,4 @@ t_queue algoritmoSRT(t_queue colaESI);
 t_queue algoritmoHRRN(t_queue colaESI);
 
 // devuelven la cola ordenada mediante su algoritmo
+#endif
