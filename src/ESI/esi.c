@@ -21,9 +21,9 @@ int Puerto_P;
 
 int obtenerIP(char* arch_confi,char* key);
 int obtenerPuerto(char* arch_confi,char* key);
-void conexionA_Planificador(int ip, int port);
+void conexion(int ip, int port);
 int enviarSentenciaParseada(int socket_servidor,t_esi_operacion lineaParseada);
-int enviarESIResultadoDeEjecucion(int socket_servidor);
+int enviarESIResultadoDeEjecucion(int socket_servidor, int respuesta);
 void recibirEjecurtarProximaSentenciaESI(int socket_coordinador, int socket_planificador);
 void parsearSiguienteInstruccion(int socket_coordinador, int socket_planificador );
 int main(){
@@ -33,8 +33,8 @@ int main(){
 	IP_P=obtenerIP ("archivo","IP_P,8");// me da  IP de planificador
 	Puerto_C=obtenerPuerto("archivo","Puerto_C,4");// me da  Puerto de coordinador
 	Puerto_P=obtenerPuerto("archivo","Puerto_P,4");// me da  Puerto de planificador*/
-	conexionA_Coordinador(IP_C,Puerto_C);
-	conexionA_Planificador(IP_P,Puerto_P);
+	conexion(IP_C,Puerto_C);
+	conexion(IP_P,Puerto_P);
 	//conexiones(); No se pueden poner todas las conexiones en otra funcion?
 	recibirEjecurtarProximaSentenciaESI( Puerto_C,Puerto_P);
 return 0;
@@ -64,7 +64,7 @@ int obtenerPuerto(char* arch_confi,char* key)
 }
 
 //crear socket y conexion a P
-void conexionA_Planificador(int ip, int port)
+void conexion(int ip, int port)
 {
 	int PlaniConect=connectTo( ip ,port);
 }
@@ -73,9 +73,10 @@ void conexionA_Planificador(int ip, int port)
 //conect con C
 //conect con P
 
-int enviarSentenciaParseada(int socket_servidor,t_esi_operacion lineaParseada)
+int enviarSentenciaParseada(int socket_servidor, t_esi_operacion lineaParseada)
 {
 	int result;
+	char resultadoDeEjecucion;
 	void * buffer[256];
 	result = send(socket_servidor, lineaParseada, sizeof(lineaParseada), 0);
 
@@ -84,9 +85,9 @@ int enviarSentenciaParseada(int socket_servidor,t_esi_operacion lineaParseada)
 		exit(1);
 	}
 
-	result = recv(socket_servidor, buffer, sizeof(buffer), 0);
+	resultadoDeEjecucion = recv(socket_servidor, buffer, sizeof(buffer), 0);
 	close(socket_servidor);
-    return result;
+    return resultadoDeEjecucion;
 }
 
 
