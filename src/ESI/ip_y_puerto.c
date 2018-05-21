@@ -35,11 +35,11 @@ int main(){
 	puerto_C=obtenerPuerto("ESI.config","Puerto_Coordinador");// me da Puerto de coordinador
 	printf("El Puerto del coordinador es: %d\n\n",puerto_C);
 
-	IP_P=obtenerIP("ESI.config","IP_Planificador");// me da  IP de coordinador
-		printf("El IP del coordinador es: %s\n\n",IP_P);
+	IP_P=obtenerIP("ESI.config","IP_Planificador");// me da  IP de planificador
+		printf("El IP del planificador es: %s\n\n",IP_P);
 
-    puerto_P=obtenerPuerto("ESI.config","Puerto_Planificador");// me da Puerto de coordinador
-	printf("El Puerto del coordinador es: %d\n\n",puerto_P);
+        puerto_P=obtenerPuerto("ESI.config","Puerto_Planificador");// me da Puerto de planificador
+	printf("El Puerto del planificador es: %d\n\n",puerto_P);
 
 return 0;
 }
