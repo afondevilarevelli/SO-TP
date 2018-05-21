@@ -9,11 +9,10 @@
 
 #include "../shared/mySocket.h"
 
-#define t_config "ESI.config";
-//#define IP_C "127.0.0.1";
-//#define IP_P "127.0.0.2";
-//#define Puerto_C "8000";
-//#define Puerto_P "8001";
+// IP_C="127.0.0.1";2130706434
+// IP_P="127.0.0.2";2130706433
+// Puerto_C="8000";
+// Puerto_P="8001";
 int IP_C;
 int IP_P;
 int Puerto_C;
@@ -21,7 +20,9 @@ int Puerto_P;
 
 int obtenerIP(char* arch_confi,char* key);
 int obtenerPuerto(char* arch_confi,char* key);
-void conexion(int ip, int port);
+
+void connectServ(int ip, int port);
+
 int enviarSentenciaParseada(int socket_servidor,t_esi_operacion lineaParseada);
 int enviarESIResultadoDeEjecucion(int socket_servidor, int respuesta);
 void recibirEjecurtarProximaSentenciaESI(int socket_coordinador, int socket_planificador);
@@ -29,50 +30,49 @@ void parsearSiguienteInstruccion(int socket_coordinador, int socket_planificador
 int main(){
 
 	IP_C=obtenerIP("ESI.config","IP_Coordinador");// me da  IP de coordinador
-
-	IP_P=obtenerIP ("archivo","IP_P,8");// me da  IP de planificador
-	Puerto_C=obtenerPuerto("archivo","Puerto_C,4");// me da  Puerto de coordinador
-	Puerto_P=obtenerPuerto("archivo","Puerto_P,4");// me da  Puerto de planificador*/
-	conexion(IP_C,Puerto_C);
-	conexion(IP_P,Puerto_P);
+	puerto_C=obtenerPuerto("ESI.config","Puerto_Coordinador");// me da Puerto de coordinador
+	IP_P=obtenerIP ("archivo","IP_P,8");// me da  IP de planificador	
+	puerto_P=obtenerPuerto("ESI.config","Puerto_Planificador");// me da Puerto de planificador
+	
+	connectServ(IP_P,puerto_P);
+	connectServ(IP_C , puerto_C);
 	//conexiones(); No se pueden poner todas las conexiones en otra funcion?
-	recibirEjecurtarProximaSentenciaESI( Puerto_C,Puerto_P);
+	//falla : no puedo conectarme al mismo tiempo con ambos
+	recibirEjecurtarProximaSentenciaESI( puerto_C,puerto_P);
 return 0;
 }
 //buscar IP
-
 int obtenerIP(char* arch_confi,char* key){
 	char *a;
 	t_config *p;
 	p= config_create(arch_confi);
-			if (config_has_property(p,key)){
+			if (config_has_property(p,key))
 			a=config_get_string_value(p, key);
-			return inet_aton(a);//transformado de string a int por inet_aton
-}
-
-
 	return inet_aton(a);//transformado de string a int por inet_aton
-}
+                                          }
 
-int obtenerPuerto(char* arch_confi,char* key)
-{
-	//abrir archivo
-	//leer archivo
-	//recorrer el archivo hasta encontrar la palabra IP_C
-	//tomar las 4 posiciones sgtes
-	//resultado
-}
+//buscar puerto
+int obtenerPuerto(char* arch_confi,char* key){
+	int b;
+	t_config *q;
+	q= config_create(arch_confi);
+	        if (config_has_property(q,key))
+		b=config_get_int_value(q,key);
+	return b;
+                                             }
 
-//crear socket y conexion a P
-void conexion(int ip, int port)
-{
-	int PlaniConect=connectTo( ip ,port);
-}
+//funcion conexion e intercambio de mensajes
+void connectServ(int ip,int puerto){
+	int esi3 = connectTo(ip , puerto);
 
-//crear socket a c
-//conect con C
-//conect con P
+	  while(1){
 
+	   char mensaje[1000];
+        scanf("%s",mensaje);
+        send(esi3,mensaje,strlen(mensaje),0);
+                }
+                                    }
+int main(){
 int enviarSentenciaParseada(int socket_servidor, t_esi_operacion lineaParseada)
 {
 	int result;
