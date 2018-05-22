@@ -3,12 +3,12 @@
 #include "../shared/mySocket.h"
 #include "../shared/testConnection.h"
 
-#define IP INADDR_ANY
+#define IP "1.0.0.127"
 #define PORT 8000
 
 int main(void)
 {
-	int listener = listenOn(IP, PORT);
+	int listener = listenOn(inet_addr(IP), PORT);
 
 	fd_set fds;
 	FD_ZERO(&fds);

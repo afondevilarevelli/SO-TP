@@ -12,7 +12,7 @@ int main(int count, char * args[])
 	}
 
 	printf("INICIANDO CONEXION CON PUERTO %d\n", atoi(args[1]));
-	int socket = connectTo(INADDR_ANY, atoi(args[1]));
+	int socket = connectTo(inet_addr("1.0.0.127"), atoi(args[1]));
 	puts("CONEXION EXITOSA");
 	char * answer = "I'm Mister testClient";
 	answerWithBasicProtocol(socket, answer, strlen(answer) +1, (void*)&puts);

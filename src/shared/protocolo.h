@@ -9,19 +9,27 @@ typedef enum{
 
 	PLANIFICADOR
 
-	} tipoDeProceso_t;
+} tProceso;
 
-
+#ifndef PARSER_H_
 typedef enum{GET, SET, STORE} op_t;
+#endif
 
 typedef struct{
 
-	op_t operacion;
+	int operacion;
 
 	char * clave;
 
 	char * valor;
 
 	} ESISentenciaParseada_t;
+
+typedef enum{BLOQUEAR, EJECUTAR} orden_t;
+
+typedef enum{FAILURE, SUCCESS} rtdoEjec_t;
+
+#define FIN_DE_EJECUCION 37
+#define SOLICITUD_ESI_ATENDIENDOSE 13
 
 #endif

@@ -5,12 +5,12 @@
 #include <pthread.h>
 #include <commons/collections/list.h>
 
-#include "../shared/testConnection.h"
-#include "../shared/mySocket.h"
-#include "../shared/protocolo.h"
+#include "../../shared/testConnection.h"
+#include "../../shared/mySocket.h"
+#include "../../shared/protocolo.h"
 
 
-int socket_planificador;
+extern int socketPlanificador;
 
 void atenderPlanificador(int socket);
 void registrarPlanificador(int socket);

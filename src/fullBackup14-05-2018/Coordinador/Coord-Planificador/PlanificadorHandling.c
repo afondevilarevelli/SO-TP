@@ -1,6 +1,5 @@
-
-
 /*------------PLANIFICADOR------------*/
+#include "PlanificadorHandling.h"
 
 void atenderPlanificador( int socket )
 {

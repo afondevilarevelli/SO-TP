@@ -1,20 +1,9 @@
-CC = gcc
-VPATH = ../shared
+sources = planificador.c ESIHandling/ESIHandling.c
+sharedLibraries = ../shared/mySocket.c ../shared/buffer.c
+pathLibraries = -lcommons -lpthread
 
-objects =  planificador.o ../shared/mySocket.o ../shared/buffer.o 
-pathLibraries = -lcommons
-
-planificador: $(objects)
-	gcc -o planificador $(objects) $(pathLibraries) 
-
-planificador.o: mySocket.h 
-
-../shared/mySocket.o: mySocket.h buffer.h
-
-../shared/buffer.o: buffer.h
+planificador: $(sources)
+	gcc -g -o planificador $(sources) $(sharedLibraries) $(pathLibraries)
 
 clean:
-	rm *.o
-
-cleanShared:
-	rm ../shared/*.o
+	rm planificador

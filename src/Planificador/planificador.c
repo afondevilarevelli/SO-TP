@@ -1,108 +1,109 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h> // Para malloc
-#include <unistd.h> // Para close
-#include <readline/readline.h>
-#include <commons/log.h>
-#include <commons/collections/list.h>
-#include <commons/string.h>
-#include <arpa/inet.h>
-#include <sys/types.h>
+#include <pthread.h>
+#include <commons/config.h>
+#include <commons/collections/queue.h>
 
 #include "../shared/protocolo.h"
 #include "../shared/mySocket.h"
 
-#define PORT 8086
-#define IP INADDR_ANY
-#define msgCoord "Hola Coordinador"
-#define msgESI "Hola ESI"
+#include "ESIHandling/ESIHandling.h"
 
-int main(){
-	int listener, new_socket, i;
-	int fdmax;
-	int result;
+void planificarEjecucionESI(void);
+void procesarResultadoEjecESI(void * rtdoEjec, int size);
+void ejecutarProxSent(ESI_t * pESI);
 
-	listener = listenOn(IP , PORT);
-	fd_set master, read_fds;
+int conectarseACoordinador(t_config * pConf);
+void obtenerIPyPuertoDeCoordinador(t_config * pConf, int * ip, int * puerto);
+void obtenerIPyPuertoDePlanificador(t_config * pConf, int * ip, int * puerto);
+void obtenerIPyPuerto(t_config * pConf, int * ip, int * puerto, char * ipKey, char * portKey);
 
-	FD_ZERO(&master);
-	FD_ZERO(&read_fds);
+int main(void)
+{
+	sem_init(&sem_cantESIsListos, 0, 0);
+	pthread_mutex_init(&m_ESIEjecutandose, NULL);
+	hilos = list_create();
 
-	FD_SET(listener,&master);
-	fdmax = listener;
+	ESIsListos = queue_create();
+	ESIsBloqueados = queue_create();
+	ESIsFinalizados = queue_create();
 
-	while(1){
-		read_fds = master;
-		if( (select(fdmax+1, &read_fds, NULL, NULL, NULL)) == -1 ){
-			perror("error en el select\n");
-			exit(1);
-		}
+	t_config * pConf = config_create("planificador.config");
+	socketCoord = conectarseACoordinador(pConf);
 
-		for(i = 0; i <= fdmax; i++){
-			if(FD_ISSET(i, &read_fds)){
-				if(i == listener){
-					new_socket = acceptClient(i);	
-					FD_SET(new_socket, &master);
-					if(new_socket > fdmax){
-						fdmax = new_socket;
-					}
-				}
-				else{
-					int *bufferHeader = malloc(sizeof(int)); 
-					if( ( result = recv(i, (void *) bufferHeader, sizeof(bufferHeader), 0) ) == -1){ //hay que verificar si es ESI o COORDINADOR
-						perror("error al recibir datos\n");
-						exit(1);
-					}
-					if(result == 0){
-						close(i);
-					}
-					else{
-						if( *bufferHeader == ESI){ //se conectó el ESI
-							printf("se conecto el ESI\n");
-							if( ( result = send(i, (void *) msgESI, strlen(msgESI)+1 , 0) ) == -1 ){
-								perror("error al enviar datos\n");
-								exit(1);
-							}							
-						}
-						else{// se conectó el coordinador
-							printf("se conecto el coordinador\n");
-							if( ( result = send(i, (void *) msgCoord, strlen(msgCoord)+1 , 0) ) == -1 ){
-								perror("error al enviar datos\n");
-								exit(1);
-							}
-							
-						}
-					}
-					free(bufferHeader);
-				}
-			}
-		}
-	}
-	close(listener);
-	
+	pthread_t hiloListener, hiloPlanificacion;
+	pthread_create(&hiloListener, NULL, (void*)&recibirNuevosESI, pConf);
+	pthread_create(&hiloPlanificacion, NULL, (void*)&planificarEjecucionESI, NULL);
+
+	pthread_join(hiloListener, NULL);
+	pthread_join(hiloPlanificacion, NULL);
+	list_iterate( hilos, (void *)&terminarHilo );
+	queue_destroy_and_destroy_elements(ESIsListos, (void*)&freeESI);
+	queue_destroy_and_destroy_elements(ESIsBloqueados, (void*)&freeESI);
+
 	return 0;
 }
-/*
-int enviarEjecutarProxSentenciaESI(int socket_servidor)
+
+void planificarEjecucionESI(void)
 {
-	int result;
-   int mensaje =1;
-	result = send(socket_servidor, mensaje, strlen(msgESI), 0);
-		if(result == -1){
-			perror("error al enviar datos");
-			exit(1);
-		}
-		return result;
+	while(1)
+	{
+		sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
+
+		pthread_mutex_lock(&m_ESIEjecutandose);
+		pESIEnEjecucion = (ESI_t *)queue_pop(ESIsListos);
+		ejecutarProxSent(pESIEnEjecucion);
+
+	}
 }
-int recibirResultadoDeEjecucionESI(int socket_servidor)
+
+void procesarResultadoEjecESI(void * rtdoEjec, int size)
 {
-	int result;
-	void * buffer[256];
-	result = recv(socket_servidor, buffer, sizeof(buffer), 0);
-	if(result ==6){puts("funciono 6");}//Verificacion de q funciona
-		if(result == -1){
-			perror("error al recibir datos");
-			exit(1);
-		}
-	return result;
-} */
+	rtdoEjec_t rtdo = *((rtdoEjec_t*)rtdoEjec);
+	printf("La ejecucion de la sentencia del ESI %d fue un %s.\n", pESIEnEjecucion->id, rtdo==SUCCESS?"exito":"fracaso");
+	if(rtdo == SUCCESS)
+	{
+		ejecutarProxSent(pESIEnEjecucion);
+	}
+
+}
+
+void ejecutarProxSent(ESI_t * pESI)
+{
+	orden_t orden = EJECUTAR;
+	sendWithBasicProtocol(pESI->socket, &orden, sizeof(orden_t));
+}
+
+
+/*----CONEXIONES-----*/
+
+int conectarseACoordinador(t_config * pConf)
+{
+	int ip, puerto;
+	obtenerIPyPuertoDeCoordinador(pConf, &ip, &puerto);
+	int socket = connectTo(ip, puerto);
+
+	//Le envio al coordinador que tipo de proceso soy
+	tProceso proceso = PLANIFICADOR;
+	sendWithBasicProtocol(socket, &proceso, sizeof(tProceso));
+
+	return socket;
+}
+
+void obtenerIPyPuertoDeCoordinador(t_config * pConf, int * ip, int * puerto)
+{
+	obtenerIPyPuerto(pConf, ip, puerto, "COORD_IP", "COORD_PUERTO");
+}
+
+void obtenerIPyPuertoDePlanificador(t_config * pConf, int * ip, int * puerto)
+{
+	obtenerIPyPuerto(pConf, ip, puerto, "PLANIF_IP", "PLANIF_PUERTO");
+}
+
+void obtenerIPyPuerto(t_config * pConf, int * ip, int * puerto, char * ipKey, char * portKey)
+{
+	char * strIP = config_get_string_value(pConf, ipKey);
+	*ip = inet_addr(strIP);
+
+	//puts(strIP);
+
+	*puerto= htons(config_get_int_value(pConf, portKey));
+}

@@ -53,7 +53,7 @@ int acceptClient( int listener)
 	int new_socket = accept(listener, (struct sockaddr *)&their_addr, &sin_size);
 	if (new_socket == -1 )
 		normalErrorHandling("CLIENT_ACCEPT_FAILED");
-	
+
 	return new_socket;
 }
 
@@ -61,7 +61,7 @@ int recvWithBasicProtocol( int socket, void ** pBuffer ) // el protocolo basico 
 {
 	int tam, bytes;
 	bytes = recv( socket, &tam, sizeof(int32_t), 0);
-	if( bytes == -1)	
+	if( bytes == -1)
 		normalErrorHandling("MSG_SIZE_RECEPTION_FAILED");
 	else if( bytes == 0)
 		return bytes;
@@ -98,8 +98,8 @@ void sendToAll( int maxFd, fd_set master, void * msg, int size)
 void setAddrStruct( struct sockaddr_in * myAddr, int ip, int port)
 {
 	myAddr->sin_family = AF_INET;
-	myAddr->sin_addr.s_addr = htonl(ip);
-	myAddr->sin_port = htons(port);
+	myAddr->sin_addr.s_addr = ip;
+	myAddr->sin_port = port;
 	memset(&(myAddr->sin_zero), '\0', sizeof(myAddr->sin_zero) );
 }
 
@@ -114,7 +114,7 @@ void letReUseAddr(int sockAddr)
 void normalErrorHandling(char * errorMsg)
 {
 	perror(errorMsg);
-	exit(1);	
+	exit(1);
 }
 
 #endif

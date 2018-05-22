@@ -1,20 +1,11 @@
-CC = gcc
-CFLAGS = -g
-VPATH= ../shared
 
-objects = instancia.o ../shared/mySocket.o ../shared/buffer.o
+sources = instancia.c
+sharedLibraries = ../shared/mySocket.c ../shared/buffer.c
+pathLibraries = -lcommons
 
-instancia: $(objects)
-	gcc -g -o instancia $(objects)
-
-instancia.o: mySocket.h protocolo.h
-
-../shared/mySocket.o: mySocket.h buffer.h
-
-../shared/buffer.o: buffer.h
+instancia: $(sources)
+	gcc -g -o instancia $(sources) $(sharedLibraries) $(pathLibraries)
+	cp instancia ../Instancia2
 
 clean:
-	rm *.o
-
-cleanShared:
-	rm ../shared/*.o
+	rm instancia
