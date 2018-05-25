@@ -4,6 +4,7 @@
 #include "consolaPlanificador.h"
 #include "../shared/protocolo.h"
 #include "../shared/mySocket.h"
+#include <string.h>
 
 #include "ESIHandling/ESIHandling.h"
 
@@ -46,12 +47,12 @@ int main(void)
 
 void planificarEjecucionESI(void)
 {
-	while(1)
+	while(puedeEjecutar())
 	{
 		sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
 
 		pthread_mutex_lock(&m_ESIEjecutandose);
-		pESIEnEjecucion = (ESI_t *)queue_pop(ESIsListos);
+		pESIEnEjecucion = obtenerEsiAEjecutarSegunFIFO();
 		ejecutarProxSent(pESIEnEjecucion);
 
 	}
@@ -108,4 +109,8 @@ void obtenerIPyPuerto(t_config * pConf, int * ip, int * puerto, char * ipKey, ch
 	//puts(strIP);
 
 	*puerto= htons(config_get_int_value(pConf, portKey));
+}
+
+ESI_t* obtenerEsiAEjecutarSegunFIFO(){
+	return (ESI_t *) queue_pop(ESIsListos);
 }

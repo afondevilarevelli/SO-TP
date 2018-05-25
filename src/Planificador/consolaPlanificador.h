@@ -7,8 +7,10 @@
 #include <unistd.h>
 #include <readline/readline.h>//importar librearias
 
-void pausarPlanificaion();
-void continuarPlanificaion();
+typedef enum{PAUSADO, PLANIFICANDO} est_Planif;
+
+void pausarPlanificacion();
+void continuarPlanificacion();
 void bloquearProcesoESI();//no se si se le pasa un parametro
 void desbloquearProcesoESI();//desbloquear
 void listarProcesos();//listar
@@ -16,6 +18,7 @@ void finalizarProceso();//kill
 void informacionDeInstancias();//status
 void analizarDeadlockDelSistema();//deadlock
 void consolaPlanificador();
+int puedeEjecutar();
 
 
 

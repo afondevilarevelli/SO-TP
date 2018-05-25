@@ -37,7 +37,7 @@ int main(void)
   ESISentenciaParseada_t * pSent;
 
   //recibo de orden de ejecucion <--------------- PLANIFICADOR
-  while( ordenDePlanificador() == EJECUTAR)
+  while( ordenDePlanificador() == EJECUTAR )
   {
     pSent = obtenerSentenciaParseada(scriptf);
 

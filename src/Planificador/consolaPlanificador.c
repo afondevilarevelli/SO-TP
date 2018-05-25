@@ -1,6 +1,6 @@
 #include "consolaPlanificador.h"
 
-
+int puedeEjecutarPlanif = 1;
 
 void consolaPlanificador(){
 	char* linea=NULL;
@@ -19,13 +19,13 @@ void consolaPlanificador(){
 		if(strcmp(p1,"pausar")== 0)
 		{// && p2 == NULL no importa el segundo parametro
 			printf("tiene pausa. Esta bien escrita: \n");
-			pausarPlanificaion();
+			pausarPlanificacion();
 		}
 
 		if(strcmp(p1,"continuar")== 0)
 		{//&& p2 == NULL no importa el segundo parametro
 			printf("tiene continuar. Esta bien escrita \n");
-			continuarPlanificaion();
+			continuarPlanificacion();
 		}
 
 		if(strcmp(p1,"bloquear")== 0 && p2 != NULL && p3 != NULL)
@@ -67,11 +67,18 @@ void consolaPlanificador(){
 	return;
 }
 
-void pausarPlanificaion(){}
-void continuarPlanificaion(){}
+void pausarPlanificacion(){
+	puedeEjecutarPlanif = 0;
+}
+void continuarPlanificacion(){
+	puedeEjecutarPlanif = 1;
+}
 void bloquearProcesoESI(){}//no se si se le pasa un parametro
 void desbloquearProcesoESI(){}//desbloquear
 void listarProcesos(){}//listar
 void finalizarProceso(){}//kill
 void informacionDeInstancias(){}//status
 void analizarDeadlockDelSistema(){}
+int puedeEjecutar(){
+	return puedeEjecutarPlanif;
+}
