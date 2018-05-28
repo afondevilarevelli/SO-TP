@@ -1,9 +1,10 @@
 #include <pthread.h>
 #include <commons/config.h>
 #include <commons/collections/queue.h>
-
+#include "consolaPlanificador.h"
 #include "../shared/protocolo.h"
 #include "../shared/mySocket.h"
+#include <string.h>
 
 #include "ESIHandling/ESIHandling.h"
 
@@ -29,12 +30,14 @@ int main(void)
 	t_config * pConf = config_create("planificador.config");
 	socketCoord = conectarseACoordinador(pConf);
 
-	pthread_t hiloListener, hiloPlanificacion;
+	pthread_t hiloListener, hiloPlanificacion, hiloConsolaPlanificador;
 	pthread_create(&hiloListener, NULL, (void*)&recibirNuevosESI, pConf);
 	pthread_create(&hiloPlanificacion, NULL, (void*)&planificarEjecucionESI, NULL);
+	pthread_create(&hiloConsolaPlanificador, NULL, (void*)&consolaPlanificador, NULL);
 
 	pthread_join(hiloListener, NULL);
 	pthread_join(hiloPlanificacion, NULL);
+	pthread_join(hiloConsolaPlanificador, NULL);
 	list_iterate( hilos, (void *)&terminarHilo );
 	queue_destroy_and_destroy_elements(ESIsListos, (void*)&freeESI);
 	queue_destroy_and_destroy_elements(ESIsBloqueados, (void*)&freeESI);
@@ -44,12 +47,12 @@ int main(void)
 
 void planificarEjecucionESI(void)
 {
-	while(1)
+	while(puedeEjecutar())
 	{
 		sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
 
 		pthread_mutex_lock(&m_ESIEjecutandose);
-		pESIEnEjecucion = (ESI_t *)queue_pop(ESIsListos);
+		pESIEnEjecucion = obtenerEsiAEjecutarSegunFIFO();
 		ejecutarProxSent(pESIEnEjecucion);
 	}
 }
@@ -105,4 +108,8 @@ void obtenerIPyPuerto(t_config * pConf, int * ip, int * puerto, char * ipKey, ch
 	//puts(strIP);
 
 	*puerto= htons(config_get_int_value(pConf, portKey));
+}
+
+ESI_t* obtenerEsiAEjecutarSegunFIFO(){
+	return (ESI_t *) queue_pop(ESIsListos);
 }

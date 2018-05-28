@@ -77,8 +77,20 @@ rtdoEjec_t accederRecurso(op_t operacion, char * clave, char * valor)
 
 rtdoEjec_t getRecurso(char * clave)
 {
-	return getEntrada(clave)?SUCCESS:FAILURE;
+	return getEntrada(clave)?SUCCESS:FAILURE;//Separar el If y en vez de FAILURE que la agregue.
+	/*
+	 * else
+	 * 	crearEntradaPorAlgCircular(clave);
+	 */
 }
+
+/*
+ * crearEntradaPorAlgCircular( char * clave)
+ * 	static int pointer;
+ * 	//crear entrada en tablaDentradas(pointer,clave)
+ * 	pointer ++;
+ * 	pointer %= MAX_ENTRADA;
+ */
 
 rtdoEjec_t setRecurso(char * clave, char * valor)
 {
