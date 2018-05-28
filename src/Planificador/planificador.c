@@ -51,7 +51,6 @@ void planificarEjecucionESI(void)
 		pthread_mutex_lock(&m_ESIEjecutandose);
 		pESIEnEjecucion = (ESI_t *)queue_pop(ESIsListos);
 		ejecutarProxSent(pESIEnEjecucion);
-
 	}
 }
 
