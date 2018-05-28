@@ -1,4 +1,5 @@
 /*------------PLANIFICADOR------------*/
+#include "../Coord-Log/coordLog.h"
 #include "PlanificadorHandling.h"
 
 void atenderPlanificador( int socket )
@@ -25,14 +26,16 @@ void atenderPlanificador( int socket )
 void registrarPlanificador( int socket )
 {
   socketPlanificador = socket;
+  log_trace(pLog, "Se conecto el Planificador (socket %d)", socketPlanificador);
 }
 
 void procesarSolicitudPlanificador(void * solicitud, int size)
 {
-  puts("Solicitud de Planificador procesada");
+  log_trace(pLog, "Solicitud de Planificador procesada");
 }
 
 void planificadorDesconectado()
 {
   socketPlanificador = -1;
+  log_error(pLog, "Se desconecto el Planificador. El sistema se encuentra en un estado invalido.");
 }

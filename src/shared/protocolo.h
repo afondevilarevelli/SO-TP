@@ -7,7 +7,9 @@ typedef enum{
 
 	INSTANCIA,
 
-	PLANIFICADOR
+	PLANIFICADOR,
+
+	COORDINADOR
 
 } tProceso;
 

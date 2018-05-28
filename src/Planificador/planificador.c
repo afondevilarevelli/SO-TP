@@ -11,6 +11,7 @@
 void planificarEjecucionESI(void);
 void procesarResultadoEjecESI(void * rtdoEjec, int size);
 void ejecutarProxSent(ESI_t * pESI);
+ESI_t* obtenerEsiAEjecutarSegunFIFO(void);
 
 int conectarseACoordinador(t_config * pConf);
 void obtenerIPyPuertoDeCoordinador(t_config * pConf, int * ip, int * puerto);

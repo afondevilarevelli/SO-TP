@@ -10,6 +10,9 @@
 #include "Coord-Instancia/InstanciaHandling.h"
 #include "Coord-ESI/ESIHandling.h"
 #include "Coord-Planificador/PlanificadorHandling.h"
+#include "Coord-Log/coordLog.h"
+
+t_log * pLog;
 
 pthread_mutex_t m_ESIAtendido;
 
@@ -31,8 +34,14 @@ int main(void)
 	coord_ESIs = list_create();
 	hilos = list_create();
 
-	int ip, puerto;
+	pLog = log_create("coord.log", "COORDINADOR", true, LOG_LEVEL_TRACE);
+	log_trace(pLog, "Iniciando...");
+
+	unsigned int ip, puerto;
+	struct in_addr ip_addr;
 	obtenerIPyPuertoDeCoordinador(&ip, &puerto);
+	ip_addr.s_addr = ip;
+	log_trace(pLog, "IP (%s) y PUERTO (%d) obtenidos del archivo de configuracion.", inet_ntoa(ip_addr), ntohs(puerto));
 
 	//dejare al coordinador escuchar nuevas conexiones a traves del IP y PUERTO indicados
 	int listener = listenOn(ip, puerto), i;
@@ -69,12 +78,12 @@ void atenderConexionEntrante( int listener)
 	int bytes = recvWithBasicProtocol( nuevaConexion, &identificacion);
 	if(!bytes)
 	{
-		puts("Conexion perdida antes de ser registrada.");
+		log_error(pLog, "Conexion en socket %d perdida antes de ser identificada", nuevaConexion);
 		exit(1);
 	}
 
 	proceso = *( (tProceso *)identificacion );
-
+	log_trace(pLog, "Se conecto un proceso de tipo %s", proceso == ESI?"ESI":proceso == PLANIFICADOR?"PLANIFICADOR":proceso == INSTANCIA?"INSTANCIA":"desconocido");
 	//iniciare un hilo para atender al proceso segun su tipo
 	switch(proceso)
 	{
@@ -88,7 +97,7 @@ void atenderConexionEntrante( int listener)
 			pthread_create( pNuevoHilo, NULL, (void *)&atenderPlanificador, (void *)nuevaConexion );
 			break;
 		default:
-			puts("Tremendo error");
+			log_error(pLog, "Proceso de tipo desconocido");
 			exit(1);
 	}
 
@@ -108,6 +117,7 @@ void obtenerIPyPuertoDeCoordinador(int * ip, int * puerto)
 	//puts(strIP);
 
 	*puerto= htons(config_get_int_value(pConf, "COORD_PUERTO"));
+
 }
 
 

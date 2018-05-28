@@ -1,4 +1,5 @@
 /*------------ESI-----------*/
+#include "../Coord-Log/coordLog.h"
 #include "ESIHandling.h"
 #include "../Coord-Instancia/InstanciaHandling.h"
 
@@ -13,7 +14,7 @@ void atenderESI( int socket )
 
   if( !recvWithBasicProtocol( socket, (void **)&pID ) )
   {
-      puts("ESI perdido antes de obtener el ID");
+      log_error(pLog, "ESI de socket %d perdido antes de obtener el ID", socket);
       exit(1);
   }
   id = *pID;
@@ -25,18 +26,23 @@ void atenderESI( int socket )
     void * solicitud;
 
     size = recvWithBasicProtocol( socket, &solicitud);
+    log_trace(pLog, "Se recibieron datos del ESI %d", id);
 
     if( size ) // SI NO SE DESCONECTO
     {
       if( ( size == sizeof(int) ) && ((*((int*)solicitud)) == FIN_DE_EJECUCION) )
       {
+          log_trace(pLog, "El ESI %d ha finalizado con éxito", id);
           break;
       }
       else
       {
         rtdoEjec_t rtdo = procesarSolicitudESI(solicitud, size);
-        puts(rtdo==SUCCESS?"Es success posta":"No es success");
+        log_debug(pLog, "La solicitud del ESI %d fue %s", id, rtdo==SUCCESS?"procesada con exito":"un fracaso");
+
         sendWithBasicProtocol(socket, (void**)&rtdo, sizeof(rtdoEjec_t));
+        log_trace(pLog, "Se informa de ese resultado al ESI %d", id);
+
         free(solicitud);
       }
     }
@@ -56,6 +62,7 @@ void registrarNuevoESI( int ESI_socket, int id )
 {
   ESI_t * pESI = new_ESI( id, ESI_socket);
   list_add( coord_ESIs, pESI);
+  log_trace(pLog, "Se agrego un nuevo ESI de id = %d a la lista de ESIs", id);
 }
 
 ESI_t * new_ESI( int id, int socket )
@@ -80,11 +87,13 @@ rtdoEjec_t procesarSolicitudESI(void * solicitud, int size)
     sent.valor = NULL;
 
   freeBuffer(buffSent);
+  log_info(pLog,"Sentencia ESI: op=%d, clave=%s, valor=%s\n", sent.operacion, sent.clave, sent.valor?sent.valor:"No corresponde");
 
-  printf("op=%d, clave=%s, valor=%s\n", sent.operacion, sent.clave, sent.valor?sent.valor:"No corresponde");
   inst_t * pInst = getInstByEquitativeLoad(sent.clave);
-  printf("size=%d\n", size);
+  log_trace(pLog,"Se obtuvo la instancia de id = %d por Equitative Load", pInst->id);
+
   sendWithBasicProtocol( pInst->socket, solicitud, size);
+  log_trace(pLog, "Se le envio la sentencia a la instancia %d", pInst->id);
 
   //si es un GET
     //preguntarle al planificador si la clave esta disponible
@@ -97,8 +106,9 @@ rtdoEjec_t procesarSolicitudESI(void * solicitud, int size)
       //cambiar el valor actual de la tabla de entradas de la instancia asociado a la clave por el nuevo
   rtdoEjec_t * rtdo;
   recvWithBasicProtocol(pInst->socket, (void**)&rtdo);
+  log_trace(pLog, "Se recibio el resultado de la ejecucion de la sentencia en la instancia %d", pInst->id);
+
   pthread_mutex_unlock(&m_ESIAtendido);
-  puts("Solicitud ESI procesada");
   //retornar rtdoEjec
   return *rtdo;
 }
@@ -111,7 +121,7 @@ void ESIDesconectado( int ESI_ID )
   //cambiar el estado de connected a false
   pESI->connected = false;
 
-  printf("El ESI de id %d, se ha desconectado\n", pESI->id);
+  log_warning(pLog, "El ESI de id %d, se ha desconectado\n", pESI->id);
 }
 
 ESI_t * get_ESI_by_ID( t_list * ESIs, int id )
