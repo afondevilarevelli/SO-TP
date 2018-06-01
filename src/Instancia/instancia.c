@@ -5,6 +5,9 @@
 #include "../shared/buffer.h"
 #include "../shared/protocolo.h"
 
+#define ENTRY_SIZE 50
+#define MAX_ENTRADA 5
+
 typedef struct
 	{
 		char clave[41];
@@ -19,6 +22,9 @@ rtdoEjec_t setRecurso(char * clave, char * valor);
 rtdoEjec_t storeRecurso(char * clave);
 t_entrada * getEntrada(char * clave);
 bool is_entrada_clave_equal( t_entrada * pEntry, char * clave);
+
+void crearEntradaPorAlgCircular( char * clave);
+void agregarATabla(char * clave, int pointer);
 
 t_list * cargarTablaDeEntradas(void);
 t_entrada * new_entrada(char * clave, int size);
@@ -77,20 +83,25 @@ rtdoEjec_t accederRecurso(op_t operacion, char * clave, char * valor)
 
 rtdoEjec_t getRecurso(char * clave)
 {
-	return getEntrada(clave)?SUCCESS:FAILURE;//Separar el If y en vez de FAILURE que la agregue.
-	/*
-	 * else
-	 * 	crearEntradaPorAlgCircular(clave);
-	 */
+	if( getEntrada(clave) )
+		return SUCCESS;
+  else
+	 	crearEntradaPorAlgCircular(clave);
 }
 
-/*
- * crearEntradaPorAlgCircular( char * clave)
- * 	static int pointer;
- * 	//crear entrada en tablaDentradas(pointer,clave)
- * 	pointer ++;
- * 	pointer %= MAX_ENTRADA;
- */
+
+void crearEntradaPorAlgCircular( char * clave)
+{
+ 	static int pointer;
+	agregarATabla(clave, pointer);
+ 	pointer ++;
+ 	pointer %= MAX_ENTRADA;
+}
+
+void agregarATabla(char * clave, int pointer)
+{
+	list_replace( tablaDeEntradas, pointer, new_entrada(clave, ENTRY_SIZE) );
+}
 
 rtdoEjec_t setRecurso(char * clave, char * valor)
 {
@@ -146,7 +157,7 @@ t_entrada * new_entrada(char * clave, int size)
 t_list * cargarTablaDeEntradas(void)
 {
 	t_list * tabla = list_create();
-	list_add(tabla, new_entrada("jugador", 50));
+	list_add(tabla, new_entrada("jugador", ENTRY_SIZE));
 
 	return tabla;
 }
