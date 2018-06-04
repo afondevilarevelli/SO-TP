@@ -18,7 +18,7 @@ ESI_t* obtenerEsiAEjecutarSegunFIFO(t_queue* ESIsListos);
 
 ESI_t* obtenerEsiAEjecutarSegunSFJ(t_queue* ESIsListos, struct tipoPlanificacion tPlani);
 
-ESI_t* obtenerEsiAEjecutarSegunSRT(t_queue* ESIsListos, struct tipoPlanificacion tPlani);
+ESI_t* obtenerEsiAEjecutarSegunSRT(t_queue* ESIsListos, struct tipoPlanificacion tPlani,int valorReal);
 
 ESI_t* obtenerEsiAEjecutarSegunHHRR(t_queue* ESIsListos);
 

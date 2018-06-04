@@ -96,12 +96,13 @@ bool is_ESI_ID_equal( ESI_t * pESI, int id )
 }
 
 
-ESI_t * newESI( int socket, int id)
+ESI_t * newESI( int socket, int id, int rafagaInicial)
 {
   ESI_t * pESI = malloc(sizeof(ESI_t));
 
   pESI->socket = socket;
   pESI->id = id;
+  pESI->estimacionRafaga= rafagaInicial;
 
   return pESI;
 }
@@ -130,17 +131,17 @@ void recibirNuevosESI(t_config * pConf)
     readSet = masterSet;
     select(maxFD + 1, &readSet, NULL, NULL, NULL);
 
-    atenderConexionEntrante(listener);
+    atenderConexionEntrante(listener,config_get_int_value(pConf, "ESTIMACION_INICIAL"));
   }
 }
 
-void atenderConexionEntrante(int listener)
+void atenderConexionEntrante(int listener, int estimacionInicialESI)
 {
   int newSock = acceptClient(listener);
   void * pID = NULL;
   if(recvWithBasicProtocol(newSock, &pID))
   {
-    ESI_t * pESI = newESI(newSock, *((int*)pID) );
+    ESI_t * pESI = newESI(newSock, *((int*)pID),estimacionInicialESI );
     queue_push(ESIsListos, pESI);
     sem_post(&sem_cantESIsListos);
 

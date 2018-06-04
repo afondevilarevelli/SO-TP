@@ -51,6 +51,7 @@ int main(void)
 void planificarEjecucionESI(t_config * pConf)
 {
 	struct tipoPlanificacion infoAlgoritmo;
+	int valorReal;//SACAR DE ALGUNA MANERA CON LA CANTIDAD DE INSTRUCCIONES QUE SE LOGRO HACER SIN ENTRAR EN BLOQUEADO
 	infoAlgoritmo = obtenerAlgoritmoDePlanificacion(pConf);
 	while(puedeEjecutar())
 	{
@@ -60,12 +61,17 @@ void planificarEjecucionESI(t_config * pConf)
 		switch(infoAlgoritmo.planificacion){
 			case FIFO:
 				pESIEnEjecucion = obtenerEsiAEjecutarSegunFIFO(ESIsListos);
+				//Sigue ejecutando hasta que termina o es bloqueado
+				/*for(int i =0;;i++){
+					ejecutarProxSent(pESIEnEjecucion);
+				}*/
 				break;
 			case SJF:
 				pESIEnEjecucion = obtenerEsiAEjecutarSegunSJF(ESIsListos,infoAlgoritmo);
+				//Sigue ejecutando hasta que termina o es bloqueado, al igual q FIFO
 				break;
 			case SRT:
-				pESIEnEjecucion = obtenerEsiAEjecutarSegunSRT(ESIsListos,infoAlgoritmo);
+				pESIEnEjecucion = obtenerEsiAEjecutarSegunSRT(ESIsListos,infoAlgoritmo, valorReal);
 				break;
 			case HHRR:
 				pESIEnEjecucion = obtenerEsiAEjecutarSegunHHRR(ESIsListos);
@@ -77,7 +83,6 @@ void planificarEjecucionESI(t_config * pConf)
 
 		}
 
-		ejecutarProxSent(pESIEnEjecucion);
 	}
 }
 
@@ -85,10 +90,14 @@ void procesarResultadoEjecESI(void * rtdoEjec, int size)
 {
 	rtdoEjec_t rtdo = *((rtdoEjec_t*)rtdoEjec);
 	printf("La ejecucion de la sentencia del ESI %d fue un %s.\n", pESIEnEjecucion->id, rtdo==SUCCESS?"exito":"fracaso");
-	if(rtdo == SUCCESS)
+
+
+	//******************************************************************************
+	// Depende del algoritmo si sigue o no. tambien puede ser que sea bloqueado la respuesta y no pueda seguir con la proxima instruccion
+	/*if(rtdo == SUCCESS)
 	{
 		ejecutarProxSent(pESIEnEjecucion);
-	}
+	}*/
 
 }
 
@@ -140,7 +149,7 @@ struct tipoPlanificacion obtenerAlgoritmoDePlanificacion(t_config * pConf)
 
 	plani.planificacion= config_get_int_value(pConf, "ALGORITMO_DE_PLANIFICACION");
 	plani.alpha= config_get_int_value(pConf, "ALPHA");
-	plani.estimacionInicial= config_get_int_value(pConf, "ESTIMACION_INICIAL");
+//plani.estimacionInicial= config_get_int_value(pConf, "ESTIMACION_INICIAL");
 
 	return tipoPlanificacion;
 }

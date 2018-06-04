@@ -13,6 +13,7 @@ typedef struct
 {
   int socket;
   int id;
+  int estimacionRafaga;
 }ESI_t;
 
 int socketCoord;
@@ -36,9 +37,9 @@ void abortESI( int ESI_ID );
 void atenderESI(ESI_t * pESI);
 bool is_ESI_ID_equal( ESI_t * pESI, int id );
 void recibirNuevosESI(t_config * pConf);
-ESI_t * newESI(int socketESI, int id);
+ESI_t * newESI(int socketESI, int id,int rafagaInicial);
 void freeESI(ESI_t * pESI);
 
-void atenderConexionEntrante(int listener);
+void atenderConexionEntrante(int listener,int estimacionInicialESI);
 
 #endif
