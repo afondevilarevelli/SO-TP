@@ -9,6 +9,21 @@
 
 typedef enum{PAUSADO, PLANIFICANDO} est_Planif;
 
+
+
+
+//bloquear el proceso ESI por consola
+//no olvidar poner la libreria <commons/collection/queue.h>  de las colas
+// yo puse al tipo de dato esi o proceso esi -> le puse* pro_ESI
+typedef enum{LISTOS,EJECUTANDO,BLOQUEADO} t_cola;
+
+//creo una structura para tipo de dato ESI
+typedef struct {
+	int id_esi;
+	t_cola colaProviniente;
+}pro_ESI;
+
+
 void pausarPlanificacion();
 void continuarPlanificacion();
 void bloquearProcesoESI();//no se si se le pasa un parametro
