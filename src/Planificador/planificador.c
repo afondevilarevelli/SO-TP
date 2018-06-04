@@ -5,18 +5,20 @@
 #include "../shared/protocolo.h"
 #include "../shared/mySocket.h"
 #include <string.h>
+#include "algoritmosDePlanificacion.h"
 
 #include "ESIHandling/ESIHandling.h"
 
-void planificarEjecucionESI(void);
+void planificarEjecucionESI(t_config * pConf);
 void procesarResultadoEjecESI(void * rtdoEjec, int size);
 void ejecutarProxSent(ESI_t * pESI);
-ESI_t* obtenerEsiAEjecutarSegunFIFO(void);
+//ESI_t* obtenerEsiAEjecutarSegunFIFO(void);
 
 int conectarseACoordinador(t_config * pConf);
 void obtenerIPyPuertoDeCoordinador(t_config * pConf, int * ip, int * puerto);
 void obtenerIPyPuertoDePlanificador(t_config * pConf, int * ip, int * puerto);
 void obtenerIPyPuerto(t_config * pConf, int * ip, int * puerto, char * ipKey, char * portKey);
+struct tipoPlanificacion obtenerAlgoritmoDePlanificacion(t_config * pConf);
 
 int main(void)
 {
@@ -33,7 +35,7 @@ int main(void)
 
 	pthread_t hiloListener, hiloPlanificacion, hiloConsolaPlanificador;
 	pthread_create(&hiloListener, NULL, (void*)&recibirNuevosESI, pConf);
-	pthread_create(&hiloPlanificacion, NULL, (void*)&planificarEjecucionESI, NULL);
+	pthread_create(&hiloPlanificacion, NULL, (void*)&planificarEjecucionESI, pConf);
 	pthread_create(&hiloConsolaPlanificador, NULL, (void*)&consolaPlanificador, NULL);
 
 	pthread_join(hiloListener, NULL);
@@ -46,14 +48,35 @@ int main(void)
 	return 0;
 }
 
-void planificarEjecucionESI(void)
+void planificarEjecucionESI(t_config * pConf)
 {
+	struct tipoPlanificacion infoAlgoritmo;
+	infoAlgoritmo = obtenerAlgoritmoDePlanificacion(pConf);
 	while(puedeEjecutar())
 	{
 		sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
 
 		pthread_mutex_lock(&m_ESIEjecutandose);
-		pESIEnEjecucion = obtenerEsiAEjecutarSegunFIFO();
+		switch(infoAlgoritmo.planificacion){
+			case FIFO:
+				pESIEnEjecucion = obtenerEsiAEjecutarSegunFIFO(ESIsListos);
+				break;
+			case SJF:
+				pESIEnEjecucion = obtenerEsiAEjecutarSegunSJF(ESIsListos,infoAlgoritmo);
+				break;
+			case SRT:
+				pESIEnEjecucion = obtenerEsiAEjecutarSegunSRT(ESIsListos,infoAlgoritmo);
+				break;
+			case HHRR:
+				pESIEnEjecucion = obtenerEsiAEjecutarSegunHHRR(ESIsListos);
+				break;
+
+			default://rutina de error de algo :)
+				printf("No se ha encontrado el Algoritmo de Planificacion a utilizar.\n");
+				break;
+
+		}
+
 		ejecutarProxSent(pESIEnEjecucion);
 	}
 }
@@ -111,6 +134,23 @@ void obtenerIPyPuerto(t_config * pConf, int * ip, int * puerto, char * ipKey, ch
 	*puerto= htons(config_get_int_value(pConf, portKey));
 }
 
-ESI_t* obtenerEsiAEjecutarSegunFIFO(){
+struct tipoPlanificacion obtenerAlgoritmoDePlanificacion(t_config * pConf)
+{
+	struct tipoPlanificacion plani;
+
+	plani.planificacion= config_get_int_value(pConf, "ALGORITMO_DE_PLANIFICACION");
+	plani.alpha= config_get_int_value(pConf, "ALPHA");
+	plani.estimacionInicial= config_get_int_value(pConf, "ESTIMACION_INICIAL");
+
+	return tipoPlanificacion;
+}
+
+
+/*ESI_t* obtenerEsiAEjecutarSegunFIFO(){
 	return (ESI_t *) queue_pop(ESIsListos);
 }
+ESI_t* obtenerEsiAEjecutarSegunSRT(t_config * pConf){
+	int alfa =config_get_int_value(pConf, "ALFA");
+	int estimacionInicial =config_get_int_value(pConf, "ESTIMACION_INICIAL");
+	return (ESI_t *) obtenerEsiAEjecutarSegunSRT(ESIsListos, alfa, estimacionInicial);
+}*/

@@ -31,7 +31,10 @@ typedef enum{BLOQUEAR, EJECUTAR} orden_t;
 
 typedef enum{FAILURE, SUCCESS} rtdoEjec_t;
 
+typedef enum{FIFO,SJF, SRT, HHRR} algoritmoPlanificacion;
+
 #define FIN_DE_EJECUCION 37
 #define SOLICITUD_ESI_ATENDIENDOSE 13
 
 #endif
+

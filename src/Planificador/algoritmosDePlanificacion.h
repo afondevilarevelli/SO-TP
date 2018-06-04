@@ -3,20 +3,24 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "../shared/protocolo.h"
 #include <commons/collections/queue.h>
+#include "ESIHandling/ESIHandling.h"
 
-#define alpha 40;
 
-struct infoESI{
-    int idESI;
-    
-}infoESI;
+struct tipoPlanificacion{
+	algoritmoPlanificacion planificacion;
+	int alpha;
+	int estimacionInicial;
+}tipoPlanificacion;
 
-t_queue ordenarColaSegunSJF(int id_ESI);
+ESI_t* obtenerEsiAEjecutarSegunFIFO(t_queue* ESIsListos);
 
-t_queue ordenarColaSegunSRT(int id_ESI);
+ESI_t* obtenerEsiAEjecutarSegunSFJ(t_queue* ESIsListos, struct tipoPlanificacion tPlani);
 
-t_queue ordenarColaSegunHRRN(int id_ESI);
+ESI_t* obtenerEsiAEjecutarSegunSRT(t_queue* ESIsListos, struct tipoPlanificacion tPlani);
+
+ESI_t* obtenerEsiAEjecutarSegunHHRR(t_queue* ESIsListos);
 
 // ordena la cola y elige el siguiente ESI a ejecutar
 #endif
