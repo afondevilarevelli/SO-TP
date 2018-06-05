@@ -6,21 +6,26 @@
 #include "../shared/protocolo.h"
 #include <commons/collections/queue.h>
 #include "ESIHandling/ESIHandling.h"
+#include "consolaPlanificador.h"
 
 
 struct tipoPlanificacion{
 	algoritmoPlanificacion planificacion;
 	int alpha;
-	int estimacionInicial;
+	float estimacionInicial;
 }tipoPlanificacion;
 
-ESI_t* obtenerEsiAEjecutarSegunFIFO(t_queue* ESIsListos);
+ESI_t* obtenerEsiAEjecutarSegunFIFO();
 
-ESI_t* obtenerEsiAEjecutarSegunSFJ(t_queue* ESIsListos, struct tipoPlanificacion tPlani);
+ESI_t* obtenerEsiAEjecutarSegunSFJ();
 
-ESI_t* obtenerEsiAEjecutarSegunSRT(t_queue* ESIsListos, struct tipoPlanificacion tPlani,int valorReal);
+ESI_t* obtenerEsiAEjecutarSegunSRT();
 
-ESI_t* obtenerEsiAEjecutarSegunHHRR(t_queue* ESIsListos);
+ESI_t* obtenerEsiAEjecutarSegunHHRR();
+
+float algoritmoDeEstimacionProximaRafaga(ESI_t* esi);
+
+bool condicionParaListSort(ESI_t* esi_1, ESI_t* esi_2);
 
 // ordena la cola y elige el siguiente ESI a ejecutar
 #endif

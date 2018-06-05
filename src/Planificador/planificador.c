@@ -11,8 +11,6 @@
 
 void planificarEjecucionESI(t_config * pConf);
 void procesarResultadoEjecESI(void * rtdoEjec, int size);
-void ejecutarProxSent(ESI_t * pESI);
-//ESI_t* obtenerEsiAEjecutarSegunFIFO(void);
 
 int conectarseACoordinador(t_config * pConf);
 void obtenerIPyPuertoDeCoordinador(t_config * pConf, int * ip, int * puerto);
@@ -46,43 +44,39 @@ int main(void)
 	queue_destroy_and_destroy_elements(ESIsBloqueados, (void*)&freeESI);
 
 	return 0;
-}
+} 
 
-void planificarEjecucionESI(t_config * pConf)
-{
+void planificarEjecucionESI(t_config * pConf){ 
 	struct tipoPlanificacion infoAlgoritmo;
-	int valorReal;//SACAR DE ALGUNA MANERA CON LA CANTIDAD DE INSTRUCCIONES QUE SE LOGRO HACER SIN ENTRAR EN BLOQUEADO
 	infoAlgoritmo = obtenerAlgoritmoDePlanificacion(pConf);
-	while(puedeEjecutar())
-	{
-		sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
+	ESI_t* pEsiAEjecutar; 
 
+	while(1){
+		
 		pthread_mutex_lock(&m_ESIEjecutandose);
-		switch(infoAlgoritmo.planificacion){
-			case FIFO:
-				pESIEnEjecucion = obtenerEsiAEjecutarSegunFIFO(ESIsListos);
-				//Sigue ejecutando hasta que termina o es bloqueado
-				/*for(int i =0;;i++){
-					ejecutarProxSent(pESIEnEjecucion);
-				}*/
-				break;
-			case SJF:
-				pESIEnEjecucion = obtenerEsiAEjecutarSegunSJF(ESIsListos,infoAlgoritmo);
-				//Sigue ejecutando hasta que termina o es bloqueado, al igual q FIFO
-				break;
-			case SRT:
-				pESIEnEjecucion = obtenerEsiAEjecutarSegunSRT(ESIsListos,infoAlgoritmo, valorReal);
-				break;
-			case HHRR:
-				pESIEnEjecucion = obtenerEsiAEjecutarSegunHHRR(ESIsListos);
-				break;
 
-			default://rutina de error de algo :)
-				printf("No se ha encontrado el Algoritmo de Planificacion a utilizar.\n");
-				break;
+		while(puedeEjecutar()){
+			sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
+			switch(infoAlgoritmo.planificacion){
+				case FIFO:
+					pEsiAEjecutar = obtenerEsiAEjecutarSegunFIFO();
+					break;
+				case SJF:
+					pEsiAEjecutar = obtenerEsiAEjecutarSegunSJF();
+					break;
+				case SRT:
+					pEsiAEjecutar = obtenerEsiAEjecutarSegunSRT();
+					break;
+				case HHRR:
+					pEsiAEjecutar = obtenerEsiAEjecutarSegunHRRN();
+					break;
 
+				default://rutina de error de algo :)
+					printf("No se ha encontrado el Algoritmo de Planificacion a utilizar.\n");
+					break;
+			}
+			ejecutarProxSent(&pEsiAEjecutar); // FALTA MEJORAR EL ALGORTIMO PARA PLANIFICAR EN ESTA FUNCION
 		}
-
 	}
 }
 
@@ -101,12 +95,10 @@ void procesarResultadoEjecESI(void * rtdoEjec, int size)
 
 }
 
-void ejecutarProxSent(ESI_t * pESI)
-{
+void ejecutarProxSent(ESI_t * pESI){
 	orden_t orden = EJECUTAR;
 	sendWithBasicProtocol(pESI->socket, &orden, sizeof(orden_t));
 }
-
 
 /*----CONEXIONES-----*/
 
@@ -148,18 +140,13 @@ struct tipoPlanificacion obtenerAlgoritmoDePlanificacion(t_config * pConf)
 	struct tipoPlanificacion plani;
 
 	plani.planificacion= config_get_int_value(pConf, "ALGORITMO_DE_PLANIFICACION");
-	plani.alpha= config_get_int_value(pConf, "ALPHA");
-//plani.estimacionInicial= config_get_int_value(pConf, "ESTIMACION_INICIAL");
-
-	return tipoPlanificacion;
+	if(plani.planificacion == FIFO){
+		plani.alpha = 0;
+  	    plani.estimacionInicial = 0;
+	}
+	else{ 
+		plani.alpha= config_get_int_value(pConf, "ALPHA");
+  	    plani.estimacionInicial= config_get_int_value(pConf, "ESTIMACION_INICIAL");
+	}
+	return plani;
 }
-
-
-/*ESI_t* obtenerEsiAEjecutarSegunFIFO(){
-	return (ESI_t *) queue_pop(ESIsListos);
-}
-ESI_t* obtenerEsiAEjecutarSegunSRT(t_config * pConf){
-	int alfa =config_get_int_value(pConf, "ALFA");
-	int estimacionInicial =config_get_int_value(pConf, "ESTIMACION_INICIAL");
-	return (ESI_t *) obtenerEsiAEjecutarSegunSRT(ESIsListos, alfa, estimacionInicial);
-}*/

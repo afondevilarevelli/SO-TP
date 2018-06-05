@@ -13,7 +13,8 @@ typedef struct
 {
   int socket;
   int id;
-  int estimacionRafaga;
+  float estimacionAnterior;
+  float duracionAnterior;
 }ESI_t;
 
 int socketCoord;
@@ -27,6 +28,7 @@ ESI_t * pESIEnEjecucion;
 t_list * hilos;
 
 sem_t sem_cantESIsListos;
+pthread_mutex_t mutex_colaReady;
 pthread_mutex_t m_ESIEjecutandose;
 
 void terminarHilo( pthread_t * pHilo );
