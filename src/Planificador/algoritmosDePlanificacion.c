@@ -1,45 +1,9 @@
 #include "algoritmosDePlanificacion.h"
 #include <stdlib.h>
 
-ESI_t*  obtenerEsiAEjecutarSegunFIFO(){
-	pthread_mutex_lock(&mutex_colaReady);
-    ESI_t* pEsiAEjecutar = queue_pop(ESIsListos);
-	pthread_mutex_unlock(&mutex_colaReady);
-	return pEsiAEjecutar;
-}
 
-ESI_t*  obtenerEsiAEjecutarSegunSJF(){
-	pthread_mutex_lock(&mutex_colaReady);
-	list_sort( (t_list*) ESIsListos, (void*) condicionParaListSort );
-	ESI_t* pEsiAEjecutar = queue_pop(ESIsListos);
-	pEsiAEjecutar->estimacionAnterior = algoritmoDeEstimacionProximaRafaga(pEsiAEjecutar); 
-	pthread_mutex_unlock(&mutex_colaReady);
-	return pEsiAEjecutar;
-}
 
-ESI_t* obtenerEsiAEjecutarSegunSRT(){
 
-	int size=queue_size(ESIsListos)-1;
-
-	ESI_t* esi_1=queue_pop(ESIsListos);
-	ESI_t* esi_2=NULL;
-	int estimacionActual_1 =algoritmoDeEstimacionProximaRafaga( esi_1);
-	int estimacionActual_2;
-	for(int i=0;size!=i;i++){
-		esi_2=queue_pop(ESIsListos);
-		 estimacionActual_2 =algoritmoDeEstimacionProximaRafaga( esi_2);
-		if( estimacionActual_1<estimacionActual_2){
-			queue_push(ESIsListos,esi_2);
-		}else{                                                      //falta aplicar el mutex para colaReady
-			queue_push(ESIsListos,esi_1);
-			esi_1=esi_2;
-			estimacionActual_1 = estimacionActual_2;
-		}
-	}
-
-	esi_1->estimacionAnterior = estimacionActual_1;
-	return esi_1;
-}
 
 ESI_t* obtenerEsiAEjecutarSegunHHRR(){
 	return queue_pop(ESIsListos);
@@ -78,19 +42,86 @@ void planificarSegunFifo(){
 			pthread_mutex_lock(&m_ESIEjecutandose);
 
 			pEsiAEjecutar = obtenerEsiAEjecutarSegunFIFO();
-			ejecutarProxSent(&pEsiAEjecutar); 
+			ejecutarProxSent(&pEsiAEjecutar);
 			void* buffer = malloc(sizeof(rtdoEjec_t));
-			if( revWithBasicProtocol(pEsiAEjecutar->socket, &buffer) == -1 ){
+			if(revWithBasicProtocol(pEsiAEjecutar->socket, &buffer) == -1 ){
 					perror("Esi con id = %d desconectado",pEsiAEjecutar->id);
 					exit(1);
 			}
 			while( (int ) *buffer == SUCCESS ){
 				ejecutarProxSent(&pEsiAEjecutar);
-				if( revWithBasicProtocol(pEsiAEjecutar->socket, &buffer) == -1 ){
-						perror("Esi con id = %d desconectado",pEsiAEjecutar->id);
-						exit(1);
-				}	
+				if(revWithBasicProtocol(pEsiAEjecutar->socket, &buffer) == -1 ){
+									perror("Esi con id = %d desconectado",pEsiAEjecutar->id);
+									exit(1);
+							}
 			}
 		}
 	}
 }
+
+ESI_t*  obtenerEsiAEjecutarSegunFIFO(){
+	pthread_mutex_lock(&mutex_colaReady);
+    ESI_t* pEsiAEjecutar = queue_pop(ESIsListos);
+	pthread_mutex_unlock(&mutex_colaReady);
+	return pEsiAEjecutar;
+}
+
+void planificarSegunSJF(){
+	ESI_t* pEsiAEjecutar;
+
+	while(1){
+
+		while(puedeEjecutar()){
+			sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
+			pthread_mutex_lock(&m_ESIEjecutandose);
+
+			pEsiAEjecutar = obtenerEsiAEjecutarSegunSJF();
+			ejecutarProxSent(&pEsiAEjecutar);
+			void* buffer = malloc(sizeof(rtdoEjec_t));
+			if(revWithBasicProtocol(pEsiAEjecutar->socket, &buffer) == -1 ){
+									perror("Esi con id = %d desconectado",pEsiAEjecutar->id);
+									exit(1);
+			}
+			while( (int ) *buffer == SUCCESS ){
+				ejecutarProxSent(&pEsiAEjecutar);
+				ESIdesconectado(pEsiAEjecutar);
+			}
+		}
+	}
+}//Tengo q pensarlo bien si esta bien la logica
+void planificarSegunSRT(){
+	ESI_t* pEsiAEjecutar;
+
+		while(1){
+
+			while(puedeEjecutar()){
+				sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
+				pthread_mutex_lock(&m_ESIEjecutandose);
+
+				pEsiAEjecutar = obtenerEsiAEjecutarSegunSJF();
+				ejecutarProxSent(&pEsiAEjecutar);
+				void* buffer = malloc(sizeof(rtdoEjec_t));
+				if(revWithBasicProtocol(pEsiAEjecutar->socket, &buffer) == -1 ){
+						perror("Esi con id = %d desconectado",pEsiAEjecutar->id);
+						exit(1);
+				}
+				if( (int ) *buffer == SUCCESS ){
+					ejecutarProxSent(&pEsiAEjecutar);
+					if(revWithBasicProtocol(pEsiAEjecutar->socket, &buffer) == -1 ){
+										perror("Esi con id = %d desconectado",pEsiAEjecutar->id);
+										exit(1);
+								}
+				}
+			}
+		}
+	}
+
+ESI_t*  obtenerEsiAEjecutarSegunSJF(){
+	pthread_mutex_lock(&mutex_colaReady);
+	list_sort( (t_list*) ESIsListos, (void*) condicionParaListSort );
+	ESI_t* pEsiAEjecutar = queue_pop(ESIsListos);
+	pEsiAEjecutar->estimacionAnterior = algoritmoDeEstimacionProximaRafaga(pEsiAEjecutar);
+	pthread_mutex_unlock(&mutex_colaReady);
+	return pEsiAEjecutar;
+}
+

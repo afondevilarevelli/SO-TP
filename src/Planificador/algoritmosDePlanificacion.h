@@ -18,7 +18,7 @@ struct tipoPlanificacion{
 
 ESI_t* obtenerEsiAEjecutarSegunFIFO();
 
-ESI_t* obtenerEsiAEjecutarSegunSFJ();
+ESI_t* obtenerEsiAEjecutarSegunSJF();
 
 ESI_t* obtenerEsiAEjecutarSegunSRT();
 
