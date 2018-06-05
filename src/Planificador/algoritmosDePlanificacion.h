@@ -7,6 +7,7 @@
 #include <commons/collections/queue.h>
 #include "ESIHandling/ESIHandling.h"
 #include "consolaPlanificador.h"
+#include <commons/config.h>
 
 
 struct tipoPlanificacion{
@@ -26,6 +27,8 @@ ESI_t* obtenerEsiAEjecutarSegunHHRR();
 float algoritmoDeEstimacionProximaRafaga(ESI_t* esi);
 
 bool condicionParaListSort(ESI_t* esi_1, ESI_t* esi_2);
+
+void ejecutarProxSent(ESI_t * pESI);
 
 // ordena la cola y elige el siguiente ESI a ejecutar
 #endif

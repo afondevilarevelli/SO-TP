@@ -102,7 +102,8 @@ ESI_t * newESI( int socket, int id, int rafagaInicial)
 
   pESI->socket = socket;
   pESI->id = id;
-  pESI->estimacionRafaga= rafagaInicial;
+  pESI->estimacionAnterior= rafagaInicial;
+  pESI-> duracionAnterior = rafagaInicial;
 
   return pESI;
 }

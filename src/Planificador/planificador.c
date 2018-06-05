@@ -23,17 +23,36 @@ int main(void)
 	sem_init(&sem_cantESIsListos, 0, 0);
 	pthread_mutex_init(&m_ESIEjecutandose, NULL);
 	hilos = list_create();
+	struct tipoPlanificacion infoAlgoritmo;
 
 	ESIsListos = queue_create();
 	ESIsBloqueados = queue_create();
 	ESIsFinalizados = queue_create();
 
 	t_config * pConf = config_create("planificador.config");
+	infoAlgoritmo = obtenerAlgoritmoDePlanificacion(pConf);
 	socketCoord = conectarseACoordinador(pConf);
 
 	pthread_t hiloListener, hiloPlanificacion, hiloConsolaPlanificador;
 	pthread_create(&hiloListener, NULL, (void*)&recibirNuevosESI, pConf);
-	pthread_create(&hiloPlanificacion, NULL, (void*)&planificarEjecucionESI, pConf);
+	switch(infoAlgoritmo.planificacion){
+				case FIFO:
+					pthread_create(&hiloPlanificacion, NULL, (void*)&planificarSegunFIFO, NULL);
+					break;
+				case SJF:
+					pthread_create(&hiloPlanificacion, NULL, (void*)&planificarSegunSJF, NULL);
+					break;
+				case SRT:
+					pthread_create(&hiloPlanificacion, NULL, (void*)&planificarSegunSRT, NULL);
+					break;
+				case HHRR:
+					pthread_create(&hiloPlanificacion, NULL, (void*)&planificarSegunHRRN, NULL);
+					break;
+
+				default://rutina de error de algo :)
+					printf("No se ha encontrado el Algoritmo de Planificacion a utilizar.\n");
+					break;
+			}
 	pthread_create(&hiloConsolaPlanificador, NULL, (void*)&consolaPlanificador, NULL);
 
 	pthread_join(hiloListener, NULL);
@@ -45,40 +64,6 @@ int main(void)
 
 	return 0;
 } 
-
-void planificarEjecucionESI(t_config * pConf){ 
-	struct tipoPlanificacion infoAlgoritmo;
-	infoAlgoritmo = obtenerAlgoritmoDePlanificacion(pConf);
-	ESI_t* pEsiAEjecutar; 
-
-	while(1){
-		
-		pthread_mutex_lock(&m_ESIEjecutandose);
-
-		while(puedeEjecutar()){
-			sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
-			switch(infoAlgoritmo.planificacion){
-				case FIFO:
-					pEsiAEjecutar = obtenerEsiAEjecutarSegunFIFO();
-					break;
-				case SJF:
-					pEsiAEjecutar = obtenerEsiAEjecutarSegunSJF();
-					break;
-				case SRT:
-					pEsiAEjecutar = obtenerEsiAEjecutarSegunSRT();
-					break;
-				case HHRR:
-					pEsiAEjecutar = obtenerEsiAEjecutarSegunHRRN();
-					break;
-
-				default://rutina de error de algo :)
-					printf("No se ha encontrado el Algoritmo de Planificacion a utilizar.\n");
-					break;
-			}
-			ejecutarProxSent(&pEsiAEjecutar); // FALTA MEJORAR EL ALGORTIMO PARA PLANIFICAR EN ESTA FUNCION
-		}
-	}
-}
 
 void procesarResultadoEjecESI(void * rtdoEjec, int size)
 {
@@ -93,11 +78,6 @@ void procesarResultadoEjecESI(void * rtdoEjec, int size)
 		ejecutarProxSent(pESIEnEjecucion);
 	}*/
 
-}
-
-void ejecutarProxSent(ESI_t * pESI){
-	orden_t orden = EJECUTAR;
-	sendWithBasicProtocol(pESI->socket, &orden, sizeof(orden_t));
 }
 
 /*----CONEXIONES-----*/

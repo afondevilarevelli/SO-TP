@@ -62,3 +62,35 @@ bool condicionParaListSort(ESI_t* esi_1, ESI_t* esi_2){
 		return 0;
 	}
 }
+
+void ejecutarProxSent(ESI_t * pESI){
+	orden_t orden = EJECUTAR;
+	sendWithBasicProtocol(pESI->socket, &orden, sizeof(orden_t));
+}
+
+void planificarSegunFifo(){ 
+	ESI_t* pEsiAEjecutar; 
+
+	while(1){
+
+		while(puedeEjecutar()){
+			sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
+			pthread_mutex_lock(&m_ESIEjecutandose);
+
+			pEsiAEjecutar = obtenerEsiAEjecutarSegunFIFO();
+			ejecutarProxSent(&pEsiAEjecutar); 
+			void* buffer = malloc(sizeof(rtdoEjec_t));
+			if( revWithBasicProtocol(pEsiAEjecutar->socket, &buffer) == -1 ){
+					perror("Esi con id = %d desconectado",pEsiAEjecutar->id);
+					exit(1);
+			}
+			while( (int ) *buffer == SUCCESS ){
+				ejecutarProxSent(&pEsiAEjecutar);
+				if( revWithBasicProtocol(pEsiAEjecutar->socket, &buffer) == -1 ){
+						perror("Esi con id = %d desconectado",pEsiAEjecutar->id);
+						exit(1);
+				}	
+			}
+		}
+	}
+}
