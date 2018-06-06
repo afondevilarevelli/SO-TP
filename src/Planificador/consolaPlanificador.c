@@ -70,8 +70,6 @@ void consolaPlanificador(){
 
 	free(linea);
 
-
-
 	return;
 }
 
@@ -82,50 +80,47 @@ void continuarPlanificacion(){
 	puedeEjecutarPlanif = 1;
 }
 
-t_queue* colaAsociada(char *clave){
-	t_queue *p ;
-	//proceso de hallar la cola asociada a esa clave(falta desarrollar) que lo crea planificador;
-	return p;//la cola asociada a esa clave;
+t_queue* colaAsociada(char* clave){//busca de mi ListaColas la que se identifiqua con la clave
+	t_link_element* p = ListaColas -> head ;
+	cola_clave* c;
+	while (p != NULL){
+		c = (cola_clave*)(p -> data);
+		if (strcmp(c -> clave, clave)){
+			return c -> cola;//esta bien escrito
+		}
+	p = p -> next ;
+	}
+	return NULL ;
 }
-
-rtdoEject_t bloquearProcesoESI(int id,char* clave){
-	pro_ESI* p = buscarProcesoESI(id);
+//2) bloquear el proceso ESI por consola
+void bloquearProcesoESI(char* clave,int id){
+	ESI_t* p = buscarProcesoESI(id);
 	t_queue *c = colaAsociada(clave);
 
 	if( p!= NULL ){
-		 queue_push(c, (pro_ESI *)p);//Agrega un elemento al  de la cola
-		 return SUCESS;final
+		 queue_push(c, (ESI_t *)p);//Agrega un elemento al  de la cola
+		 printf("Correctamente bloqueado el ESI.\n");
 	}
 	printf("No hay procesoESI con este ID o ya esta bloqueado");	
-	return FAILURE;
 }
 
-pro_ESI* buscarProcesoESI(int id){// ID int
-	pro_ESI* p ;
+ESI_t* buscarProcesoESI(int id){// busca en el sistema en la lista de listos y si el proceso esta ejecutando 
+	ESI_t* p ;
 	p = buscarProcesoEnColas(ESIsListos,id);//ColaListos : variable de coordinador.c
 	
-		if(p != NULL){//lo encontro en la cola de Listos
-		p ->colaProviniente = LISTOS ;
+		if(p != NULL /*|| id == (procesoEjecutando()->id)*/){//procesoEjecutando();funcion del  planificador.c que me diga cual esi esta en ejecutando
 			return p;
-		}
-		else{//no estaba en la ColaListos 
-		//pESIEnEjecucionv : variable de  planificador.c
-			if(pESIEnEjecucion->id_esi == id){ // necesito analizar si es atomico?
-				p ->colaProviniente = EJECUTANDO;
-				return p;
-			}
-		}		
+		}	
 		printf("No esta ejecutando y tampoco esta en la cola de listos");
 		return p;
 }
-
-pro_ESI* buscarProcesoEnColas(t_queue* cola,int id){
-	pro_ESI* p ;//por ai que falta un malloc y luego un free?
+ESI_t* buscarProcesoEnColas(t_queue* cola,int id){
+	ESI_t* p ;
 	t_link_element* pElem = (cola -> elemento) -> head ; //
 	while(pElem != NULL){
 		
-		p = (pro_ESI*)(pElem->data);//use el mecanismo de Antonio de Las Carreras todos los creditos a EL
-		if(id == p->id_esi){
+		p = (ESI_t*)(pElem->data);//use el mecanismo de Antonio de Las Carreras todos los creditos a EL
+		if(id == p->id){
 		return p;
 		}
 		pElem = pElem->next;
@@ -133,36 +128,33 @@ pro_ESI* buscarProcesoEnColas(t_queue* cola,int id){
 	return NULL;// SI NO ESTA EN LA cola BOTA NULL la funcion
 }
 
-rtdoEject_t desbloquearProcesoESI(char* clave){
-	t_queue*c = colaAsociada(clave);//falta ver
-	pro_ESI* p;
-	p = queue_peek(c);//devuelve el primer elemento
-	queue_pop(c);//Eliminar el primer elemento
+//3)desbloquear
+void desbloquearProcesoESI(char* clave){
+	t_queue*c = colaAsociada(clave);
+	ESI_t* p;
+	p = queue_pop(c);//	(t_queue*)			Eliminar el primer elemento
+	
 	if(p!= NULL ){//p es el proceso buscado, ahora hay que mandarlo al final de la cola de donde se saco
-		switch (p->colaProviniente)
-		{ 
-			case LISTOS:	queue_push(ESIsListos,p); break;
-			
-			case EJECUTANDO:	p -> colaProviniente = LISTOS; queue_push(ESIsListos,p);  break;//lo mando a la cola de listos
-		}
-		return 	SUCESS;
+			queue_push(ESIsListos,p); 
 	}
-	printf("Esa clave no existe ");
-	return FAILURE;
+	printf("Esa clave no existe.\n");
 }
-
-void listarProcesos(char* clave){//recurso == clave
+//4)
+void listar(char* clave){//recurso == clave
 		t_queue* c = colaAsociada(clave);
-		pro_ESI* p;
+		ESI_t* p;
 		
 		t_link_element* pElem = (c -> elemento) -> head ;
 	while(pElem != NULL){// si la cola no esta vacia
 		
-		p = (pro_ESI*)(pElem->data);//use el mecanismo de Antonio de Las Carreras todos los creditos a EL
-		printf("El proceso con id : %d \n", p->id_esi);
+		p = (ESI_t*)(pElem->data);//use el mecanismo de Antonio de Las Carreras todos los creditos a EL
+		printf("El proceso con id : %d \n", p->id);
 		pElem = pElem->next;
 	}
 }
+
+
+
 void finalizarProceso(){}//kill
 void informacionDeInstancias(){}//status
 void analizarDeadlockDelSistema(){}
