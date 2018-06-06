@@ -26,6 +26,7 @@ typedef struct
   float duracionAnterior;
 }ESI_t;
 
+
 int socketCoord;
 
 t_queue * ESIsListos;
