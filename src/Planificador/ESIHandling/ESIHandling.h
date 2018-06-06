@@ -9,6 +9,15 @@
 #include "../../shared/protocolo.h"
 #include "../../shared/mySocket.h"
 
+typedef struct {
+	t_queue* cola ;
+	char* clave;
+}cola_clave;
+
+t_list* ListaColas;
+
+typedef enum{LISTOS,EJECUTANDO,BLOQUEADO} t_cola;
+
 typedef struct
 {
   int socket;
@@ -24,12 +33,13 @@ t_queue * ESIsBloqueados;
 t_queue * ESIsFinalizados;
 
 ESI_t * pESIEnEjecucion;
+rtdoEjec_t* rtdoEjecucion;
 
 t_list * hilos;
 
 sem_t sem_cantESIsListos;
-pthread_mutex_t mutex_colaReady;
-pthread_mutex_t m_ESIEjecutandose;
+sem_t sem_respuestaESI;
+
 
 void terminarHilo( pthread_t * pHilo );
 void ESIFinalizado(ESI_t * pESI);

@@ -1,15 +1,6 @@
 #include "algoritmosDePlanificacion.h"
 #include <stdlib.h>
 
-
-
-
-
-ESI_t* obtenerEsiAEjecutarSegunHHRR(){
-	return queue_pop(ESIsListos);
-}
-
-
 float algoritmoDeEstimacionProximaRafaga(ESI_t* esi){
 	float valorSigRafaga= ((tipoPlanificacion.alpha/100)*esi->duracionAnterior)+((1-(tipoPlanificacion.alpha/100))*esi->estimacionAnterior);
 	return valorSigRafaga;
@@ -39,33 +30,28 @@ void planificarSegunFifo(){
 
 		while(puedeEjecutar()){
 			sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
-			pthread_mutex_lock(&m_ESIEjecutandose);
 
 			pEsiAEjecutar = obtenerEsiAEjecutarSegunFIFO();
-			ejecutarProxSent(&pEsiAEjecutar);
-			void* buffer = malloc(sizeof(rtdoEjec_t));
-			if(revWithBasicProtocol(pEsiAEjecutar->socket, &buffer) == -1 ){
-					perror("Esi con id = %d desconectado",pEsiAEjecutar->id);
-					exit(1);
+			ejecutarProxSent(pEsiAEjecutar);
+			pESIEnEjecucion = pEsiAEjecutar;
+			sem_wait(&sem_respuestaESI);
+			while(*(rtdoEjecucion) == SUCCESS){
+				ejecutarProxSent(pEsiAEjecutar);
+				pESIEnEjecucion = pEsiAEjecutar;
+				sem_wait(&sem_respuestaESI);
 			}
-			while( (int ) *buffer == SUCCESS ){
-				ejecutarProxSent(&pEsiAEjecutar);
-				if(revWithBasicProtocol(pEsiAEjecutar->socket, &buffer) == -1 ){
-									perror("Esi con id = %d desconectado",pEsiAEjecutar->id);
-									exit(1);
-							}
+			if( *(rtdoEjecucion) == FAILURE){
+				queue_push(ESIsBloqueados, pEsiAEjecutar); //debería ver porque se bloqueó el ESI
 			}
+			else{ //rtdoEjecucion = FIN_DE_EJECUCION
+				queue_push(ESIsFinalizados, pEsiAEjecutar);
+			}
+			// si rtdoEjecucion = DISCONNECTED no hace nada y sigue planificando		
 		}
 	}
 }
 
-ESI_t*  obtenerEsiAEjecutarSegunFIFO(){
-	pthread_mutex_lock(&mutex_colaReady);
-    ESI_t* pEsiAEjecutar = queue_pop(ESIsListos);
-	pthread_mutex_unlock(&mutex_colaReady);
-	return pEsiAEjecutar;
-}
-
+//VER EL ALGORITMO QUE SE USÓ PARA planificarSegunFIFO()
 void planificarSegunSJF(){
 	ESI_t* pEsiAEjecutar;
 
@@ -77,18 +63,20 @@ void planificarSegunSJF(){
 
 			pEsiAEjecutar = obtenerEsiAEjecutarSegunSJF();
 			ejecutarProxSent(&pEsiAEjecutar);
-			void* buffer = malloc(sizeof(rtdoEjec_t));
+			/*void* buffer = malloc(sizeof(rtdoEjec_t));
 			if(revWithBasicProtocol(pEsiAEjecutar->socket, &buffer) == -1 ){
 									perror("Esi con id = %d desconectado",pEsiAEjecutar->id);
 									exit(1);
 			}
 			while( (int ) *buffer == SUCCESS ){
-				ejecutarProxSent(&pEsiAEjecutar);
+				ejecutarProxSent(pEsiAEjecutar);
 				ESIdesconectado(pEsiAEjecutar);
-			}
+			}*/
 		}
 	}
 }//Tengo q pensarlo bien si esta bien la logica
+
+//VER EL ALGORITMO QUE SE USÓ PARA planificarSegunFIFO()
 void planificarSegunSRT(){
 	ESI_t* pEsiAEjecutar;
 
@@ -96,11 +84,10 @@ void planificarSegunSRT(){
 
 			while(puedeEjecutar()){
 				sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
-				pthread_mutex_lock(&m_ESIEjecutandose);
 
 				pEsiAEjecutar = obtenerEsiAEjecutarSegunSJF();
 				ejecutarProxSent(&pEsiAEjecutar);
-				void* buffer = malloc(sizeof(rtdoEjec_t));
+				/*void* buffer = malloc(sizeof(rtdoEjec_t));
 				if(revWithBasicProtocol(pEsiAEjecutar->socket, &buffer) == -1 ){
 						perror("Esi con id = %d desconectado",pEsiAEjecutar->id);
 						exit(1);
@@ -111,17 +98,28 @@ void planificarSegunSRT(){
 										perror("Esi con id = %d desconectado",pEsiAEjecutar->id);
 										exit(1);
 								}
-				}
+				}*/
 			}
 		}
-	}
+}
+
+void planificarSegunHRRN(){
+	return;
+}
+
+ESI_t*  obtenerEsiAEjecutarSegunFIFO(){
+    ESI_t* pEsiAEjecutar = queue_pop(ESIsListos);
+	return pEsiAEjecutar;
+}
 
 ESI_t*  obtenerEsiAEjecutarSegunSJF(){
-	pthread_mutex_lock(&mutex_colaReady);
 	list_sort( (t_list*) ESIsListos, (void*) condicionParaListSort );
 	ESI_t* pEsiAEjecutar = queue_pop(ESIsListos);
 	pEsiAEjecutar->estimacionAnterior = algoritmoDeEstimacionProximaRafaga(pEsiAEjecutar);
-	pthread_mutex_unlock(&mutex_colaReady);
 	return pEsiAEjecutar;
+}
+
+ESI_t* obtenerEsiAEjecutarSegunHHRR(){
+	return queue_pop(ESIsListos);
 }
 

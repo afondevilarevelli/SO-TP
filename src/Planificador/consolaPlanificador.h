@@ -5,7 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <readline/readline.h>//importar librearias
+#include <readline/readline.h>
+#include "ESIHandling/ESIHandling.h"//importar librearias
 
 typedef enum{PAUSADO, PLANIFICANDO} est_Planif;
 
@@ -15,7 +16,6 @@ typedef enum{PAUSADO, PLANIFICANDO} est_Planif;
 //bloquear el proceso ESI por consola
 //no olvidar poner la libreria <commons/collection/queue.h>  de las colas
 // yo puse al tipo de dato esi o proceso esi -> le puse* pro_ESI
-typedef enum{LISTOS,EJECUTANDO,BLOQUEADO} t_cola;
 
 //creo una structura para tipo de dato ESI
 typedef struct {

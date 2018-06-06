@@ -20,9 +20,15 @@ ESI_t* obtenerEsiAEjecutarSegunFIFO();
 
 ESI_t* obtenerEsiAEjecutarSegunSJF();
 
-ESI_t* obtenerEsiAEjecutarSegunSRT();
-
 ESI_t* obtenerEsiAEjecutarSegunHHRR();
+
+void planificarSegunFIFO();
+
+void planificarSegunSJF();
+
+void planificarSegunSRT();
+
+void planificarSegunHRRN();
 
 float algoritmoDeEstimacionProximaRafaga(ESI_t* esi);
 

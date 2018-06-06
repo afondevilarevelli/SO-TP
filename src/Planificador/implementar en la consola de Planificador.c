@@ -1,20 +1,11 @@
 #include "ESIHandling/ESIHandling.h"
 
-typedef struct {
-	t_queue* cola ;
-	char* clave;
-}cola_clave;
-
-list* ListaColas = list_create();
-
-typedef enum{LISTOS,EJECUTANDO,BLOQUEADO} t_cola;
-
 t_queue* colaAsociada(char clave){
 	t_link_element* p = ListaColas -> head ;
 	cola_clave* c;
 	while (p != NULL){
 		c = (cola_clave*)(p -> data);
-		if (strcmp(c -> clave, clave)){
+		if ( strcmp(c -> clave, clave == 0) ){
 			return c -> cola;
 		}
 	p = p -> next ;

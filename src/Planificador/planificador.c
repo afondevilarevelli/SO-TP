@@ -21,13 +21,15 @@ struct tipoPlanificacion obtenerAlgoritmoDePlanificacion(t_config * pConf);
 int main(void)
 {
 	sem_init(&sem_cantESIsListos, 0, 0);
-	pthread_mutex_init(&m_ESIEjecutandose, NULL);
+	sem_init(&sem_respuestaESI, 0, 0);
 	hilos = list_create();
 	struct tipoPlanificacion infoAlgoritmo;
+	rtdoEjecucion = malloc(sizeof(rtdoEjec_t);
 
 	ESIsListos = queue_create();
 	ESIsBloqueados = queue_create();
 	ESIsFinalizados = queue_create();
+	ListaColas = list_create();
 
 	t_config * pConf = config_create("planificador.config");
 	infoAlgoritmo = obtenerAlgoritmoDePlanificacion(pConf);
@@ -64,21 +66,6 @@ int main(void)
 
 	return 0;
 } 
-
-void procesarResultadoEjecESI(void * rtdoEjec, int size)
-{
-	rtdoEjec_t rtdo = *((rtdoEjec_t*)rtdoEjec);
-	printf("La ejecucion de la sentencia del ESI %d fue un %s.\n", pESIEnEjecucion->id, rtdo==SUCCESS?"exito":"fracaso");
-
-
-	//******************************************************************************
-	// Depende del algoritmo si sigue o no. tambien puede ser que sea bloqueado la respuesta y no pueda seguir con la proxima instruccion
-	/*if(rtdo == SUCCESS)
-	{
-		ejecutarProxSent(pESIEnEjecucion);
-	}*/
-
-}
 
 /*----CONEXIONES-----*/
 

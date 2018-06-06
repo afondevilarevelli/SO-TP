@@ -12,33 +12,22 @@ void atenderESI(ESI_t * pESI)
 
     size = recvWithBasicProtocol(pESI->socket, &rtdoEjec);
 
-    if( size ) // SI NO SE DESCONECTO
+    if( size  ) // SI NO SE DESCONECTO
     {
-      if( ( size == sizeof(int) ) && ((*((int*)rtdoEjec)) == FIN_DE_EJECUCION) )
-      {
-        break;
-      }
-      else
-      {
-        procesarResultadoEjecESI( rtdoEjec, size);
-        free(rtdoEjec);
-      }
+      rtdoEjecucion = (rtdoEjec_t*)rtdoEjec;
+      sem_post(&sem_respuestaESI);    
     }
     else
     {
+      rtdoEjec_t* rtdo = malloc(sizeof(rtdoEjec_t));
       ESIDesconectado( pESI->id );
+      *(rtdo) = DISCONNECTED;
+      rtdoEjecucion = rtdo;
+      free(rtdo);
+      sem_post(&sem_respuestaESI);
       return;
     }
-
   }
-
-  ESIFinalizado(pESI);
-}
-
-void ESIFinalizado(ESI_t * pESI)
-{
-  pthread_mutex_unlock(&m_ESIEjecutandose);
-  queue_push(ESIsFinalizados, pESI);
 }
 
 void ESIDesconectado( int ESI_ID )
