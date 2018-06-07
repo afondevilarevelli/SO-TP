@@ -10,14 +10,19 @@
 
 typedef enum{PAUSADO, PLANIFICANDO} est_Planif;
 
-
+//funciones que pueden usar
+t_queue* colaAsociada(char* clave);//busca en ListaColas la que se identifiqua con la clave y devuelve la cola
 
 
 void pausarPlanificacion();
 void continuarPlanificacion();
-void bloquearProcesoESI();//no se si se le pasa un parametro
-void desbloquearProcesoESI();//desbloquear
-void listarProcesos();//listar
+
+void bloquearProcesoESI(char* clave,int id);
+
+void desbloquearProcesoESI(char* clave);
+
+void listar(char* clave);
+
 void finalizarProceso();//kill
 void informacionDeInstancias();//status
 void analizarDeadlockDelSistema();//deadlock
