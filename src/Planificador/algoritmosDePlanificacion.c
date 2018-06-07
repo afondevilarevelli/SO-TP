@@ -101,8 +101,15 @@ void planificarSegunSRT(){
 			if( *(rtdoEjecucion) == FAILURE){
 				queue_push(ESIsBloqueados, pEsiAEjecutar); //debería ver porque se bloqueó el ESI
 			}
-			else{ //rtdoEjecucion = FIN_DE_EJECUCION
+			else{
+				if(*(rtdoEjecucion) == FIN_DE_EJECUCION){  //rtdoEjecucion = FIN_DE_EJECUCION
 				queue_push(ESIsFinalizados, pEsiAEjecutar);
+				}
+				else{
+					if(*(rtdoEjecucion) == SUCCESS){
+						queue_push(ESIsListos, pEsiAEjecutar);
+					}
+				}
 			}
 			// si rtdoEjecucion = DISCONNECTED no hace nada y sigue planificando
 		}
