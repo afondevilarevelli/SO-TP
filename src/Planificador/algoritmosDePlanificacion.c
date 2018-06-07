@@ -90,12 +90,15 @@ void planificarSegunSRT(){
 
 			pEsiAEjecutar = obtenerEsiAEjecutarSegunSJF();
 			ejecutarProxSent(pEsiAEjecutar);
+			int sizeColaReadyAntesDeEjecutar = queue_size(ESIsListos);
 
 			sem_wait(&sem_respuestaESI);
-			if(*(rtdoEjecucion) == SUCCESS){
-				queue_push(ESIsListos, pEsiAEjecutar);
+			while(*(rtdoEjecucion) == SUCCESS && queue_size(ESIsListos) == sizeColaReadyAntesDeEjecutar ){
+				ejecutarProxSent(pEsiAEjecutar);
+				sizeColaReadyAntesDeEjecutar = queue_size(ESIsListos);
+				sem_wait(&sem_respuestaESI);
 			}
-			else if( *(rtdoEjecucion) == FAILURE){
+			if( *(rtdoEjecucion) == FAILURE){
 				queue_push(ESIsBloqueados, pEsiAEjecutar); //debería ver porque se bloqueó el ESI
 			}
 			else{ //rtdoEjecucion = FIN_DE_EJECUCION

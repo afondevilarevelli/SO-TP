@@ -63,9 +63,9 @@ int main(void)
 
   fclose(scriptf);
 
-  int finDeEjec = FIN_DE_EJECUCION;
-  sendWithBasicProtocol(socketCoord, (void*)&finDeEjec, sizeof(int));
-  sendWithBasicProtocol(socketPlanif, (void*)&finDeEjec, sizeof(int));
+  rtdoEjec_t finDeEjec = FIN_DE_EJECUCION;
+  sendWithBasicProtocol(socketCoord, (void*)&finDeEjec, sizeof(rtdoEjec_t));
+  sendWithBasicProtocol(socketPlanif, (void*)&finDeEjec, sizeof(rtdoEjec_t));
 
   return 0;
 }

@@ -142,6 +142,10 @@ void atenderConexionEntrante(int listener, int estimacionInicialESI)
 
     free(pID);
   }
+  else{
+    perror("no se pudo atender la conexion entrante");
+    exit(1);
+  }
 }
 
 void terminarHilo( pthread_t * pHilo )

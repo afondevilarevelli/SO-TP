@@ -30,7 +30,7 @@ void atenderESI( int socket )
 
     if( size ) // SI NO SE DESCONECTO
     {
-      if( ( size == sizeof(int) ) && ((*((int*)solicitud)) == FIN_DE_EJECUCION) )
+      if( (*((rtdoEjec_t*)solicitud)) == FIN_DE_EJECUCION )
       {
           log_trace(pLog, "El ESI %d ha finalizado con éxito", id);
           break;
