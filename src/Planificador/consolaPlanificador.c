@@ -116,7 +116,7 @@ ESI_t* buscarProcesoESI(int id){// busca en el sistema en la lista de listos y s
 }
 ESI_t* buscarProcesoEnColas(t_queue* cola,int id){
 	ESI_t* p ;
-	t_link_element* pElem = (cola -> elemento) -> head ; //
+	t_link_element* pElem = (cola -> elements) -> head ; //
 	while(pElem != NULL){
 		
 		p = (ESI_t*)(pElem->data);//use el mecanismo de Antonio de Las Carreras todos los creditos a EL
@@ -144,7 +144,7 @@ void listar(char* clave){//recurso == clave
 		t_queue* c = colaAsociada(clave);
 		ESI_t* p;
 		
-		t_link_element* pElem = (c -> elemento) -> head ;
+		t_link_element* pElem = (c -> elements) -> head ;
 	while(pElem != NULL){// si la cola no esta vacia
 		
 		p = (ESI_t*)(pElem->data);//use el mecanismo de Antonio de Las Carreras todos los creditos a EL
