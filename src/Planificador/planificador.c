@@ -24,7 +24,7 @@ int main(void)
 	sem_init(&sem_respuestaESI, 0, 0);
 	hilos = list_create();
 	struct tipoPlanificacion infoAlgoritmo;
-	rtdoEjecucion = malloc(sizeof(rtdoEjec_t);
+	rtdoEjecucion = malloc(sizeof(rtdoEjec_t));
 
 	ESIsListos = queue_create();
 	ESIsBloqueados = queue_create();

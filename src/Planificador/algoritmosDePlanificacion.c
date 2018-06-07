@@ -81,7 +81,7 @@ void planificarSegunSJF(){
 
 //VER EL ALGORITMO QUE SE USÓ PARA planificarSegunFIFO()
 void planificarSegunSRT(){
-	EESI_t* pEsiAEjecutar;
+	ESI_t* pEsiAEjecutar;
 
 	while(1){
 

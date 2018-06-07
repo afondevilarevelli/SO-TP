@@ -114,6 +114,7 @@ ESI_t* buscarProcesoESI(int id){// busca en el sistema en la lista de listos y s
 		printf("No esta ejecutando y tampoco esta en la cola de listos");
 		return p;
 }
+
 ESI_t* buscarProcesoEnColas(t_queue* cola,int id){
 	ESI_t* p ;
 	t_link_element* pElem = (cola -> elements) -> head ; //
