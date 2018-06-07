@@ -107,7 +107,7 @@ void planificarSegunSRT(){
 				}
 				else{
 					if(*(rtdoEjecucion) == SUCCESS){
-						queue_push(ESIsListos, pEsiAEjecutar);
+						list_add_in_index( (t_list *)ESIsListos, 0, (void *)pEsiAEjecutar ); // para que si empata con otro esi, se aplique la regla FIFO
 					}
 				}
 			}
