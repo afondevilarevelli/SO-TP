@@ -81,29 +81,29 @@ void planificarSegunSJF(){
 
 //VER EL ALGORITMO QUE SE USÓ PARA planificarSegunFIFO()
 void planificarSegunSRT(){
-	ESI_t* pEsiAEjecutar;
+	EESI_t* pEsiAEjecutar;
 
-		while(1){
+	while(1){
 
-			while(puedeEjecutar()){
-				sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
+		while(puedeEjecutar()){
+			sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
 
-				pEsiAEjecutar = obtenerEsiAEjecutarSegunSJF();
-				ejecutarProxSent(&pEsiAEjecutar);
-				/*void* buffer = malloc(sizeof(rtdoEjec_t));
-				if(revWithBasicProtocol(pEsiAEjecutar->socket, &buffer) == -1 ){
-						perror("Esi con id = %d desconectado",pEsiAEjecutar->id);
-						exit(1);
-				}
-				if( (int ) *buffer == SUCCESS ){
-					ejecutarProxSent(&pEsiAEjecutar);
-					if(revWithBasicProtocol(pEsiAEjecutar->socket, &buffer) == -1 ){
-										perror("Esi con id = %d desconectado",pEsiAEjecutar->id);
-										exit(1);
-								}
-				}*/
+			pEsiAEjecutar = obtenerEsiAEjecutarSegunSJF();
+			ejecutarProxSent(pEsiAEjecutar);
+
+			sem_wait(&sem_respuestaESI);
+			if(*(rtdoEjecucion) == SUCCESS){
+				queue_push(ESIsListos, pEsiAEjecutar);
 			}
+			else if( *(rtdoEjecucion) == FAILURE){
+				queue_push(ESIsBloqueados, pEsiAEjecutar); //debería ver porque se bloqueó el ESI
+			}
+			else{ //rtdoEjecucion = FIN_DE_EJECUCION
+				queue_push(ESIsFinalizados, pEsiAEjecutar);
+			}
+			// si rtdoEjecucion = DISCONNECTED no hace nada y sigue planificando
 		}
+	}
 }
 
 void planificarSegunHRRN(){
