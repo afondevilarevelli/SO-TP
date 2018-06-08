@@ -101,12 +101,13 @@ void bloquearProcesoESI(char* clave,int id){
 		 queue_push(c, (ESI_t *)p);//Agrega un elemento al  de la cola
 		 printf("Correctamente bloqueado el ESI.\n");
 	}
-	printf("No hay procesoESI con este ID o ya esta bloqueado");	
+	else{ 
+	printf("No hay procesoESI con este ID o ya esta bloqueado");
+	}	
 }
 
 ESI_t* buscarProcesoESI(int id){// busca en el sistema en la lista de listos y si el proceso esta ejecutando 
-	ESI_t* p ;
-	p = buscarProcesoEnColas(ESIsListos,id);//ColaListos : variable de coordinador.c
+	ESI_t* p = buscarProcesoEnColas(ESIsListos,id);//ColaListos : variable de coordinador.c
 	
 		if(p != NULL /*|| id == (procesoEjecutando()->id)*/){//procesoEjecutando();funcion del  planificador.c que me diga cual esi esta en ejecutando
 			return p;

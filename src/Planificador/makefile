@@ -7,3 +7,4 @@ planificador: $(sources)
 
 clean:
 	rm planificador
+	rm *.o
