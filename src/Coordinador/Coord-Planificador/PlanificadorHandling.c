@@ -37,5 +37,6 @@ void procesarSolicitudPlanificador(void * solicitud, int size)
 void planificadorDesconectado()
 {
   socketPlanificador = -1;
-  log_error(pLog, "Se desconecto el Planificador. El sistema se encuentra en un estado invalido.");
+  log_error(pLog, "Se desconecto el Planificador. El sistema se encuentra en un estado invalido.\nSaliendo del sistema.");
+  exit(1);
 }
