@@ -24,7 +24,7 @@ void ejecutarProxSent(ESI_t * pESI){
 	pESIEnEjecucion = pESI;
 }
 
-void planificarSegunFifo(){ 
+void planificarSegunFIFO(){ 
 	ESI_t* pEsiAEjecutar; 
 
 	while(1){

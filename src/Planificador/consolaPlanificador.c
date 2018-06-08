@@ -18,50 +18,51 @@ void consolaPlanificador(){
 
 		if(strcmp(p1,"pausar")== 0)
 		{// && p2 == NULL no importa el segundo parametro
-			printf("tiene pausa. Esta bien escrita: \n");
+			printf("se puso en pausa la planificacion \n");
 			pausarPlanificacion();
 		}
 
 		if(strcmp(p1,"continuar")== 0)
 		{//&& p2 == NULL no importa el segundo parametro
-			printf("tiene continuar. Esta bien escrita \n");
+			printf("se continua la planificacion \n");
 			continuarPlanificacion();
 		}
 
 		if(strcmp(p1,"bloquear")== 0 && p2 != NULL && p3 != NULL)
 		{
-			printf("tiene bloquear. Esta bien escrita \n");//la clave se guarda en p2 y el ID en p3
 			int id = atoi(p3);	//convertir p3 a int es el id
+			printf("intentando bloquear la clave %s para el proceso con id = %d... \n", p2, id );//la clave se guarda en p2 y el ID en p3
 			bloquearProcesoESI(p2,id);
 		}
 		
 		if(strcmp(p1,"desbloquear")== 0 && p2 != NULL && p3 == NULL)
 		{
-			printf("tiene desbloquear. Esta bien escrita \n");//la clave se guarda en p2
+			printf("se ha desbloqueado la clave %s para el primer proceso en la cola de espera de dicha clave \n",p2);//la clave se guarda en p2
 			desbloquearProcesoESI(p2);//si le pasas un cuarto parametro no lo toma y ejecuta igual
 		}
 
 		if(strcmp(p1,"listar")== 0 && p2 != NULL && p3 == NULL)
 		{
-			printf("tiene listar. Esta bien escrito \n");//el recurso esta guardado en p2
-			listarProcesos(p2);
+			printf("lista de procesos esperando el recurso con clave %s \n", p2);//el recurso esta guardado en p2
+			listar(p2);
 		}
 
 		if(strcmp(p1,"kill")== 0 && p2 != NULL && p3 == NULL)
 		{
-			printf("tiene kill. Esta bien escrito  \n");// El ID se guarda en p2
+			int id = atoi(p2);
+			printf("se ha matado al proceso con id = %d \n", id);// El ID se guarda en p2
 			finalizarProceso();
 		}
 
 		if(strcmp(p1,"status")== 0 && p2 != NULL && p3 == NULL)
 		{
-			printf("tiene status. Esta bien escrito  \n");// El clave se guarda en p2
+			printf("estado de la clave %s: \n", p2);// El clave se guarda en p2
 			informacionDeInstancias();
 		}
 
 		if(strcmp(p1,"deadlock")== 0 && p2 == NULL )
 		{
-			printf("tiene deadlock. Esta bien escrito  \n");
+			printf("deadlocks del sistema: \n");
 			analizarDeadlockDelSistema();
 		}
 
@@ -102,7 +103,7 @@ void bloquearProcesoESI(char* clave,int id){
 		 printf("Correctamente bloqueado el ESI.\n");
 	}
 	else{ 
-	printf("No hay procesoESI con este ID o ya esta bloqueado");
+	printf("No hay procesoESI con este ID o ya esta bloqueado\n");
 	}	
 }
 
@@ -112,7 +113,7 @@ ESI_t* buscarProcesoESI(int id){// busca en el sistema en la lista de listos y s
 		if(p != NULL /*|| id == (procesoEjecutando()->id)*/){//procesoEjecutando();funcion del  planificador.c que me diga cual esi esta en ejecutando
 			return p;
 		}	
-		printf("No esta ejecutando y tampoco esta en la cola de listos");
+		printf("No esta ejecutando y tampoco esta en la cola de listos\n");
 		return p;
 }
 
