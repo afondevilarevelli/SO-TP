@@ -40,7 +40,7 @@ void consolaPlanificador(){
 		else
 		if(strcmp(p1,"desbloquear")== 0 && p2 != NULL && p3 == NULL)
 		{
-			printf("se ha desbloqueado la clave %s para el primer proceso en la cola de espera de dicha clave \n",p2);//la clave se guarda en p2
+			printf("se intentara desbloquear la clave %s para el primer proceso en la cola de espera de dicha clave \n",p2);//la clave se guarda en p2
 			desbloquearProcesoESI(p2);//si le pasas un cuarto parametro no lo toma y ejecuta igual
 		}
 		else
@@ -138,12 +138,11 @@ ESI_t* buscarProcesoEnColas(t_queue* cola,int id){
 //3)desbloquear
 void desbloquearProcesoESI(char* clave){
 	t_queue*c = colaAsociada(clave);
-	ESI_t* p;
-	p = queue_pop(c);//	(t_queue*)			Eliminar el primer elemento
-
+	ESI_t* p = NULL;
+	if(c!= NULL ) p = queue_pop(c);//	(t_queue*)			Eliminar el primer elemento
 	if(p!= NULL ){//p es el proceso buscado, ahora hay que mandarlo al final de la cola de donde se saco
 			queue_push(ESIsListos,p);
-	}
+	}else
 	printf("Esa clave no existe.\n");
 }
 //4)
@@ -162,7 +161,10 @@ void listar(char* clave){//recurso == clave
 
 
 
-void finalizarProceso(){}//kill
+void finalizarProceso(int id){
+	ESI_t * pESI = quitarESIDeSuListaActual(id);
+	abortESI(pESI);
+}//kill
 void informacionDeInstancias(){}//status
 void analizarDeadlockDelSistema(){}
 int puedeEjecutar(){

@@ -21,40 +21,56 @@ bool condicionParaListSort(ESI_t* esi_1, ESI_t* esi_2){
 void ejecutarProxSent(ESI_t * pESI){
 	orden_t orden = EJECUTAR;
 	sendWithBasicProtocol(pESI->socket, &orden, sizeof(orden_t));
+	log_debug(pLog, "Se envio la orden = %d, al ESI de id = %d", orden, pESI->id);
 	pESIEnEjecucion = pESI;
 }
 
-void planificarSegunFIFO(){ 
-	ESI_t* pEsiAEjecutar; 
+void planificarSegunFIFO(){
+	ESI_t* pEsiAEjecutar;
 
-	while(1){
+	while(puedeEjecutar())
+	{
+		log_trace(pLog, "Se espera a que haya ESIs en la cola de listos");
+		sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
 
-		while(puedeEjecutar()){
-			sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
+		pEsiAEjecutar = obtenerEsiAEjecutarSegunFIFO();
+		log_trace(pLog, "Segun FIFO el ESI a ejecutar ahora es el de id = %d", pEsiAEjecutar->id);
+		pESIEnEjecucion = pEsiAEjecutar;
 
-			pEsiAEjecutar = obtenerEsiAEjecutarSegunFIFO();
-			ejecutarProxSent(pEsiAEjecutar);
-			pESIEnEjecucion = pEsiAEjecutar;
+		do
+		{
+			ejecutarProxSent(pESIEnEjecucion);
+			log_trace(pLog, "Se dio la orden de ejecutar al ESI en ejecucion");
+
+			log_trace(pLog,"Se espera la respuesta del ESI en ejecucion");
 			sem_wait(&sem_respuestaESI);
-			while(*(rtdoEjecucion) == SUCCESS){
-				ejecutarProxSent(pEsiAEjecutar);
-				pESIEnEjecucion = pEsiAEjecutar;
-				sem_wait(&sem_respuestaESI);
-			}
-			if( *(rtdoEjecucion) == FAILURE){
-				queue_push(ESIsBloqueados, pEsiAEjecutar); //debería ver porque se bloqueó el ESI
-			}
-			else{ //rtdoEjecucion = FIN_DE_EJECUCION
-				queue_push(ESIsFinalizados, pEsiAEjecutar);
-			}
-			// si rtdoEjecucion = DISCONNECTED no hace nada y sigue planificando		
 		}
+		while(rtdoEjecucion == SUCCESS);
+
+		if( rtdoEjecucion == FAILURE){
+			log_error(pLog, "El ESI de id = %d fallo");
+			queue_push(ESIsBloqueados, pESIEnEjecucion); //debería ver porque se bloqueó el ESI
+		}
+		else if( rtdoEjecucion == NO_HAY_INSTANCIAS_CONECTADAS )
+		{
+			log_error(pLog, "No hay instancias conectadas");
+			abortESI(pESIEnEjecucion);
+		}
+		else if( rtdoEjecucion == FIN_DE_EJECUCION )
+		{
+			queue_push(ESIsFinalizados, pESIEnEjecucion);
+			finalizarESI(pESIEnEjecucion);
+			log_trace(pLog, "El ESI de id = %d pasa finalizados", pESIEnEjecucion->id);
+		}
+		else
+			log_error(pLog, "ERROR: rtdoEjecucion desconocido");
+		// si rtdoEjecucion = DISCONNECTED no hace nada y sigue planificando
 	}
 }
 
 //VER EL ALGORITMO QUE SE USÓ PARA planificarSegunFIFO()
 void planificarSegunSJF(){
-	ESI_t* pEsiAEjecutar; 
+	ESI_t* pEsiAEjecutar;
 
 	while(1){
 
@@ -64,17 +80,17 @@ void planificarSegunSJF(){
 			pEsiAEjecutar = obtenerEsiAEjecutarSegunSJF();
 			ejecutarProxSent(pEsiAEjecutar);
 			sem_wait(&sem_respuestaESI);
-			while(*(rtdoEjecucion) == SUCCESS){
+			while(rtdoEjecucion == SUCCESS){
 				ejecutarProxSent(pEsiAEjecutar);
 				sem_wait(&sem_respuestaESI);
 			}
-			if( *(rtdoEjecucion) == FAILURE){
+			if( rtdoEjecucion == FAILURE){
 				queue_push(ESIsBloqueados, pEsiAEjecutar); //debería ver porque se bloqueó el ESI
 			}
 			else{ //rtdoEjecucion = FIN_DE_EJECUCION
 				queue_push(ESIsFinalizados, pEsiAEjecutar);
 			}
-			// si rtdoEjecucion = DISCONNECTED no hace nada y sigue planificando		
+			// si rtdoEjecucion = DISCONNECTED no hace nada y sigue planificando
 		}
 	}
 }//Tengo q pensarlo bien si esta bien la logica
@@ -93,20 +109,20 @@ void planificarSegunSRT(){
 			int sizeColaReadyAntesDeEjecutar = queue_size(ESIsListos);
 
 			sem_wait(&sem_respuestaESI);
-			while(*(rtdoEjecucion) == SUCCESS && queue_size(ESIsListos) == sizeColaReadyAntesDeEjecutar ){
+			while(rtdoEjecucion == SUCCESS && queue_size(ESIsListos) == sizeColaReadyAntesDeEjecutar ){
 				ejecutarProxSent(pEsiAEjecutar);
 				sizeColaReadyAntesDeEjecutar = queue_size(ESIsListos);
 				sem_wait(&sem_respuestaESI);
 			}
-			if( *(rtdoEjecucion) == FAILURE){
+			if( rtdoEjecucion == FAILURE){
 				queue_push(ESIsBloqueados, pEsiAEjecutar); //debería ver porque se bloqueó el ESI
 			}
 			else{
-				if(*(rtdoEjecucion) == FIN_DE_EJECUCION){  //rtdoEjecucion = FIN_DE_EJECUCION
+				if(rtdoEjecucion == FIN_DE_EJECUCION){  //rtdoEjecucion = FIN_DE_EJECUCION
 				queue_push(ESIsFinalizados, pEsiAEjecutar);
 				}
 				else{
-					if(*(rtdoEjecucion) == SUCCESS){
+					if(rtdoEjecucion == SUCCESS){
 						list_add_in_index( (t_list *)ESIsListos, 0, (void *)pEsiAEjecutar ); // para que si empata con otro esi, se aplique la regla FIFO
 					}
 				}
@@ -121,7 +137,8 @@ void planificarSegunHRRN(){
 }
 
 ESI_t*  obtenerEsiAEjecutarSegunFIFO(){
-    ESI_t* pEsiAEjecutar = queue_pop(ESIsListos);
+  ESI_t* pEsiAEjecutar = queue_pop(ESIsListos);
+	//printf("Listos tiene ahora %d elementos\n", ESIsListos->elements->elements_count);
 	return pEsiAEjecutar;
 }
 
@@ -135,4 +152,3 @@ ESI_t*  obtenerEsiAEjecutarSegunSJF(){
 ESI_t* obtenerEsiAEjecutarSegunHHRR(){
 	return queue_pop(ESIsListos);
 }
-

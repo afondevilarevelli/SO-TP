@@ -1,45 +1,78 @@
 #include "ESIHandling.h"
 /*--------NUEVOS ESIS--------*/
 
+void finalizarESI(ESI_t * pESI)
+{
+  pESI->state = FINALIZADO;
+}
+
+int fueFinalizado(ESI_t * pESI)
+{
+  return pESI->state == FINALIZADO;
+}
+
 void atenderESI(ESI_t * pESI)
 {
-  printf("Atendiendo ESI de ID=%d\n", pESI->id);
+  log_trace(pLog, "Atendiendo ESI de ID=%d", pESI->id);
 
-  while(1)
+  while(!fueAbortado(pESI) && !fueFinalizado(pESI))
   {
     int size;
     void * rtdoEjec;
 
+    log_trace(pLog, "A la espera de respuesta del ESI %d", pESI->id);
     size = recvWithBasicProtocol(pESI->socket, &rtdoEjec);
 
     if( size  ) // SI NO SE DESCONECTO
     {
-      rtdoEjecucion = (rtdoEjec_t*)rtdoEjec;
-      sem_post(&sem_respuestaESI);    
+      rtdoEjecucion = *((rtdoEjec_t*)rtdoEjec);
+      log_debug(pLog, "Se recibio el rtdoEjec = %d", rtdoEjecucion);
+      sem_post(&sem_respuestaESI);
     }
     else
     {
-      rtdoEjec_t* rtdo = malloc(sizeof(rtdoEjec_t));
       ESIDesconectado( pESI->id );
-      *(rtdo) = DISCONNECTED;
-      rtdoEjecucion = rtdo;
-      free(rtdo);
+      rtdoEjecucion = DISCONNECTED;
       sem_post(&sem_respuestaESI);
-      return;
+      break;
     }
   }
+
+  if(fueAbortado(pESI))
+    eliminarESIDelSistema(pESI->id);
+  else
+    log_warning(pLog, "El ESI %d finalizo y no atendera mas solicitudes", pESI->id);
+}
+
+void abortESI(ESI_t * pESI)
+{
+  pESI->state = ABORTADO;
+  orden_t orden = ABORTAR;
+  log_error(pLog, "El ESI de id %d, fue abortado\n", pESI->id);
+  sendWithBasicProtocol(pESI->socket, &orden, sizeof(orden_t));
+}
+
+int fueAbortado(ESI_t * pESI)
+{
+  return pESI->state == ABORTADO;
 }
 
 void ESIDesconectado( int ESI_ID )
 {
-  abortESI(ESI_ID);
-  printf("El ESI de id %d, fue desconectado\n", ESI_ID);
+  log_error(pLog, "El ESI de id %d, se desconecto\n", ESI_ID);
 }
 
-void abortESI( int ESI_ID )
+ESI_t * quitarESIDeSuListaActual(int ESI_ID)
 {
-  ESI_t * pESI = get_and_remove_ESI_by_ID( ESIsListos->elements, ESI_ID);
-  if(pESI) sem_wait(&sem_cantESIsListos);
+  ESI_t * pESI = NULL;
+  if( is_ESI_ID_equal(pESIEnEjecucion, ESI_ID) )
+    pESI = pESIEnEjecucion;
+
+  if(!pESI)
+  {
+    pESI = get_and_remove_ESI_by_ID( ESIsListos->elements, ESI_ID);
+    if(pESI) sem_wait(&sem_cantESIsListos);
+  }
 
   if(!pESI)
   {
@@ -49,9 +82,16 @@ void abortESI( int ESI_ID )
       pESI = get_and_remove_ESI_by_ID( ESIsFinalizados->elements, ESI_ID);
   }
 
-  printf("El ESI de id %d, fue abortado\n", pESI->id);
+  return pESI;
+}
+
+void eliminarESIDelSistema( int ESI_ID )
+{
+  ESI_t * pESI = quitarESIDeSuListaActual(ESI_ID);
+
 
   freeESI(pESI);
+  log_warning(pLog, "El ESI de id %d, fue eliminado del sistema\n", ESI_ID);
 }
 
 ESI_t * get_and_remove_ESI_by_ID( t_list * ESIs, int id )
@@ -93,6 +133,7 @@ ESI_t * newESI( int socket, int id, int rafagaInicial)
   pESI->id = id;
   pESI->estimacionAnterior= rafagaInicial;
   pESI-> duracionAnterior = rafagaInicial;
+  pESI->state = NORMAL;
 
   return pESI;
 }

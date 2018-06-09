@@ -1,5 +1,6 @@
 #include <pthread.h>
 #include <commons/config.h>
+#include <commons/log.h>
 #include <commons/collections/queue.h>
 #include "consolaPlanificador.h"
 #include "../shared/protocolo.h"
@@ -18,54 +19,70 @@ void obtenerIPyPuertoDePlanificador(t_config * pConf, int * ip, int * puerto);
 void obtenerIPyPuerto(t_config * pConf, int * ip, int * puerto, char * ipKey, char * portKey);
 struct tipoPlanificacion obtenerAlgoritmoDePlanificacion(t_config * pConf);
 
+t_log * pLog;
+
 int main(void)
 {
+	pLog = log_create("planificador.log", "PLANIFICADOR", true, LOG_LEVEL_TRACE);
+	log_trace(pLog, "Iniciando...");
+
 	sem_init(&sem_cantESIsListos, 0, 0);
 	sem_init(&sem_respuestaESI, 0, 0);
 	hilos = list_create();
 	struct tipoPlanificacion infoAlgoritmo;
-	rtdoEjecucion = malloc(sizeof(rtdoEjec_t));
 
 	ESIsListos = queue_create();
 	ESIsBloqueados = queue_create();
 	ESIsFinalizados = queue_create();
 	ListaColas = list_create();
 
+	log_trace(pLog, "Inicializacion de variables globales completada");
+
 	t_config * pConf = config_create("planificador.config");
 	infoAlgoritmo = obtenerAlgoritmoDePlanificacion(pConf);
+	log_trace(pLog, "Se obtuvo el algoritmo de planificacion %d", infoAlgoritmo.planificacion);
 	socketCoord = conectarseACoordinador(pConf);
+	log_trace(pLog, "Se conecto al Coordinador en el socket %d", socketCoord);
 
 	pthread_t hiloListener, hiloPlanificacion, hiloConsolaPlanificador;
 	pthread_create(&hiloListener, NULL, (void*)&recibirNuevosESI, pConf);
+	log_trace(pLog, "Se creo un hilo para recibir ESIs");
+
 	switch(infoAlgoritmo.planificacion){
 				case FIFO:
 					pthread_create(&hiloPlanificacion, NULL, (void*)&planificarSegunFIFO, NULL);
+					log_trace(pLog, "Se creo un hilo para planificar por FIFO");
 					break;
 				case SJF:
 					pthread_create(&hiloPlanificacion, NULL, (void*)&planificarSegunSJF, NULL);
+					log_trace(pLog, "Se creo un hilo para planificar por SJF");
 					break;
 				case SRT:
 					pthread_create(&hiloPlanificacion, NULL, (void*)&planificarSegunSRT, NULL);
+					log_trace(pLog, "Se creo un hilo para planificar por SRT");
 					break;
 				case HHRR:
 					pthread_create(&hiloPlanificacion, NULL, (void*)&planificarSegunHRRN, NULL);
+					log_trace(pLog, "Se creo un hilo para planificar por HHRR");
 					break;
-
 				default://rutina de error de algo :)
-					printf("No se ha encontrado el Algoritmo de Planificacion a utilizar.\n");
+					log_error(pLog, "No se ha encontrado el Algoritmo de Planificacion a utilizar.\n");
 					break;
 			}
 	pthread_create(&hiloConsolaPlanificador, NULL, (void*)&consolaPlanificador, NULL);
+	log_trace(pLog, "Se creo un hilo para la consola");
 
 	pthread_join(hiloListener, NULL);
 	pthread_join(hiloPlanificacion, NULL);
 	pthread_join(hiloConsolaPlanificador, NULL);
 	list_iterate( hilos, (void *)&terminarHilo );
+	log_trace(pLog, "Se destruyeron todos los hilos secundarios");
 	queue_destroy_and_destroy_elements(ESIsListos, (void*)&freeESI);
 	queue_destroy_and_destroy_elements(ESIsBloqueados, (void*)&freeESI);
+	log_trace(pLog, "Se destruyeron las listas globales");
 
 	return 0;
-} 
+}
 
 /*----CONEXIONES-----*/
 
@@ -106,14 +123,17 @@ struct tipoPlanificacion obtenerAlgoritmoDePlanificacion(t_config * pConf)
 {
 	struct tipoPlanificacion plani;
 
-	plani.planificacion= config_get_int_value(pConf, "ALGORITMO_DE_PLANIFICACION");
-	if(plani.planificacion == FIFO){
+	char * planifString =config_get_string_value(pConf, "ALGORITMO_DE_PLANIFICACION");
+	if( !strcmp(planifString, "FIFO") )
+	{
+		plani.planificacion = FIFO;
 		plani.alpha = 0;
-  	    plani.estimacionInicial = 0;
+  	plani.estimacionInicial = 0;
 	}
-	else{ 
+	else
+	{
 		plani.alpha= config_get_int_value(pConf, "ALPHA");
-  	    plani.estimacionInicial= config_get_int_value(pConf, "ESTIMACION_INICIAL");
+  	plani.estimacionInicial= config_get_int_value(pConf, "ESTIMACION_INICIAL");
 	}
 	return plani;
 }

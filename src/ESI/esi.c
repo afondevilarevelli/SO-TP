@@ -1,5 +1,8 @@
 #include <parsi/parser.h>
+#include <errno.h>
+
 #include <commons/config.h>
+#include <commons/log.h>
 
 #include "../shared/protocolo.h"
 #include "../shared/mySocket.h"
@@ -14,6 +17,7 @@ void enviarIdentificacion(int socket, int id);
 FILE * abrirScriptESI(char * ESIScriptFilename);
 ESISentenciaParseada_t * newSentencia(int operacion, char * clave, char * valor);
 ESISentenciaParseada_t * obtenerSentenciaParseada(FILE * scriptf);
+void addSentenciaToBuffer(tBuffer * pBuffer, ESISentenciaParseada_t * pSent);
 tBuffer * makeBufferFromSentencia(ESISentenciaParseada_t * pSent);
 void freeSentencia(ESISentenciaParseada_t * pSent);
 
@@ -21,52 +25,95 @@ orden_t ordenDePlanificador(void);
 
 int socketCoord, socketPlanif;
 
+t_log * pLog;
+
 int main(void)
 {
+  pLog = log_create("ESI.log", "ESI", true, LOG_LEVEL_TRACE);
+  log_trace(pLog, "Iniciando...");
+
   t_config * pConf = config_create("ESI.config");
   int id = config_get_int_value(pConf, "ESI_ID"), bytes;
+  log_trace(pLog, "Se obtiene ID %d del archivo de configuracion", id);
 
   //Primero me conecto al Coordinador
   socketCoord = conectarseACoordinador(pConf, id);
+  log_trace(pLog, "Se conecto al Coordinador en el socket %d", socketCoord);
 
   //Ahora me conecto al Planificador
   socketPlanif = conectarseAPlanificador(pConf, id);
+  log_trace(pLog, "Se conecto al Planificador en el socket %d", socketPlanif);
 
   //Le envio al coordinador una sentencia parseada
   FILE * scriptf = abrirScriptESI("ejemplo.esi");
+  log_trace(pLog, "Script ejemplo.esi abierto");
+
   ESISentenciaParseada_t * pSent;
+  orden_t orden;
 
   //recibo de orden de ejecucion <--------------- PLANIFICADOR
-  while( ordenDePlanificador() == EJECUTAR )
+  log_trace(pLog, "Esperando orden de Planificador");
+  while( (orden = ordenDePlanificador()) == EJECUTAR )
   {
     pSent = obtenerSentenciaParseada(scriptf);
-
     if(pSent)
     {
+      log_debug(pLog, "La sentencia parseada es:\n"
+                      "Op = %d\n"
+                      "Clave = %s\n"
+                      "Valor = %s\n",
+                      pSent->operacion, pSent->clave, pSent->valor?pSent->valor:"No corresponde");
+
       rtdoEjec_t * pRtdo;
-      tBuffer * pBuffSent = makeBufferFromSentencia(pSent);
+      tBuffer * pBuffSent = newBuffer();
+      addIntToBuffer(pBuffSent, SENTENCIA);
+      addSentenciaToBuffer(pBuffSent, pSent);
       freeSentencia(pSent);
 
       //envio de sentenciaParseada -----------> COORDINADOR
       sendWithBasicProtocol(socketCoord, pBuffSent->data, pBuffSent->size);
+      log_trace(pLog, "Se envio la sentencia al Coordinador");
       freeBuffer(pBuffSent);
 
       //recibo de resultado de ejecucion <---------- COORDINADOR
+      log_trace(pLog, "Esperando resultado de ejeucion de Coordinador");
       bytes = recvWithBasicProtocol(socketCoord, (void**)&pRtdo);
+      log_debug(pLog, "El resultado recibido es de %d", *pRtdo);
 
       //envio de resultado de ejecucion ------------> PLANIFICADOR
       sendWithBasicProtocol(socketPlanif, (void*)pRtdo, bytes);
+      log_trace(pLog, "Se envio el resultado al Planificador");
     }
     else
       break;
+
+    log_trace(pLog, "Esperando orden de Planificador");
   }
 
   fclose(scriptf);
 
-  rtdoEjec_t finDeEjec = FIN_DE_EJECUCION;
-  sendWithBasicProtocol(socketCoord, (void*)&finDeEjec, sizeof(rtdoEjec_t));
-  sendWithBasicProtocol(socketPlanif, (void*)&finDeEjec, sizeof(rtdoEjec_t));
+  if( orden == ABORTAR )
+  {
+    rtdoEjec_t aborted = ABORTED;
+    log_error(pLog, "El ESI fue abortado");
+    sendWithBasicProtocol(socketCoord, (void*)&aborted, sizeof(rtdoEjec_t));
+    log_trace(pLog, "Se informa del aborto al Coordinador");
+  }
+  else if(!pSent)
+  {
+    rtdoEjec_t finDeEjec = FIN_DE_EJECUCION;
+    log_trace(pLog, "El ESI finalizo su ejecucion correctamente");
 
+    sendWithBasicProtocol(socketCoord, (void*)&finDeEjec, sizeof(rtdoEjec_t));
+    log_trace(pLog, "Se informa del fin de ejecucion al Coordinador");
+
+    sendWithBasicProtocol(socketPlanif, (void*)&finDeEjec, sizeof(rtdoEjec_t));
+    log_trace(pLog, "Se informa del fin de ejecucion al PLanificador");
+  }
+  else
+  {
+    log_error(pLog, "ORDEN DESCONOCIDA DEL PLANIFICADOR (orden=%d)", orden);
+  }
   return 0;
 }
 
@@ -75,10 +122,12 @@ orden_t ordenDePlanificador(void)
   orden_t * pOrden, orden;
   if( !recvWithBasicProtocol(socketPlanif, (void**)&pOrden) )
   {
-    puts("No se pudo recibir la orden del planificador porque se desconecto.");
+    log_error(pLog, "No se pudo recibir la orden del planificador porque se desconecto.");
     exit(1);
   }
   orden = *pOrden;
+  log_debug(pLog, "La orden recibida fue %d", orden);
+
   free(pOrden);
 
   return orden;
@@ -91,7 +140,7 @@ FILE * abrirScriptESI(char * ESIScriptFilename)
   FILE * scriptf = fopen(ESIScriptFilename, "r");
   if (scriptf == NULL)
   {
-    perror("Error al abrir el archivo: ");
+    log_error(pLog, "Error al abrir el archivo: %s", strerror(errno));
     exit(EXIT_FAILURE);
   }
 
@@ -107,7 +156,7 @@ ESISentenciaParseada_t * newSentencia(int operacion, char * clave, char * valor)
 
   if(valor)
   {
-    pSent->valor = malloc(strlen(clave)+1);
+    pSent->valor = malloc(strlen(valor)+1);
     strcpy(pSent->valor, valor);
   }
   else
@@ -161,12 +210,18 @@ ESISentenciaParseada_t * obtenerSentenciaParseada(FILE * scriptf)
 tBuffer * makeBufferFromSentencia(ESISentenciaParseada_t * pSent)
 {
   tBuffer * pBuffer = newBuffer();
+
+  addSentenciaToBuffer(pBuffer,pSent);
+
+  return pBuffer;
+}
+
+void addSentenciaToBuffer(tBuffer * pBuffer, ESISentenciaParseada_t * pSent)
+{
   addIntToBuffer(pBuffer, pSent->operacion);
   addStringToBuffer(pBuffer, pSent->clave);
   if(pSent->operacion == SET)
     addStringToBuffer(pBuffer, pSent->valor);
-
-  return pBuffer;
 }
 
 void freeSentencia(ESISentenciaParseada_t * pSent)

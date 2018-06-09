@@ -25,6 +25,7 @@ void atenderESI( int socket )
     int size;
     void * solicitud;
 
+    //recibo solicitud <----------------- ESI
     size = recvWithBasicProtocol( socket, &solicitud);
     log_trace(pLog, "Se recibieron datos del ESI %d", id);
 
@@ -35,16 +36,32 @@ void atenderESI( int socket )
           log_trace(pLog, "El ESI %d ha finalizado con éxito", id);
           break;
       }
-      else
+      else if( (*((rtdoEjec_t*)solicitud)) == ABORTED )
       {
-        rtdoEjec_t rtdo = procesarSolicitudESI(solicitud, size);
-        log_debug(pLog, "La solicitud del ESI %d fue %s", id, rtdo==SUCCESS?"procesada con exito":"un fracaso");
+        log_error(pLog, "El ESI %d ha sido abortado", id);
+        break;
+      }
+      else if( (*((rtdoEjec_t*)solicitud)) == SENTENCIA )
+      {
+        rtdoEjec_t rtdo;
+        if( coord_Insts->elements_count )
+        {
+          rtdo = procesarSolicitudESI(solicitud + sizeof(rtdoEjec_t), size);
+          log_debug(pLog, "La solicitud del ESI %d fue %s", id, rtdo==SUCCESS?"procesada con exito":"un fracaso");
+        }
+        else
+        {
+          rtdo = NO_HAY_INSTANCIAS_CONECTADAS;
+          log_warning(pLog, "No hay instancias conectas");
+        }
+        free(solicitud);
 
+        //informo de resultado de ejecucion -------------> ESI
         sendWithBasicProtocol(socket, (void**)&rtdo, sizeof(rtdoEjec_t));
         log_trace(pLog, "Se informa de ese resultado al ESI %d", id);
-
-        free(solicitud);
       }
+      else
+        log_error(pLog, "Solicitud desconocida");
     }
     else
     {
