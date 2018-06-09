@@ -140,3 +140,4 @@ Valor = No corresponde
 [DEBUG] 07:53:46:213 ESI/(9113:9113): El resultado recibido es de 3
 [TRACE] 07:53:46:213 ESI/(9113:9113): Se envio el resultado al Planificador
 [TRACE] 07:53:46:213 ESI/(9113:9113): Esperando orden de Planificador
+[ERROR] 13:29:03:501 ESI/(9113:9113): No se pudo recibir la orden del planificador porque se desconecto.

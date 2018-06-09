@@ -45,7 +45,7 @@ int main(void)
   log_trace(pLog, "Se conecto al Planificador en el socket %d", socketPlanif);
 
   //Le envio al coordinador una sentencia parseada
-  FILE * scriptf = abrirScriptESI("ejemplo.esi");
+  FILE * scriptf = abrirScriptESI(config_get_string_value(pConf, "ESI_SCRIPT"));
   log_trace(pLog, "Script ejemplo.esi abierto");
 
   ESISentenciaParseada_t * pSent;
