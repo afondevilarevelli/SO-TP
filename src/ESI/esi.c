@@ -1,4 +1,4 @@
-#include <parsi/parser.h>
+#include "parsi/src/parsi/parser.h"
 #include <errno.h>
 
 #include <commons/config.h>
@@ -59,10 +59,10 @@ int main(void)
     if(pSent)
     {
       log_debug(pLog, "La sentencia parseada es:\n"
-                      "Op = %d\n"
+                      "Op = %s\n"
                       "Clave = %s\n"
                       "Valor = %s\n",
-                      pSent->operacion, pSent->clave, pSent->valor?pSent->valor:"No corresponde");
+                      pSent->operacion==GET?"GET":pSent->operacion==SET?"SET":"STORE", pSent->clave, pSent->valor?pSent->valor:"No corresponde");
 
       rtdoEjec_t * pRtdo;
       tBuffer * pBuffSent = newBuffer();
@@ -78,7 +78,7 @@ int main(void)
       //recibo de resultado de ejecucion <---------- COORDINADOR
       log_trace(pLog, "Esperando resultado de ejeucion de Coordinador");
       bytes = recvWithBasicProtocol(socketCoord, (void**)&pRtdo);
-      log_debug(pLog, "El resultado recibido es de %d", *pRtdo);
+      log_debug(pLog, "El resultado recibido es de %s", *pRtdo==SUCCESS?"SUCCESS":*pRtdo==FAILURE?"FAILURE":*pRtdo==FIN_DE_EJECUCION?"FIN DE EJECUCION":*pRtdo==DISCONNECTED?"DESCONECTADO":*pRtdo==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":*pRtdo==ABORTED?"ABORTADO":"SENTENCIA" );
 
       //envio de resultado de ejecucion ------------> PLANIFICADOR
       sendWithBasicProtocol(socketPlanif, (void*)pRtdo, bytes);
@@ -119,14 +119,14 @@ int main(void)
 
 orden_t ordenDePlanificador(void)
 {
-  orden_t * pOrden, orden;
+  orden_t *pOrden, orden;
   if( !recvWithBasicProtocol(socketPlanif, (void**)&pOrden) )
   {
     log_error(pLog, "No se pudo recibir la orden del planificador porque se desconecto.");
     exit(1);
   }
   orden = *pOrden;
-  log_debug(pLog, "La orden recibida fue %d", orden);
+  log_debug(pLog, "La orden recibida fue %s", orden==BLOQUEAR?"BLOQUEAR":orden==EJECUTAR?"EJECUTAR":"ABORTAR" );
 
   free(pOrden);
 

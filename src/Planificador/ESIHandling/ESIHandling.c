@@ -26,7 +26,7 @@ void atenderESI(ESI_t * pESI)
     if( size  ) // SI NO SE DESCONECTO
     {
       rtdoEjecucion = *((rtdoEjec_t*)rtdoEjec);
-      log_debug(pLog, "Se recibio el rtdoEjec = %d", rtdoEjecucion);
+      log_debug(pLog, "Se recibio el rtdoEjec = %s", rtdoEjecucion==SUCCESS?"SUCCESS":rtdoEjecucion==FAILURE?"FAILURE":rtdoEjecucion==FIN_DE_EJECUCION?"FIN DE EJECUCION":rtdoEjecucion==DISCONNECTED?"DESCONECTADO":rtdoEjecucion==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":rtdoEjecucion==ABORTED?"ABORTADO":"SENTENCIA");
       sem_post(&sem_respuestaESI);
     }
     else
@@ -41,14 +41,14 @@ void atenderESI(ESI_t * pESI)
   if(fueAbortado(pESI))
     eliminarESIDelSistema(pESI->id);
   else
-    log_warning(pLog, "El ESI %d finalizo y no atendera mas solicitudes", pESI->id);
+    log_warning(pLog, "El ESI con ID = %d finalizo y no atendera mas solicitudes", pESI->id);
 }
 
 void abortESI(ESI_t * pESI)
 {
   pESI->state = ABORTADO;
   orden_t orden = ABORTAR;
-  log_error(pLog, "El ESI de id %d, fue abortado\n", pESI->id);
+  log_error(pLog, "El ESI con ID = %d, fue abortado\n", pESI->id);
   sendWithBasicProtocol(pESI->socket, &orden, sizeof(orden_t));
 }
 
@@ -59,7 +59,7 @@ int fueAbortado(ESI_t * pESI)
 
 void ESIDesconectado( int ESI_ID )
 {
-  log_error(pLog, "El ESI de id %d, se desconecto\n", ESI_ID);
+  log_error(pLog, "El ESI con ID = %d, se desconecto\n", ESI_ID);
 }
 
 ESI_t * quitarESIDeSuListaActual(int ESI_ID)
@@ -91,7 +91,7 @@ void eliminarESIDelSistema( int ESI_ID )
 
 
   freeESI(pESI);
-  log_warning(pLog, "El ESI de id %d, fue eliminado del sistema\n", ESI_ID);
+  log_warning(pLog, "El ESI con ID = %d, fue eliminado del sistema\n", ESI_ID);
 }
 
 ESI_t * get_and_remove_ESI_by_ID( t_list * ESIs, int id )

@@ -33,12 +33,12 @@ void atenderESI( int socket )
     {
       if( (*((rtdoEjec_t*)solicitud)) == FIN_DE_EJECUCION )
       {
-          log_trace(pLog, "El ESI %d ha finalizado con éxito", id);
+          log_trace(pLog, "El ESI con ID  =%d ha finalizado con éxito", id);
           break;
       }
       else if( (*((rtdoEjec_t*)solicitud)) == ABORTED )
       {
-        log_error(pLog, "El ESI %d ha sido abortado", id);
+        log_error(pLog, "El ESI con ID = %d ha sido abortado", id);
         break;
       }
       else if( (*((rtdoEjec_t*)solicitud)) == SENTENCIA )
@@ -47,7 +47,7 @@ void atenderESI( int socket )
         if( coord_Insts->elements_count )
         {
           rtdo = procesarSolicitudESI(solicitud + sizeof(rtdoEjec_t), size);
-          log_debug(pLog, "La solicitud del ESI %d fue %s", id, rtdo==SUCCESS?"procesada con exito":"un fracaso");
+          log_debug(pLog, "La solicitud del ESI con ID = %d fue %s", id, rtdo==SUCCESS?"procesada con exito":"un fracaso");
         }
         else
         {
@@ -58,7 +58,7 @@ void atenderESI( int socket )
 
         //informo de resultado de ejecucion -------------> ESI
         sendWithBasicProtocol(socket, (void**)&rtdo, sizeof(rtdoEjec_t));
-        log_trace(pLog, "Se informa de ese resultado al ESI %d", id);
+        log_trace(pLog, "Se informa de ese resultado al ESI con ID = %d", id);
       }
       else
         log_error(pLog, "Solicitud desconocida");
@@ -79,7 +79,7 @@ void registrarNuevoESI( int ESI_socket, int id )
 {
   ESI_t * pESI = new_ESI( id, ESI_socket);
   list_add( coord_ESIs, pESI);
-  log_trace(pLog, "Se agrego un nuevo ESI de id = %d a la lista de ESIs", id);
+  log_trace(pLog, "Se agrego un nuevo ESI con ID = %d a la lista de ESIs", id);
 }
 
 ESI_t * new_ESI( int id, int socket )
@@ -104,7 +104,7 @@ rtdoEjec_t procesarSolicitudESI(void * solicitud, int size)
     sent.valor = NULL;
 
   freeBuffer(buffSent);
-  log_info(pLog,"Sentencia ESI: op=%d, clave=%s, valor=%s\n", sent.operacion, sent.clave, sent.valor?sent.valor:"No corresponde");
+  log_info(pLog,"Sentencia ESI: op=%s, clave=%s, valor=%s\n", sent.operacion==GET?"GET":sent.operacion==SET?"SET":"STORE", sent.clave, sent.valor?sent.valor:"No corresponde");
 
   inst_t * pInst = getInstByEquitativeLoad(sent.clave);
   log_trace(pLog,"Se obtuvo la instancia de id = %d por Equitative Load", pInst->id);
@@ -138,7 +138,7 @@ void ESIDesconectado( int ESI_ID )
   //cambiar el estado de connected a false
   pESI->connected = false;
 
-  log_warning(pLog, "El ESI de id %d, se ha desconectado\n", pESI->id);
+  log_warning(pLog, "El ESI con ID = %d, se ha desconectado\n", pESI->id);
 }
 
 ESI_t * get_ESI_by_ID( t_list * ESIs, int id )

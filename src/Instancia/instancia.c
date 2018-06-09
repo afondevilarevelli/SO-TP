@@ -68,10 +68,10 @@ int main(void)
 
 		freeBuffer(buffSent);
 
-		log_debug(pLog, "Sentencia recibida:\n op=%d, clave=%s, valor=%s\n", sent.operacion, sent.clave, sent.valor?sent.valor:"No corresponde");
+		log_debug(pLog, "Sentencia recibida:\n op=%s, clave=%s, valor=%s\n", sent.operacion==SET?"SET":sent.operacion==GET?"GET":"STORE", sent.clave, sent.valor?sent.valor:"No corresponde");
 
 		rtdoEjec_t rtdo = accederRecurso(sent.operacion, sent.clave, sent.valor);
-		log_debug(pLog, "El resultado de la sentencia fue %d", rtdo);
+		log_debug(pLog, "El resultado de la sentencia fue %s", rtdo==SUCCESS?"SUCCESS":rtdo==FAILURE?"FAILURE":rtdo==FIN_DE_EJECUCION?"FIN DE EJECUCION":rtdo==DISCONNECTED?"DESCONECTADO":rtdo==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":rtdo==ABORTED?"ABORTADO":"SENTENCIA" );
 
 		sendWithBasicProtocol(coord_socket, &rtdo, sizeof(rtdoEjec_t));
 		log_trace(pLog, "Resultado enviado al Coordinador");

@@ -238,3 +238,93 @@
 [DEBUG] 07:53:46:293 INSTANCIA/(9041:9041): El resultado de la sentencia fue 1
 [TRACE] 07:53:46:293 INSTANCIA/(9041:9041): Resultado enviado al Coordinador
 [TRACE] 07:53:46:293 INSTANCIA/(9041:9041): A la espera de solicitudes
+[TRACE] 10:32:00:351 INSTANCIA/(4343:4343): Iniciando...
+[TRACE] 10:32:00:353 INSTANCIA/(4343:4343): Tabla de entradas cargada
+[TRACE] 10:32:00:356 INSTANCIA/(4343:4343): Conectada a Coordinador
+[TRACE] 10:32:00:357 INSTANCIA/(4343:4343): A la espera de solicitudes
+[DEBUG] 10:32:43:303 INSTANCIA/(4343:4343): Solicitud recibida
+[TRACE] 10:32:43:303 INSTANCIA/(4343:4343): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 10:32:43:303 INSTANCIA/(4343:4343): Sentencia recibida:
+ op=0, clave=jugador, valor=No corresponde
+
+[DEBUG] 10:32:43:303 INSTANCIA/(4343:4343): El resultado de la sentencia fue 1
+[TRACE] 10:32:43:303 INSTANCIA/(4343:4343): Resultado enviado al Coordinador
+[TRACE] 10:32:43:303 INSTANCIA/(4343:4343): A la espera de solicitudes
+[DEBUG] 10:32:43:304 INSTANCIA/(4343:4343): Solicitud recibida
+[TRACE] 10:32:43:304 INSTANCIA/(4343:4343): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 10:32:43:304 INSTANCIA/(4343:4343): Sentencia recibida:
+ op=1, clave=jugador, valor=abondanzieri
+
+[DEBUG] 10:32:43:304 INSTANCIA/(4343:4343): El resultado de la sentencia fue 1
+[TRACE] 10:32:43:304 INSTANCIA/(4343:4343): Resultado enviado al Coordinador
+[TRACE] 10:32:43:304 INSTANCIA/(4343:4343): A la espera de solicitudes
+[DEBUG] 10:32:43:344 INSTANCIA/(4343:4343): Solicitud recibida
+[TRACE] 10:32:43:344 INSTANCIA/(4343:4343): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 10:32:43:344 INSTANCIA/(4343:4343): Sentencia recibida:
+ op=2, clave=jugador, valor=No corresponde
+
+[DEBUG] 10:32:43:344 INSTANCIA/(4343:4343): El resultado de la sentencia fue 1
+[TRACE] 10:32:43:344 INSTANCIA/(4343:4343): Resultado enviado al Coordinador
+[TRACE] 10:32:43:344 INSTANCIA/(4343:4343): A la espera de solicitudes
+[DEBUG] 11:04:31:708 INSTANCIA/(4343:4343): Solicitud recibida
+[TRACE] 11:04:31:709 INSTANCIA/(4343:4343): Se informa al Coordinador que su solicitud esta siendo atendida
+[TRACE] 11:05:18:515 INSTANCIA/(5848:5848): Iniciando...
+[TRACE] 11:05:18:515 INSTANCIA/(5848:5848): Tabla de entradas cargada
+[TRACE] 11:05:18:516 INSTANCIA/(5848:5848): Conectada a Coordinador
+[TRACE] 11:05:18:516 INSTANCIA/(5848:5848): A la espera de solicitudes
+[DEBUG] 11:05:27:273 INSTANCIA/(5848:5848): Solicitud recibida
+[TRACE] 11:05:27:273 INSTANCIA/(5848:5848): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 11:05:27:273 INSTANCIA/(5848:5848): Sentencia recibida:
+ op=GET, clave=jugador, valor=No corresponde
+
+[DEBUG] 11:05:27:273 INSTANCIA/(5848:5848): El resultado de la sentencia fue SUCCESS
+[TRACE] 11:05:27:273 INSTANCIA/(5848:5848): Resultado enviado al Coordinador
+[TRACE] 11:05:27:273 INSTANCIA/(5848:5848): A la espera de solicitudes
+[DEBUG] 11:05:27:276 INSTANCIA/(5848:5848): Solicitud recibida
+[TRACE] 11:05:27:276 INSTANCIA/(5848:5848): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 11:05:27:276 INSTANCIA/(5848:5848): Sentencia recibida:
+ op=SET, clave=jugador, valor=abondanzieri
+
+[DEBUG] 11:05:27:276 INSTANCIA/(5848:5848): El resultado de la sentencia fue SUCCESS
+[TRACE] 11:05:27:276 INSTANCIA/(5848:5848): Resultado enviado al Coordinador
+[TRACE] 11:05:27:276 INSTANCIA/(5848:5848): A la espera de solicitudes
+[DEBUG] 11:05:27:316 INSTANCIA/(5848:5848): Solicitud recibida
+[TRACE] 11:05:27:316 INSTANCIA/(5848:5848): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 11:05:27:316 INSTANCIA/(5848:5848): Sentencia recibida:
+ op=STORE, clave=jugador, valor=No corresponde
+
+[DEBUG] 11:05:27:316 INSTANCIA/(5848:5848): El resultado de la sentencia fue SUCCESS
+[TRACE] 11:05:27:316 INSTANCIA/(5848:5848): Resultado enviado al Coordinador
+[TRACE] 11:05:27:317 INSTANCIA/(5848:5848): A la espera de solicitudes
+[DEBUG] 11:15:05:500 INSTANCIA/(5848:5848): Solicitud recibida
+[TRACE] 11:15:05:501 INSTANCIA/(5848:5848): Se informa al Coordinador que su solicitud esta siendo atendida
+[TRACE] 11:15:37:140 INSTANCIA/(6663:6663): Iniciando...
+[TRACE] 11:15:37:142 INSTANCIA/(6663:6663): Tabla de entradas cargada
+[TRACE] 11:15:37:144 INSTANCIA/(6663:6663): Conectada a Coordinador
+[TRACE] 11:15:37:145 INSTANCIA/(6663:6663): A la espera de solicitudes
+[DEBUG] 11:15:41:110 INSTANCIA/(6663:6663): Solicitud recibida
+[TRACE] 11:15:41:110 INSTANCIA/(6663:6663): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 11:15:41:111 INSTANCIA/(6663:6663): Sentencia recibida:
+ op=GET, clave=jugador, valor=No corresponde
+
+[DEBUG] 11:15:41:111 INSTANCIA/(6663:6663): El resultado de la sentencia fue SUCCESS
+[TRACE] 11:15:41:111 INSTANCIA/(6663:6663): Resultado enviado al Coordinador
+[TRACE] 11:15:41:111 INSTANCIA/(6663:6663): A la espera de solicitudes
+[DEBUG] 11:15:41:113 INSTANCIA/(6663:6663): Solicitud recibida
+[TRACE] 11:15:41:113 INSTANCIA/(6663:6663): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 11:15:41:113 INSTANCIA/(6663:6663): Sentencia recibida:
+ op=SET, clave=jugador, valor=abondanzieri
+
+[DEBUG] 11:15:41:113 INSTANCIA/(6663:6663): El resultado de la sentencia fue SUCCESS
+[TRACE] 11:15:41:113 INSTANCIA/(6663:6663): Resultado enviado al Coordinador
+[TRACE] 11:15:41:113 INSTANCIA/(6663:6663): A la espera de solicitudes
+[DEBUG] 11:15:41:150 INSTANCIA/(6663:6663): Solicitud recibida
+[TRACE] 11:15:41:150 INSTANCIA/(6663:6663): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 11:15:41:150 INSTANCIA/(6663:6663): Sentencia recibida:
+ op=STORE, clave=jugador, valor=No corresponde
+
+[DEBUG] 11:15:41:150 INSTANCIA/(6663:6663): El resultado de la sentencia fue SUCCESS
+[TRACE] 11:15:41:150 INSTANCIA/(6663:6663): Resultado enviado al Coordinador
+[TRACE] 11:15:41:150 INSTANCIA/(6663:6663): A la espera de solicitudes
+[DEBUG] 11:15:51:860 INSTANCIA/(6663:6663): Solicitud recibida
+[TRACE] 11:15:51:861 INSTANCIA/(6663:6663): Se informa al Coordinador que su solicitud esta siendo atendida

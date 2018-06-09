@@ -43,7 +43,7 @@ int main(void)
 
 	t_config * pConf = config_create("planificador.config");
 	infoAlgoritmo = obtenerAlgoritmoDePlanificacion(pConf);
-	log_trace(pLog, "Se obtuvo el algoritmo de planificacion %d", infoAlgoritmo.planificacion);
+	log_trace(pLog, "Se obtuvo el algoritmo de planificacion %s", infoAlgoritmo.planificacion==FIFO?"FIFO":infoAlgoritmo.planificacion==SRT?"SRT":infoAlgoritmo.planificacion==SJF?"SJF":"HRRN");
 	socketCoord = conectarseACoordinador(pConf);
 	log_trace(pLog, "Se conecto al Coordinador en el socket %d", socketCoord);
 

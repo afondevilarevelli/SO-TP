@@ -21,7 +21,7 @@ bool condicionParaListSort(ESI_t* esi_1, ESI_t* esi_2){
 void ejecutarProxSent(ESI_t * pESI){
 	orden_t orden = EJECUTAR;
 	sendWithBasicProtocol(pESI->socket, &orden, sizeof(orden_t));
-	log_debug(pLog, "Se envio la orden = %d, al ESI de id = %d", orden, pESI->id);
+	log_debug(pLog, "Se envio la orden = %s, al ESI de id = %d", orden==BLOQUEAR?"BLOQUEAR":orden==EJECUTAR?"EJECUTAR":"ABORTAR", pESI->id);
 	pESIEnEjecucion = pESI;
 }
 
@@ -51,7 +51,7 @@ void planificarSegun(fDePlanif proximoESIAEjecutar){
 		while(rtdoEjecucion == SUCCESS);
 
 		if( rtdoEjecucion == FAILURE){
-			log_error(pLog, "El ESI de id = %d fallo");
+			log_error(pLog, "El ESI de id = %d ha fallado");
 			queue_push(ESIsBloqueados, pESIEnEjecucion); //debería ver porque se bloqueó el ESI
 		}
 		else if( rtdoEjecucion == NO_HAY_INSTANCIAS_CONECTADAS )
@@ -63,7 +63,7 @@ void planificarSegun(fDePlanif proximoESIAEjecutar){
 		{
 			queue_push(ESIsFinalizados, pESIEnEjecucion);
 			finalizarESI(pESIEnEjecucion);
-			log_trace(pLog, "El ESI de id = %d pasa finalizados", pESIEnEjecucion->id);
+			log_trace(pLog, "El ESI de id = %d pasa a finalizados", pESIEnEjecucion->id);
 		}
 		else
 			log_error(pLog, "ERROR: rtdoEjecucion desconocido");

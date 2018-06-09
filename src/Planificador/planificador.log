@@ -707,3 +707,111 @@
 [TRACE] 07:53:46:332 PLANIFICADOR/(9025:9028): El ESI de id = 7 pasa finalizados
 [TRACE] 07:53:46:332 PLANIFICADOR/(9025:9028): Se espera a que haya ESIs en la cola de listos
 [WARNING] 07:53:46:332 PLANIFICADOR/(9025:9118): El ESI 7 finalizo y no atendera mas solicitudes
+[TRACE] 10:31:55:690 PLANIFICADOR/(4331:4331): Iniciando...
+[TRACE] 10:31:55:692 PLANIFICADOR/(4331:4331): Inicializacion de variables globales completada
+[TRACE] 10:31:55:693 PLANIFICADOR/(4331:4331): Se obtuvo el algoritmo de planificacion 0
+[TRACE] 10:31:55:696 PLANIFICADOR/(4331:4331): Se conecto al Coordinador en el socket 4
+[TRACE] 10:31:55:696 PLANIFICADOR/(4331:4331): Se creo un hilo para recibir ESIs
+[TRACE] 10:31:55:697 PLANIFICADOR/(4331:4331): Se creo un hilo para planificar por FIFO
+[TRACE] 10:31:55:697 PLANIFICADOR/(4331:4331): Se creo un hilo para la consola
+[TRACE] 10:31:55:699 PLANIFICADOR/(4331:4334): Se espera a que haya ESIs en la cola de listos
+[TRACE] 10:32:43:297 PLANIFICADOR/(4331:4334): Segun FIFO el ESI a ejecutar ahora es el de id = 7
+[DEBUG] 10:32:43:297 PLANIFICADOR/(4331:4334): Se envio la orden = 1, al ESI de id = 7
+[TRACE] 10:32:43:297 PLANIFICADOR/(4331:4334): Se dio la orden de ejecutar al ESI en ejecucion
+[TRACE] 10:32:43:297 PLANIFICADOR/(4331:4334): Se espera la respuesta del ESI en ejecucion
+[TRACE] 10:32:43:299 PLANIFICADOR/(4331:4378): Atendiendo ESI de ID=7
+[TRACE] 10:32:43:299 PLANIFICADOR/(4331:4378): A la espera de respuesta del ESI 7
+[DEBUG] 10:32:43:303 PLANIFICADOR/(4331:4378): Se recibio el rtdoEjec = 1
+[DEBUG] 10:32:43:304 PLANIFICADOR/(4331:4334): Se envio la orden = 1, al ESI de id = 7
+[TRACE] 10:32:43:304 PLANIFICADOR/(4331:4334): Se dio la orden de ejecutar al ESI en ejecucion
+[TRACE] 10:32:43:304 PLANIFICADOR/(4331:4334): Se espera la respuesta del ESI en ejecucion
+[TRACE] 10:32:43:304 PLANIFICADOR/(4331:4378): A la espera de respuesta del ESI 7
+[DEBUG] 10:32:43:344 PLANIFICADOR/(4331:4378): Se recibio el rtdoEjec = 1
+[TRACE] 10:32:43:344 PLANIFICADOR/(4331:4378): A la espera de respuesta del ESI 7
+[DEBUG] 10:32:43:344 PLANIFICADOR/(4331:4334): Se envio la orden = 1, al ESI de id = 7
+[TRACE] 10:32:43:344 PLANIFICADOR/(4331:4334): Se dio la orden de ejecutar al ESI en ejecucion
+[TRACE] 10:32:43:344 PLANIFICADOR/(4331:4334): Se espera la respuesta del ESI en ejecucion
+[DEBUG] 10:32:43:384 PLANIFICADOR/(4331:4378): Se recibio el rtdoEjec = 1
+[TRACE] 10:32:43:385 PLANIFICADOR/(4331:4378): A la espera de respuesta del ESI 7
+[DEBUG] 10:32:43:385 PLANIFICADOR/(4331:4334): Se envio la orden = 1, al ESI de id = 7
+[TRACE] 10:32:43:385 PLANIFICADOR/(4331:4334): Se dio la orden de ejecutar al ESI en ejecucion
+[TRACE] 10:32:43:385 PLANIFICADOR/(4331:4334): Se espera la respuesta del ESI en ejecucion
+[DEBUG] 10:32:43:386 PLANIFICADOR/(4331:4378): Se recibio el rtdoEjec = 2
+[TRACE] 10:32:43:386 PLANIFICADOR/(4331:4378): A la espera de respuesta del ESI 7
+[TRACE] 10:32:43:386 PLANIFICADOR/(4331:4334): El ESI de id = 7 pasa finalizados
+[ERROR] 10:32:43:386 PLANIFICADOR/(4331:4378): El ESI de id 7, se desconecto
+
+[WARNING] 10:32:43:386 PLANIFICADOR/(4331:4378): El ESI 7 finalizo y no atendera mas solicitudes
+[TRACE] 10:32:43:386 PLANIFICADOR/(4331:4334): Se espera a que haya ESIs en la cola de listos
+[TRACE] 11:05:12:965 PLANIFICADOR/(5843:5843): Iniciando...
+[TRACE] 11:05:12:965 PLANIFICADOR/(5843:5843): Inicializacion de variables globales completada
+[TRACE] 11:05:12:965 PLANIFICADOR/(5843:5843): Se obtuvo el algoritmo de planificacion FIFO
+[TRACE] 11:05:12:965 PLANIFICADOR/(5843:5843): Se conecto al Coordinador en el socket 4
+[TRACE] 11:05:12:965 PLANIFICADOR/(5843:5843): Se creo un hilo para recibir ESIs
+[TRACE] 11:05:12:966 PLANIFICADOR/(5843:5843): Se creo un hilo para planificar por FIFO
+[TRACE] 11:05:12:966 PLANIFICADOR/(5843:5843): Se creo un hilo para la consola
+[TRACE] 11:05:12:966 PLANIFICADOR/(5843:5846): Se espera a que haya ESIs en la cola de listos
+[TRACE] 11:05:27:271 PLANIFICADOR/(5843:5846): Segun FIFO el ESI a ejecutar ahora es el de id = 7
+[DEBUG] 11:05:27:271 PLANIFICADOR/(5843:5846): Se envio la orden = EJECUTAR, al ESI de id = 7
+[TRACE] 11:05:27:271 PLANIFICADOR/(5843:5846): Se dio la orden de ejecutar al ESI en ejecucion
+[TRACE] 11:05:27:271 PLANIFICADOR/(5843:5846): Se espera la respuesta del ESI en ejecucion
+[TRACE] 11:05:27:272 PLANIFICADOR/(5843:5857): Atendiendo ESI de ID=7
+[TRACE] 11:05:27:272 PLANIFICADOR/(5843:5857): A la espera de respuesta del ESI 7
+[DEBUG] 11:05:27:274 PLANIFICADOR/(5843:5857): Se recibio el rtdoEjec = 1
+[DEBUG] 11:05:27:274 PLANIFICADOR/(5843:5846): Se envio la orden = EJECUTAR, al ESI de id = 7
+[TRACE] 11:05:27:274 PLANIFICADOR/(5843:5846): Se dio la orden de ejecutar al ESI en ejecucion
+[TRACE] 11:05:27:274 PLANIFICADOR/(5843:5846): Se espera la respuesta del ESI en ejecucion
+[TRACE] 11:05:27:275 PLANIFICADOR/(5843:5857): A la espera de respuesta del ESI 7
+[DEBUG] 11:05:27:316 PLANIFICADOR/(5843:5857): Se recibio el rtdoEjec = 1
+[TRACE] 11:05:27:316 PLANIFICADOR/(5843:5857): A la espera de respuesta del ESI 7
+[DEBUG] 11:05:27:316 PLANIFICADOR/(5843:5846): Se envio la orden = EJECUTAR, al ESI de id = 7
+[TRACE] 11:05:27:316 PLANIFICADOR/(5843:5846): Se dio la orden de ejecutar al ESI en ejecucion
+[TRACE] 11:05:27:316 PLANIFICADOR/(5843:5846): Se espera la respuesta del ESI en ejecucion
+[DEBUG] 11:05:27:356 PLANIFICADOR/(5843:5857): Se recibio el rtdoEjec = 1
+[TRACE] 11:05:27:356 PLANIFICADOR/(5843:5857): A la espera de respuesta del ESI 7
+[DEBUG] 11:05:27:356 PLANIFICADOR/(5843:5846): Se envio la orden = EJECUTAR, al ESI de id = 7
+[TRACE] 11:05:27:356 PLANIFICADOR/(5843:5846): Se dio la orden de ejecutar al ESI en ejecucion
+[TRACE] 11:05:27:356 PLANIFICADOR/(5843:5846): Se espera la respuesta del ESI en ejecucion
+[DEBUG] 11:05:27:358 PLANIFICADOR/(5843:5857): Se recibio el rtdoEjec = 2
+[TRACE] 11:05:27:358 PLANIFICADOR/(5843:5857): A la espera de respuesta del ESI 7
+[TRACE] 11:05:27:358 PLANIFICADOR/(5843:5846): El ESI de id = 7 pasa a finalizados
+[ERROR] 11:05:27:358 PLANIFICADOR/(5843:5857): El ESI de id 7, se desconecto
+
+[WARNING] 11:05:27:358 PLANIFICADOR/(5843:5857): El ESI 7 finalizo y no atendera mas solicitudes
+[TRACE] 11:05:27:358 PLANIFICADOR/(5843:5846): Se espera a que haya ESIs en la cola de listos
+[TRACE] 11:15:33:397 PLANIFICADOR/(6651:6651): Iniciando...
+[TRACE] 11:15:33:400 PLANIFICADOR/(6651:6651): Inicializacion de variables globales completada
+[TRACE] 11:15:33:401 PLANIFICADOR/(6651:6651): Se obtuvo el algoritmo de planificacion FIFO
+[TRACE] 11:15:33:402 PLANIFICADOR/(6651:6651): Se conecto al Coordinador en el socket 4
+[TRACE] 11:15:33:402 PLANIFICADOR/(6651:6651): Se creo un hilo para recibir ESIs
+[TRACE] 11:15:33:403 PLANIFICADOR/(6651:6651): Se creo un hilo para planificar por FIFO
+[TRACE] 11:15:33:403 PLANIFICADOR/(6651:6651): Se creo un hilo para la consola
+[TRACE] 11:15:33:405 PLANIFICADOR/(6651:6654): Se espera a que haya ESIs en la cola de listos
+[TRACE] 11:15:41:103 PLANIFICADOR/(6651:6654): Segun FIFO el ESI a ejecutar ahora es el de id = 7
+[DEBUG] 11:15:41:103 PLANIFICADOR/(6651:6654): Se envio la orden = EJECUTAR, al ESI de id = 7
+[TRACE] 11:15:41:103 PLANIFICADOR/(6651:6654): Se dio la orden de ejecutar al ESI en ejecucion
+[TRACE] 11:15:41:103 PLANIFICADOR/(6651:6654): Se espera la respuesta del ESI en ejecucion
+[TRACE] 11:15:41:105 PLANIFICADOR/(6651:6674): Atendiendo ESI de ID=7
+[TRACE] 11:15:41:105 PLANIFICADOR/(6651:6674): A la espera de respuesta del ESI 7
+[DEBUG] 11:15:41:112 PLANIFICADOR/(6651:6674): Se recibio el rtdoEjec = SUCCESS
+[DEBUG] 11:15:41:112 PLANIFICADOR/(6651:6654): Se envio la orden = EJECUTAR, al ESI de id = 7
+[TRACE] 11:15:41:112 PLANIFICADOR/(6651:6654): Se dio la orden de ejecutar al ESI en ejecucion
+[TRACE] 11:15:41:112 PLANIFICADOR/(6651:6654): Se espera la respuesta del ESI en ejecucion
+[TRACE] 11:15:41:112 PLANIFICADOR/(6651:6674): A la espera de respuesta del ESI 7
+[DEBUG] 11:15:41:149 PLANIFICADOR/(6651:6674): Se recibio el rtdoEjec = SUCCESS
+[TRACE] 11:15:41:149 PLANIFICADOR/(6651:6674): A la espera de respuesta del ESI 7
+[DEBUG] 11:15:41:150 PLANIFICADOR/(6651:6654): Se envio la orden = EJECUTAR, al ESI de id = 7
+[TRACE] 11:15:41:150 PLANIFICADOR/(6651:6654): Se dio la orden de ejecutar al ESI en ejecucion
+[TRACE] 11:15:41:150 PLANIFICADOR/(6651:6654): Se espera la respuesta del ESI en ejecucion
+[DEBUG] 11:15:41:198 PLANIFICADOR/(6651:6674): Se recibio el rtdoEjec = SUCCESS
+[TRACE] 11:15:41:198 PLANIFICADOR/(6651:6674): A la espera de respuesta del ESI 7
+[DEBUG] 11:15:41:198 PLANIFICADOR/(6651:6654): Se envio la orden = EJECUTAR, al ESI de id = 7
+[TRACE] 11:15:41:198 PLANIFICADOR/(6651:6654): Se dio la orden de ejecutar al ESI en ejecucion
+[TRACE] 11:15:41:198 PLANIFICADOR/(6651:6654): Se espera la respuesta del ESI en ejecucion
+[DEBUG] 11:15:41:199 PLANIFICADOR/(6651:6674): Se recibio el rtdoEjec = FIN DE EJECUCION
+[TRACE] 11:15:41:199 PLANIFICADOR/(6651:6674): A la espera de respuesta del ESI 7
+[TRACE] 11:15:41:199 PLANIFICADOR/(6651:6654): El ESI de id = 7 pasa a finalizados
+[TRACE] 11:15:41:199 PLANIFICADOR/(6651:6654): Se espera a que haya ESIs en la cola de listos
+[ERROR] 11:15:41:200 PLANIFICADOR/(6651:6674): El ESI con ID = 7, se desconecto
+
+[WARNING] 11:15:41:200 PLANIFICADOR/(6651:6674): El ESI con ID = 7 finalizo y no atendera mas solicitudes
