@@ -1,12 +1,10 @@
 #include <commons/config.h>
+#include <commons/log.h>
 #include <commons/collections/list.h>
 
 #include "../shared/mySocket.h"
 #include "../shared/buffer.h"
 #include "../shared/protocolo.h"
-
-#define ENTRY_SIZE 50
-#define MAX_ENTRADA 5
 
 typedef struct
 	{
@@ -26,23 +24,38 @@ bool is_entrada_clave_equal( t_entrada * pEntry, char * clave);
 void crearEntradaPorAlgCircular( char * clave);
 void agregarATabla(char * clave, int pointer);
 
-t_list * cargarTablaDeEntradas(void);
+t_list * cargarTablaDeEntradas(t_config * pConf);
 t_entrada * new_entrada(char * clave, int size);
 void obtenerIPyPuertoDeCoordinador(t_config * pConf, int * ip, int * puerto);
+int conectarseACoordinador(t_config * pConf);
+
+t_log * pLog;
+int entrySize, entryCant;
 
 int main(void)
 {
-	tablaDeEntradas = cargarTablaDeEntradas();
-	int coord_socket = conectarseACoordinador();
+	pLog = log_create("instancia.log", "INSTANCIA", true, LOG_LEVEL_TRACE);
+	log_trace(pLog, "Iniciando...");
+
+
+	t_config * pConf = config_create("instancia.config");
+	tablaDeEntradas = cargarTablaDeEntradas(pConf);
+	log_trace(pLog, "Tabla de entradas cargada");
+
+	int coord_socket = conectarseACoordinador(pConf);
+	log_trace(pLog, "Conectada a Coordinador");
 
 	while(1)
 	{
 		void * ordenDeAcceso;
+
+		log_trace(pLog, "A la espera de solicitudes");
 		int size = recvWithBasicProtocol(coord_socket, &ordenDeAcceso);
-		printf("size=%d\n", size);
+		log_debug(pLog, "Solicitud recibida");
 
 		int aviso = SOLICITUD_ESI_ATENDIENDOSE;
 		sendWithBasicProtocol(coord_socket, &aviso, sizeof(int));
+		log_trace(pLog, "Se informa al Coordinador que su solicitud esta siendo atendida");
 
 		tBuffer * buffSent = makeBuffer(ordenDeAcceso, size);
 		ESISentenciaParseada_t sent;
@@ -55,9 +68,13 @@ int main(void)
 
 		freeBuffer(buffSent);
 
-		printf("op=%d, clave=%s, valor=%s\n", sent.operacion, sent.clave, sent.valor?sent.valor:"No corresponde");
+		log_debug(pLog, "Sentencia recibida:\n op=%d, clave=%s, valor=%s\n", sent.operacion, sent.clave, sent.valor?sent.valor:"No corresponde");
+
 		rtdoEjec_t rtdo = accederRecurso(sent.operacion, sent.clave, sent.valor);
+		log_debug(pLog, "El resultado de la sentencia fue %d", rtdo);
+
 		sendWithBasicProtocol(coord_socket, &rtdo, sizeof(rtdoEjec_t));
+		log_trace(pLog, "Resultado enviado al Coordinador");
 	}
 
 	return 0;
@@ -75,7 +92,7 @@ rtdoEjec_t accederRecurso(op_t operacion, char * clave, char * valor)
 		case STORE: rtdo = storeRecurso(clave); break;
 
 		default:
-			puts("Error: Operacion invalida");
+			log_error(pLog, "Se intento realizar una operacion invalida");
 	}
 
 	return rtdo;
@@ -84,7 +101,10 @@ rtdoEjec_t accederRecurso(op_t operacion, char * clave, char * valor)
 rtdoEjec_t getRecurso(char * clave)
 {
 	if( getEntrada(clave) )
+	{
+		//log_trace(pLog, "La clave se encontraba en ")
 		return SUCCESS;
+	}
   else
 	 	crearEntradaPorAlgCircular(clave);
 }
@@ -95,12 +115,12 @@ void crearEntradaPorAlgCircular( char * clave)
  	static int pointer;
 	agregarATabla(clave, pointer);
  	pointer ++;
- 	pointer %= MAX_ENTRADA;
+ 	pointer %= entryCant;
 }
 
 void agregarATabla(char * clave, int pointer)
 {
-	list_replace( tablaDeEntradas, pointer, new_entrada(clave, ENTRY_SIZE) );
+	list_replace( tablaDeEntradas, pointer, new_entrada(clave, entrySize) );
 }
 
 rtdoEjec_t setRecurso(char * clave, char * valor)
@@ -148,23 +168,29 @@ bool is_entrada_clave_equal( t_entrada * pEntry, char * clave )
 t_entrada * new_entrada(char * clave, int size)
 {
 	t_entrada * pEntry = malloc(sizeof(t_entrada));
-	strcpy(pEntry->clave, clave);
+	if(clave)
+		strcpy(pEntry->clave, clave);
+	else
+		memset(pEntry->clave, '\0', sizeof(pEntry->clave));
+
 	pEntry->valor = malloc(size);
 
 	return pEntry;
 }
 
-t_list * cargarTablaDeEntradas(void)
+t_list * cargarTablaDeEntradas(t_config * pConf)
 {
+	entrySize = config_get_int_value(pConf, "ENTRY_SIZE");
+	entryCant = config_get_int_value(pConf, "ENTRY_CANT");
+
 	t_list * tabla = list_create();
-	list_add(tabla, new_entrada("jugador", ENTRY_SIZE));
+	list_add(tabla, new_entrada(NULL, entrySize));
 
 	return tabla;
 }
 
-int conectarseACoordinador(void)
+int conectarseACoordinador(t_config * pConf)
 {
-	t_config * pConf = config_create("instancia.config");
 	int ip, puerto;
 	obtenerIPyPuertoDeCoordinador(pConf, &ip, &puerto);
 	int coord_socket = connectTo(ip, puerto);

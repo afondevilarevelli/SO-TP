@@ -43,6 +43,7 @@ rtdoEjec_t rtdoEjecucion;
 
 t_list * hilos;
 
+extern pthread_mutex_t m_puedeEjecutar;
 sem_t sem_cantESIsListos;
 sem_t sem_respuestaESI;
 

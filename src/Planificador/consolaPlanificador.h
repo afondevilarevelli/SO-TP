@@ -27,7 +27,6 @@ void finalizarProceso();//kill
 void informacionDeInstancias();//status
 void analizarDeadlockDelSistema();//deadlock
 void consolaPlanificador();
-int puedeEjecutar();
 
 ESI_t* buscarProcesoESI(int id);
 ESI_t* buscarProcesoEnColas(t_queue* cola, int id);

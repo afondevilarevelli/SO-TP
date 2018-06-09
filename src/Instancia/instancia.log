@@ -1,0 +1,240 @@
+[TRACE] 07:43:27:183 INSTANCIA/(8935:8935): Iniciando...
+[TRACE] 07:43:27:183 INSTANCIA/(8935:8935): Tabla de entradas cargada
+[TRACE] 07:43:41:758 INSTANCIA/(8940:8940): Iniciando...
+[TRACE] 07:43:41:760 INSTANCIA/(8940:8940): Tabla de entradas cargada
+[TRACE] 07:44:45:254 INSTANCIA/(8949:8949): Iniciando...
+[TRACE] 07:44:45:255 INSTANCIA/(8949:8949): Tabla de entradas cargada
+[TRACE] 07:44:48:942 INSTANCIA/(8951:8951): Iniciando...
+[TRACE] 07:44:48:942 INSTANCIA/(8951:8951): Tabla de entradas cargada
+[TRACE] 07:44:48:942 INSTANCIA/(8951:8951): Conectada a Coordinador
+[TRACE] 07:44:48:943 INSTANCIA/(8951:8951): A la espera de solicitudes
+[DEBUG] 07:44:54:677 INSTANCIA/(8951:8951): Solicitud recibida
+[TRACE] 07:44:54:677 INSTANCIA/(8951:8951): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:44:54:677 INSTANCIA/(8951:8951): Sentencia recibida:
+ op=0, clave=jugador, valor=No corresponde
+
+[DEBUG] 07:44:54:677 INSTANCIA/(8951:8951): El resultado de la sentencia fue 1
+[TRACE] 07:44:54:677 INSTANCIA/(8951:8951): Resultado enviado al Coordinador
+[TRACE] 07:44:54:677 INSTANCIA/(8951:8951): A la espera de solicitudes
+[DEBUG] 07:44:54:678 INSTANCIA/(8951:8951): Solicitud recibida
+[TRACE] 07:44:54:678 INSTANCIA/(8951:8951): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:44:54:678 INSTANCIA/(8951:8951): Sentencia recibida:
+ op=1, clave=jugador, valor=abondanzieri
+
+[DEBUG] 07:44:54:678 INSTANCIA/(8951:8951): El resultado de la sentencia fue 1
+[TRACE] 07:44:54:678 INSTANCIA/(8951:8951): Resultado enviado al Coordinador
+[TRACE] 07:44:54:678 INSTANCIA/(8951:8951): A la espera de solicitudes
+[DEBUG] 07:44:54:715 INSTANCIA/(8951:8951): Solicitud recibida
+[TRACE] 07:44:54:715 INSTANCIA/(8951:8951): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:44:54:716 INSTANCIA/(8951:8951): Sentencia recibida:
+ op=2, clave=jugador, valor=No corresponde
+
+[DEBUG] 07:44:54:716 INSTANCIA/(8951:8951): El resultado de la sentencia fue 1
+[TRACE] 07:44:54:716 INSTANCIA/(8951:8951): Resultado enviado al Coordinador
+[TRACE] 07:44:54:716 INSTANCIA/(8951:8951): A la espera de solicitudes
+[DEBUG] 07:45:10:936 INSTANCIA/(8951:8951): Solicitud recibida
+[TRACE] 07:45:10:936 INSTANCIA/(8951:8951): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:45:10:936 INSTANCIA/(8951:8951): Sentencia recibida:
+ op=0, clave=jugador, valor=No corresponde
+
+[DEBUG] 07:45:10:936 INSTANCIA/(8951:8951): El resultado de la sentencia fue 1
+[TRACE] 07:45:10:936 INSTANCIA/(8951:8951): Resultado enviado al Coordinador
+[TRACE] 07:45:10:936 INSTANCIA/(8951:8951): A la espera de solicitudes
+[DEBUG] 07:45:10:937 INSTANCIA/(8951:8951): Solicitud recibida
+[TRACE] 07:45:10:937 INSTANCIA/(8951:8951): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:45:10:937 INSTANCIA/(8951:8951): Sentencia recibida:
+ op=1, clave=jugador, valor=abondanzieri
+
+[DEBUG] 07:45:10:937 INSTANCIA/(8951:8951): El resultado de la sentencia fue 1
+[TRACE] 07:45:10:937 INSTANCIA/(8951:8951): Resultado enviado al Coordinador
+[TRACE] 07:45:10:937 INSTANCIA/(8951:8951): A la espera de solicitudes
+[DEBUG] 07:45:10:976 INSTANCIA/(8951:8951): Solicitud recibida
+[TRACE] 07:45:10:976 INSTANCIA/(8951:8951): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:45:10:976 INSTANCIA/(8951:8951): Sentencia recibida:
+ op=2, clave=jugador, valor=No corresponde
+
+[DEBUG] 07:45:10:976 INSTANCIA/(8951:8951): El resultado de la sentencia fue 1
+[TRACE] 07:45:10:976 INSTANCIA/(8951:8951): Resultado enviado al Coordinador
+[TRACE] 07:45:10:976 INSTANCIA/(8951:8951): A la espera de solicitudes
+[DEBUG] 07:45:27:376 INSTANCIA/(8951:8951): Solicitud recibida
+[TRACE] 07:45:27:376 INSTANCIA/(8951:8951): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:45:27:376 INSTANCIA/(8951:8951): Sentencia recibida:
+ op=0, clave=jugador, valor=No corresponde
+
+[DEBUG] 07:45:27:376 INSTANCIA/(8951:8951): El resultado de la sentencia fue 1
+[TRACE] 07:45:27:376 INSTANCIA/(8951:8951): Resultado enviado al Coordinador
+[TRACE] 07:45:27:376 INSTANCIA/(8951:8951): A la espera de solicitudes
+[DEBUG] 07:45:27:377 INSTANCIA/(8951:8951): Solicitud recibida
+[TRACE] 07:45:27:377 INSTANCIA/(8951:8951): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:45:27:377 INSTANCIA/(8951:8951): Sentencia recibida:
+ op=1, clave=jugador, valor=abondanzieri
+
+[DEBUG] 07:45:27:377 INSTANCIA/(8951:8951): El resultado de la sentencia fue 1
+[TRACE] 07:45:27:377 INSTANCIA/(8951:8951): Resultado enviado al Coordinador
+[TRACE] 07:45:27:377 INSTANCIA/(8951:8951): A la espera de solicitudes
+[DEBUG] 07:45:27:417 INSTANCIA/(8951:8951): Solicitud recibida
+[TRACE] 07:45:27:417 INSTANCIA/(8951:8951): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:45:27:417 INSTANCIA/(8951:8951): Sentencia recibida:
+ op=2, clave=jugador, valor=No corresponde
+
+[DEBUG] 07:45:27:417 INSTANCIA/(8951:8951): El resultado de la sentencia fue 1
+[TRACE] 07:45:27:417 INSTANCIA/(8951:8951): Resultado enviado al Coordinador
+[TRACE] 07:45:27:418 INSTANCIA/(8951:8951): A la espera de solicitudes
+[DEBUG] 07:45:40:142 INSTANCIA/(8951:8951): Solicitud recibida
+[TRACE] 07:45:40:142 INSTANCIA/(8951:8951): Se informa al Coordinador que su solicitud esta siendo atendida
+[TRACE] 07:49:11:750 INSTANCIA/(9041:9041): Iniciando...
+[TRACE] 07:49:11:750 INSTANCIA/(9041:9041): Tabla de entradas cargada
+[TRACE] 07:49:11:751 INSTANCIA/(9041:9041): Conectada a Coordinador
+[TRACE] 07:49:11:751 INSTANCIA/(9041:9041): A la espera de solicitudes
+[DEBUG] 07:49:16:350 INSTANCIA/(9041:9041): Solicitud recibida
+[TRACE] 07:49:16:350 INSTANCIA/(9041:9041): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:49:16:350 INSTANCIA/(9041:9041): Sentencia recibida:
+ op=0, clave=jugador, valor=No corresponde
+
+[DEBUG] 07:49:16:350 INSTANCIA/(9041:9041): El resultado de la sentencia fue 1
+[TRACE] 07:49:16:350 INSTANCIA/(9041:9041): Resultado enviado al Coordinador
+[TRACE] 07:49:16:350 INSTANCIA/(9041:9041): A la espera de solicitudes
+[DEBUG] 07:49:16:351 INSTANCIA/(9041:9041): Solicitud recibida
+[TRACE] 07:49:16:351 INSTANCIA/(9041:9041): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:49:16:351 INSTANCIA/(9041:9041): Sentencia recibida:
+ op=1, clave=jugador, valor=abondanzieri
+
+[DEBUG] 07:49:16:351 INSTANCIA/(9041:9041): El resultado de la sentencia fue 1
+[TRACE] 07:49:16:351 INSTANCIA/(9041:9041): Resultado enviado al Coordinador
+[TRACE] 07:49:16:351 INSTANCIA/(9041:9041): A la espera de solicitudes
+[DEBUG] 07:49:16:388 INSTANCIA/(9041:9041): Solicitud recibida
+[TRACE] 07:49:16:388 INSTANCIA/(9041:9041): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:49:16:388 INSTANCIA/(9041:9041): Sentencia recibida:
+ op=2, clave=jugador, valor=No corresponde
+
+[DEBUG] 07:49:16:388 INSTANCIA/(9041:9041): El resultado de la sentencia fue 1
+[TRACE] 07:49:16:388 INSTANCIA/(9041:9041): Resultado enviado al Coordinador
+[TRACE] 07:49:16:389 INSTANCIA/(9041:9041): A la espera de solicitudes
+[DEBUG] 07:50:54:617 INSTANCIA/(9041:9041): Solicitud recibida
+[TRACE] 07:50:54:617 INSTANCIA/(9041:9041): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:50:54:617 INSTANCIA/(9041:9041): Sentencia recibida:
+ op=0, clave=jugador, valor=No corresponde
+
+[DEBUG] 07:50:54:617 INSTANCIA/(9041:9041): El resultado de la sentencia fue 1
+[TRACE] 07:50:54:617 INSTANCIA/(9041:9041): Resultado enviado al Coordinador
+[TRACE] 07:50:54:617 INSTANCIA/(9041:9041): A la espera de solicitudes
+[DEBUG] 07:50:54:620 INSTANCIA/(9041:9041): Solicitud recibida
+[TRACE] 07:50:54:620 INSTANCIA/(9041:9041): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:50:54:620 INSTANCIA/(9041:9041): Sentencia recibida:
+ op=1, clave=jugador, valor=messi
+
+[DEBUG] 07:50:54:620 INSTANCIA/(9041:9041): El resultado de la sentencia fue 1
+[TRACE] 07:50:54:620 INSTANCIA/(9041:9041): Resultado enviado al Coordinador
+[TRACE] 07:50:54:620 INSTANCIA/(9041:9041): A la espera de solicitudes
+[DEBUG] 07:50:54:656 INSTANCIA/(9041:9041): Solicitud recibida
+[TRACE] 07:50:54:656 INSTANCIA/(9041:9041): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:50:54:656 INSTANCIA/(9041:9041): Sentencia recibida:
+ op=2, clave=jugador, valor=No corresponde
+
+[DEBUG] 07:50:54:656 INSTANCIA/(9041:9041): El resultado de la sentencia fue 1
+[TRACE] 07:50:54:656 INSTANCIA/(9041:9041): Resultado enviado al Coordinador
+[TRACE] 07:50:54:656 INSTANCIA/(9041:9041): A la espera de solicitudes
+[DEBUG] 07:50:54:697 INSTANCIA/(9041:9041): Solicitud recibida
+[TRACE] 07:50:54:697 INSTANCIA/(9041:9041): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:50:54:697 INSTANCIA/(9041:9041): Sentencia recibida:
+ op=0, clave=jugador, valor=No corresponde
+
+[DEBUG] 07:50:54:697 INSTANCIA/(9041:9041): El resultado de la sentencia fue 1
+[TRACE] 07:50:54:697 INSTANCIA/(9041:9041): Resultado enviado al Coordinador
+[TRACE] 07:50:54:697 INSTANCIA/(9041:9041): A la espera de solicitudes
+[DEBUG] 07:50:54:737 INSTANCIA/(9041:9041): Solicitud recibida
+[TRACE] 07:50:54:737 INSTANCIA/(9041:9041): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:50:54:737 INSTANCIA/(9041:9041): Sentencia recibida:
+ op=1, clave=jugador, valor=abondanzieri
+
+[DEBUG] 07:50:54:737 INSTANCIA/(9041:9041): El resultado de la sentencia fue 1
+[TRACE] 07:50:54:737 INSTANCIA/(9041:9041): Resultado enviado al Coordinador
+[TRACE] 07:50:54:737 INSTANCIA/(9041:9041): A la espera de solicitudes
+[DEBUG] 07:50:54:776 INSTANCIA/(9041:9041): Solicitud recibida
+[TRACE] 07:50:54:776 INSTANCIA/(9041:9041): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:50:54:776 INSTANCIA/(9041:9041): Sentencia recibida:
+ op=2, clave=jugador, valor=No corresponde
+
+[DEBUG] 07:50:54:776 INSTANCIA/(9041:9041): El resultado de la sentencia fue 1
+[TRACE] 07:50:54:776 INSTANCIA/(9041:9041): Resultado enviado al Coordinador
+[TRACE] 07:50:54:776 INSTANCIA/(9041:9041): A la espera de solicitudes
+[DEBUG] 07:52:51:608 INSTANCIA/(9041:9041): Solicitud recibida
+[TRACE] 07:52:51:608 INSTANCIA/(9041:9041): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:52:51:608 INSTANCIA/(9041:9041): Sentencia recibida:
+ op=0, clave=jugador, valor=No corresponde
+
+[DEBUG] 07:52:51:608 INSTANCIA/(9041:9041): El resultado de la sentencia fue 1
+[TRACE] 07:52:51:608 INSTANCIA/(9041:9041): Resultado enviado al Coordinador
+[TRACE] 07:52:51:608 INSTANCIA/(9041:9041): A la espera de solicitudes
+[DEBUG] 07:52:51:609 INSTANCIA/(9041:9041): Solicitud recibida
+[TRACE] 07:52:51:609 INSTANCIA/(9041:9041): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:52:51:609 INSTANCIA/(9041:9041): Sentencia recibida:
+ op=1, clave=jugador, valor=abondanzieri
+
+[DEBUG] 07:52:51:609 INSTANCIA/(9041:9041): El resultado de la sentencia fue 1
+[TRACE] 07:52:51:609 INSTANCIA/(9041:9041): Resultado enviado al Coordinador
+[TRACE] 07:52:51:609 INSTANCIA/(9041:9041): A la espera de solicitudes
+[DEBUG] 07:52:51:648 INSTANCIA/(9041:9041): Solicitud recibida
+[TRACE] 07:52:51:648 INSTANCIA/(9041:9041): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:52:51:648 INSTANCIA/(9041:9041): Sentencia recibida:
+ op=2, clave=jugador, valor=No corresponde
+
+[DEBUG] 07:52:51:648 INSTANCIA/(9041:9041): El resultado de la sentencia fue 1
+[TRACE] 07:52:51:649 INSTANCIA/(9041:9041): Resultado enviado al Coordinador
+[TRACE] 07:52:51:649 INSTANCIA/(9041:9041): A la espera de solicitudes
+[DEBUG] 07:52:51:690 INSTANCIA/(9041:9041): Solicitud recibida
+[TRACE] 07:52:51:690 INSTANCIA/(9041:9041): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:52:51:690 INSTANCIA/(9041:9041): Sentencia recibida:
+ op=0, clave=jugador, valor=No corresponde
+
+[DEBUG] 07:52:51:690 INSTANCIA/(9041:9041): El resultado de la sentencia fue 1
+[TRACE] 07:52:51:690 INSTANCIA/(9041:9041): Resultado enviado al Coordinador
+[TRACE] 07:52:51:690 INSTANCIA/(9041:9041): A la espera de solicitudes
+[DEBUG] 07:52:51:728 INSTANCIA/(9041:9041): Solicitud recibida
+[TRACE] 07:52:51:728 INSTANCIA/(9041:9041): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:52:51:728 INSTANCIA/(9041:9041): Sentencia recibida:
+ op=0, clave=papa, valor=No corresponde
+
+[DEBUG] 07:52:51:728 INSTANCIA/(9041:9041): El resultado de la sentencia fue 2
+[TRACE] 07:52:51:728 INSTANCIA/(9041:9041): Resultado enviado al Coordinador
+[TRACE] 07:52:51:728 INSTANCIA/(9041:9041): A la espera de solicitudes
+[DEBUG] 07:53:46:175 INSTANCIA/(9041:9041): Solicitud recibida
+[TRACE] 07:53:46:175 INSTANCIA/(9041:9041): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:53:46:175 INSTANCIA/(9041:9041): Sentencia recibida:
+ op=0, clave=jugador, valor=No corresponde
+
+[DEBUG] 07:53:46:175 INSTANCIA/(9041:9041): El resultado de la sentencia fue 1
+[TRACE] 07:53:46:175 INSTANCIA/(9041:9041): Resultado enviado al Coordinador
+[TRACE] 07:53:46:175 INSTANCIA/(9041:9041): A la espera de solicitudes
+[DEBUG] 07:53:46:176 INSTANCIA/(9041:9041): Solicitud recibida
+[TRACE] 07:53:46:176 INSTANCIA/(9041:9041): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:53:46:176 INSTANCIA/(9041:9041): Sentencia recibida:
+ op=0, clave=papa, valor=No corresponde
+
+[DEBUG] 07:53:46:176 INSTANCIA/(9041:9041): El resultado de la sentencia fue 3
+[TRACE] 07:53:46:176 INSTANCIA/(9041:9041): Resultado enviado al Coordinador
+[TRACE] 07:53:46:176 INSTANCIA/(9041:9041): A la espera de solicitudes
+[DEBUG] 07:53:46:213 INSTANCIA/(9041:9041): Solicitud recibida
+[TRACE] 07:53:46:214 INSTANCIA/(9041:9041): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:53:46:214 INSTANCIA/(9041:9041): Sentencia recibida:
+ op=0, clave=jugador, valor=No corresponde
+
+[DEBUG] 07:53:46:214 INSTANCIA/(9041:9041): El resultado de la sentencia fue 1
+[TRACE] 07:53:46:214 INSTANCIA/(9041:9041): Resultado enviado al Coordinador
+[TRACE] 07:53:46:214 INSTANCIA/(9041:9041): A la espera de solicitudes
+[DEBUG] 07:53:46:251 INSTANCIA/(9041:9041): Solicitud recibida
+[TRACE] 07:53:46:252 INSTANCIA/(9041:9041): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:53:46:252 INSTANCIA/(9041:9041): Sentencia recibida:
+ op=1, clave=jugador, valor=abondanzieri
+
+[DEBUG] 07:53:46:252 INSTANCIA/(9041:9041): El resultado de la sentencia fue 1
+[TRACE] 07:53:46:252 INSTANCIA/(9041:9041): Resultado enviado al Coordinador
+[TRACE] 07:53:46:252 INSTANCIA/(9041:9041): A la espera de solicitudes
+[DEBUG] 07:53:46:293 INSTANCIA/(9041:9041): Solicitud recibida
+[TRACE] 07:53:46:293 INSTANCIA/(9041:9041): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 07:53:46:293 INSTANCIA/(9041:9041): Sentencia recibida:
+ op=2, clave=jugador, valor=No corresponde
+
+[DEBUG] 07:53:46:293 INSTANCIA/(9041:9041): El resultado de la sentencia fue 1
+[TRACE] 07:53:46:293 INSTANCIA/(9041:9041): Resultado enviado al Coordinador
+[TRACE] 07:53:46:293 INSTANCIA/(9041:9041): A la espera de solicitudes

@@ -16,19 +16,15 @@ struct tipoPlanificacion{
 	float estimacionInicial;
 }tipoPlanificacion;
 
+typedef ESI_t*(*fDePlanif)(void);
+
 ESI_t* obtenerEsiAEjecutarSegunFIFO();
 
 ESI_t* obtenerEsiAEjecutarSegunSJF();
 
 ESI_t* obtenerEsiAEjecutarSegunHHRR();
 
-void planificarSegunFIFO();
-
-void planificarSegunSJF();
-
-void planificarSegunSRT();
-
-void planificarSegunHRRN();
+void planificarSegun(fDePlanif proximoESIAEjecutar);
 
 float algoritmoDeEstimacionProximaRafaga(ESI_t* esi);
 

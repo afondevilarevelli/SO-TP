@@ -1,7 +1,5 @@
 #include "consolaPlanificador.h"
 
-int puedeEjecutarPlanif = 1;
-
 void consolaPlanificador(){
 	char* linea=NULL;
 	char espaBlan[4]=" \n\t";
@@ -79,10 +77,10 @@ void consolaPlanificador(){
 }
 
 void pausarPlanificacion(){
-	puedeEjecutarPlanif = 0;
+	pthread_mutex_lock(&m_puedeEjecutar);
 }
 void continuarPlanificacion(){
-	puedeEjecutarPlanif = 1;
+	pthread_mutex_unlock(&m_puedeEjecutar);
 }
 
 t_queue* colaAsociada(char* clave){//busca de mi ListaColas la que se identifiqua con la clave
@@ -167,6 +165,3 @@ void finalizarProceso(int id){
 }//kill
 void informacionDeInstancias(){}//status
 void analizarDeadlockDelSistema(){}
-int puedeEjecutar(){
-	return puedeEjecutarPlanif;
-}

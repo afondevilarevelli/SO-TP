@@ -25,21 +25,24 @@ void ejecutarProxSent(ESI_t * pESI){
 	pESIEnEjecucion = pESI;
 }
 
-void planificarSegunFIFO(){
+void planificarSegun(fDePlanif proximoESIAEjecutar){
 	ESI_t* pEsiAEjecutar;
 
-	while(puedeEjecutar())
+	while(1)
 	{
+
 		log_trace(pLog, "Se espera a que haya ESIs en la cola de listos");
 		sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
 
-		pEsiAEjecutar = obtenerEsiAEjecutarSegunFIFO();
+		pEsiAEjecutar = proximoESIAEjecutar();
 		log_trace(pLog, "Segun FIFO el ESI a ejecutar ahora es el de id = %d", pEsiAEjecutar->id);
 		pESIEnEjecucion = pEsiAEjecutar;
 
 		do
 		{
+			pthread_mutex_lock(&m_puedeEjecutar);
 			ejecutarProxSent(pESIEnEjecucion);
+			pthread_mutex_unlock(&m_puedeEjecutar);
 			log_trace(pLog, "Se dio la orden de ejecutar al ESI en ejecucion");
 
 			log_trace(pLog,"Se espera la respuesta del ESI en ejecucion");
@@ -65,70 +68,7 @@ void planificarSegunFIFO(){
 		else
 			log_error(pLog, "ERROR: rtdoEjecucion desconocido");
 		// si rtdoEjecucion = DISCONNECTED no hace nada y sigue planificando
-	}
-}
 
-//VER EL ALGORITMO QUE SE USÓ PARA planificarSegunFIFO()
-void planificarSegunSJF(){
-	ESI_t* pEsiAEjecutar;
-
-	while(1){
-
-		while(puedeEjecutar()){
-			sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
-
-			pEsiAEjecutar = obtenerEsiAEjecutarSegunSJF();
-			ejecutarProxSent(pEsiAEjecutar);
-			sem_wait(&sem_respuestaESI);
-			while(rtdoEjecucion == SUCCESS){
-				ejecutarProxSent(pEsiAEjecutar);
-				sem_wait(&sem_respuestaESI);
-			}
-			if( rtdoEjecucion == FAILURE){
-				queue_push(ESIsBloqueados, pEsiAEjecutar); //debería ver porque se bloqueó el ESI
-			}
-			else{ //rtdoEjecucion = FIN_DE_EJECUCION
-				queue_push(ESIsFinalizados, pEsiAEjecutar);
-			}
-			// si rtdoEjecucion = DISCONNECTED no hace nada y sigue planificando
-		}
-	}
-}//Tengo q pensarlo bien si esta bien la logica
-
-//VER EL ALGORITMO QUE SE USÓ PARA planificarSegunFIFO()
-void planificarSegunSRT(){
-	ESI_t* pEsiAEjecutar;
-
-	while(1){
-
-		while(puedeEjecutar()){
-			sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
-
-			pEsiAEjecutar = obtenerEsiAEjecutarSegunSJF();
-			ejecutarProxSent(pEsiAEjecutar);
-			int sizeColaReadyAntesDeEjecutar = queue_size(ESIsListos);
-
-			sem_wait(&sem_respuestaESI);
-			while(rtdoEjecucion == SUCCESS && queue_size(ESIsListos) == sizeColaReadyAntesDeEjecutar ){
-				ejecutarProxSent(pEsiAEjecutar);
-				sizeColaReadyAntesDeEjecutar = queue_size(ESIsListos);
-				sem_wait(&sem_respuestaESI);
-			}
-			if( rtdoEjecucion == FAILURE){
-				queue_push(ESIsBloqueados, pEsiAEjecutar); //debería ver porque se bloqueó el ESI
-			}
-			else{
-				if(rtdoEjecucion == FIN_DE_EJECUCION){  //rtdoEjecucion = FIN_DE_EJECUCION
-				queue_push(ESIsFinalizados, pEsiAEjecutar);
-				}
-				else{
-					if(rtdoEjecucion == SUCCESS){
-						list_add_in_index( (t_list *)ESIsListos, 0, (void *)pEsiAEjecutar ); // para que si empata con otro esi, se aplique la regla FIFO
-					}
-				}
-			}
-			// si rtdoEjecucion = DISCONNECTED no hace nada y sigue planificando
-		}
 	}
 }
 

@@ -1,3 +1,5 @@
-GET jugador
-    SET jugador messi
-    STORE jugador       
+GET jugador  
+GET papa
+SET papa loco
+STORE papa
+STORE jugador

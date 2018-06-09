@@ -19,6 +19,8 @@ void obtenerIPyPuertoDePlanificador(t_config * pConf, int * ip, int * puerto);
 void obtenerIPyPuerto(t_config * pConf, int * ip, int * puerto, char * ipKey, char * portKey);
 struct tipoPlanificacion obtenerAlgoritmoDePlanificacion(t_config * pConf);
 
+pthread_mutex_t m_puedeEjecutar;
+
 t_log * pLog;
 
 int main(void)
@@ -26,6 +28,7 @@ int main(void)
 	pLog = log_create("planificador.log", "PLANIFICADOR", true, LOG_LEVEL_TRACE);
 	log_trace(pLog, "Iniciando...");
 
+	pthread_mutex_init(&m_puedeEjecutar, NULL);
 	sem_init(&sem_cantESIsListos, 0, 0);
 	sem_init(&sem_respuestaESI, 0, 0);
 	hilos = list_create();
@@ -48,27 +51,31 @@ int main(void)
 	pthread_create(&hiloListener, NULL, (void*)&recibirNuevosESI, pConf);
 	log_trace(pLog, "Se creo un hilo para recibir ESIs");
 
+	fDePlanif fProxESIAEjecutar;
 	switch(infoAlgoritmo.planificacion){
 				case FIFO:
-					pthread_create(&hiloPlanificacion, NULL, (void*)&planificarSegunFIFO, NULL);
+					fProxESIAEjecutar = obtenerEsiAEjecutarSegunFIFO;
 					log_trace(pLog, "Se creo un hilo para planificar por FIFO");
 					break;
 				case SJF:
-					pthread_create(&hiloPlanificacion, NULL, (void*)&planificarSegunSJF, NULL);
+					fProxESIAEjecutar = obtenerEsiAEjecutarSegunSJF;
 					log_trace(pLog, "Se creo un hilo para planificar por SJF");
 					break;
 				case SRT:
-					pthread_create(&hiloPlanificacion, NULL, (void*)&planificarSegunSRT, NULL);
+					fProxESIAEjecutar = obtenerEsiAEjecutarSegunFIFO;
 					log_trace(pLog, "Se creo un hilo para planificar por SRT");
 					break;
 				case HHRR:
-					pthread_create(&hiloPlanificacion, NULL, (void*)&planificarSegunHRRN, NULL);
+					fProxESIAEjecutar = obtenerEsiAEjecutarSegunFIFO;
 					log_trace(pLog, "Se creo un hilo para planificar por HHRR");
 					break;
 				default://rutina de error de algo :)
 					log_error(pLog, "No se ha encontrado el Algoritmo de Planificacion a utilizar.\n");
 					break;
 			}
+	pthread_create(&hiloPlanificacion, NULL, (void*)&planificarSegun, (void*)fProxESIAEjecutar);
+
+
 	pthread_create(&hiloConsolaPlanificador, NULL, (void*)&consolaPlanificador, NULL);
 	log_trace(pLog, "Se creo un hilo para la consola");
 
