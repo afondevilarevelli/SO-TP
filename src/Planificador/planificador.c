@@ -51,30 +51,25 @@ int main(void)
 	pthread_create(&hiloListener, NULL, (void*)&recibirNuevosESI, pConf);
 	log_trace(pLog, "Se creo un hilo para recibir ESIs");
 
-	fDePlanif fProxESIAEjecutar;
 	switch(infoAlgoritmo.planificacion){
 				case FIFO:
-					fProxESIAEjecutar = obtenerEsiAEjecutarSegunFIFO;
-					log_trace(pLog, "Se creo un hilo para planificar por FIFO");
+					pthread_create(&hiloPlanificacion, NULL, (void*)&planificarSegunFIFO, NULL);
 					break;
 				case SJF:
-					fProxESIAEjecutar = obtenerEsiAEjecutarSegunSJF;
-					log_trace(pLog, "Se creo un hilo para planificar por SJF");
+					pthread_create(&hiloPlanificacion, NULL, (void*)&planificarSegunSJF, NULL);
 					break;
 				case SRT:
-					fProxESIAEjecutar = obtenerEsiAEjecutarSegunFIFO;
-					log_trace(pLog, "Se creo un hilo para planificar por SRT");
+					pthread_create(&hiloPlanificacion, NULL, (void*)&planificarSegunSRT, NULL);
 					break;
 				case HHRR:
-					fProxESIAEjecutar = obtenerEsiAEjecutarSegunFIFO;
-					log_trace(pLog, "Se creo un hilo para planificar por HHRR");
+					pthread_create(&hiloPlanificacion, NULL, (void*)&planificarSegunHRRN, NULL);
 					break;
+
 				default://rutina de error de algo :)
-					log_error(pLog, "No se ha encontrado el Algoritmo de Planificacion a utilizar.\n");
+					printf("No se ha encontrado el Algoritmo de Planificacion a utilizar.\n");
 					break;
 			}
-	pthread_create(&hiloPlanificacion, NULL, (void*)&planificarSegun, (void*)fProxESIAEjecutar);
-
+	log_trace(pLog, "Se creo un hilo para planificar segun %s", infoAlgoritmo.planificacion==FIFO?"FIFO":infoAlgoritmo.planificacion==SJF?"SJF":infoAlgoritmo.planificacion==SRT?"SRT":"HRRN");
 
 	pthread_create(&hiloConsolaPlanificador, NULL, (void*)&consolaPlanificador, NULL);
 	log_trace(pLog, "Se creo un hilo para la consola");

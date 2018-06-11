@@ -328,3 +328,33 @@
 [TRACE] 11:15:41:150 INSTANCIA/(6663:6663): A la espera de solicitudes
 [DEBUG] 11:15:51:860 INSTANCIA/(6663:6663): Solicitud recibida
 [TRACE] 11:15:51:861 INSTANCIA/(6663:6663): Se informa al Coordinador que su solicitud esta siendo atendida
+[TRACE] 14:46:23:266 INSTANCIA/(5747:5747): Iniciando...
+[TRACE] 14:46:23:269 INSTANCIA/(5747:5747): Tabla de entradas cargada
+[TRACE] 14:46:23:273 INSTANCIA/(5747:5747): Conectada a Coordinador
+[TRACE] 14:46:23:273 INSTANCIA/(5747:5747): A la espera de solicitudes
+[DEBUG] 14:47:27:158 INSTANCIA/(5747:5747): Solicitud recibida
+[TRACE] 14:47:27:158 INSTANCIA/(5747:5747): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 14:47:27:158 INSTANCIA/(5747:5747): Sentencia recibida:
+ op=GET, clave=jugador, valor=No corresponde
+
+[DEBUG] 14:47:27:158 INSTANCIA/(5747:5747): El resultado de la sentencia fue SUCCESS
+[TRACE] 14:47:27:158 INSTANCIA/(5747:5747): Resultado enviado al Coordinador
+[TRACE] 14:47:27:158 INSTANCIA/(5747:5747): A la espera de solicitudes
+[DEBUG] 14:47:27:160 INSTANCIA/(5747:5747): Solicitud recibida
+[TRACE] 14:47:27:160 INSTANCIA/(5747:5747): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 14:47:27:160 INSTANCIA/(5747:5747): Sentencia recibida:
+ op=SET, clave=jugador, valor=abondanzieri
+
+[DEBUG] 14:47:27:161 INSTANCIA/(5747:5747): El resultado de la sentencia fue SUCCESS
+[TRACE] 14:47:27:161 INSTANCIA/(5747:5747): Resultado enviado al Coordinador
+[TRACE] 14:47:27:161 INSTANCIA/(5747:5747): A la espera de solicitudes
+[DEBUG] 14:47:27:198 INSTANCIA/(5747:5747): Solicitud recibida
+[TRACE] 14:47:27:198 INSTANCIA/(5747:5747): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 14:47:27:198 INSTANCIA/(5747:5747): Sentencia recibida:
+ op=STORE, clave=jugador, valor=No corresponde
+
+[DEBUG] 14:47:27:199 INSTANCIA/(5747:5747): El resultado de la sentencia fue SUCCESS
+[TRACE] 14:47:27:199 INSTANCIA/(5747:5747): Resultado enviado al Coordinador
+[TRACE] 14:47:27:199 INSTANCIA/(5747:5747): A la espera de solicitudes
+[DEBUG] 14:50:28:459 INSTANCIA/(5747:5747): Solicitud recibida
+[TRACE] 14:50:28:461 INSTANCIA/(5747:5747): Se informa al Coordinador que su solicitud esta siendo atendida
