@@ -101,6 +101,7 @@ void bloquearProcesoESI(char* clave,int id){
 	t_queue *c = colaAsociada(clave);
 
 	if( p!= NULL ){
+		p->tiempoEsperandoCPU = 0;
 		 queue_push(c, (ESI_t *)p);//Agrega un elemento al  de la cola
 		 printf("Correctamente bloqueado el ESI.\n");
 	}

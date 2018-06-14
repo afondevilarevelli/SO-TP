@@ -20,7 +20,7 @@ ESI_t* obtenerEsiAEjecutarSegunFIFO();
 
 ESI_t* obtenerEsiAEjecutarSegunSJF();
 
-ESI_t* obtenerEsiAEjecutarSegunHHRR();
+ESI_t* obtenerEsiAEjecutarSegunHRRN();
 
 void planificarSegunFIFO();
 

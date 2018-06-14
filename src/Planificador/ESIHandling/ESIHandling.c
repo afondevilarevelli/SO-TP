@@ -132,8 +132,9 @@ ESI_t * newESI( int socket, int id, int rafagaInicial)
   pESI->socket = socket;
   pESI->id = id;
   pESI->estimacionAnterior= rafagaInicial;
-  pESI-> duracionAnterior = rafagaInicial;
+  pESI->duracionAnterior = rafagaInicial;
   pESI->state = NORMAL;
+  pESI->tiempoEsperandoCPU = 0;
 
   return pESI;
 }

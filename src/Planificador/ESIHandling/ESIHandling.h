@@ -29,6 +29,7 @@ typedef struct
   int id;
   float estimacionAnterior;
   float duracionAnterior;
+  int tiempoEsperandoCPU;
 }ESI_t;
 
 
