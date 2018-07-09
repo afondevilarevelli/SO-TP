@@ -1,9 +1,11 @@
 #include "consolaPlanificador.h"
 
+int isnum(char * str);
+
 void consolaPlanificador(){
 	char* linea=NULL;
 	char espaBlan[4]=" \n\t";
-
+	int debeContinuar = 1; //TRUE
 
 	do{
 
@@ -19,13 +21,13 @@ void consolaPlanificador(){
 		else
 		if(strcmp(p1,"pausar")== 0)
 		{// && p2 == NULL no importa el segundo parametro
-			printf("se puso en pausa la planificacion \n");
+			printf("La planificacion ahora se encuentra pausada\n");
 			pausarPlanificacion();
 		}
 		else
 		if(strcmp(p1,"continuar")== 0)
 		{//&& p2 == NULL no importa el segundo parametro
-			printf("se continua la planificacion \n");
+			printf("La planificacion ahora se encuentra despausada\n");
 			continuarPlanificacion();
 		}
 		else
@@ -36,38 +38,54 @@ void consolaPlanificador(){
 			bloquearProcesoESI(p2,id);
 		}
 		else
-		if(strcmp(p1,"desbloquear")== 0 && p2 != NULL && p3 == NULL)
+		if(strcmp(p1,"desbloquear")== 0 && p2 != NULL && p3 != NULL)
 		{
-			printf("se intentara desbloquear la clave %s para el primer proceso en la cola de espera de dicha clave \n",p2);//la clave se guarda en p2
-			desbloquearProcesoESI(p2);//si le pasas un cuarto parametro no lo toma y ejecuta igual
+			if(!isnum(p3))
+				printf("El segundo parametro debe ser un numero.\n");
+			else
+			{
+				int id = atoi(p3);
+				printf("se intentara desbloquear la clave %s para el proceso %s\n",p2, p3);//la clave se guarda en p2
+				desbloquearProcesoESI(p2, id);//si le pasas un cuarto parametro no lo toma y ejecuta igual
+			}
 		}
 		else
-		if(strcmp(p1,"listar")== 0 && p2 != NULL && p3 == NULL)
+		if(strcmp(p1,"listar")== 0 && p2 != NULL )
 		{
 			printf("lista de procesos esperando el recurso con clave %s \n", p2);//el recurso esta guardado en p2
 			listar(p2);
 		}
 		else
-		if(strcmp(p1,"kill")== 0 && p2 != NULL && p3 == NULL)
+		if(strcmp(p1,"kill")== 0 && p2 != NULL )
 		{
-			int id = atoi(p2);
-			printf("se ha matado al proceso con id = %d \n", id);// El ID se guarda en p2
-			finalizarProceso();
+			if( isnum(p2) )
+			{
+				int id = atoi(p2);
+				finalizarProceso(id);
+				printf("se ha matado al proceso con id = %d \n", id);// El ID se guarda en p2
+			}
+			else
+				printf("Error. La sintaxis del comando es:\n\tkill <process-id>\n");
 		}
 		else
-		if(strcmp(p1,"status")== 0 && p2 != NULL && p3 == NULL)
+		if(strcmp(p1,"status")== 0 && p2 != NULL)
 		{
 			printf("estado de la clave %s: \n", p2);// El clave se guarda en p2
-			informacionDeInstancias();
+			informacionDeInstancias(p2);
 		}
 		else
-		if(strcmp(p1,"deadlock")== 0 && p2 == NULL )
+		if(strcmp(p1,"deadlock")== 0 )
 		{
 			printf("deadlocks del sistema: \n");
 			analizarDeadlockDelSistema();
 		}
+		else
+		{
+			debeContinuar = strcmp(linea, "salir");
+			if(debeContinuar)printf("comando no reconocido\n");
+		}
 
-	}while(strcmp(linea, "salir"));//restringo los parametros asi se quedan en NULL, y si se llenan se pierde ?
+	}while(debeContinuar);//restringo los parametros asi se quedan en NULL, y si se llenan se pierde ?
 
 	free(linea);
 
@@ -76,8 +94,19 @@ void consolaPlanificador(){
 	return;
 }
 
+int isnum(char * str)
+{
+	int i = 0, result;
+
+	for( i = 0; str[i] != '\0'; i++)
+		if( !isdigit(str[i]) )
+			return 0; //FALSE
+
+	return 1; //TRUE
+}
+
 void pausarPlanificacion(){
-	pthread_mutex_lock(&m_puedeEjecutar);
+	pthread_mutex_trylock(&m_puedeEjecutar);
 }
 void continuarPlanificacion(){
 	pthread_mutex_unlock(&m_puedeEjecutar);
@@ -105,7 +134,8 @@ void bloquearProcesoESI(char* clave,int id){
 		 queue_push(c, (ESI_t *)p);//Agrega un elemento al  de la cola
 		 printf("Correctamente bloqueado el ESI.\n");
 	}
-	else{
+	else
+	{
 	printf("No hay procesoESI con este ID o ya esta bloqueado\n");
 	}
 }
@@ -135,10 +165,10 @@ ESI_t* buscarProcesoEnColas(t_queue* cola,int id){
 }
 
 //3)desbloquear
-void desbloquearProcesoESI(char* clave){
+void desbloquearProcesoESI(char* clave, int id){
 	t_queue*c = colaAsociada(clave);
 	ESI_t* p = NULL;
-	if(c!= NULL ) p = queue_pop(c);//	(t_queue*)			Eliminar el primer elemento
+	if(c!= NULL ) p = get_and_remove_ESI_by_ID(c->elements, id);
 	if(p!= NULL ){//p es el proceso buscado, ahora hay que mandarlo al final de la cola de donde se saco
 			queue_push(ESIsListos,p);
 	}else
@@ -150,19 +180,32 @@ void listar(char* clave){//recurso == clave
 		ESI_t* p;
 
 		t_link_element* pElem = c?(c -> elements) -> head:NULL ;
-	while(pElem != NULL){// si la cola no esta vacia
+	if(pElem)
+	{
+		while(pElem != NULL){// si la cola no esta vacia
 
-		p = (ESI_t*)(pElem->data);//use el mecanismo de Antonio de Las Carreras todos los creditos a EL
-		printf("El proceso con id : %d \n", p->id);
-		pElem = pElem->next;
+			p = (ESI_t*)(pElem->data);//use el mecanismo de Antonio de Las Carreras todos los creditos a EL
+			printf("El proceso con id : %d \n", p->id);
+			pElem = pElem->next;
+		}
 	}
+	else
+		printf("No hay procesos esperando esa clave\n");
 }
-
-
 
 void finalizarProceso(int id){
 	ESI_t * pESI = quitarESIDeSuListaActual(id);
-	abortESI(pESI);
+	if(pESI)
+		abortESI(pESI);
+	else
+		printf("No se ha encontrado un proceso con el id %d en el sistema\n",id);
 }//kill
-void informacionDeInstancias(){}//status
+void informacionDeInstancias(char * clave)
+{
+	printf("Valor:\n");
+	printf("Instancia:\n");
+	printf("Instancia correcta actual:\n");
+	printf("ESIs bloqueados:\n");
+	listar(clave);
+}//status
 void analizarDeadlockDelSistema(){}

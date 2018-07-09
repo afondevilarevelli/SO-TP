@@ -65,7 +65,7 @@ void ESIDesconectado( int ESI_ID )
 ESI_t * quitarESIDeSuListaActual(int ESI_ID)
 {
   ESI_t * pESI = NULL;
-  if( is_ESI_ID_equal(pESIEnEjecucion, ESI_ID) )
+  if( pESIEnEjecucion && is_ESI_ID_equal(pESIEnEjecucion, ESI_ID) )
     pESI = pESIEnEjecucion;
 
   if(!pESI)

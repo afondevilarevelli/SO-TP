@@ -38,6 +38,7 @@ int main(void)
 	ESIsBloqueados = queue_create();
 	ESIsFinalizados = queue_create();
 	ListaColas = list_create();
+	pESIEnEjecucion = NULL;
 
 	log_trace(pLog, "Inicializacion de variables globales completada");
 
