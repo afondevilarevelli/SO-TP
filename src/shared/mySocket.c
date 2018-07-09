@@ -62,7 +62,15 @@ int recvWithBasicProtocol( int socket, void ** pBuffer ) // el protocolo basico 
 	int tam, bytes;
 	bytes = recv( socket, &tam, sizeof(int32_t), 0);
 	if( bytes == -1)
-		normalErrorHandling("MSG_SIZE_RECEPTION_FAILED");
+	{
+		if( errno == ECONNRESET )
+		{
+			perror("MSG_SIZE_RECEPTION_FAILED");
+			return 0;
+		}
+		else
+			normalErrorHandling("MSG_SIZE_RECEPTION_FAILED");
+	}
 	else if( bytes == 0)
 		return bytes;
 

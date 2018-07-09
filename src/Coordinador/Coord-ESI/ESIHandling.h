@@ -25,6 +25,7 @@ ESI_t * new_ESI( int id, int socket );
 void ESIDesconectado( int ESI_ID );
 void ESIFinalizado(int ESI_ID);
 ESI_t * get_ESI_by_ID( t_list * ESIs, int id );
+ESI_t * get_and_remove_ESI_by_ID( t_list * ESIs, int id );
 bool is_ESI_ID_equal( ESI_t * pESI, int id );
 
 rtdoEjec_t procesarSolicitudESI(void * solicitud, int size);

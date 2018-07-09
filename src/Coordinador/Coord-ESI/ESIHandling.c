@@ -5,12 +5,13 @@
 
 void ESIFinalizado(int ESI_ID)
 {
-  ESIDesconectado(ESI_ID);
+  //ESIDesconectado(ESI_ID);
 }
 
 void atenderESI( int socket )
 {
   int * pID, id;
+  ESI_t * pESI;
 
   if( !recvWithBasicProtocol( socket, (void **)&pID ) )
   {
@@ -18,60 +19,65 @@ void atenderESI( int socket )
       exit(1);
   }
   id = *pID;
-  registrarNuevoESI( socket, id);
 
-  while(1)
+  if( !(pESI = get_ESI_by_ID( coord_ESIs, id)) )
+    registrarNuevoESI( socket, id);
+  else
   {
-    int size;
+    log_error(pLog, "El ESI de id %d ya existe en el sistema", id);
+    return;
+  }
+
+  int size;
+  do
+  {
     void * solicitud;
 
     //recibo solicitud <----------------- ESI
     size = recvWithBasicProtocol( socket, &solicitud);
-    log_trace(pLog, "Se recibieron datos del ESI %d", id);
 
     if( size ) // SI NO SE DESCONECTO
     {
-      if( (*((rtdoEjec_t*)solicitud)) == FIN_DE_EJECUCION )
+      log_trace(pLog, "Se recibieron datos del ESI %d", id);
+      switch ( *((rtdoEjec_t*)solicitud) )
       {
+        case FIN_DE_EJECUCION:
           log_trace(pLog, "El ESI con ID  =%d ha finalizado con éxito", id);
           break;
-      }
-      else if( (*((rtdoEjec_t*)solicitud)) == ABORTED )
-      {
-        log_error(pLog, "El ESI con ID = %d ha sido abortado", id);
-        break;
-      }
-      else if( (*((rtdoEjec_t*)solicitud)) == SENTENCIA )
-      {
-        rtdoEjec_t rtdo;
-        if( coord_Insts->elements_count )
-        {
-          rtdo = procesarSolicitudESI(solicitud + sizeof(rtdoEjec_t), size);
-          log_debug(pLog, "La solicitud del ESI con ID = %d fue %s", id, rtdo==SUCCESS?"procesada con exito":"un fracaso");
-        }
-        else
-        {
-          rtdo = NO_HAY_INSTANCIAS_CONECTADAS;
-          log_warning(pLog, "No hay instancias conectas");
-        }
-        free(solicitud);
 
-        //informo de resultado de ejecucion -------------> ESI
-        sendWithBasicProtocol(socket, (void**)&rtdo, sizeof(rtdoEjec_t));
-        log_trace(pLog, "Se informa de ese resultado al ESI con ID = %d", id);
-      }
-      else
-        log_error(pLog, "Solicitud desconocida");
-    }
-    else
-    {
-      ESIDesconectado( id );
-      return;
-    }
+        case ABORTED:
+          log_error(pLog, "El ESI con ID = %d ha sido abortado", id);
+          break;
 
+        case SENTENCIA:
+        {
+          rtdoEjec_t rtdo;
+          if( coord_Insts->elements_count )
+          {
+            rtdo = procesarSolicitudESI(solicitud + sizeof(rtdoEjec_t), size);
+            log_debug(pLog, "La solicitud del ESI con ID = %d fue %s", id, rtdo==SUCCESS?"procesada con exito":"un fracaso");
+          }
+          else
+          {
+            rtdo = NO_HAY_INSTANCIAS_CONECTADAS;
+            log_warning(pLog, "No hay instancias conectas");
+          }
+          free(solicitud);
+
+          //informo de resultado de ejecucion -------------> ESI
+          sendWithBasicProtocol(socket, (void**)&rtdo, sizeof(rtdoEjec_t));
+          log_trace(pLog, "Se informa de ese resultado al ESI con ID = %d", id);
+        }
+          break;
+
+        default:
+          log_error(pLog, "Solicitud desconocida");
+      }//endswitch
+    }//end if(size)
   }
+  while(size);
 
-  ESIFinalizado(id);
+  ESIDesconectado(id);
 
 }
 
@@ -133,12 +139,12 @@ rtdoEjec_t procesarSolicitudESI(void * solicitud, int size)
 void ESIDesconectado( int ESI_ID )
 {
   //buscar al ESI, Instancia o Planificador al que pudo pertenecer ese socket deconectado
-  ESI_t * pESI = get_ESI_by_ID( coord_ESIs, ESI_ID);
+  ESI_t * pESI = get_and_remove_ESI_by_ID( coord_ESIs, ESI_ID);
 
   //cambiar el estado de connected a false
   pESI->connected = false;
 
-  log_warning(pLog, "El ESI con ID = %d, se ha desconectado\n", pESI->id);
+  log_warning(pLog, "El ESI con ID = %d, se ha desconectado y fue eliminado de los ESIs a coordinar.\n", pESI->id);
 }
 
 ESI_t * get_ESI_by_ID( t_list * ESIs, int id )
@@ -162,4 +168,29 @@ ESI_t * get_ESI_by_ID( t_list * ESIs, int id )
 bool is_ESI_ID_equal( ESI_t * pESI, int id )
 {
   return pESI->id == id;
+}
+
+ESI_t * get_and_remove_ESI_by_ID( t_list * ESIs, int id )
+{
+  t_link_element * pAct = ESIs->head , * pPrev = NULL;
+  ESI_t * pESI;
+
+  while( pAct != NULL )
+  {
+    pESI = (ESI_t *)(pAct->data);
+
+    if( is_ESI_ID_equal( pESI, id) )
+    {
+      if(!pPrev)
+        ESIs->head = pAct->next;
+      else
+        pPrev->next = pAct->next;
+
+      return pESI;
+    }
+    pPrev = pAct;
+    pAct = pAct->next;
+  }
+
+  return NULL;
 }

@@ -1,4 +1,4 @@
-#include "parsi/src/parsi/parser.h"
+#include "parsi/parser.h"
 #include <errno.h>
 
 #include <commons/config.h>
@@ -140,7 +140,7 @@ FILE * abrirScriptESI(char * ESIScriptFilename)
   FILE * scriptf = fopen(ESIScriptFilename, "r");
   if (scriptf == NULL)
   {
-    log_error(pLog, "Error al abrir el archivo: %s", strerror(errno));
+    log_error(pLog, "Error al abrir el archivo %s: %s", ESIScriptFilename, strerror(errno));
     exit(EXIT_FAILURE);
   }
 
