@@ -11,6 +11,7 @@
 
 
 extern int socketPlanificador;
+extern pthread_mutex_t m_planifAviso;
 
 void atenderPlanificador(int socket);
 void registrarPlanificador(int socket);

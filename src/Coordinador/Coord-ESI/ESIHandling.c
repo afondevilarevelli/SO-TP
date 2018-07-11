@@ -120,11 +120,15 @@ rtdoEjec_t procesarSolicitudESI(int id, void * solicitud, int size)
   addIntToBuffer(buffAviso, sent.operacion);
   addStringToBuffer(buffAviso, sent.clave);
 
+  pthread_mutex_lock(&m_planifAviso);/*-------COMIENZO ZONA CRITICA --------*/
+
   sendWithBasicProtocol(socketPlanificador, buffAviso->data, buffAviso->size);
   log_trace(pLog, "Se informa al Planificador de la operacion y se espera su respuesta");
 
   rtdoEjec_t *rtaPlanif, *rtdo;
   int bytes = recvWithBasicProtocol(socketPlanificador, (void**)&rtaPlanif);
+
+  pthread_mutex_unlock(&m_planifAviso);/*-------FIN ZONA CRITICA --------*/
   if(bytes)
   {
     switch(*rtaPlanif)

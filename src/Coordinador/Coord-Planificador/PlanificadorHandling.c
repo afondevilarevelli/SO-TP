@@ -6,20 +6,37 @@ void atenderPlanificador( int socket )
 {
   registrarPlanificador( socket );
 
-  /*while(1)
+  struct timeval espera; //0.5 sec
+  espera.tv_sec = 0;
+  espera.tv_usec = 500000;
+
+  int max_fd = socket;
+  fd_set master_fds, read_fds;
+  FD_ZERO(&master_fds);
+  FD_SET(socket, &master_fds);
+
+  while(1)
   {
     int size;
     void * solicitud = NULL;
 
-    size = recvWithBasicProtocol( socket, &solicitud);
+    pthread_mutex_lock(&m_planifAviso);/*-------COMIENZO ZONA CRITICA --------*/
 
-    if( size ) // SI NO SE DESCONECTO
-      procesarSolicitudPlanificador( solicitud, size);
-    else
-      planificadorDesconectado();
+    select(max_fd+1, &read_fds, NULL, NULL, &espera);
+
+    if(FD_ISSET(socket, &read_fds))
+    {
+      size = recvWithBasicProtocol( socket, &solicitud);
+      if( size ) // SI NO SE DESCONECTO
+        procesarSolicitudPlanificador( solicitud, size);
+      else
+        planificadorDesconectado();
+    }
+    pthread_mutex_unlock(&m_planifAviso);/*-------FIN ZONA CRITICA --------*/
 
     free(solicitud);
-  }*/
+    read_fds = master_fds;
+  }
 
 }
 

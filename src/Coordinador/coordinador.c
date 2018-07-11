@@ -15,6 +15,7 @@
 t_log * pLog;
 
 pthread_mutex_t m_ESIAtendido;
+pthread_mutex_t m_planifAviso;
 
 t_list * coord_Insts;
 t_list * coord_ESIs;
@@ -30,6 +31,7 @@ int main(void)
 {
 	//iniciare todas las variables globales
 	pthread_mutex_init(&m_ESIAtendido, NULL);
+	pthread_mutex_init(&m_planifAviso, NULL);
 	coord_Insts = list_create();
 	coord_ESIs = list_create();
 	hilos = list_create();

@@ -18,6 +18,7 @@ typedef struct
 extern t_list * coord_ESIs;
 
 extern pthread_mutex_t m_ESIAtendido;
+extern pthread_mutex_t m_planifAviso;
 
 void atenderESI(int socket);
 void registrarNuevoESI( int ESI_socket, int id );
