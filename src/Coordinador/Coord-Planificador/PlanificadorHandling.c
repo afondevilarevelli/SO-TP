@@ -6,7 +6,7 @@ void atenderPlanificador( int socket )
 {
   registrarPlanificador( socket );
 
-  while(1)
+  /*while(1)
   {
     int size;
     void * solicitud = NULL;
@@ -19,7 +19,7 @@ void atenderPlanificador( int socket )
       planificadorDesconectado();
 
     free(solicitud);
-  }
+  }*/
 
 }
 

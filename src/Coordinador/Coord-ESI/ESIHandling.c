@@ -2,6 +2,7 @@
 #include "../Coord-Log/coordLog.h"
 #include "ESIHandling.h"
 #include "../Coord-Instancia/InstanciaHandling.h"
+#include "../Coord-Planificador/PlanificadorHandling.h"
 
 void ESIFinalizado(int ESI_ID)
 {
@@ -54,7 +55,7 @@ void atenderESI( int socket )
           rtdoEjec_t rtdo;
           if( coord_Insts->elements_count )
           {
-            rtdo = procesarSolicitudESI(solicitud + sizeof(rtdoEjec_t), size);
+            rtdo = procesarSolicitudESI(id, solicitud + sizeof(rtdoEjec_t), size);
             log_debug(pLog, "La solicitud del ESI con ID = %d fue %s", id, rtdo==SUCCESS?"procesada con exito":"un fracaso");
           }
           else
@@ -98,10 +99,14 @@ ESI_t * new_ESI( int id, int socket )
   return pESI;
 }
 
-rtdoEjec_t procesarSolicitudESI(void * solicitud, int size)
+rtdoEjec_t procesarSolicitudESI(int id, void * solicitud, int size)
 {
-  tBuffer * buffSent = makeBuffer(solicitud, size);
+  tBuffer *buffSent, *buffAviso;
   ESISentenciaParseada_t sent;
+
+  buffSent = makeBuffer(solicitud, size);
+  buffAviso = newBuffer();
+
   sent.operacion = readIntFromBuffer(buffSent);
   sent.clave = readStringFromBuffer(buffSent);
   if(sent.operacion == SET)
@@ -112,27 +117,49 @@ rtdoEjec_t procesarSolicitudESI(void * solicitud, int size)
   freeBuffer(buffSent);
   log_info(pLog,"Sentencia ESI: op=%s, clave=%s, valor=%s\n", sent.operacion==GET?"GET":sent.operacion==SET?"SET":"STORE", sent.clave, sent.valor?sent.valor:"No corresponde");
 
-  inst_t * pInst = getInstByEquitativeLoad(sent.clave);
-  log_trace(pLog,"Se obtuvo la instancia de id = %d por Equitative Load", pInst->id);
+  addIntToBuffer(buffAviso, id);
+  addIntToBuffer(buffAviso, sent.operacion);
+  addStringToBuffer(buffAviso, sent.clave);
 
-  sendWithBasicProtocol( pInst->socket, solicitud, size);
-  log_trace(pLog, "Se le envio la sentencia a la instancia %d", pInst->id);
+  sendWithBasicProtocol(socketPlanificador, buffAviso->data, buffAviso->size);
+  log_trace(pLog, "Se informa al Planificador de la operacion y se espera su respuesta");
 
-  //si es un GET
-    //preguntarle al planificador si la clave esta disponible
-  //si es un STORE o un SET
-    //obtener instancia que tiene la clave
-    //si es un STORE
-      //guardar el valor actual de la tabla de entradas de la instancia asociado a la clave en el disco duro
-      //avisarle al planificador que se libero la clave (no chequea que el STORE lo haga el mismo ESI que hizo el GET)
-    //si es un SET
-      //cambiar el valor actual de la tabla de entradas de la instancia asociado a la clave por el nuevo
-  rtdoEjec_t * rtdo;
-  recvWithBasicProtocol(pInst->socket, (void**)&rtdo);
-  log_trace(pLog, "Se recibio el resultado de la ejecucion de la sentencia en la instancia %d", pInst->id);
+  rtdoEjec_t *rtaPlanif, *rtdo;
+  int bytes = recvWithBasicProtocol(socketPlanificador, (void**)&rtaPlanif);
+  if(bytes)
+  {
+    switch(*rtaPlanif)
+    {
+      case SUCCESS:
+        log_trace(pLog, "El Planificador aprobo la operacion");
+
+        inst_t * pInst = getInstByEquitativeLoad(sent.clave);
+        log_trace(pLog, "Se obtuvo la instancia de id = %d por Equitative Load", pInst->id);
+
+        sendWithBasicProtocol( pInst->socket, solicitud, size);
+        log_trace(pLog, "Se le envio la sentencia a la instancia %d", pInst->id);
+
+        recvWithBasicProtocol(pInst->socket, (void**)&rtdo);
+        log_trace(pLog, "Se recibio el resultado de ejecucion de la sentencia en la instancia %d", pInst->id);
+
+        break;
+      case FAILURE:
+        log_trace(pLog, "El Planificador rechazo la operacion");
+        *rtdo = FAILURE;
+
+        break;
+      default:
+        log_error(pLog, "No se entiende la respuesta del Planificador");
+        *rtdo = FAILURE;
+    }
+  }
+  else // !bytes
+  {
+    planificadorDesconectado();
+  }
 
   pthread_mutex_unlock(&m_ESIAtendido);
-  //retornar rtdoEjec
+
   return *rtdo;
 }
 

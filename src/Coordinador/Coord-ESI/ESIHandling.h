@@ -28,6 +28,6 @@ ESI_t * get_ESI_by_ID( t_list * ESIs, int id );
 ESI_t * get_and_remove_ESI_by_ID( t_list * ESIs, int id );
 bool is_ESI_ID_equal( ESI_t * pESI, int id );
 
-rtdoEjec_t procesarSolicitudESI(void * solicitud, int size);
+rtdoEjec_t procesarSolicitudESI(int id, void * solicitud, int size);
 
 #endif

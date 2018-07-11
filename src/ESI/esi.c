@@ -55,6 +55,7 @@ int main(void)
   log_trace(pLog, "Esperando orden de Planificador");
   while( (orden = ordenDePlanificador()) == EJECUTAR )
   {
+    int prevPos = ftell(scriptf);
     pSent = obtenerSentenciaParseada(scriptf);
     if(pSent)
     {
@@ -78,7 +79,9 @@ int main(void)
       //recibo de resultado de ejecucion <---------- COORDINADOR
       log_trace(pLog, "Esperando resultado de ejeucion de Coordinador");
       bytes = recvWithBasicProtocol(socketCoord, (void**)&pRtdo);
-      log_debug(pLog, "El resultado recibido es de %s", *pRtdo==SUCCESS?"SUCCESS":*pRtdo==FAILURE?"FAILURE":*pRtdo==FIN_DE_EJECUCION?"FIN DE EJECUCION":*pRtdo==DISCONNECTED?"DESCONECTADO":*pRtdo==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":*pRtdo==ABORTED?"ABORTADO":"SENTENCIA" );
+      log_debug(pLog, "El resultado recibido es de %s", *pRtdo==SUCCESS?"SUCCESS":*pRtdo==FAILURE?"FAILURE":"ERROR");
+      if(*pRtdo == FAILURE)
+        fseek(scriptf, prevPos, SEEK_CUR);
 
       //envio de resultado de ejecucion ------------> PLANIFICADOR
       sendWithBasicProtocol(socketPlanif, (void*)pRtdo, bytes);

@@ -32,9 +32,6 @@ typedef struct
   int tiempoEsperandoCPU;
 }ESI_t;
 
-
-int socketCoord;
-
 t_queue * ESIsListos;
 t_queue * ESIsBloqueados;
 t_queue * ESIsFinalizados;

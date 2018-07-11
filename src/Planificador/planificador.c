@@ -9,6 +9,7 @@
 #include "algoritmosDePlanificacion.h"
 
 #include "ESIHandling/ESIHandling.h"
+#include "CoordHandling/CoordHandling.h"
 
 void planificarEjecucionESI(t_config * pConf);
 void procesarResultadoEjecESI(void * rtdoEjec, int size);
@@ -22,6 +23,8 @@ struct tipoPlanificacion obtenerAlgoritmoDePlanificacion(t_config * pConf);
 pthread_mutex_t m_puedeEjecutar;
 
 t_log * pLog;
+
+int socketCoord;
 
 int main(void)
 {
@@ -48,9 +51,12 @@ int main(void)
 	socketCoord = conectarseACoordinador(pConf);
 	log_trace(pLog, "Se conecto al Coordinador en el socket %d", socketCoord);
 
-	pthread_t hiloListener, hiloPlanificacion, hiloConsolaPlanificador;
+	pthread_t hiloListener, hiloPlanificacion, hiloConsolaPlanificador, hiloCoordinador;
 	pthread_create(&hiloListener, NULL, (void*)&recibirNuevosESI, pConf);
 	log_trace(pLog, "Se creo un hilo para recibir ESIs");
+
+	pthread_create(&hiloCoordinador, NULL, (void*)&atenderCoordinador, (void*)socketCoord);
+	log_trace(pLog, "Se creo un hilo para colaborar con el Coordinador");
 
 	switch(infoAlgoritmo.planificacion){
 				case FIFO:
@@ -75,6 +81,7 @@ int main(void)
 	pthread_create(&hiloConsolaPlanificador, NULL, (void*)&consolaPlanificador, NULL);
 	log_trace(pLog, "Se creo un hilo para la consola");
 
+	pthread_join(hiloCoordinador, NULL);
 	pthread_join(hiloListener, NULL);
 	pthread_join(hiloPlanificacion, NULL);
 	pthread_join(hiloConsolaPlanificador, NULL);
