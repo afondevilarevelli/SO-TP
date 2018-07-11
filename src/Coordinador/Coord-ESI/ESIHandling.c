@@ -12,7 +12,6 @@ void ESIFinalizado(int ESI_ID)
 void atenderESI( int socket )
 {
   int * pID, id;
-  ESI_t * pESI;
 
   if( !recvWithBasicProtocol( socket, (void **)&pID ) )
   {
@@ -21,7 +20,7 @@ void atenderESI( int socket )
   }
   id = *pID;
 
-  if( !(pESI = get_ESI_by_ID( coord_ESIs, id)) )
+  if( !get_ESI_by_ID( coord_ESIs, id) )
     registrarNuevoESI( socket, id);
   else
   {
@@ -213,6 +212,7 @@ ESI_t * get_and_remove_ESI_by_ID( t_list * ESIs, int id )
       else
         pPrev->next = pAct->next;
 
+      ESIs->elements_count--;
       return pESI;
     }
     pPrev = pAct;

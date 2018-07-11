@@ -1,3 +1,5 @@
+#include <string.h>
+
 #include <commons/config.h>
 #include <commons/log.h>
 #include <commons/collections/list.h>
@@ -9,23 +11,26 @@
 typedef struct
 	{
 		char clave[41];
-		char * valor;
+		int size;
+		int entryCant;
 	} t_entrada;
 
-t_list * tablaDeEntradas;
+t_entrada ** entries;
 
-rtdoEjec_t accederRecurso(op_t operacion, char * clave, char * valor);
+void * almacenamiento;
+
+rtdoEjec_t accederRecurso(op_t operacion, char * clave, char * valor, int size);
 rtdoEjec_t getRecurso(char * clave);
-rtdoEjec_t setRecurso(char * clave, char * valor);
+rtdoEjec_t setRecurso(char * clave, char * valor, int size);
 rtdoEjec_t storeRecurso(char * clave);
-t_entrada * getEntrada(char * clave);
+int getEntryIndex(char * clave);
 bool is_entrada_clave_equal( t_entrada * pEntry, char * clave);
 
 void crearEntradaPorAlgCircular( char * clave);
 void agregarATabla(char * clave, int pointer);
 
-t_list * cargarTablaDeEntradas(t_config * pConf);
-t_entrada * new_entrada(char * clave, int size);
+t_entrada ** cargarTablaDeEntradas(t_config * pConf);
+void nuevaEntrada(void * valor, int size, char * clave, int pointer);
 void obtenerIPyPuertoDeCoordinador(t_config * pConf, int * ip, int * puerto);
 int conectarseACoordinador(t_config * pConf);
 
@@ -39,7 +44,7 @@ int main(void)
 
 
 	t_config * pConf = config_create("instancia.config");
-	tablaDeEntradas = cargarTablaDeEntradas(pConf);
+	entries = cargarTablaDeEntradas(pConf);
 	log_trace(pLog, "Tabla de entradas cargada");
 
 	int coord_socket = conectarseACoordinador(pConf);
@@ -62,16 +67,22 @@ int main(void)
 		sent.operacion = readIntFromBuffer(buffSent);
 		sent.clave = readStringFromBuffer(buffSent);
 		if(sent.operacion == SET)
+		{
 			sent.valor = readStringFromBuffer(buffSent);
+			size = strlen(sent.valor)+1;
+		}
 		else
+		{
 			sent.valor = NULL;
-
-		freeBuffer(buffSent);
+			size = 0;
+		}
 
 		log_debug(pLog, "Sentencia recibida:\n op=%s, clave=%s, valor=%s\n", sent.operacion==SET?"SET":sent.operacion==GET?"GET":"STORE", sent.clave, sent.valor?sent.valor:"No corresponde");
 
-		rtdoEjec_t rtdo = accederRecurso(sent.operacion, sent.clave, sent.valor);
+		rtdoEjec_t rtdo = accederRecurso(sent.operacion, sent.clave, sent.valor, size);
 		log_debug(pLog, "El resultado de la sentencia fue %s", rtdo==SUCCESS?"SUCCESS":rtdo==FAILURE?"FAILURE":rtdo==FIN_DE_EJECUCION?"FIN DE EJECUCION":rtdo==DISCONNECTED?"DESCONECTADO":rtdo==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":rtdo==ABORTED?"ABORTADO":"SENTENCIA" );
+
+		freeBuffer(buffSent);
 
 		sendWithBasicProtocol(coord_socket, &rtdo, sizeof(rtdoEjec_t));
 		log_trace(pLog, "Resultado enviado al Coordinador");
@@ -80,14 +91,14 @@ int main(void)
 	return 0;
 }
 
-rtdoEjec_t accederRecurso(op_t operacion, char * clave, char * valor)
+rtdoEjec_t accederRecurso(op_t operacion, char * clave, char * valor, int size)
 {
 	rtdoEjec_t rtdo;
 	switch(operacion)
 	{
 		case GET: rtdo = getRecurso(clave); break;
 
-		case SET: rtdo = setRecurso(clave, valor); break;
+		case SET: rtdo = setRecurso(clave, valor, size); break;
 
 		case STORE: rtdo = storeRecurso(clave); break;
 
@@ -100,64 +111,70 @@ rtdoEjec_t accederRecurso(op_t operacion, char * clave, char * valor)
 
 rtdoEjec_t getRecurso(char * clave)
 {
-	if( getEntrada(clave) )
-	{
-		//log_trace(pLog, "La clave se encontraba en ")
-		return SUCCESS;
-	}
-  else
+	if( !getEntryIndex(clave) )
 	 	crearEntradaPorAlgCircular(clave);
+
+	return SUCCESS;
 }
 
 
 void crearEntradaPorAlgCircular( char * clave)
 {
  	static int pointer;
-	agregarATabla(clave, pointer);
+	nuevaEntrada(NULL, 0, clave, pointer);
  	pointer ++;
  	pointer %= entryCant;
 }
 
-void agregarATabla(char * clave, int pointer)
+void nuevaEntrada(void * valor, int size, char * clave, int pointer)
 {
-	list_replace( tablaDeEntradas, pointer, new_entrada(clave, entrySize) );
+	if(pointer < entryCant)
+	{
+		strcpy( entries[pointer]->clave, clave);
+		entries[pointer]->size = size;
+		entries[pointer]->entryCant = size/entrySize;
+		memcpy(almacenamiento +	pointer*entrySize, valor, size);
+	}
+	else
+	{
+		log_error(pLog, "Intento de crear entrada %d mas alla del limite de %d entradas", pointer, entryCant);
+	}
 }
 
-rtdoEjec_t setRecurso(char * clave, char * valor)
+rtdoEjec_t setRecurso(char * clave, char * valor, int size)
 {
-	t_entrada * pEntry = getEntrada(clave);
-	strcpy(pEntry->valor, valor);
-
-	return SUCCESS;
+	int pos = getEntryIndex(clave);
+	if(size/entrySize <= entries[pos]->entryCant)
+	{
+		nuevaEntrada(valor, size, clave, pos);
+		return SUCCESS;
+	}
+	else
+	{
+		log_error(pLog, "Se intento reemplazar un valor por otro que ocupaba mas entradas en la clave %s", clave);
+		return FAILURE;
+	}
 }
 
 rtdoEjec_t storeRecurso(char * clave)
 {
 	FILE * f = fopen(clave, "w+");
-	t_entrada * pEntry = getEntrada(clave);
-	int size = strlen(pEntry->valor)+1;
-	int written = fwrite(pEntry->valor, size, 1, f);
+	int pos = getEntryIndex(clave);
+	t_entrada * pEntry = entries[pos];
+	int written = fwrite(almacenamiento + pos*entrySize, pEntry->size, 1, f);
 	fclose(f);
 
-	return (f != NULL && written != -1)?SUCCESS:FAILURE;
+	return written != -1?SUCCESS:FAILURE;
 }
 
-t_entrada * getEntrada(char * clave )
+int getEntryIndex(char * clave)
 {
-	t_link_element * pAct = tablaDeEntradas->head;
-	t_entrada * pEntry;
+	int i;
+	for( i = 0; i < entryCant; i++ )
+		if( is_entrada_clave_equal( entries[i], clave) )
+			return i;
 
-	while( pAct != NULL )
-	{
-		pEntry = (t_entrada *)(pAct->data);
-
-		if( is_entrada_clave_equal( pEntry, clave) )
-			return pEntry;
-
-		pAct = pAct->next;
-	}
-
-	return NULL;
+	return 0;
 }
 
 bool is_entrada_clave_equal( t_entrada * pEntry, char * clave )
@@ -165,26 +182,29 @@ bool is_entrada_clave_equal( t_entrada * pEntry, char * clave )
 	return !strcmp(pEntry->clave, clave);
 }
 
-t_entrada * new_entrada(char * clave, int size)
+t_entrada ** cargarTablaDeEntradas(t_config * pConf)
 {
-	t_entrada * pEntry = malloc(sizeof(t_entrada));
-	if(clave)
-		strcpy(pEntry->clave, clave);
-	else
-		memset(pEntry->clave, '\0', sizeof(pEntry->clave));
+	t_entrada ** tabla;
+	int i;
 
-	pEntry->valor = malloc(size);
-
-	return pEntry;
-}
-
-t_list * cargarTablaDeEntradas(t_config * pConf)
-{
 	entrySize = config_get_int_value(pConf, "ENTRY_SIZE");
 	entryCant = config_get_int_value(pConf, "ENTRY_CANT");
+	almacenamiento = calloc(entryCant, entrySize);
 
-	t_list * tabla = list_create();
-	list_add(tabla, new_entrada(NULL, entrySize));
+	tabla = calloc(entryCant, sizeof(t_entrada *));
+	for(i = 0; i < entryCant; i++)
+	{
+		tabla[i] = calloc(1, sizeof(t_entrada));
+	}
+
+	//tabla = malloc(entryCant*sizeof(entrada));
+	//para c/archivo en carpeta "PuntoMontaje"
+		//obtener nombre y size
+		//crear entrada con:
+			//static int i
+		 	//valor=nombre
+			//pos=i
+			//i+= size/entrySize
 
 	return tabla;
 }
