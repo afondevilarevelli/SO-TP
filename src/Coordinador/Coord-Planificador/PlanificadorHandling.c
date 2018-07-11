@@ -7,8 +7,8 @@ void atenderPlanificador( int socket )
   registrarPlanificador( socket );
 
   struct timeval espera; //0.5 sec
-  espera.tv_sec = 0;
-  espera.tv_usec = 500000;
+  espera.tv_sec = 5;
+  espera.tv_usec = 0;
 
   int max_fd = socket;
   fd_set master_fds, read_fds;
