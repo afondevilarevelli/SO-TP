@@ -1,4 +1,6 @@
 /*----------INSTANCIA----------*/
+#include <commons/config.h>
+
 #include "../Coord-Log/coordLog.h"
 #include "InstanciaHandling.h"
 
@@ -26,6 +28,12 @@ void atenderInstancia( int socket )
   }
   id = *pID;
   registrarNuevaInstancia( socket, id);
+
+  tBuffer * pBInfoEntries = newBuffer();
+  addIntToBuffer(pBInfoEntries, entryCant);
+  addIntToBuffer(pBInfoEntries, entrySize);
+  sendWithBasicProtocol(socket, pBInfoEntries->data, pBInfoEntries->size);
+  free(pBInfoEntries);
 
   while(1)
   {

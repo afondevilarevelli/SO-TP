@@ -18,6 +18,7 @@ typedef struct
 extern t_list * coord_Insts;
 
 extern pthread_mutex_t m_ESIAtendido;
+extern int entrySize, entryCant;
 
 void atenderInstancia(int socket);
 void registrarNuevaInstancia( int inst_socket, int id );

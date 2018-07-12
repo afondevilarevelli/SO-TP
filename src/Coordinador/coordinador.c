@@ -20,10 +20,11 @@ pthread_mutex_t m_planifAviso;
 t_list * coord_Insts;
 t_list * coord_ESIs;
 int socketPlanificador;
+int entrySize, entryCant;
 
 t_list * hilos;
 
-void obtenerIPyPuertoDeCoordinador(int * ip, int * puerto);
+void obtenerIPyPuertoDeCoordinador(t_config * pConf, int * ip, int * puerto);
 void atenderConexionEntrante(int listener);
 void terminarHilo( pthread_t * pHilo );
 
@@ -41,10 +42,13 @@ int main(void)
 
 	unsigned int ip, puerto;
 	struct in_addr ip_addr;
-	obtenerIPyPuertoDeCoordinador(&ip, &puerto);
+	t_config * pConf = config_create("coordinador.config");
+	obtenerIPyPuertoDeCoordinador(pConf, &ip, &puerto);
 	ip_addr.s_addr = ip;
 	log_trace(pLog, "IP (%s) y PUERTO (%d) obtenidos del archivo de configuracion.", inet_ntoa(ip_addr), ntohs(puerto));
 
+	entrySize = config_get_int_value(pConf, "ENTRY_SIZE");
+	entryCant = config_get_int_value(pConf, "ENTRY_CANT");
 	//dejare al coordinador escuchar nuevas conexiones a traves del IP y PUERTO indicados
 	int listener = listenOn(ip, puerto), i;
 	//printf("Coordinador listening on IP:%s y PUERTO:%d\n", inet_ntoa(ip), puerto);
@@ -109,10 +113,8 @@ void atenderConexionEntrante( int listener)
 
 /*-------------GENERAL--------------*/
 
-void obtenerIPyPuertoDeCoordinador(int * ip, int * puerto)
+void obtenerIPyPuertoDeCoordinador(t_config * pConf, int * ip, int * puerto)
 {
-	t_config * pConf = config_create("coordinador.config");
-
 	char * strIP = config_get_string_value(pConf, "COORD_IP");
 	*ip = inet_addr(strIP);
 

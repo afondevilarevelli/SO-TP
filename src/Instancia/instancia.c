@@ -50,11 +50,20 @@ int main(void)
 
 
 	t_config * pConf = config_create("instancia.config");
-	entries = cargarTablaDeEntradas(pConf);
+
 	log_trace(pLog, "Tabla de entradas cargada");
 
 	int coord_socket = conectarseACoordinador(pConf);
 	log_trace(pLog, "Conectada a Coordinador");
+
+	void * infoEntries;
+	int bytes = recvWithBasicProtocol(coord_socket, &infoEntries);
+	tBuffer * pBuff = makeBuffer(infoEntries, bytes);
+	entryCant = readIntFromBuffer(pBuff);
+	entrySize = readIntFromBuffer(pBuff);
+	freeBuffer(pBuff);
+
+	entries = cargarTablaDeEntradas(pConf);
 
 	crearEntradaPorAlg = obtenerAlgoritmoReemplazo(pConf);
 
@@ -238,8 +247,6 @@ t_entrada ** cargarTablaDeEntradas(t_config * pConf)
 	t_entrada ** tabla;
 	int i;
 
-	entrySize = config_get_int_value(pConf, "ENTRY_SIZE");
-	entryCant = config_get_int_value(pConf, "ENTRY_CANT");
 	almacenamiento = calloc(entryCant, entrySize);
 
 	tabla = calloc(entryCant, sizeof(t_entrada *));
