@@ -13,14 +13,16 @@ void atenderPlanificador( int socket )
   fd_set master_fds, read_fds;
   FD_ZERO(&master_fds);
   FD_SET(socket, &master_fds);
+  read_fds = master_fds;
 
   while(1)
   {
     int size;
     void * solicitud = NULL;
     espera.tv_sec = 0;
-    espera.tv_usec = 500000;
+    espera.tv_usec = 0;
 
+    select(max_fd+1, &read_fds, NULL, NULL, NULL);
     pthread_mutex_lock(&m_planifAviso);/*-------COMIENZO ZONA CRITICA --------*/
 
     select(max_fd+1, &read_fds, NULL, NULL, &espera);
