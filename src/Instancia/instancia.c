@@ -26,9 +26,15 @@ rtdoEjec_t storeRecurso(char * clave);
 int getEntryIndex(char * clave);
 bool is_entrada_clave_equal( t_entrada * pEntry, char * clave);
 
-void crearEntradaPorAlgCircular( char * clave);
-void agregarATabla(char * clave, int pointer);
+typedef void (*fCrearEntradaPorAlg)(char*);
+fCrearEntradaPorAlg crearEntradaPorAlg;
 
+void crearEntradaPorAlgCircular( char * clave);
+void crearEntradaPorAlgLRU( char * clave);
+void crearEntradaPorAlgBSU( char * clave);
+fCrearEntradaPorAlg obtenerAlgoritmoReemplazo(t_config * pConf);
+
+void agregarATabla(char * clave, int pointer);
 t_entrada ** cargarTablaDeEntradas(t_config * pConf);
 void nuevaEntrada(void * valor, int size, char * clave, int pointer);
 void obtenerIPyPuertoDeCoordinador(t_config * pConf, int * ip, int * puerto);
@@ -49,6 +55,8 @@ int main(void)
 
 	int coord_socket = conectarseACoordinador(pConf);
 	log_trace(pLog, "Conectada a Coordinador");
+
+	crearEntradaPorAlg = obtenerAlgoritmoReemplazo(pConf);
 
 	while(1)
 	{
@@ -99,6 +107,26 @@ int main(void)
 	return 0;
 }
 
+fCrearEntradaPorAlg obtenerAlgoritmoReemplazo(t_config * pConf)
+{
+	char * algoritmo = config_get_string_value(pConf, "ALG_REEMP");
+	fCrearEntradaPorAlg fAlg;
+	if( !strcmp(algoritmo, "CIRC") )
+		fAlg = &crearEntradaPorAlgCircular;
+	else if( !strcmp(algoritmo, "LRU") )
+		fAlg = &crearEntradaPorAlgLRU;
+	else if( !strcmp(algoritmo, "BSU") )
+		fAlg = &crearEntradaPorAlgBSU;
+	else
+		log_error(pLog, "Algoritmo desconocido no implementado");
+
+	log_trace(pLog, "Se cargo el algoritmo %s", algoritmo);
+
+	free(algoritmo);
+
+	return fAlg;
+}
+
 rtdoEjec_t accederRecurso(op_t operacion, char * clave, char * valor, int size)
 {
 	rtdoEjec_t rtdo;
@@ -120,11 +148,26 @@ rtdoEjec_t accederRecurso(op_t operacion, char * clave, char * valor, int size)
 rtdoEjec_t getRecurso(char * clave)
 {
 	if( !getEntryIndex(clave) )
-	 	crearEntradaPorAlgCircular(clave);
+	 	crearEntradaPorAlg(clave);
 
 	return SUCCESS;
 }
 
+void crearEntradaPorAlgLRU( char * clave)
+{
+	static int pointer;
+	nuevaEntrada(NULL, 0, clave, pointer);
+	pointer ++;
+	pointer %= entryCant;
+}
+
+void crearEntradaPorAlgBSU( char * clave)
+{
+	static int pointer;
+	nuevaEntrada(NULL, 0, clave, pointer);
+	pointer ++;
+	pointer %= entryCant;
+}
 
 void crearEntradaPorAlgCircular( char * clave)
 {
