@@ -1,4 +1,5 @@
 /*------------ESI-----------*/
+#include <unistd.h>
 #include "../Coord-Log/coordLog.h"
 #include "ESIHandling.h"
 #include "../Coord-Instancia/InstanciaHandling.h"
@@ -141,7 +142,7 @@ rtdoEjec_t procesarSolicitudESI(int id, void * solicitud, int size)
 
         sendWithBasicProtocol( pInst->socket, solicitud, size);
         log_trace(pLog, "Se le envio la sentencia a la instancia %d", pInst->id);
-
+        usleep(retardo*1000);
         recvWithBasicProtocol(pInst->socket, (void**)&rtdo);
         log_trace(pLog, "Se recibio el resultado de ejecucion de la sentencia en la instancia %d", pInst->id);
 

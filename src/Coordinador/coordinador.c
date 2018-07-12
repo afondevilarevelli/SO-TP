@@ -20,7 +20,7 @@ pthread_mutex_t m_planifAviso;
 t_list * coord_Insts;
 t_list * coord_ESIs;
 int socketPlanificador;
-int entrySize, entryCant;
+int entrySize, entryCant, retardo;
 
 t_list * hilos;
 
@@ -49,6 +49,7 @@ int main(void)
 
 	entrySize = config_get_int_value(pConf, "ENTRY_SIZE");
 	entryCant = config_get_int_value(pConf, "ENTRY_CANT");
+	retardo = config_get_int_value(pConf, "RETARDO");
 	//dejare al coordinador escuchar nuevas conexiones a traves del IP y PUERTO indicados
 	int listener = listenOn(ip, puerto), i;
 	//printf("Coordinador listening on IP:%s y PUERTO:%d\n", inet_ntoa(ip), puerto);

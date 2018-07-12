@@ -46,13 +46,14 @@ int conectarseACoordinador(t_config * pConf);
 void dump(t_config * pConf);
 
 t_log * pLog;
-int entrySize, entryCant;
+int entrySize, entryCant, instanciaActiva;
 char * pathMontaje;
 
 int main(void)
 {
 	pLog = log_create("instancia.log", "INSTANCIA", true, LOG_LEVEL_TRACE);
 	log_trace(pLog, "Iniciando...");
+	instanciaActiva = 1; //true
 
 
 	t_config * pConf = config_create("instancia.config");
@@ -123,7 +124,7 @@ int main(void)
 	}
 
 	log_error(pLog, "Se ha cortado la conexion con el Coordinador\nCerrando instancia...");
-
+	instanciaActiva = 0; //false
 	pthread_join(hiloDump, NULL);
 
 	return 0;
@@ -134,7 +135,7 @@ void dump(t_config * pConf)
 	int msec = config_get_int_value(pConf, "DUMP_INTERVAL");
 	int usec = msec*1000;
 
-	while(1)
+	while(instanciaActiva)
 	{
 		usleep(usec);
 
