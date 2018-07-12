@@ -1,4 +1,6 @@
 #include <string.h>
+#include <pthread.h>
+#include <unistd.h>
 
 #include <commons/config.h>
 #include <commons/log.h>
@@ -23,6 +25,7 @@ rtdoEjec_t accederRecurso(op_t operacion, char * clave, char * valor, int size);
 rtdoEjec_t getRecurso(char * clave);
 rtdoEjec_t setRecurso(char * clave, char * valor, int size);
 rtdoEjec_t storeRecurso(char * clave);
+rtdoEjec_t store(int pos);
 int getEntryIndex(char * clave);
 bool is_entrada_clave_equal( t_entrada * pEntry, char * clave);
 
@@ -40,8 +43,11 @@ void nuevaEntrada(void * valor, int size, char * clave, int pointer);
 void obtenerIPyPuertoDeCoordinador(t_config * pConf, int * ip, int * puerto);
 int conectarseACoordinador(t_config * pConf);
 
+void dump(t_config * pConf);
+
 t_log * pLog;
 int entrySize, entryCant;
+char * pathMontaje;
 
 int main(void)
 {
@@ -66,6 +72,11 @@ int main(void)
 	entries = cargarTablaDeEntradas(pConf);
 
 	crearEntradaPorAlg = obtenerAlgoritmoReemplazo(pConf);
+
+	pathMontaje = config_get_string_value(pConf, "PTO_MONTAJE");
+
+	pthread_t hiloDump;
+	pthread_create(&hiloDump, NULL, (void*)&dump, (void*)pConf);
 
 	while(1)
 	{
@@ -113,7 +124,25 @@ int main(void)
 
 	log_error(pLog, "Se ha cortado la conexion con el Coordinador\nCerrando instancia...");
 
+	pthread_join(hiloDump, NULL);
+
 	return 0;
+}
+
+void dump(t_config * pConf)
+{
+	int msec = config_get_int_value(pConf, "DUMP_INTERVAL");
+	int usec = msec*1000;
+
+	while(1)
+	{
+		usleep(usec);
+
+		int i;
+		for(i = 0; i < entryCant; i++)
+			if(entries[i]->clave[0] != '\0')
+				store(i);
+	}
 }
 
 fCrearEntradaPorAlg obtenerAlgoritmoReemplazo(t_config * pConf)
@@ -218,11 +247,20 @@ rtdoEjec_t setRecurso(char * clave, char * valor, int size)
 
 rtdoEjec_t storeRecurso(char * clave)
 {
-	FILE * f = fopen(clave, "w+");
 	int pos = getEntryIndex(clave);
+	return store(pos);
+}
+
+rtdoEjec_t store(pos)
+{
 	t_entrada * pEntry = entries[pos];
+	char * path = malloc(strlen(pathMontaje) + sizeof((char)'/') + strlen(pEntry->clave) + 1);
+	sprintf(path, "%s/%s",pathMontaje, pEntry->clave);
+	FILE * f = fopen(path, "w+");
 	int written = fwrite(almacenamiento + pos*entrySize, pEntry->size, 1, f);
 	fclose(f);
+
+	free(path);
 
 	return written != -1?SUCCESS:FAILURE;
 }
