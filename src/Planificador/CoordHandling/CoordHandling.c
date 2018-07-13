@@ -83,7 +83,7 @@ bool puedeEjecutar(int idESI, int op, char * clave)
       {
         pthread_mutex_lock(&m_colaBloqueados);
         c->idEsiUsandoClave = ( (ESI_t*)(queue_pop(c->cola)) )->id;
-        pthread_mutex_lock(&m_colaBloqueados);
+        pthread_mutex_unlock(&m_colaBloqueados);
         return true;
       }
       else
