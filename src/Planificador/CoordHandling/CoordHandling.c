@@ -48,7 +48,9 @@ bool puedeEjecutar(int idESI, int op, char * clave)
     }
     else{
       ESI_t* esi = buscarProcesoESI(idESI);
+      pthread_mutex_lock(&m_colaListos);
       queue_push(ESIsListos, esi);
+      pthread_mutex_unlock(&m_colaListos);
       return false;
     }
   }
@@ -67,7 +69,9 @@ bool puedeEjecutar(int idESI, int op, char * clave)
       cola_clave* c = buscarElementoDeLista(clave);
       int idEsiConClave = c -> idEsiUsandoClave;
       if(idEsiConClave == idESI){
+          pthread_mutex_lock(&m_colaBloqueados);
           c->idEsiUsandoClave = ( (ESI_t*)(queue_pop(c->cola)) )->id;
+          pthread_mutex_lock(&m_colaBloqueados);
           return true;
       }
       else{
