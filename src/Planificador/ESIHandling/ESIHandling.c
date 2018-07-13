@@ -34,6 +34,7 @@ void atenderESI(ESI_t * pESI)
       ESIDesconectado( pESI->id );
       rtdoEjecucion = DISCONNECTED;
       sem_post(&sem_respuestaESI);
+      eliminarESIDelSistema(pESI->id);
       break;
     }
   }
@@ -70,17 +71,21 @@ ESI_t * quitarESIDeSuListaActual(int ESI_ID)
 
   if(!pESI)
   {
+    pthread_mutex_lock(&m_colaListos);
     pESI = get_and_remove_ESI_by_ID( ESIsListos->elements, ESI_ID);
+    pthread_mutex_unlock(&m_colaListos);
     if(pESI) sem_wait(&sem_cantESIsListos);
   }
 
   if(!pESI)
   {
+    pthread_mutex_lock(&m_colaBloqueados);
     pESI = get_and_remove_ESI_by_ID( ESIsBloqueados->elements, ESI_ID);
+    pthread_mutex_unlock(&m_colaBloqueados); }
 
-    if(!pESI)
-      pESI = get_and_remove_ESI_by_ID( ESIsFinalizados->elements, ESI_ID);
-  }
+    if(!pESI){ 
+      pESI = get_and_remove_ESI_by_ID( ESIsFinalizados->elements, ESI_ID); }
+  
 
   return pESI;
 }
@@ -144,6 +149,19 @@ void freeESI(ESI_t * pESI)
   free(pESI);
 }
 
+cola_clave* buscarElementoDeLista(char* clave){//busca de mi ListaColas la que se identifiqua con la clave
+	t_link_element* p = ListaColas -> head ;
+	cola_clave* c;
+	while (p != NULL){
+		c = (cola_clave*)(p -> data);
+		if (!strcmp(c -> clave, clave)){
+			return c;
+		}
+	p = p -> next ;
+	}
+	return NULL ;
+}
+
 /*----------CONEXIONES---------*/
 
 void recibirNuevosESI(t_config * pConf)
@@ -174,7 +192,9 @@ void atenderConexionEntrante(int listener, int estimacionInicialESI)
   if(recvWithBasicProtocol(newSock, &pID))
   {
     ESI_t * pESI = newESI(newSock, *((int*)pID),estimacionInicialESI );
+    pthread_mutex_lock(&m_colaListos);
     queue_push(ESIsListos, pESI);
+    pthread_mutex_unlock(&m_colaListos);
     sem_post(&sem_cantESIsListos);
 
     pthread_t hiloESI;

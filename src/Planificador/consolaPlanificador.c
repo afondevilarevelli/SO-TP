@@ -61,7 +61,8 @@ void consolaPlanificador(){
 			if( isnum(p2) )
 			{
 				int id = atoi(p2);
-				finalizarProceso(id);
+				ESI_t* elESI = buscarProcesoESI(id);
+				finalizarProceso(elESI);
 				printf("se ha matado al proceso con id = %d \n", id);// El ID se guarda en p2
 			}
 			else
@@ -117,7 +118,7 @@ t_queue* colaAsociada(char* clave){//busca de mi ListaColas la que se identifiqu
 	cola_clave* c;
 	while (p != NULL){
 		c = (cola_clave*)(p -> data);
-		if (strcmp(c -> clave, clave)){
+		if (!strcmp(c -> clave, clave)){
 			return c -> cola;//esta bien escrito
 		}
 	p = p -> next ;
@@ -141,12 +142,20 @@ void bloquearProcesoESI(char* clave,int id){
 }
 
 ESI_t* buscarProcesoESI(int id){// busca en el sistema en la lista de listos y si el proceso esta ejecutando
-	ESI_t* p = buscarProcesoEnColas(ESIsListos,id);//ColaListos : variable de coordinador.c
-
-		if(p != NULL /*|| id == (procesoEjecutando()->id)*/){//procesoEjecutando();funcion del  planificador.c que me diga cual esi esta en ejecutando
+		if(pESIEnEjecucion->id == id){
+			return pESIEnEjecucion;
+		}
+		ESI_t* p = buscarProcesoEnColas(ESIsListos,id);
+		if(p != NULL ){
 			return p;
 		}
-		printf("No esta ejecutando y tampoco esta en la cola de listos\n");
+		else{
+			p = buscarProcesoEnColas(ESIsBloqueados, id);
+			if(p!=NULL){
+				return p;
+			}
+		}
+		printf("No esta ejecutando y tampoco esta en la cola de listos ni de bloqueados\n");
 		return p;
 }
 
@@ -168,9 +177,13 @@ ESI_t* buscarProcesoEnColas(t_queue* cola,int id){
 void desbloquearProcesoESI(char* clave, int id){
 	t_queue*c = colaAsociada(clave);
 	ESI_t* p = NULL;
-	if(c!= NULL ) p = get_and_remove_ESI_by_ID(c->elements, id);
+	if(c!= NULL ){  pthread_mutex_lock(&m_listaColas);
+					p = get_and_remove_ESI_by_ID(c->elements, id);
+				    pthread_mutex_unlock(&m_listaColas); }
 	if(p!= NULL ){//p es el proceso buscado, ahora hay que mandarlo al final de la cola de donde se saco
+			pthread_mutex_lock(&m_colaListos);
 			queue_push(ESIsListos,p);
+			pthread_mutex_unlock(&m_colaListos);
 	}else
 	printf("Esa clave no existe.\n");
 }
@@ -193,12 +206,12 @@ void listar(char* clave){//recurso == clave
 		printf("No hay procesos esperando esa clave\n");
 }
 
-void finalizarProceso(int id){
-	ESI_t * pESI = quitarESIDeSuListaActual(id);
+void finalizarProceso(ESI_t* esi){  // ACÁ DEBERÍA TAMBIEN ELIMINARLO DE LA COLA DE UNA CLAVE, SI ES QUE ESTÁ BLOQUEADO POR UNA CLAVE!
+	ESI_t * pESI = quitarESIDeSuListaActual(esi->id);
 	if(pESI)
 		abortESI(pESI);
 	else
-		printf("No se ha encontrado un proceso con el id %d en el sistema\n",id);
+		printf("No se ha encontrado un proceso con el id %d en el sistema\n",esi->id);
 }//kill
 void informacionDeInstancias(char * clave)
 {

@@ -40,7 +40,41 @@ void procesarSolicitudCoordinador(void * solicitud, int size)
 
 bool puedeEjecutar(int idESI, int op, char * clave)
 {
-  return true;
+  if(op == 0){ // operacion GET
+    cola_clave* c = buscarElementoDeLista(clave);
+    if( c->cola == NULL && c->idEsiUsandoClave == (int)NULL){
+      c->idEsiUsandoClave = idESI;
+      return true;
+    }
+    else{
+      ESI_t* esi = buscarProcesoESI(idESI);
+      queue_push(ESIsListos, esi);
+      return false;
+    }
+  }
+  else{
+    if(op == 1){ //operacion SET
+      cola_clave* c = buscarElementoDeLista(clave);
+      int idEsiConClave = c -> idEsiUsandoClave;
+      if(idEsiConClave == idESI){
+          return true;
+      }
+      else{
+        return false;
+      }
+    }
+    else{ //operacion STORE
+      cola_clave* c = buscarElementoDeLista(clave);
+      int idEsiConClave = c -> idEsiUsandoClave;
+      if(idEsiConClave == idESI){
+          c->idEsiUsandoClave = ( (ESI_t*)(queue_pop(c->cola)) )->id;
+          return true;
+      }
+      else{
+        return false;
+      }
+    }
+  }
 }
 
 void coordinadorDesconectado()

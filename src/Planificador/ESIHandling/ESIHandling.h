@@ -15,6 +15,7 @@ extern t_log * pLog;
 typedef struct {
 	t_queue* cola ;
 	char* clave;
+  int idEsiUsandoClave;
 }cola_clave;
 
 t_list* ListaColas;
@@ -41,6 +42,9 @@ rtdoEjec_t rtdoEjecucion;
 
 t_list * hilos;
 
+pthread_mutex_t m_listaColas;
+pthread_mutex_t m_colaListos;
+pthread_mutex_t m_colaBloqueados;
 extern pthread_mutex_t m_puedeEjecutar;
 sem_t sem_cantESIsListos;
 sem_t sem_respuestaESI;
@@ -59,6 +63,7 @@ bool is_ESI_ID_equal( ESI_t * pESI, int id );
 void recibirNuevosESI(t_config * pConf);
 ESI_t * newESI(int socketESI, int id,int rafagaInicial);
 void freeESI(ESI_t * pESI);
+cola_clave* buscarElementoDeLista(char* clave);
 
 void atenderConexionEntrante(int listener,int estimacionInicialESI);
 

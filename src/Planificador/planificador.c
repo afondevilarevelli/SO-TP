@@ -32,6 +32,9 @@ int main(void)
 	log_trace(pLog, "Iniciando...");
 
 	pthread_mutex_init(&m_puedeEjecutar, NULL);
+	pthread_mutex_init(&m_listaColas, NULL);
+	pthread_mutex_init(&m_colaListos, NULL);
+	pthread_mutex_init(&m_colaBloqueados, NULL);
 	sem_init(&sem_cantESIsListos, 0, 0);
 	sem_init(&sem_respuestaESI, 0, 0);
 	hilos = list_create();
