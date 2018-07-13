@@ -10,6 +10,8 @@
 #include "../shared/buffer.h"
 #include "../shared/protocolo.h"
 
+pthread_mutex_t m_mantenimiento;
+
 typedef struct
 	{
 		char clave[41];
@@ -55,6 +57,7 @@ int main(void)
 	log_trace(pLog, "Iniciando...");
 	instanciaActiva = 1; //true
 
+	pthread_mutex_init(&m_mantenimiento, NULL);
 
 	t_config * pConf = config_create("instancia.config");
 
@@ -139,10 +142,13 @@ void dump(t_config * pConf)
 	{
 		usleep(usec);
 
+		pthread_mutex_lock(&m_mantenimiento);
 		int i;
 		for(i = 0; i < entryCant; i++)
 			if(entries[i]->clave[0] != '\0')
 				store(i);
+
+		pthread_mutex_unlock(&m_mantenimiento);
 	}
 }
 

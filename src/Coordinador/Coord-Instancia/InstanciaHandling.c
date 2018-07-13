@@ -1,8 +1,44 @@
 /*----------INSTANCIA----------*/
+#include <string.h>
+
 #include <commons/config.h>
 
 #include "../Coord-Log/coordLog.h"
 #include "InstanciaHandling.h"
+
+clave_t * new_clave(inst_t * pInst, char * clave)
+{
+  clave_t * pClave = malloc(sizeof(clave_t));
+  pClave->clave=malloc(strlen(clave)+1);
+  strcpy(pClave->clave, clave);
+  pClave->instancia = pInst;
+
+  return pClave;
+}
+
+inst_t * getInst(char * clave)
+{
+  clave_t * pClave = get_clave(claves, clave);
+  inst_t * pInst;
+
+  if(!pClave)
+  {
+    log_trace(pLog, "No existe instancia con la clave %s", clave);
+    pInst = getInstByEquitativeLoad(clave);
+    log_trace(pLog, "Se decidio que la instancia de id %d la contendra", pInst->id);
+    list_add(claves, new_clave(pInst, clave));
+  }
+  else
+    pInst = pClave->instancia;
+
+  if(!pInst->connected)
+  {
+    log_error(pLog, "Error: Instancia desconectada\n");
+    return NULL;
+  }
+
+  return pInst;
+}
 
 inst_t * getInstByEquitativeLoad(char * clave)
 {
@@ -11,8 +47,6 @@ inst_t * getInstByEquitativeLoad(char * clave)
 
   inst_t* pInst = (inst_t*)list_get(coord_Insts, i++);
 
-  if(!pInst->connected)
-    log_error(pLog, "Error: Instancia desconectada, eliminando instancia de lista\n");
 
   return pInst;
 }
@@ -72,6 +106,7 @@ inst_t * new_Inst( int id, int socket )
   pInst->id = id;
   pInst->socket = socket;
   pInst->connected = true;
+  pInst->claves = list_create();
 
   return pInst;
 }
@@ -93,6 +128,24 @@ void instanciaDesconectada( int inst_ID )
   pInst->connected = false;
 
   log_warning(pLog, "La instancia de id %d, se ha desconectado\n", pInst->id);
+}
+
+clave_t * get_clave(t_list * claveList, char * clave)
+{
+  t_link_element * pAct = claveList->head;
+  clave_t * pClave;
+
+  while( pAct != NULL )
+  {
+    pClave = (clave_t *)(pAct->data);
+
+    if( !strcmp(pClave->clave, clave) )
+      return pClave;
+
+    pAct = pAct->next;
+  }
+
+  return NULL;
 }
 
 inst_t * get_instancia_by_ID( t_list * instancias, int id )

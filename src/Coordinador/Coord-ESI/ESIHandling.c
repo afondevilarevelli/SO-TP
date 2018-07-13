@@ -5,6 +5,8 @@
 #include "../Coord-Instancia/InstanciaHandling.h"
 #include "../Coord-Planificador/PlanificadorHandling.h"
 
+extern t_log *pOpLog;
+
 void ESIFinalizado(int ESI_ID)
 {
   //ESIDesconectado(ESI_ID);
@@ -99,6 +101,11 @@ ESI_t * new_ESI( int id, int socket )
   return pESI;
 }
 
+char * strop(int op)
+{
+  return op==GET?"GET":op==SET?"SET":op==STORE?"STORE":"???";
+}
+
 rtdoEjec_t procesarSolicitudESI(int id, void * solicitud, int size)
 {
   tBuffer *buffSent, *buffAviso;
@@ -115,7 +122,7 @@ rtdoEjec_t procesarSolicitudESI(int id, void * solicitud, int size)
     sent.valor = NULL;
 
   freeBuffer(buffSent);
-  log_info(pLog,"Sentencia ESI: op=%s, clave=%s, valor=%s\n", sent.operacion==GET?"GET":sent.operacion==SET?"SET":"STORE", sent.clave, sent.valor?sent.valor:"No corresponde");
+  log_info(pLog,"Sentencia ESI: op=%s, clave=%s, valor=%s\n", strop(sent.operacion), sent.clave, sent.valor?sent.valor:"No corresponde");
 
   addIntToBuffer(buffAviso, id);
   addIntToBuffer(buffAviso, sent.operacion);
@@ -124,6 +131,7 @@ rtdoEjec_t procesarSolicitudESI(int id, void * solicitud, int size)
   pthread_mutex_lock(&m_planifAviso);/*-------COMIENZO ZONA CRITICA --------*/
 
   sendWithBasicProtocol(socketPlanificador, buffAviso->data, buffAviso->size);
+  freeBuffer(buffAviso);
   log_trace(pLog, "Se informa al Planificador de la operacion y se espera su respuesta");
 
   rtdoEjec_t *rtaPlanif, *rtdo;
@@ -137,24 +145,34 @@ rtdoEjec_t procesarSolicitudESI(int id, void * solicitud, int size)
       case SUCCESS:
         log_trace(pLog, "El Planificador aprobo la operacion");
 
-        inst_t * pInst = getInstByEquitativeLoad(sent.clave);
-        log_trace(pLog, "Se obtuvo la instancia de id = %d por Equitative Load", pInst->id);
+        inst_t * pInst = getInst(sent.clave);
 
-        sendWithBasicProtocol( pInst->socket, solicitud, size);
-        log_trace(pLog, "Se le envio la sentencia a la instancia %d", pInst->id);
-        usleep(retardo*1000);
-        recvWithBasicProtocol(pInst->socket, (void**)&rtdo);
-        log_trace(pLog, "Se recibio el resultado de ejecucion de la sentencia en la instancia %d", pInst->id);
+        if(pInst)
+        {
+          log_trace(pLog, "Se obtuvo la instancia de id = %d por Equitative Load", pInst->id);
 
+          sendWithBasicProtocol( pInst->socket, solicitud, size);
+          log_trace(pLog, "Se le envio la sentencia a la instancia %d", pInst->id);
+          usleep(retardo*1000);
+          recvWithBasicProtocol(pInst->socket, (void**)&rtdo);
+          log_trace(pLog, "Se recibio el resultado de ejecucion de la sentencia en la instancia %d", pInst->id);
+
+          log_info(pOpLog, "ESI %d\t%s %s(Instancia %d) %s", id, strop(sent.operacion), sent.clave, pInst->id, sent.valor?sent.valor:"");
+        }
+        else
+        {
+          log_error(pLog, "El ESI de id %d intento acceder una Instancia desconectada", id);
+          return NO_HAY_INSTANCIAS_CONECTADAS;
+        }
         break;
       case FAILURE:
         log_trace(pLog, "El Planificador rechazo la operacion");
-        *rtdo = FAILURE;
+        return FAILURE;
 
         break;
       default:
         log_error(pLog, "No se entiende la respuesta del Planificador");
-        *rtdo = FAILURE;
+        return FAILURE;
     }
   }
   else // !bytes

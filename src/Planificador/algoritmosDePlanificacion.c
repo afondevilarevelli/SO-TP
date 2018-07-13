@@ -70,7 +70,7 @@ void planificarSegunFIFO(){
 			{
 				case FAILURE:
 					log_error(pLog, "El ESI de id = %d ha fallado");
-					queue_push(ESIsBloqueados, pESIEnEjecucion); //debería ver porque se bloqueó el ESI
+					//queue_push(ESIsBloqueados, pESIEnEjecucion); //debería ver porque se bloqueó el ESI
 					break;
 				case NO_HAY_INSTANCIAS_CONECTADAS:
 					log_error(pLog, "No hay instancias conectadas");

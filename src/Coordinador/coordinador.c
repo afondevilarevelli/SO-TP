@@ -12,13 +12,15 @@
 #include "Coord-Planificador/PlanificadorHandling.h"
 #include "Coord-Log/coordLog.h"
 
-t_log * pLog;
+t_log * pLog, *pOpLog;
 
 pthread_mutex_t m_ESIAtendido;
 pthread_mutex_t m_planifAviso;
 
+t_list * claves;
 t_list * coord_Insts;
 t_list * coord_ESIs;
+
 int socketPlanificador;
 int entrySize, entryCant, retardo;
 
@@ -33,11 +35,13 @@ int main(void)
 	//iniciare todas las variables globales
 	pthread_mutex_init(&m_ESIAtendido, NULL);
 	pthread_mutex_init(&m_planifAviso, NULL);
+	claves = list_create();
 	coord_Insts = list_create();
 	coord_ESIs = list_create();
 	hilos = list_create();
 
 	pLog = log_create("coord.log", "COORDINADOR", true, LOG_LEVEL_TRACE);
+	pOpLog = log_create("operaciones.log", "COORDINADOR", false, LOG_LEVEL_TRACE);
 	log_trace(pLog, "Iniciando...");
 
 	unsigned int ip, puerto;

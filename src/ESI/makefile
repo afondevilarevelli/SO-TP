@@ -1,6 +1,6 @@
 sources = esi.c
 sharedLibraries = ../shared/mySocket.c ../shared/buffer.c ./parsi/parser.c
-pathLibraries = -lcommons 
+pathLibraries = -lcommons -lparsi
 
 esi:
 	gcc -g -o esi $(sources) $(sharedLibraries) $(pathLibraries)
