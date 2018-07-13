@@ -55,7 +55,7 @@ void atenderESI( int socket )
         case SENTENCIA:
         {
           rtdoEjec_t rtdo;
-          if( coord_Insts->elements_count )
+          if( coord_Insts.count )
           {
             rtdo = procesarSolicitudESI(id, solicitud + sizeof(rtdoEjec_t), size);
             log_debug(pLog, "La solicitud del ESI con ID = %d fue %s", id, rtdo==SUCCESS?"procesada con exito":"un fracaso");

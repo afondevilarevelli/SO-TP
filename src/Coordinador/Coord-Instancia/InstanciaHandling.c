@@ -24,7 +24,7 @@ inst_t * getInst(char * clave)
   if(!pClave)
   {
     log_trace(pLog, "No existe instancia con la clave %s", clave);
-    pInst = getInstByEquitativeLoad(clave);
+    pInst = getInstByAlg(clave);
     log_trace(pLog, "Se decidio que la instancia de id %d la contendra", pInst->id);
     list_add(claves, new_clave(pInst, clave));
   }
@@ -43,12 +43,37 @@ inst_t * getInst(char * clave)
 inst_t * getInstByEquitativeLoad(char * clave)
 {
   static int i;
-  i %= coord_Insts->elements_count;
+  i %= coord_Insts.count;
 
-  inst_t* pInst = (inst_t*)list_get(coord_Insts, i++);
+  inst_t* pInst = coord_Insts.insts[i++];
 
 
   return pInst;
+}
+
+inst_t * getInstByLSU(char * clave)
+{
+
+}
+
+inst_t * getInstByKE(char * clave)
+{
+  int deltaAlpha = 'z' - 'a';
+  int lettersPerInstance = deltaAlpha/coord_Insts.count;
+
+  int letra = 'a', i;
+
+  for(i = 0; letra <= 'z'; i++)
+  {
+    int j;
+    for( j = 0; j < lettersPerInstance && letra <= 'z'; j++)
+    {
+      if(clave[0] == letra++)
+        return coord_Insts.insts[i];
+    }
+  }
+
+  return NULL;
 }
 
 void atenderInstancia( int socket )
@@ -95,7 +120,11 @@ void atenderInstancia( int socket )
 void registrarNuevaInstancia( int Inst_socket, int id )
 {
   inst_t * pInst = new_Inst( id, Inst_socket);
-  list_add( coord_Insts, pInst);
+
+  coord_Insts.insts = realloc(coord_Insts.insts, (++coord_Insts.count)*sizeof(inst_t *));
+  coord_Insts.insts[coord_Insts.count-1] = pInst;
+
+  //list_add( coord_Insts, pInst);
   log_trace(pLog, "Se agrego una nueva Instancia de id = %d a la lista de Instancias", id);
 }
 
@@ -122,7 +151,7 @@ void procesarSolicitudInstancia(void * solicitud, int size)
 void instanciaDesconectada( int inst_ID )
 {
   //buscar al ESI, Instancia o Planificador al que pudo pertenecer ese socket deconectado
-  inst_t * pInst = get_instancia_by_ID( coord_Insts, inst_ID);
+  inst_t * pInst = get_instancia_by_ID( &coord_Insts, inst_ID);
 
   //cambiar el estado de connected a false
   pInst->connected = false;
@@ -148,19 +177,15 @@ clave_t * get_clave(t_list * claveList, char * clave)
   return NULL;
 }
 
-inst_t * get_instancia_by_ID( t_list * instancias, int id )
+inst_t * get_instancia_by_ID( insts_t * instancias, int id )
 {
-  t_link_element * pAct = instancias->head;
-  inst_t * pInst;
-
-  while( pAct != NULL )
+  int i = 0;
+  for(i = 0; i < instancias->count; i++ )
   {
-    pInst = (inst_t *)(pAct->data);
+    inst_t * pInst = instancias->insts[i];
 
     if( is_instancia_ID_equal( pInst, id) )
       return pInst;
-
-    pAct = pAct->next;
   }
 
   return NULL;

@@ -17,8 +17,10 @@ t_log * pLog, *pOpLog;
 pthread_mutex_t m_ESIAtendido;
 pthread_mutex_t m_planifAviso;
 
+insts_t coord_Insts;
+
 t_list * claves;
-t_list * coord_Insts;
+//t_list * coord_Insts;
 t_list * coord_ESIs;
 
 int socketPlanificador;
@@ -26,6 +28,9 @@ int entrySize, entryCant, retardo;
 
 t_list * hilos;
 
+fgetInstAlg getInstByAlg;
+
+fgetInstAlg obtenerAlgoritmoDeDistribucion(t_config * pConf);
 void obtenerIPyPuertoDeCoordinador(t_config * pConf, int * ip, int * puerto);
 void atenderConexionEntrante(int listener);
 void terminarHilo( pthread_t * pHilo );
@@ -36,7 +41,9 @@ int main(void)
 	pthread_mutex_init(&m_ESIAtendido, NULL);
 	pthread_mutex_init(&m_planifAviso, NULL);
 	claves = list_create();
-	coord_Insts = list_create();
+	//coord_Insts = list_create();
+	coord_Insts.insts = NULL;
+	coord_Insts.count = 0;
 	coord_ESIs = list_create();
 	hilos = list_create();
 
@@ -54,6 +61,7 @@ int main(void)
 	entrySize = config_get_int_value(pConf, "ENTRY_SIZE");
 	entryCant = config_get_int_value(pConf, "ENTRY_CANT");
 	retardo = config_get_int_value(pConf, "RETARDO");
+	getInstByAlg = obtenerAlgoritmoDeDistribucion(pConf);
 	//dejare al coordinador escuchar nuevas conexiones a traves del IP y PUERTO indicados
 	int listener = listenOn(ip, puerto), i;
 	//printf("Coordinador listening on IP:%s y PUERTO:%d\n", inet_ntoa(ip), puerto);
@@ -117,6 +125,22 @@ void atenderConexionEntrante( int listener)
 }
 
 /*-------------GENERAL--------------*/
+
+fgetInstAlg obtenerAlgoritmoDeDistribucion(t_config * pConf)
+{
+	char * alg = config_get_string_value(pConf, "ALG_DISTR");
+	fgetInstAlg fAlg = NULL;
+
+	if( !strcmp(alg, "EQL") )
+		fAlg = &getInstByEquitativeLoad;
+	else if( !strcmp(alg, "LSU") )
+		fAlg = &getInstByLSU;
+	else if( !strcmp(alg, "KE"))
+		fAlg = &getInstByKE;
+
+	free(alg);
+	return fAlg;
+}
 
 void obtenerIPyPuertoDeCoordinador(t_config * pConf, int * ip, int * puerto)
 {
