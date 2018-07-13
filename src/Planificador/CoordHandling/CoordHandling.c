@@ -34,19 +34,24 @@ void procesarSolicitudCoordinador(void * solicitud, int size)
 
   if( puedeEjecutar(idESI, operacion, clave) )
     rta = SUCCESS;
+  else if( !buscarElementoDeLista(clave) )
+    rta = ABORTED;
 
   sendWithBasicProtocol(socketCoord, &rta, sizeof(rtdoEjec_t));
 }
 
 bool puedeEjecutar(int idESI, int op, char * clave)
 {
-  if(op == 0){ // operacion GET
+  if(op == GET)
+  { // operacion GET
     cola_clave* c = buscarElementoDeLista(clave);
-    if( c->cola == NULL && c->idEsiUsandoClave == (int)NULL){
-      c->idEsiUsandoClave = idESI;
+    if( !c )
+    {
+      list_add(ListaColas, new_cola_clave(clave, idESI));
       return true;
     }
-    else{
+    else
+    {
       ESI_t* esi = buscarProcesoESI(idESI);
       pthread_mutex_lock(&m_colaListos);
       queue_push(ESIsListos, esi);
@@ -54,33 +59,44 @@ bool puedeEjecutar(int idESI, int op, char * clave)
       return false;
     }
   }
-  else{
-    if(op == 1){ //operacion SET
+  else if(op == SET)
+  { //operacion SET
       cola_clave* c = buscarElementoDeLista(clave);
-      int idEsiConClave = c -> idEsiUsandoClave;
-      if(idEsiConClave == idESI){
+      //if(c)
+        int idEsiConClave = c -> idEsiUsandoClave;
+        if(idEsiConClave == idESI)
+        {
           return true;
+        }
+        else
+        {
+          return false;
+        }
+  }
+  else
+  { //operacion STORE
+    cola_clave* c = buscarElementoDeLista(clave);
+    if(c)
+    {
+      int idEsiConClave = c -> idEsiUsandoClave;
+      if(idEsiConClave == idESI)
+      {
+        pthread_mutex_lock(&m_colaBloqueados);
+        c->idEsiUsandoClave = ( (ESI_t*)(queue_pop(c->cola)) )->id;
+        pthread_mutex_lock(&m_colaBloqueados);
+        return true;
       }
-      else{
+      else
+      {
         return false;
       }
     }
-    else{ //operacion STORE
-      cola_clave* c = buscarElementoDeLista(clave);
-      int idEsiConClave = c -> idEsiUsandoClave;
-      if(idEsiConClave == idESI){
-          pthread_mutex_lock(&m_colaBloqueados);
-          c->idEsiUsandoClave = ( (ESI_t*)(queue_pop(c->cola)) )->id;
-          pthread_mutex_lock(&m_colaBloqueados);
-          return true;
-      }
-      else{
-        return false;
-      }
+    else //la clave no existe, se intento hacer SET de una clave inexistente
+    {
+      return false;
     }
   }
 }
-
 void coordinadorDesconectado()
 {
   socketCoord = -1;

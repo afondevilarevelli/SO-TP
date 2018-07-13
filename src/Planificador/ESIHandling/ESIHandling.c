@@ -83,9 +83,9 @@ ESI_t * quitarESIDeSuListaActual(int ESI_ID)
     pESI = get_and_remove_ESI_by_ID( ESIsBloqueados->elements, ESI_ID);
     pthread_mutex_unlock(&m_colaBloqueados); }
 
-    if(!pESI){ 
+    if(!pESI){
       pESI = get_and_remove_ESI_by_ID( ESIsFinalizados->elements, ESI_ID); }
-  
+
 
   return pESI;
 }
@@ -160,6 +160,16 @@ cola_clave* buscarElementoDeLista(char* clave){//busca de mi ListaColas la que s
 	p = p -> next ;
 	}
 	return NULL ;
+}
+
+cola_clave* new_cola_clave(char * clave, int idESI)
+{
+  cola_clave * pCClave = malloc(sizeof(cola_clave));
+  pCClave->clave = malloc(strlen(clave)+1);
+  strcpy(pCClave->clave, clave);
+  pCClave->idEsiUsandoClave = idESI;
+
+  return pCClave;
 }
 
 /*----------CONEXIONES---------*/

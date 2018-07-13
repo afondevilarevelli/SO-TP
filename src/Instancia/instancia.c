@@ -192,7 +192,7 @@ rtdoEjec_t accederRecurso(op_t operacion, char * clave, char * valor, int size)
 
 rtdoEjec_t getRecurso(char * clave)
 {
-	if( !getEntryIndex(clave) )
+	if( getEntryIndex(clave) != -1)
 	 	crearEntradaPorAlg(clave);
 
 	return SUCCESS;
@@ -218,6 +218,7 @@ void crearEntradaPorAlgCircular( char * clave)
 {
  	static int pointer;
 	nuevaEntrada(NULL, 0, clave, pointer);
+	log_trace(pLog, "La clave %s se crea apuntando a la entrada %d", clave, pointer);
  	pointer ++;
  	pointer %= entryCant;
 }
@@ -240,6 +241,13 @@ void nuevaEntrada(void * valor, int size, char * clave, int pointer)
 rtdoEjec_t setRecurso(char * clave, char * valor, int size)
 {
 	int pos = getEntryIndex(clave);
+
+	if(pos == -1)
+	{
+		log_error(pLog, "Se intento setear la clave %s, que no existe en la instancia", clave);
+		return FAILURE;
+	}
+
 	if(size/entrySize <= entries[pos]->entryCant)
 	{
 		nuevaEntrada(valor, size, clave, pos);
@@ -279,7 +287,7 @@ int getEntryIndex(char * clave)
 		if( is_entrada_clave_equal( entries[i], clave) )
 			return i;
 
-	return 0;
+	return -1;
 }
 
 bool is_entrada_clave_equal( t_entrada * pEntry, char * clave )

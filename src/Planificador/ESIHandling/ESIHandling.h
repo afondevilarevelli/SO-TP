@@ -64,6 +64,7 @@ void recibirNuevosESI(t_config * pConf);
 ESI_t * newESI(int socketESI, int id,int rafagaInicial);
 void freeESI(ESI_t * pESI);
 cola_clave* buscarElementoDeLista(char* clave);
+cola_clave* new_cola_clave(char * clave, int idESI);
 
 void atenderConexionEntrante(int listener,int estimacionInicialESI);
 
