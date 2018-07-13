@@ -1,3 +1,5 @@
+#!/bin/bash
+
 git clone https://github.com/sisoputnfrba/parsi.git
 cd parsi
 sudo make install
