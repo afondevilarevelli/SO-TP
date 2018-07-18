@@ -20,8 +20,7 @@ typedef struct {
 
 t_list* ListaColas;
 
-typedef enum{LISTOS,EJECUTANDO,BLOQUEADO} t_cola;
-typedef enum{NORMAL, ABORTADO, FINALIZADO} ESIState;
+typedef enum{NORMAL,BLOQUEADO, ABORTADO, FINALIZADO} ESIState;
 
 typedef struct
 {

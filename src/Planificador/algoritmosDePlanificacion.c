@@ -63,8 +63,8 @@ void planificarSegunFIFO(){
 			{
 				case FAILURE:
 					log_error(pLog, "El ESI de id = %d ha fallado");
-					abortESI(pESIEnEjecucion);
-					//queue_push(ESIsBloqueados, pESIEnEjecucion); //debería ver porque se bloqueó el ESI
+					pESIEnEjecucion->state = BLOQUEADO;
+					queue_push(ESIsBloqueados, pESIEnEjecucion);
 					break;
 				case NO_HAY_INSTANCIAS_CONECTADAS:
 					log_error(pLog, "No hay instancias conectadas");
@@ -81,11 +81,9 @@ void planificarSegunFIFO(){
 				default:
 					log_error(pLog, "ERROR: rtdoEjecucion desconocido");
 			}
-			// si rtdoEjecucion = DISCONNECTED no hace nada y sigue planificando
 	}
 }
 
-//VER EL ALGORITMO QUE SE USÓ PARA planificarSegunFIFO()
 void planificarSegunSJF(){
 	ESI_t* pEsiAEjecutar;
 	int duracion = 0;
@@ -115,7 +113,8 @@ void planificarSegunSJF(){
 
 			if( rtdoEjecucion == FAILURE){
 			log_error(pLog, "El ESI de id = %d ha fallado");
-			queue_push(ESIsBloqueados, pESIEnEjecucion); //debería ver porque se bloqueó el ESI
+			pESIEnEjecucion->state = BLOQUEADO;
+			queue_push(ESIsBloqueados, pESIEnEjecucion); 
 			}
 			else if( rtdoEjecucion == NO_HAY_INSTANCIAS_CONECTADAS )
 			{
@@ -166,7 +165,8 @@ void planificarSegunSRT(){
 
 			if( rtdoEjecucion == FAILURE){
 			log_error(pLog, "El ESI de id = %d ha fallado");
-			queue_push(ESIsBloqueados, pESIEnEjecucion); //debería ver porque se bloqueó el ESI
+			pESIEnEjecucion->state = BLOQUEADO;
+			queue_push(ESIsBloqueados, pESIEnEjecucion); 
 			}
 			else
 				if( rtdoEjecucion == NO_HAY_INSTANCIAS_CONECTADAS ){
@@ -219,7 +219,8 @@ void planificarSegunHRRN(){
 
 			if( rtdoEjecucion == FAILURE){
 			log_error(pLog, "El ESI de id = %d ha fallado");
-			queue_push(ESIsBloqueados, pESIEnEjecucion); //debería ver porque se bloqueó el ESI
+			pESIEnEjecucion->state = BLOQUEADO;
+			queue_push(ESIsBloqueados, pESIEnEjecucion); 
 			}
 			else if( rtdoEjecucion == NO_HAY_INSTANCIAS_CONECTADAS )
 			{

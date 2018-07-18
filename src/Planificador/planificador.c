@@ -25,7 +25,7 @@ int socketCoord;
 int main(void)
 {
 	
-	//PRUEBAS
+	//INICIO_PRUEBAS
 	ESIsListos = queue_create();
 	pESIEnEjecucion = NULL;
 	tipoPlanificacion = malloc(sizeof(tipoPlanif));

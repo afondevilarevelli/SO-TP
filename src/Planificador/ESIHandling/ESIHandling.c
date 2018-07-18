@@ -39,10 +39,12 @@ void atenderESI(ESI_t * pESI)
     }
   }
 
-  if(fueAbortado(pESI))
-    eliminarESIDelSistema(pESI->id);
-  else
+  if(fueAbortado(pESI)){ 
+    eliminarESIDelSistema(pESI->id); }
+  else{ 
+    finalizarESI(pESI);
     log_warning(pLog, "El ESI con ID = %d finalizo y no atendera mas solicitudes", pESI->id);
+  }
 }
 
 void abortESI(ESI_t * pESI)

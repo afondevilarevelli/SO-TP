@@ -53,25 +53,24 @@ bool puedeEjecutar(int idESI, int op, char * clave)
     else
     {
       ESI_t* esi = buscarProcesoESI(idESI);
-      pthread_mutex_lock(&m_colaListos);
-      queue_push(ESIsListos, esi);
-      pthread_mutex_unlock(&m_colaListos);
+      esi->state = BLOQUEADO;
+      queue_push(c->cola,esi);
+      pthread_mutex_lock(&m_colaBloqueados);
+      queue_push(ESIsBloqueados, esi);
+      pthread_mutex_unlock(&m_colaBloqueados);
       return false;
     }
   }
   else if(op == SET)
   { //operacion SET
       cola_clave* c = buscarElementoDeLista(clave);
-      //if(c)
+      if(c){ 
         int idEsiConClave = c -> idEsiUsandoClave;
-        if(idEsiConClave == idESI)
-        {
-          return true;
-        }
-        else
-        {
-          return false;
-        }
+        return idEsiConClave == idESI;
+      }
+      else{
+        return false;
+      }
   }
   else
   { //operacion STORE
@@ -81,17 +80,22 @@ bool puedeEjecutar(int idESI, int op, char * clave)
       int idEsiConClave = c -> idEsiUsandoClave;
       if(idEsiConClave == idESI)
       {
-        pthread_mutex_lock(&m_colaBloqueados);
-        c->idEsiUsandoClave = ( (ESI_t*)(queue_pop(c->cola)) )->id;
-        pthread_mutex_unlock(&m_colaBloqueados);
+        if(!queue_is_empty(c->cola)){ 
+        ESI_t* elESI = (ESI_t*)(queue_pop(c->cola));
+        elESI->state = NORMAL;
+        c->idEsiUsandoClave = elESI->id;
         return true;
+        }
+        else{
+          c->idEsiUsandoClave = 0;
+        }
       }
       else
       {
         return false;
       }
     }
-    else //la clave no existe, se intento hacer SET de una clave inexistente
+    else 
     {
       return false;
     }
