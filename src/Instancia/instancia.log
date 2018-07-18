@@ -705,3 +705,32 @@
 [TRACE] 13:40:46:713 INSTANCIA/(9437:9437): Resultado enviado al Coordinador
 [TRACE] 13:40:46:713 INSTANCIA/(9437:9437): A la espera de solicitudes
 >>>>>>> 8d58a201607e32232da08617ab8a7288ac9fd7ed
+[TRACE] 15:09:42:429 INSTANCIA/(10822:10822): Iniciando...
+[TRACE] 15:09:42:437 INSTANCIA/(10822:10822): Tabla de entradas cargada
+[TRACE] 15:09:42:437 INSTANCIA/(10822:10822): Conectada a Coordinador
+[TRACE] 15:09:42:437 INSTANCIA/(10822:10822): Se cargo el algoritmo CIRC
+[TRACE] 15:09:42:437 INSTANCIA/(10822:10822): A la espera de solicitudes
+[ERROR] 15:12:23:18 INSTANCIA/(10822:10822): Se ha cortado la conexion con el Coordinador
+Cerrando instancia...
+[TRACE] 15:12:52:377 INSTANCIA/(11155:11155): Iniciando...
+[TRACE] 15:12:52:381 INSTANCIA/(11155:11155): Tabla de entradas cargada
+[TRACE] 15:12:52:382 INSTANCIA/(11155:11155): Conectada a Coordinador
+[TRACE] 15:12:52:382 INSTANCIA/(11155:11155): Se cargo el algoritmo CIRC
+[TRACE] 15:12:52:382 INSTANCIA/(11155:11155): A la espera de solicitudes
+[DEBUG] 15:13:13:5 INSTANCIA/(11155:11155): Solicitud recibida
+[TRACE] 15:13:13:5 INSTANCIA/(11155:11155): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 15:13:13:5 INSTANCIA/(11155:11155): Sentencia recibida:
+ op=GET, clave=jugador, valor=No corresponde
+
+[DEBUG] 15:13:13:5 INSTANCIA/(11155:11155): El resultado de la sentencia fue SUCCESS
+[TRACE] 15:13:13:5 INSTANCIA/(11155:11155): Resultado enviado al Coordinador
+[TRACE] 15:13:13:5 INSTANCIA/(11155:11155): A la espera de solicitudes
+[DEBUG] 15:13:13:511 INSTANCIA/(11155:11155): Solicitud recibida
+[TRACE] 15:13:13:511 INSTANCIA/(11155:11155): Se informa al Coordinador que su solicitud esta siendo atendida
+[DEBUG] 15:13:13:511 INSTANCIA/(11155:11155): Sentencia recibida:
+ op=SET, clave=jugador, valor=abondanzieri
+
+[ERROR] 15:13:13:511 INSTANCIA/(11155:11155): Se intento setear la clave jugador, que no existe en la instancia
+[DEBUG] 15:13:13:511 INSTANCIA/(11155:11155): El resultado de la sentencia fue FAILURE
+[TRACE] 15:13:13:512 INSTANCIA/(11155:11155): Resultado enviado al Coordinador
+[TRACE] 15:13:13:512 INSTANCIA/(11155:11155): A la espera de solicitudes

@@ -11,14 +11,10 @@
 #include "ESIHandling/ESIHandling.h"
 #include "CoordHandling/CoordHandling.h"
 
-void planificarEjecucionESI(t_config * pConf);
-void procesarResultadoEjecESI(void * rtdoEjec, int size);
-
 int conectarseACoordinador(t_config * pConf);
 void obtenerIPyPuertoDeCoordinador(t_config * pConf, int * ip, int * puerto);
 void obtenerIPyPuertoDePlanificador(t_config * pConf, int * ip, int * puerto);
 void obtenerIPyPuerto(t_config * pConf, int * ip, int * puerto, char * ipKey, char * portKey);
-struct tipoPlanificacion obtenerAlgoritmoDePlanificacion(t_config * pConf);
 
 pthread_mutex_t m_puedeEjecutar;
 
@@ -28,6 +24,70 @@ int socketCoord;
 
 int main(void)
 {
+	
+	//PRUEBAS
+	ESIsListos = queue_create();
+	pESIEnEjecucion = NULL;
+	tipoPlanificacion = malloc(sizeof(tipoPlanif));
+	t_config * pConf = config_create("planificador.config");
+	obtenerEstructuraDePlanificacion(pConf);
+	tipoPlanif estructura = *(tipoPlanificacion);
+
+	// ALPHA = 30 
+	ESI_t esi1, esi2, esi3;
+    esi1.state = 0;
+    esi1.socket = 153;
+    esi1.id = 1;
+    esi1.estimacionAnterior = 5.;
+    esi1.duracionAnterior = 7.;
+    esi1.tiempoEsperandoCPU = 5;
+
+	esi2.state = 0;
+    esi2.socket = 122;
+    esi2.id = 2;
+    esi2.estimacionAnterior = 5;
+    esi2.duracionAnterior = 3;
+    esi2.tiempoEsperandoCPU = 10;
+
+	esi3.state = 0;
+    esi3.socket = 166;
+    esi3.id = 3;
+    esi3.estimacionAnterior = 2;
+    esi3.duracionAnterior = 2;
+    esi3.tiempoEsperandoCPU = 14;
+
+	queue_push(ESIsListos, &esi2);
+	queue_push(ESIsListos, &esi3);
+	queue_push(ESIsListos, &esi1);
+
+	float est1 = algoritmoDeEstimacionProximaRafaga(&esi1);
+	float est2 = algoritmoDeEstimacionProximaRafaga(&esi2);
+	float est3 = algoritmoDeEstimacionProximaRafaga(&esi3);
+    float ratio1 = calcularRatio(&esi1); 
+	float ratio2 = calcularRatio(&esi2);
+	float ratio3 = calcularRatio(&esi3); 
+
+	/*list_sort( ESIsListos->elements, (void*) condicionParaListSortSJF );
+
+	while(!queue_is_empty(ESIsListos)){
+		ESI_t* esiPop = queue_peek(ESIsListos);
+		printf("salio el esi con id = %d\n",esiPop->id);
+	}*/
+
+	ESI_t* esiElegido = obtenerEsiAEjecutarSegunHRRN();
+	//printf("\nestimacion1 = %f\n",est1);
+	//printf("estimacion2 = %f\n",est2);
+	//printf("estimacion3 = %f\n",est3);
+	printf("ratio1 = %f\n",ratio1);
+	printf("ratio2 = %f\n",ratio2);
+	printf("ratio3 = %f\n",ratio3);
+
+	printf("el esi elegido fue el ESI con id = %d\n",esiElegido->id);
+
+	//FIN_PRUEBAS
+	
+
+	/*
 	pLog = log_create("planificador.log", "PLANIFICADOR", true, LOG_LEVEL_TRACE);
 	log_trace(pLog, "Iniciando...");
 
@@ -38,7 +98,6 @@ int main(void)
 	sem_init(&sem_cantESIsListos, 0, 0);
 	sem_init(&sem_respuestaESI, 0, 0);
 	hilos = list_create();
-	struct tipoPlanificacion infoAlgoritmo;
 
 	ESIsListos = queue_create();
 	ESIsBloqueados = queue_create();
@@ -48,9 +107,10 @@ int main(void)
 
 	log_trace(pLog, "Inicializacion de variables globales completada");
 
+	tipoPlanificacion = malloc(sizeof(tipoPlanif));
 	t_config * pConf = config_create("planificador.config");
-	infoAlgoritmo = obtenerAlgoritmoDePlanificacion(pConf);
-	log_trace(pLog, "Se obtuvo el algoritmo de planificacion %s", infoAlgoritmo.planificacion==FIFO?"FIFO":infoAlgoritmo.planificacion==SRT?"SRT":infoAlgoritmo.planificacion==SJF?"SJF":"HRRN");
+	obtenerEstructuraDePlanificacion(pConf);
+	log_trace(pLog, "Se obtuvo el algoritmo de planificacion %s", tipoPlanificacion->planificacion==FIFO?"FIFO":tipoPlanificacion->planificacion==SRT?"SRT":tipoPlanificacion->planificacion==SJF?"SJF":"HRRN");
 	socketCoord = conectarseACoordinador(pConf);
 	log_trace(pLog, "Se conecto al Coordinador en el socket %d", socketCoord);
 
@@ -61,7 +121,7 @@ int main(void)
 	pthread_create(&hiloCoordinador, NULL, (void*)&atenderCoordinador, (void*)socketCoord);
 	log_trace(pLog, "Se creo un hilo para colaborar con el Coordinador");
 
-	switch(infoAlgoritmo.planificacion){
+	switch(tipoPlanificacion->planificacion){
 				case FIFO:
 					pthread_create(&hiloPlanificacion, NULL, (void*)&planificarSegunFIFO, NULL);
 					break;
@@ -71,7 +131,7 @@ int main(void)
 				case SRT:
 					pthread_create(&hiloPlanificacion, NULL, (void*)&planificarSegunSRT, NULL);
 					break;
-				case HHRR:
+				case HRRN:
 					pthread_create(&hiloPlanificacion, NULL, (void*)&planificarSegunHRRN, NULL);
 					break;
 
@@ -79,7 +139,7 @@ int main(void)
 					printf("No se ha encontrado el Algoritmo de Planificacion a utilizar.\n");
 					break;
 			}
-	log_trace(pLog, "Se creo un hilo para planificar segun %s", infoAlgoritmo.planificacion==FIFO?"FIFO":infoAlgoritmo.planificacion==SJF?"SJF":infoAlgoritmo.planificacion==SRT?"SRT":"HRRN");
+	log_trace(pLog, "Se creo un hilo para planificar segun %s", tipoPlanificacion->planificacion==FIFO?"FIFO":tipoPlanificacion->planificacion==SJF?"SJF":tipoPlanificacion->planificacion==SRT?"SRT":"HRRN");
 
 	pthread_create(&hiloConsolaPlanificador, NULL, (void*)&consolaPlanificador, NULL);
 	log_trace(pLog, "Se creo un hilo para la consola");
@@ -92,9 +152,10 @@ int main(void)
 	log_trace(pLog, "Se destruyeron todos los hilos secundarios");
 	queue_destroy_and_destroy_elements(ESIsListos, (void*)&freeESI);
 	queue_destroy_and_destroy_elements(ESIsBloqueados, (void*)&freeESI);
-	log_trace(pLog, "Se destruyeron las listas globales");
-
-	return 0;
+	log_trace(pLog, "Se destruyeron las listas globales"); 
+	*/
+	free(tipoPlanificacion);
+	return 0; 
 }
 
 /*----CONEXIONES-----*/
@@ -132,21 +193,3 @@ void obtenerIPyPuerto(t_config * pConf, int * ip, int * puerto, char * ipKey, ch
 	*puerto= htons(config_get_int_value(pConf, portKey));
 }
 
-struct tipoPlanificacion obtenerAlgoritmoDePlanificacion(t_config * pConf)
-{
-	struct tipoPlanificacion plani;
-
-	char * planifString =config_get_string_value(pConf, "ALGORITMO_DE_PLANIFICACION");
-	if( !strcmp(planifString, "FIFO") )
-	{
-		plani.planificacion = FIFO;
-		plani.alpha = 0;
-  	plani.estimacionInicial = 0;
-	}
-	else
-	{
-		plani.alpha= config_get_int_value(pConf, "ALPHA");
-  	plani.estimacionInicial= config_get_int_value(pConf, "ESTIMACION_INICIAL");
-	}
-	return plani;
-}

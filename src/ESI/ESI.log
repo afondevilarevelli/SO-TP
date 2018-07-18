@@ -2012,3 +2012,36 @@ Valor = No corresponde
 [TRACE] 13:40:46:752 ESI/(9439:9439): Se envio el resultado al Planificador
 [TRACE] 13:40:46:752 ESI/(9439:9439): Esperando orden de Planificador
 >>>>>>> 8d58a201607e32232da08617ab8a7288ac9fd7ed
+[TRACE] 15:10:06:327 ESI/(10833:10833): Iniciando...
+[TRACE] 15:10:06:332 ESI/(10833:10833): Se obtiene ID 7 del archivo de configuracion
+[TRACE] 15:10:06:332 ESI/(10833:10833): Se conecto al Coordinador en el socket 4
+[TRACE] 15:10:06:333 ESI/(10833:10833): Se conecto al Planificador en el socket 5
+[ERROR] 15:10:06:333 ESI/(10833:10833): Error al abrir el archivo ./Pruebas-ESI/TestFinales/ESI_Bar1: No such file or directory
+[TRACE] 15:13:12:998 ESI/(11167:11167): Iniciando...
+[TRACE] 15:13:12:998 ESI/(11167:11167): Se obtiene ID 7 del archivo de configuracion
+[TRACE] 15:13:12:999 ESI/(11167:11167): Se conecto al Coordinador en el socket 4
+[TRACE] 15:13:12:999 ESI/(11167:11167): Se conecto al Planificador en el socket 5
+[TRACE] 15:13:12:999 ESI/(11167:11167): Script ejemplo.esi abierto
+[TRACE] 15:13:12:999 ESI/(11167:11167): Esperando orden de Planificador
+[DEBUG] 15:13:12:999 ESI/(11167:11167): La orden recibida fue EJECUTAR
+[DEBUG] 15:13:13:4 ESI/(11167:11167): La sentencia parseada es:
+Op = GET
+Clave = jugador
+Valor = No corresponde
+
+[TRACE] 15:13:13:4 ESI/(11167:11167): Se envio la sentencia al Coordinador
+[TRACE] 15:13:13:4 ESI/(11167:11167): Esperando resultado de ejeucion de Coordinador
+[DEBUG] 15:13:13:511 ESI/(11167:11167): El resultado recibido es de SUCCESS
+[TRACE] 15:13:13:511 ESI/(11167:11167): Se envio el resultado al Planificador
+[TRACE] 15:13:13:511 ESI/(11167:11167): Esperando orden de Planificador
+[DEBUG] 15:13:13:511 ESI/(11167:11167): La orden recibida fue EJECUTAR
+[DEBUG] 15:13:13:511 ESI/(11167:11167): La sentencia parseada es:
+Op = SET
+Clave = jugador
+Valor = abondanzieri
+
+[TRACE] 15:13:13:511 ESI/(11167:11167): Se envio la sentencia al Coordinador
+[TRACE] 15:13:13:511 ESI/(11167:11167): Esperando resultado de ejeucion de Coordinador
+[DEBUG] 15:13:14:12 ESI/(11167:11167): El resultado recibido es de FAILURE
+[TRACE] 15:13:14:12 ESI/(11167:11167): Se envio el resultado al Planificador
+[TRACE] 15:13:14:12 ESI/(11167:11167): Esperando orden de Planificador
