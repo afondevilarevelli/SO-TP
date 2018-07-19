@@ -24,7 +24,7 @@ int socketCoord;
 
 int main(void)
 {
-	
+	/*
 	//INICIO_PRUEBAS
 	ESIsListos = queue_create();
 	pESIEnEjecucion = NULL;
@@ -67,13 +67,6 @@ int main(void)
 	float ratio2 = calcularRatio(&esi2);
 	float ratio3 = calcularRatio(&esi3); 
 
-	/*list_sort( ESIsListos->elements, (void*) condicionParaListSortSJF );
-
-	while(!queue_is_empty(ESIsListos)){
-		ESI_t* esiPop = queue_peek(ESIsListos);
-		printf("salio el esi con id = %d\n",esiPop->id);
-	}*/
-
 	ESI_t* esiElegido = obtenerEsiAEjecutarSegunHRRN();
 	//printf("\nestimacion1 = %f\n",est1);
 	//printf("estimacion2 = %f\n",est2);
@@ -85,9 +78,10 @@ int main(void)
 	printf("el esi elegido fue el ESI con id = %d\n",esiElegido->id);
 
 	//FIN_PRUEBAS
+	*/
 	
 
-	/*
+	
 	pLog = log_create("planificador.log", "PLANIFICADOR", true, LOG_LEVEL_TRACE);
 	log_trace(pLog, "Iniciando...");
 
@@ -153,7 +147,7 @@ int main(void)
 	queue_destroy_and_destroy_elements(ESIsListos, (void*)&freeESI);
 	queue_destroy_and_destroy_elements(ESIsBloqueados, (void*)&freeESI);
 	log_trace(pLog, "Se destruyeron las listas globales"); 
-	*/
+	
 	free(tipoPlanificacion);
 	return 0; 
 }

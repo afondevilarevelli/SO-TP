@@ -1178,3 +1178,6 @@ Saliendo del sistema.
 [TRACE] 15:13:14:12 PLANIFICADOR/(11158:11169): A la espera de respuesta del ESI 7
 [ERROR] 15:13:14:12 PLANIFICADOR/(11158:11162): El ESI de id = 7 ha fallado
 [TRACE] 15:13:14:12 PLANIFICADOR/(11158:11162): Se espera a que haya ESIs en la cola de listos
+[TRACE] 17:07:44:118 PLANIFICADOR/(3217:3217): Iniciando...
+[TRACE] 17:07:44:123 PLANIFICADOR/(3217:3217): Inicializacion de variables globales completada
+[TRACE] 17:07:44:126 PLANIFICADOR/(3217:3217): Se obtuvo el algoritmo de planificacion SJF
