@@ -41,7 +41,8 @@ typedef struct
 	t_log * pLog;
 	//Variables
 	typedef enum{EXITO, REEMPLAZAR} validacionReemplazo;
-	int entrySize, entryCant,algReemp, instanciaActiva;
+	algReemplazo algReemp;
+	int entrySize, entryCant, instanciaActiva;
 	char * pathMontaje;
 
 
@@ -78,7 +79,7 @@ typedef struct
 	t_entrada_tabla * findEnTablaEntrada(char *claveN);
 	void * findEnTablaLRU(char *claveN);
 	int anyEnTabla(char *clave);
-	void actualizarRegistro (char * clave);
+	void actualizarRegistro (char * claveN);
 	char * obtenerValor(char * clave);
 	t_entrada_tabla * new_entrada_tabla(char * clave, int * pointerAEntrada, int sizeValor);
 	rtdoEjec_t agregarATabla(char * clave, int *pointerAEntrada, int sizeValor);

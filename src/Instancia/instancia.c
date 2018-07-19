@@ -32,7 +32,9 @@ int main(void)
 		log_trace(pLog, "Tabla de entradas cargada");
 		log_trace(pLog, "Almacenamiento creado");
 
-		algReemp= config_get_int_value(pConf, "ALG_REEMP");
+		if( strcmp(config_get_string_value(pConf, "ALG_REEMP"),"CIRC")) algReemp=CIRC;
+		if( strcmp(config_get_string_value(pConf, "ALG_REEMP"),"LRU") )algReemp=LRU;
+		if( strcmp(config_get_string_value(pConf, "ALG_REEMP"),"BSU") )algReemp=BSU;
 		pathMontaje = config_get_string_value(pConf, "PTO_MONTAJE");
 
 //		pthread_t hiloDump;

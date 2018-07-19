@@ -26,10 +26,14 @@ rtdoEjec_t accederRecurso(op_t operacion, char * clave, char * valor)
 rtdoEjec_t storeRecurso(char * clave)
 {//NO ANDA DESDE EL PLANIFICADOR ASIQUE NO SE
 	//REAHCER
-	FILE * f = fopen(strcat("/home/utnso/Escritorio/tp-2018-1c-MAGYA/src/Instancia/PuntoDeMontaje/%s.txt",clave), "w+");
+	log_trace(pLog, "1");
+	FILE * f = fopen(strcat("*/PuntoDeMontaje/",clave), "w+");
+	log_trace(pLog, "1");
 	char*valor=obtenerValor(clave);
+	log_trace(pLog, "1");
 	int size = strlen(valor)+1;
 	int written = fwrite(valor, size, 1, f);
+	log_trace(pLog, "1");
 	fclose(f);
 	return (f != NULL && written != -1)?SUCCESS:FAILURE;
 }
@@ -81,10 +85,10 @@ void compactar(){
 	//free(entrada);
 
 }
-void actualizarRegistro (char * clave){
+void actualizarRegistro (char * claveN){
 	void clave_equal_put_zero( entrada_LRU  * pEntry)
 		{
-			if (string_equals_ignore_case(pEntry->entrada->clave, clave))
+			if (string_equals_ignore_case(&pEntry->entrada->clave, claveN)==0)
 				pEntry->cant=0;
 			else pEntry->cant++;
 			return;
@@ -117,7 +121,7 @@ rtdoEjec_t agregarEntrada(char * clave, char *valor)
 				}
 			}else{
 					pointer= nueva_entrada(valor, pointer);
-					rtdo =agregarATabla(clave, pointer, strlen(valor));
+					rtdo =agregarATabla(clave, &pointer, strlen(valor));
 
 				}
 			return rtdo;
@@ -147,11 +151,11 @@ rtdoEjec_t algoritmoLRU(char * claveNew, char *valorNew){
 			{
 				if(minimo>pEntry->cant){
 					minimo=pEntry->cant;
-					old=pEntry->entrada->pointerEntrada;
+					old=pEntry->entrada;
 				}
 			}
 		list_iterate(registroLRU, (void*)search_min);
-		reemplazarEnAlmacenamiento( old->pointerEntrada,valorNew);
+		reemplazarEnAlmacenamiento( old,valorNew);
 		reemplazarEnTabla( old,claveNew, valorNew);
 		return SUCCESS;
 
@@ -164,16 +168,27 @@ rtdoEjec_t algoritmoBSU(char * claveN, char *valorN){
 	int seEncontroValor=0;
 	for(int i=0;list_size(tablaDeEntradas);i++)
 	{
+		log_trace(pLog, "0");
 		entrada=list_get(tablaDeEntradas,i);
+		log_trace(pLog, "399999");
 		if(entrada->tamanioValor<=entrySize){
-		if(entrada->tamanioValor>entradaElegida->tamanioValor)
+			log_trace(pLog, "3");
+		if(entrada->tamanioValor>entradaElegida->tamanioValor){
+			log_trace(pLog, "000000");
 			entradaElegida=entrada;
-			seEncontroValor=1;
+						seEncontroValor=1;
+						log_trace(pLog, "-------------%d",seEncontroValor);
+			}
 		}
+
 	}
-	if(seEncontroValor){
+	log_trace(pLog, "asadsasda---%d",seEncontroValor);
+
+	if(seEncontroValor==1){
+		log_trace(pLog, "3");
 		reemplazarEnTabla(entradaElegida,claveN, valorN);
 		reemplazarEnAlmacenamiento(entrada,valorN);
+		log_trace(pLog, "3");
 		rtdo= SUCCESS;
 	}
 
@@ -182,18 +197,19 @@ rtdoEjec_t algoritmoBSU(char * claveN, char *valorN){
 		rtdo= FAILURE;
 	}
 
-	free(entradaElegida);
-	free(entrada);
+	//free(entradaElegida);
+	//free(entrada);
 
 	return rtdo;
 	//Biggest Space Used
 }
-rtdoEjec_t algoritmoCIRC(char * claveN, char *valorN){
+	rtdoEjec_t algoritmoCIRC(char * claveN, char *valorN){
 
 	t_entrada_tabla *entrada=malloc(sizeof(t_entrada_tabla));;
 	static int puntero=0;
 	for(int i=0;list_size(tablaDeEntradas)!=0;i++){
 				entrada=list_get(tablaDeEntradas,i);
+
 				if(entrada->tamanioValor<=entrySize){
 					//Cambia en entrada
 					reemplazarEnTabla(entrada,claveN, valorN);
@@ -215,7 +231,6 @@ rtdoEjec_t reemplazarEntrada(char * claveNuevo, char *valorNuevo)
 {
 	rtdoEjec_t rtdo;
 	if(strlen(valorNuevo)<=entrySize){
-		log_trace(pLog, "****ERROR***");
 	//Elige entrada segun el algoritmo del config
 	switch(algReemp)
 	{
@@ -236,9 +251,10 @@ rtdoEjec_t reemplazarEntrada(char * claveNuevo, char *valorNuevo)
 		log_trace(pLog, "****ERROR**** El algoritmo de remplazo no existe");
 	break;
 	}
-	log_trace(pLog, "****ERROR**** entrada con valor no atomico");
 
 	}else
+
+log_trace(pLog, "****ERROR**** entrada con valor no atomico");
 		rtdo=FAILURE;
 	//Avisar al coordinador?
 	return rtdo;
@@ -256,25 +272,27 @@ void reemplazarEnAlmacenamiento(t_entrada_tabla *entrada, char *valorN)
 	}
 
 }
+
 //Busqueda
 t_entrada_tabla * findEnTablaEntrada(char *claveN){
-	int *clave_equal( t_entrada_tabla  * pEntry)
+	int clave_equal( t_entrada_tabla  * pEntry)
 	{
-		return string_equals_ignore_case(pEntry->clave, claveN);
+		return string_equals_ignore_case(&pEntry->clave, claveN);
 	}
 	return list_find(tablaDeEntradas, (void*)clave_equal);
 }
 void * findEnTablaLRU(char *claveN){
-	int *clave_equal( entrada_LRU  * pEntry)
+	int clave_equal( entrada_LRU  * pEntry)
 	{
-		return string_equals_ignore_case(pEntry->entrada->clave, claveN);
+		return string_equals_ignore_case(&pEntry->entrada->clave, claveN);
 	}
 	return list_find(registroLRU, (void*)clave_equal);
 }
 int anyEnTabla(char *clave){
-	int *clave_equals( t_entrada_tabla * pEntry)
+	int clave_equals( t_entrada_tabla * pEntry)
 	{
-		return string_equals_ignore_case(pEntry->clave, clave);
+		return string_equals_ignore_case(&pEntry->clave, clave);
+
 	}
 	return list_any_satisfy(tablaDeEntradas, (void*)clave_equals);
 }
@@ -296,7 +314,7 @@ t_entrada_tabla * new_entrada_tabla(char * clave, int * pointerAEntrada, int siz
 	t_entrada_tabla * pEntry = malloc(sizeof(t_entrada_tabla));
 		strcpy(pEntry->clave, clave);
 		pEntry->tamanioValor=sizeValor;
-		pEntry->pointerEntrada=pointerAEntrada;
+		pEntry->pointerEntrada=*pointerAEntrada;
 
 	return pEntry;
 }
