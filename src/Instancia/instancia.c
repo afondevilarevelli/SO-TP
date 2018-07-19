@@ -31,10 +31,10 @@ int main(void)
 		cargarTablaDeEntradasYAlmacenamiento(pConf);
 		log_trace(pLog, "Tabla de entradas cargada");
 		log_trace(pLog, "Almacenamiento creado");
-
-		if( strcmp(config_get_string_value(pConf, "ALG_REEMP"),"CIRC")) algReemp=CIRC;
-		if( strcmp(config_get_string_value(pConf, "ALG_REEMP"),"LRU") )algReemp=LRU;
-		if( strcmp(config_get_string_value(pConf, "ALG_REEMP"),"BSU") )algReemp=BSU;
+		char * algoritmoReemplazo=config_get_string_value(pConf, "ALG_REEMP");
+		if( strcmp(algoritmoReemplazo,"CIRC")==0) algReemp=CIRC;
+		if( strcmp(algoritmoReemplazo,"LRU")==0)algReemp=LRU;
+		if( strcmp(algoritmoReemplazo,"BSU")==0)algReemp=BSU;
 		pathMontaje = config_get_string_value(pConf, "PTO_MONTAJE");
 
 //		pthread_t hiloDump;

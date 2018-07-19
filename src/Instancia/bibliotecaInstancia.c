@@ -3,6 +3,7 @@
 //Basicas
 rtdoEjec_t accederRecurso(op_t operacion, char * clave, char * valor)
 {
+
 	rtdoEjec_t rtdo;
 	switch(operacion)
 	{
@@ -73,15 +74,22 @@ void compactar(){
 	for(int i=0;list_size(tablaDeEntradas)!=i;i++){
 
 		entrada=list_get(tablaDeEntradas,i);
-		if(pointer!=entrada->pointerEntrada){
-
 			char* valor=obtenerValor(entrada->clave);
-			pointer=nueva_entrada(valor,pointer);
-		}
+			entrada->pointerEntrada=pointer;
+				for(int i=0; strlen(valor)!=i;i++){
+					almNuevo[pointer]=valor[i];
+					pointer++;
+				}
+
+				if((strlen(valor)% entrySize)!=0){
+					pointer=pointer+(entrySize%strlen(valor));//agrega al puntero la cantidad extra q falta para llegar al Entrycant.
+				}
 	}
-	//free(almacenamiento);
+
 	almacenamiento=almNuevo;
+	//free(almNuevo);
 	log_trace(pLog, "Compactacion Terminada");
+	return;
 	//free(entrada);
 
 }
@@ -100,8 +108,8 @@ void actualizarRegistro (char * claveN){
 rtdoEjec_t agregarEntrada(char * clave, char *valor)
 {
 	rtdoEjec_t rtdo;
-	int static yaCompacto=1;
-		static int pointer=0;
+	static int yaCompacto=1;
+	static int pointer=0;
 			int cantEntradaNecesarias=strlen(valor)/entrySize;
 			if(entrySize%strlen(valor))cantEntradaNecesarias++;
 
@@ -109,8 +117,7 @@ rtdoEjec_t agregarEntrada(char * clave, char *valor)
 				if(yaCompacto){
 					log_trace(pLog, "Almacenamiento insuficiente. Compactacion");
 					compactar();
-					yaCompacto=0;
-					pointer=0;
+					 yaCompacto=0;
 					//HACER___Enviara acoordinador a q las otras Instancias compacten
 					rtdo=agregarEntrada(clave,valor);
 				}else{
@@ -120,9 +127,9 @@ rtdoEjec_t agregarEntrada(char * clave, char *valor)
 
 				}
 			}else{
-					pointer= nueva_entrada(valor, pointer);
-					rtdo =agregarATabla(clave, &pointer, strlen(valor));
 
+					rtdo =agregarATabla(clave, &pointer, strlen(valor));
+					pointer= nueva_entrada(valor, pointer);
 				}
 			return rtdo;
 }
@@ -163,32 +170,26 @@ rtdoEjec_t algoritmoLRU(char * claveNew, char *valorNew){
 rtdoEjec_t algoritmoBSU(char * claveN, char *valorN){
 	rtdoEjec_t rtdo;
 	t_entrada_tabla* entradaElegida=malloc(sizeof(t_entrada_tabla));
-	t_entrada_tabla *entrada=malloc(sizeof(t_entrada_tabla));;
+	t_entrada_tabla *entrada=malloc(sizeof(t_entrada_tabla));
 	entradaElegida->tamanioValor=0;
 	int seEncontroValor=0;
-	for(int i=0;list_size(tablaDeEntradas);i++)
+	for(int i=0;list_size(tablaDeEntradas)!=i;i++)
 	{
-		log_trace(pLog, "0");
 		entrada=list_get(tablaDeEntradas,i);
-		log_trace(pLog, "399999");
 		if(entrada->tamanioValor<=entrySize){
-			log_trace(pLog, "3");
-		if(entrada->tamanioValor>entradaElegida->tamanioValor){
-			log_trace(pLog, "000000");
-			entradaElegida=entrada;
-						seEncontroValor=1;
-						log_trace(pLog, "-------------%d",seEncontroValor);
-			}
+			if(entrada->tamanioValor>entradaElegida->tamanioValor){
+				entradaElegida=entrada;
+				seEncontroValor=1;
+				}
 		}
 
 	}
 	log_trace(pLog, "asadsasda---%d",seEncontroValor);
 
 	if(seEncontroValor==1){
-		log_trace(pLog, "3");
+		log_trace(pLog, "Se reemplazara clave=%s",entradaElegida->clave);
 		reemplazarEnTabla(entradaElegida,claveN, valorN);
 		reemplazarEnAlmacenamiento(entrada,valorN);
-		log_trace(pLog, "3");
 		rtdo= SUCCESS;
 	}
 
@@ -252,10 +253,11 @@ rtdoEjec_t reemplazarEntrada(char * claveNuevo, char *valorNuevo)
 	break;
 	}
 
-	}else
+	}else{
 
-log_trace(pLog, "****ERROR**** entrada con valor no atomico");
+		log_trace(pLog, "****ERROR**** entrada con valor no atomico");
 		rtdo=FAILURE;
+	}
 	//Avisar al coordinador?
 	return rtdo;
 }
@@ -331,6 +333,7 @@ int  nueva_entrada(char *valor, int  pointer){
 	}
 	return pointer;
 }
+
 
 void cargarTablaDeEntradasYAlmacenamiento(t_config * pConf)
 {
