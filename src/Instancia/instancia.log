@@ -12899,3 +12899,31 @@ Cerrando instancia...
 [TRACE] 12:02:48:857 INSTANCIA/(8821:8821): A la espera de solicitudes
 [ERROR] 12:08:44:967 INSTANCIA/(8821:8821): Se ha cortado la conexion con el Coordinador
 Cerrando instancia...
+[TRACE] 18:18:17:850 INSTANCIA/(4245:4245): Iniciando...
+[TRACE] 18:18:17:860 INSTANCIA/(4245:4245): Conectada a Coordinador
+[TRACE] 18:18:17:863 INSTANCIA/(4245:4245): Tabla de entradas cargada
+[TRACE] 18:18:17:863 INSTANCIA/(4245:4245): Almacenamiento creado
+[TRACE] 18:18:17:863 INSTANCIA/(4245:4245): A la espera de solicitudes
+[DEBUG] 18:22:04:377 INSTANCIA/(4245:4245): Solicitud recibida
+[TRACE] 18:22:04:377 INSTANCIA/(4245:4245): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 18:22:04:377 INSTANCIA/(4245:4245): Sentencia recibida:
+ op=GET, clave=jugador, valor=No corresponde
+
+[TRACE] 18:22:04:377 INSTANCIA/(4245:4245): QUIERE HACER GET
+[DEBUG] 18:22:04:377 INSTANCIA/(4245:4245): El resultado de la sentencia fue SUCCESS
+[TRACE] 18:22:04:377 INSTANCIA/(4245:4245): Resultado enviado al Coordinador
+[TRACE] 18:22:04:377 INSTANCIA/(4245:4245): A la espera de solicitudes
+[DEBUG] 18:22:04:886 INSTANCIA/(4245:4245): Solicitud recibida
+[TRACE] 18:22:04:886 INSTANCIA/(4245:4245): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 18:22:04:886 INSTANCIA/(4245:4245): Sentencia recibida:
+ op=SET, clave=jugador, valor=abondanzieri
+
+[DEBUG] 18:22:04:886 INSTANCIA/(4245:4245): El resultado de la sentencia fue SUCCESS
+[TRACE] 18:22:04:886 INSTANCIA/(4245:4245): Resultado enviado al Coordinador
+[TRACE] 18:22:04:886 INSTANCIA/(4245:4245): A la espera de solicitudes
+[DEBUG] 18:22:05:392 INSTANCIA/(4245:4245): Solicitud recibida
+[TRACE] 18:22:05:392 INSTANCIA/(4245:4245): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 18:22:05:392 INSTANCIA/(4245:4245): Sentencia recibida:
+ op=STORE, clave=jugador, valor=No corresponde
+
+[TRACE] 18:22:05:392 INSTANCIA/(4245:4245): 1

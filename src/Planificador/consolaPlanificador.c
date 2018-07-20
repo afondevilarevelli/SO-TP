@@ -173,6 +173,11 @@ ESI_t* buscarProcesoEnColas(t_queue* cola,int id){
 	return NULL;// SI NO ESTA EN LA cola BOTA NULL la funcion
 }
 
+bool estaBloqueado(ESI_t* esi){
+	ESI_t* pEsi = buscarProcesoEnColas(ESIsBloqueados, esi->id);
+	return pEsi != NULL;
+}
+
 //3)desbloquear
 void desbloquearProcesoESI(char* clave, int id){
 	t_queue*c = colaAsociada(clave);

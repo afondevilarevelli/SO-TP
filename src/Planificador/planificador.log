@@ -1181,3 +1181,43 @@ Saliendo del sistema.
 [TRACE] 17:07:44:118 PLANIFICADOR/(3217:3217): Iniciando...
 [TRACE] 17:07:44:123 PLANIFICADOR/(3217:3217): Inicializacion de variables globales completada
 [TRACE] 17:07:44:126 PLANIFICADOR/(3217:3217): Se obtuvo el algoritmo de planificacion SJF
+[TRACE] 18:18:35:565 PLANIFICADOR/(4286:4286): Iniciando...
+[TRACE] 18:18:35:571 PLANIFICADOR/(4286:4286): Inicializacion de variables globales completada
+[TRACE] 18:18:35:573 PLANIFICADOR/(4286:4286): Se obtuvo el algoritmo de planificacion SJF
+[TRACE] 18:18:35:577 PLANIFICADOR/(4286:4286): Se conecto al Coordinador en el socket 4
+[TRACE] 18:18:35:577 PLANIFICADOR/(4286:4286): Se creo un hilo para recibir ESIs
+[TRACE] 18:18:35:578 PLANIFICADOR/(4286:4286): Se creo un hilo para colaborar con el Coordinador
+[TRACE] 18:18:35:578 PLANIFICADOR/(4286:4286): Se creo un hilo para planificar segun SJF
+[TRACE] 18:18:35:579 PLANIFICADOR/(4286:4286): Se creo un hilo para la consola
+[TRACE] 18:18:35:580 PLANIFICADOR/(4286:4290): Se espera a que haya ESIs en la cola de listos
+[TRACE] 18:22:04:372 PLANIFICADOR/(4286:4290): Segun SJF el ESI a ejecutar ahora es el de id = 7
+[TRACE] 18:22:04:372 PLANIFICADOR/(4286:4290): Se dio la orden de ejecutar al ESI en ejecucion
+[TRACE] 18:22:04:372 PLANIFICADOR/(4286:4290): Se espera la respuesta del ESI en ejecucion
+[TRACE] 18:22:04:374 PLANIFICADOR/(4286:4671): Atendiendo ESI de ID=7
+[TRACE] 18:22:04:375 PLANIFICADOR/(4286:4671): A la espera de respuesta del ESI 7
+[TRACE] 18:22:04:376 PLANIFICADOR/(4286:4289): El Coordinador pregunta si el ESI 7 puede ejecutar
+	La operacion GET sobre la clave jugador
+
+[TRACE] 18:22:04:376 PLANIFICADOR/(4286:4289): respuesta enviada al coordinador: SUCCESS
+[DEBUG] 18:22:04:883 PLANIFICADOR/(4286:4671): Se recibio el rtdoEjec = SUCCESS
+[TRACE] 18:22:04:884 PLANIFICADOR/(4286:4671): A la espera de respuesta del ESI 7
+[TRACE] 18:22:04:884 PLANIFICADOR/(4286:4290): Se dio la orden de ejecutar al ESI en ejecucion
+[TRACE] 18:22:04:884 PLANIFICADOR/(4286:4290): Se espera la respuesta del ESI en ejecucion
+[TRACE] 18:22:04:885 PLANIFICADOR/(4286:4289): El Coordinador pregunta si el ESI 7 puede ejecutar
+	La operacion SET sobre la clave jugador
+
+[TRACE] 18:22:04:885 PLANIFICADOR/(4286:4289): respuesta enviada al coordinador: SUCCESS
+[DEBUG] 18:22:05:389 PLANIFICADOR/(4286:4671): Se recibio el rtdoEjec = SUCCESS
+[TRACE] 18:22:05:389 PLANIFICADOR/(4286:4671): A la espera de respuesta del ESI 7
+[TRACE] 18:22:05:389 PLANIFICADOR/(4286:4290): Se dio la orden de ejecutar al ESI en ejecucion
+[TRACE] 18:22:05:389 PLANIFICADOR/(4286:4290): Se espera la respuesta del ESI en ejecucion
+[TRACE] 18:22:05:391 PLANIFICADOR/(4286:4289): El Coordinador pregunta si el ESI 7 puede ejecutar
+	La operacion STORE sobre la clave jugador
+
+[TRACE] 18:22:05:391 PLANIFICADOR/(4286:4289): respuesta enviada al coordinador: SUCCESS
+[DEBUG] 18:22:05:895 PLANIFICADOR/(4286:4671): Se recibio el rtdoEjec = SENTENCIA
+[TRACE] 18:22:05:895 PLANIFICADOR/(4286:4671): A la espera de respuesta del ESI 7
+[ERROR] 18:22:05:895 PLANIFICADOR/(4286:4290): ERROR: rtdoEjecucion desconocido
+[TRACE] 18:22:05:895 PLANIFICADOR/(4286:4290): Se espera a que haya ESIs en la cola de listos
+[ERROR] 18:22:28:598 PLANIFICADOR/(4286:4289): Se desconecto el Coordinador. El sistema se encuentra en un estado invalido.
+Saliendo del sistema.

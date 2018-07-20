@@ -30,5 +30,6 @@ void consolaPlanificador();
 
 ESI_t* buscarProcesoESI(int id);
 ESI_t* buscarProcesoEnColas(t_queue* cola, int id);
+bool estaBloqueado(ESI_t* esi);
 
 #endif

@@ -63,7 +63,6 @@ void planificarSegunFIFO(){
 			{
 				case FAILURE:
 					log_error(pLog, "El ESI de id = %d ha fallado");
-					pESIEnEjecucion->state = BLOQUEADO;
 					queue_push(ESIsBloqueados, pESIEnEjecucion);
 					break;
 				case NO_HAY_INSTANCIAS_CONECTADAS:
@@ -113,7 +112,6 @@ void planificarSegunSJF(){
 
 			if( rtdoEjecucion == FAILURE){
 			log_error(pLog, "El ESI de id = %d ha fallado");
-			pESIEnEjecucion->state = BLOQUEADO;
 			queue_push(ESIsBloqueados, pESIEnEjecucion); 
 			}
 			else if( rtdoEjecucion == NO_HAY_INSTANCIAS_CONECTADAS )
@@ -165,7 +163,6 @@ void planificarSegunSRT(){
 
 			if( rtdoEjecucion == FAILURE){
 			log_error(pLog, "El ESI de id = %d ha fallado");
-			pESIEnEjecucion->state = BLOQUEADO;
 			queue_push(ESIsBloqueados, pESIEnEjecucion); 
 			}
 			else
@@ -219,7 +216,6 @@ void planificarSegunHRRN(){
 
 			if( rtdoEjecucion == FAILURE){
 			log_error(pLog, "El ESI de id = %d ha fallado");
-			pESIEnEjecucion->state = BLOQUEADO;
 			queue_push(ESIsBloqueados, pESIEnEjecucion); 
 			}
 			else if( rtdoEjecucion == NO_HAY_INSTANCIAS_CONECTADAS )

@@ -38,13 +38,14 @@ void procesarSolicitudCoordinador(void * solicitud, int size)
     rta = ABORTED;
 
   sendWithBasicProtocol(socketCoord, &rta, sizeof(rtdoEjec_t));
+  log_trace(pLog, "respuesta enviada al coordinador: %s",rta==FAILURE?"FAILURE":rta==SUCCESS?"SUCCESS":rta==ABORTED?"ABORTED":"???");
 }
 
 bool puedeEjecutar(int idESI, int op, char * clave)
 {
+  cola_clave* c = buscarElementoDeLista(clave);
   if(op == GET)
   { // operacion GET
-    cola_clave* c = buscarElementoDeLista(clave);
     if( !c )
     {
       list_add(ListaColas, new_cola_clave(clave, idESI));
@@ -53,7 +54,6 @@ bool puedeEjecutar(int idESI, int op, char * clave)
     else
     {
       ESI_t* esi = buscarProcesoESI(idESI);
-      esi->state = BLOQUEADO;
       queue_push(c->cola,esi);
       pthread_mutex_lock(&m_colaBloqueados);
       queue_push(ESIsBloqueados, esi);
@@ -63,7 +63,6 @@ bool puedeEjecutar(int idESI, int op, char * clave)
   }
   else if(op == SET)
   { //operacion SET
-      cola_clave* c = buscarElementoDeLista(clave);
       if(c){ 
         int idEsiConClave = c -> idEsiUsandoClave;
         return idEsiConClave == idESI;
@@ -74,16 +73,18 @@ bool puedeEjecutar(int idESI, int op, char * clave)
   }
   else
   { //operacion STORE
-    cola_clave* c = buscarElementoDeLista(clave);
-    if(c)
+    if(c != NULL)
     {
       int idEsiConClave = c -> idEsiUsandoClave;
       if(idEsiConClave == idESI)
       {
-        if(!queue_is_empty(c->cola)){ 
-        ESI_t* elESI = (ESI_t*)(queue_pop(c->cola));
-        elESI->state = NORMAL;
-        c->idEsiUsandoClave = elESI->id;
+        if(c->cola != NULL ){ 
+        c->idEsiUsandoClave = ( (ESI_t*)(queue_pop(c->cola)) )->id;
+        ESI_t* elEsi = buscarProcesoESI(c->idEsiUsandoClave);
+        esiADesbloquear = elEsi;
+        pthread_mutex_lock(&m_colaBloqueados);
+        list_remove_by_condition(ESIsBloqueados->elements, (void*) condicionRemover);
+        pthread_mutex_unlock(&m_colaBloqueados);
         return true;
         }
         else{
@@ -106,4 +107,8 @@ void coordinadorDesconectado()
   socketCoord = -1;
   log_error(pLog, "Se desconecto el Coordinador. El sistema se encuentra en un estado invalido.\nSaliendo del sistema.");
   exit(1);
+}
+
+bool condicionRemover(ESI_t* esi){
+    return esi->id == esiADesbloquear->id;
 }
