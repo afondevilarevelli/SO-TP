@@ -119,6 +119,18 @@ void letReUseAddr(int sockAddr)
 		normalErrorHandling("SETSOCKOPT_FAILED");
 }
 
+uint32_t getIntegerIP(char * strIP)
+{
+	struct in_addr ipContainer; //ipContainer.s_addr ---> uint32
+
+	if( inet_aton( strIP, &ipContainer) )
+		return ipContainer.s_addr;
+	else
+		normalErrorHandling("ERROR OBTENIENDO EL IP ENTERO");
+
+	return 0;
+}
+
 void normalErrorHandling(char * errorMsg)
 {
 	perror(errorMsg);

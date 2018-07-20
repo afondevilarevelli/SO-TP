@@ -1,5 +1,21 @@
 #include "bibliotecaInstancia.h"
 
+void mostrarEntrada(t_entrada_tabla * pEntry)
+{
+	printf("-------------------\n");
+	printf("-------------------\r");
+	printf("Puntero: %d\n", pEntry->pointerEntrada);
+	printf("-------------------\n");
+	printf("-------------------\r");
+	printf("Clave: %s\n", pEntry->clave);
+	printf("-------------------\n");
+	printf("-------------------\r");
+	printf("TamanioValor: %d\n", pEntry->tamanioValor);
+	printf("-------------------\n");
+	printf("-------------------\n");
+	printf("-------------------\n\n");
+}
+
 //Basicas
 rtdoEjec_t accederRecurso(op_t operacion, char * clave, char * valor)
 {
@@ -30,6 +46,8 @@ rtdoEjec_t accederRecurso(op_t operacion, char * clave, char * valor)
 	}
 	if (operacion!=COMPACTAR)
 		actualizarRegistro(clave);
+
+	list_iterate(tablaDeEntradas, (void*)&mostrarEntrada);
 
 	return rtdo;
 }
@@ -108,24 +126,22 @@ void compactar()
 	almacenamiento=almNuevo;
 	//free(almNuevo);
 	log_trace(pLog, "Compactacion Terminada");
-	return;
 	//free(entrada);
-
 }
+
 void actualizarRegistro (char * claveN)
 {
 	void clave_equal_put_zero( entrada_LRU  * pEntry)
 		{
-			if (string_equals_ignore_case(&pEntry->entrada->clave, claveN)==0)
+			if (string_equals_ignore_case(&pEntry->entrada->clave, claveN))
 				pEntry->cant=0;
 			else
 				pEntry->cant++;
-			return;
 		}
-	list_iterate(registroLRU, (void*)clave_equal_put_zero);
 
-	return;
+	list_iterate(registroLRU, (void*)clave_equal_put_zero);
 }
+
 rtdoEjec_t agregarEntrada(char * clave, char *valor)
 {
 	rtdoEjec_t rtdo;

@@ -18,7 +18,7 @@ int main(void)
 	log_trace(pLog, "Conectada a Coordinador");
 
 		/////////////////////////////////////////////////////////////////
-		//tamaño de las entradas q me diec el coordinador
+		//tamaño de las entradas q me dice el coordinador
 		void * infoEntries;
 		int bytes = recvWithBasicProtocol(coord_socket, &infoEntries);
 		tBuffer * pBuff = makeBuffer(infoEntries, bytes);
@@ -32,9 +32,14 @@ int main(void)
 		log_trace(pLog, "Tabla de entradas cargada");
 		log_trace(pLog, "Almacenamiento creado");
 		char * algoritmoReemplazo=config_get_string_value(pConf, "ALG_REEMP");
-		if( strcmp(algoritmoReemplazo,"CIRC")==0) algReemp=CIRC;
-		if( strcmp(algoritmoReemplazo,"LRU")==0)algReemp=LRU;
-		if( strcmp(algoritmoReemplazo,"BSU")==0)algReemp=BSU;
+
+		if( strcmp(algoritmoReemplazo,"CIRC")==0)
+			algReemp=CIRC;
+		else if( strcmp(algoritmoReemplazo,"LRU")==0)
+			algReemp=LRU;
+		else if( strcmp(algoritmoReemplazo,"BSU")==0)
+			algReemp=BSU;
+
 		pathMontaje = config_get_string_value(pConf, "PTO_MONTAJE");
 
 //		pthread_t hiloDump;
@@ -46,13 +51,14 @@ int main(void)
 
 			log_trace(pLog, "A la espera de solicitudes");
 			int size= recvWithBasicProtocol(coord_socket, &ordenDeAcceso);
+
 			if(size)
 			{
 				log_debug(pLog, "Solicitud recibida");
 
 				int aviso = SOLICITUD_ESI_ATENDIENDOSE;
 				sendWithBasicProtocol(coord_socket, &aviso, sizeof(int));
-				log_trace(pLog, "Se informa al Coordinador que su solicitud esta siendo atendida");
+				log_trace(pLog, "Se informa al Coordinador que su solicitud esta siendo atendida (%d)", aviso);
 
 				tBuffer * buffSent = makeBuffer(ordenDeAcceso, size);
 				ESISentenciaParseada_t sent;
@@ -61,17 +67,19 @@ int main(void)
 				if(sent.operacion == ORDEN_COMPACTAR)
 					sent.clave = NULL;
 				else
-				sent.clave = readStringFromBuffer(buffSent);
+				{
+					sent.clave = readStringFromBuffer(buffSent);
 
-				if(sent.operacion == SET)
-				{
-					sent.valor = readStringFromBuffer(buffSent);
-					size = strlen(sent.valor)+1;
-				}
-				else
-				{
-					sent.valor = NULL;
-					size = 0;
+					if(sent.operacion == SET)
+					{
+						sent.valor = readStringFromBuffer(buffSent);
+						size = strlen(sent.valor)+1;
+					}
+					else
+					{
+						sent.valor = NULL;
+						size = 0;
+					}
 				}
 
 				log_debug(pLog, "Sentencia recibida:\n op=%s, clave=%s, valor=%s\n", sent.operacion == SET ? "SET":sent.operacion==GET?"GET":sent.operacion==STORE?"STORE":"ORDEN_COMPACTAR", sent.clave, sent.valor?sent.valor:"No corresponde");

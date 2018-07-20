@@ -42,6 +42,9 @@ void sendToAll( int maxFd, fd_set master, void * msg, int size);
 void letReUseAddr(int sockAddr);
 //evita que salte un error molesto de "puerto todavia en uso"
 
+uint32_t getIntegerIP(char * strIP);
+//devuelve la direccion IP como int
+
 void normalErrorHandling(char * errorMsg);
 //muestra por pantalla el error y detiene el programa
 
