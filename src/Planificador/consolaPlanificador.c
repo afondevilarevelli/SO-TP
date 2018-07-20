@@ -223,20 +223,20 @@ void informacionDeInstancias(char * clave)
 }//status
 void analizarDeadlockDelSistema(){}
 char* claveESIenEjecucion(){
-	ESI_t* e = esiEjecucion();
-	return "La clave que usa dicho esi"
+	ESI_t* e = pESIEnEjecucion;
+	return "La clave que usa dicho esi";
 }
 //esiEjecucion() devuelve el ESI_t* que esta ejecutando
 void deadlock(){
-	t_queue* c; 
+	t_queue* c;
 	ESI_t* e;
 	char* clave = claveESIenEjecucion();
 	c = colaAsociada(clave);
 	if(queue_size(c)> 0){
 		e = queue_peek(c);//queue_peek devuelve el primer elemento sin extraerlo
-		printf("El ESI en ejecucion con ID = %d usa la clave:%s ,que esta esperando el ESI ID = %d",esiEjecucion()->id,clave,e ->id);
+		printf("El ESI en ejecucion con ID = %d usa la clave:%s ,que esta esperando el ESI ID = %d",pESIEnEjecucion->id,clave,e->id);
 	}
 	else{
-	printf("No hay clave(recurso) que un ESI use y que otro ESI espere este recurso");	
+	printf("No hay clave(recurso) que un ESI use y que otro ESI espere este recurso");
 	}
 }
