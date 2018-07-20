@@ -222,6 +222,7 @@ void informacionDeInstancias(char * clave)
 	listar(clave);
 }//status
 void analizarDeadlockDelSistema(){}
+
 char* claveESIenEjecucion(){
 	ESI_t* e = pESIEnEjecucion;
 	return "La clave que usa dicho esi";
