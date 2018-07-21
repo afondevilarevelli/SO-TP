@@ -317,7 +317,7 @@ rtdoEjec_t algoritmoLRU(char * claveNew, char *valorNew)
 
 	void search_max( entrada_LRU  * pEntry)
 			{
-				if(max<pEntry->cant)
+				if(max<pEntry->cant){
 					max=pEntry->cant;
 					old=pEntry->entrada;
 				}
