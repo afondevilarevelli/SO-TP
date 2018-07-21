@@ -225,7 +225,7 @@ rtdoEjec_t agregarEntrada(char * clave, char *valor)
 			{
 			//Se dice al Coordinador qe todas deben compactar
 			rtdoEjec_t orden=ORDEN_COMPACTAR;
-			sendWithBasicProtocol(coord_socket, &orden, sizeof(rtdoEjec_t));
+			//sendWithBasicProtocol(coord_socket, &orden, sizeof(rtdoEjec_t));
 			log_trace(pLog, "Resultado enviado al Coordinador");
 
 			compactar();
@@ -295,11 +295,12 @@ rtdoEjec_t storeRecurso(char * clave)
 	char* val = obtenerValor(clave);
 
 	//Extencion completa del archivo
-	char dir[strlen(pathMontaje)+4+strlen(clave)];
+	char * dir = malloc(strlen(pathMontaje)+4+strlen(clave)+1);
 	strcpy(dir,pathMontaje);
 	strcat(dir,clave);
 	strcat(dir,".txt");
 
+	//puts(dir);
 	fp=fopen(dir,"w");
 
 	fwrite(val,sizeof(val),1,fp);
@@ -544,7 +545,7 @@ void cargarTablaDeEntradasYAlmacenamiento(t_config * pConf)
 	return;
 }
 void avisarCoordTamanioOcupado(){
-	int tamanio;
+	/*int tamanio;
 	int i;
 	for(i=0;entryCant!=i;i++)
 	{
@@ -552,7 +553,7 @@ void avisarCoordTamanioOcupado(){
 			tamanio++;
 	}
 	sendWithBasicProtocol(coord_socket, &tamanio, sizeof(int));
-	log_trace(pLog, "Resultado de tamanio ocupado enviado");
+	log_trace(pLog, "Resultado de tamanio ocupado enviado");*/
 
 }
 int conectarseACoordinador(t_config * pConf)
