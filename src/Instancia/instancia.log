@@ -12979,3 +12979,31 @@ Cerrando instancia...
  op=STORE, clave=jugador, valor=No corresponde
 
 [TRACE] 00:55:52:436 INSTANCIA/(5790:5790): 1
+[TRACE] 01:14:17:820 INSTANCIA/(6846:6846): Iniciando...
+[TRACE] 01:14:17:821 INSTANCIA/(6846:6846): Conectada a Coordinador
+[TRACE] 01:14:17:824 INSTANCIA/(6846:6846): Tabla de entradas cargada
+[TRACE] 01:14:17:824 INSTANCIA/(6846:6846): Almacenamiento creado
+[TRACE] 01:14:17:824 INSTANCIA/(6846:6846): A la espera de solicitudes
+[DEBUG] 01:14:23:957 INSTANCIA/(6846:6846): Solicitud recibida
+[TRACE] 01:14:23:957 INSTANCIA/(6846:6846): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 01:14:23:957 INSTANCIA/(6846:6846): Sentencia recibida:
+ op=GET, clave=jugador, valor=No corresponde
+
+[TRACE] 01:16:12:494 INSTANCIA/(6846:6846): QUIERE HACER GET
+[DEBUG] 01:19:55:220 INSTANCIA/(6846:6846): El resultado de la sentencia fue SUCCESS
+[TRACE] 01:20:21:868 INSTANCIA/(6846:6846): Resultado enviado al Coordinador
+[TRACE] 01:20:44:794 INSTANCIA/(6846:6846): A la espera de solicitudes
+[DEBUG] 01:20:57:622 INSTANCIA/(6846:6846): Solicitud recibida
+[TRACE] 01:21:08:240 INSTANCIA/(6846:6846): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 01:22:10:629 INSTANCIA/(6846:6846): Sentencia recibida:
+ op=SET, clave=jugador, valor=abondanzieri
+
+[DEBUG] 01:24:53:638 INSTANCIA/(6846:6846): El resultado de la sentencia fue SUCCESS
+[TRACE] 01:25:12:772 INSTANCIA/(6846:6846): Resultado enviado al Coordinador
+[TRACE] 01:25:21:163 INSTANCIA/(6846:6846): A la espera de solicitudes
+[DEBUG] 01:25:32:796 INSTANCIA/(6846:6846): Solicitud recibida
+[TRACE] 01:25:39:544 INSTANCIA/(6846:6846): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 01:26:18:170 INSTANCIA/(6846:6846): Sentencia recibida:
+ op=STORE, clave=jugador, valor=No corresponde
+
+[TRACE] 01:27:10:139 INSTANCIA/(6846:6846): 1

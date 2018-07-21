@@ -33,7 +33,7 @@ rtdoEjec_t accederRecurso(op_t operacion, char * clave, char * valor)
 			break;
 
 		case STORE:
-			rtdo = storeRecurso(clave);
+			rtdo = storeRecurso(clave); // ACÁ ME PRODUCE SEGMENTATION FAULT EN GDB DEBUGGER!!!!!!!!!!!!!!!!!!!!
 			break;
 
 		case ORDEN_COMPACTAR:
