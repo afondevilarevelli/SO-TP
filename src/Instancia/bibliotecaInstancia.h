@@ -47,7 +47,6 @@ typedef struct
 	char * pathMontaje;
 
 
-
 	//Funciones de Coonexion e Iniciaciones
 	int conectarseACoordinador(t_config * pConf);
 	void obtenerIPyPuertoDeCoordinador(t_config * pConf, int * ip, int * puerto);
