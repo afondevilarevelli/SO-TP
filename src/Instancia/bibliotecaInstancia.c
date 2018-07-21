@@ -90,49 +90,47 @@ void compactar()
 {
 	//AVISAR A COORDINADOR Q COMPACTE!!!!!!!
 
-	char *almNuevo = calloc(entryCant,entrySize);
-	int pointer=0;
+	char *almNuevo = calloc((entryCant*entrySize),sizeof(char));
+	int pointer=0,cantEntradaNecesarias;
 	t_entrada_tabla *entrada=malloc(sizeof(t_entrada_tabla));
+	char *valor;
 	int i;
-	int k;
-	for(k=0;entryCant!=k;k++)
+	int m,j;
+	for(m=0;entryCant!=m;m++)
 	{
-		bitarray_clean_bit(bitarray,k);
+		bitarray_clean_bit(bitarray,m);
 	}
-	log_trace(pLog, "1");
 	for(i=0;list_size(tablaDeEntradas)!=i;i++)
 	{
 		entrada=list_get(tablaDeEntradas,i);
-		char *valor=obtenerValor(entrada->clave);
-		entrada->pointerEntrada=pointer;
-		log_trace(pLog, "2");
+		valor=obtenerValor(entrada->clave);
 			//setea el bit Array
-		int cantEntradaNecesarias=strlen(valor)/entrySize;
-					if(entrySize%strlen(valor))
-						cantEntradaNecesarias++;
-					log_trace(pLog, "7");
-					int k;
-					for(k=0;cantEntradaNecesarias!=k;k++)
-					{
-						log_trace(pLog, "0");
-						bitarray_set_bit(bitarray,(pointer/entrySize)+k);
-					}
-					log_trace(pLog, "3");
-					//Agrega los valors
-		int j;
-		for(j=0; strlen(valor)!= j; j++)
+		cantEntradaNecesarias=strlen(valor)/entrySize;
+		if(entrySize%strlen(valor))
 		{
-			log_trace(pLog, "4");
-			almNuevo[pointer]=valor[j];
-			log_trace(pLog, "5");
-			pointer++;
+			cantEntradaNecesarias++;
+			log_trace(pLog, "Quien Sabe...");
 		}
 
-		if((strlen(valor)% entrySize)!=0)
+		int k;
+		for(k=0;cantEntradaNecesarias!=k;k++)
 		{
-			log_trace(pLog, "6");
-			pointer=pointer+(entrySize%strlen(valor));//agrega al puntero la cantidad extra q falta para llegar al Entrycant.
+			bitarray_set_bit(bitarray,((pointer/entrySize)+k));
 		}
+					//Agrega los valors
+		entrada->pointerEntrada=pointer;
+		int aux=pointer;
+		for(j=0; strlen(valor)!= j; j++)
+		{
+			almNuevo[aux+j]=valor[j];
+			aux++;
+		}
+
+		pointer=pointer+cantEntradaNecesarias*entrySize;
+//		if((strlen(valor)% entrySize)!=0)
+//
+//			pointer=pointer+entrySize-(entrySize%strlen(valor));//agrega al puntero la cantidad extra q falta para llegar al Entrycant.
+//		}
 
 	}
 
@@ -157,11 +155,13 @@ void actualizarRegistro (char * claveN)
 
 
 int punteroLugarDisponible(char *valor){
-	int cantEntradaNecesarias=strlen(valor)/entrySize;
+
 	int seEncontroLugar=1;
+	int cantEntradaNecesarias=strlen(valor)/entrySize;
 		if(entrySize%strlen(valor))
 			cantEntradaNecesarias++;
-	int i,j,cantAux=cantEntradaNecesarias;
+
+	int i,cantAux=cantEntradaNecesarias;
 	//busca en todo el almacenamiento
 		for(i=0;entryCant!=i;i++)
 		{
@@ -183,7 +183,10 @@ int punteroLugarDisponible(char *valor){
 			}
 
 		}
-
+		if(cantAux==0)
+		{
+			return i-cantEntradaNecesarias;
+		}
 		return -1;
 }
 int deboCompactar(char *valor){
@@ -210,6 +213,7 @@ rtdoEjec_t agregarEntrada(char * clave, char *valor)
 	rtdoEjec_t rtdo;
 	static int yaCompacto=0;
 	int puntero;
+	int compacto;
 
 
 	puntero= punteroLugarDisponible(valor);
@@ -220,7 +224,7 @@ rtdoEjec_t agregarEntrada(char * clave, char *valor)
 		if(yaCompacto==0)
 		{
 			log_trace(pLog, "Almacenamiento insuficiente. Compactacion");
-			int compacto=deboCompactar(valor);
+			compacto=deboCompactar(valor);
 			if(compacto==0)
 			{
 			compactar();
@@ -230,7 +234,7 @@ rtdoEjec_t agregarEntrada(char * clave, char *valor)
 
 
 		}
-		else
+		 if(yaCompacto==0||compacto==1)
 		{
 			log_trace(pLog, "Almacenamiento insuficiente. Reemplazar ");
 			rtdo=reemplazarEntrada(clave, valor);
@@ -313,21 +317,19 @@ rtdoEjec_t algoritmoLRU(char * claveNew, char *valorNew)
 
 	void search_max( entrada_LRU  * pEntry)
 			{
-		log_info(pLog, "3");
 				if(max<pEntry->cant)
-				{log_info(pLog, "4");
 					max=pEntry->cant;
 					old=pEntry->entrada;
 				}
 			}
-	log_info(pLog, "2");
+
 	list_iterate(registroLRU, (void*)search_max);
-	log_info(pLog, "5");
+
 	log_trace(pLog, "Se reemplazara clave=%s",old->clave);
 	reemplazarEnAlmacenamiento( old,valorNew);
-	log_info(pLog, "6");
+
 	reemplazarEnTabla( old,claveNew, valorNew);
-	log_info(pLog, "7");
+
 	return SUCCESS;
 }
 

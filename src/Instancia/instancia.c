@@ -22,8 +22,8 @@ int main(void)
 		void * infoEntries;
 		int bytes = recvWithBasicProtocol(coord_socket, &infoEntries);
 		tBuffer * pBuff = makeBuffer(infoEntries, bytes);
-		entryCant = 4;//readIntFromBuffer(pBuff);
-		entrySize = 7;//readIntFromBuffer(pBuff);
+		entryCant =readIntFromBuffer(pBuff);
+		entrySize =readIntFromBuffer(pBuff);
 		freeBuffer(pBuff);
 		/////////////////////////////////////////////////////////////////
 
@@ -42,8 +42,8 @@ int main(void)
 
 		pathMontaje = config_get_string_value(pConf, "PTO_MONTAJE");
 
-//		pthread_t hiloDump;
-		//pthread_create(&hiloDump, NULL, (void*)&dump, (void*)pConf);
+		pthread_t hiloDump;
+		pthread_create(&hiloDump, NULL, (void*)&dump, (void*)pConf);
 
 		while(1)
 		{
@@ -98,7 +98,7 @@ int main(void)
 
 		log_error(pLog, "Se ha cortado la conexion con el Coordinador\nCerrando instancia...");
 		instanciaActiva = 0; //false
-		//pthread_join(hiloDump, NULL);
+		pthread_join(hiloDump, NULL);
 
 		return 0;
 

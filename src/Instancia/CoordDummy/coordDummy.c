@@ -24,9 +24,9 @@ int main(void)
 {STORE, "alfa", NULL},
 {SET, "re", "ooo"},
 {SET, "df", "hoo"},
-//{SET, "jh", "hongoooooo"},
 {SET, "cetiia", "oo"},
-{SET, "ceuyta", "hooo"}
+{SET, "ceuyta", "hooo"},
+{SET, "jh", "hongoooooo"}
 //{GET, "deta", NULL}
 
 };
@@ -56,8 +56,8 @@ int main(void)
 
   //le envia cantidad y tamaño de entradas
   tBuffer * pBuff = newBuffer();
-  addIntToBuffer(pBuff, 1);
-  addIntToBuffer(pBuff, 15);
+  addIntToBuffer(pBuff, 4);
+  addIntToBuffer(pBuff, 7);
 
   sendWithBasicProtocol(instSock, pBuff->data, pBuff->size);
 
