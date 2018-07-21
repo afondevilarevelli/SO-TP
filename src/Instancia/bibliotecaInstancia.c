@@ -289,7 +289,7 @@ void dump(t_config * pConf)
 rtdoEjec_t storeRecurso(char * clave)
  {
 
-
+	if(anyEnTabla(clave)){
 	FILE *fp;
 	//Obtencion del valor
 	char* val = obtenerValor(clave);
@@ -308,6 +308,9 @@ rtdoEjec_t storeRecurso(char * clave)
 	fclose(fp);
 	//Archivos guardados
 	return SUCCESS;
+	}
+	log_trace(pLog, "Clave inexistente");
+	return FAILURE;
  }
 
 
