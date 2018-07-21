@@ -7,6 +7,7 @@ void mostrarEntrada(t_entrada_tabla * pEntry)
 	printf("Puntero: %d\n", pEntry->pointerEntrada);
 	printf("-------------------\n");
 	printf("-------------------\r");
+
 	printf("Clave: %s\n", pEntry->clave);
 	printf("-------------------\n");
 	printf("-------------------\r");
@@ -88,7 +89,8 @@ rtdoEjec_t setRecurso(char * clave, char * valor)
 
 void compactar()
 {
-	//AVISAR A COORDINADOR Q COMPACTE!!!!!!!
+
+
 
 	char *almNuevo = calloc((entryCant*entrySize),sizeof(char));
 	int pointer=0,cantEntradaNecesarias;
@@ -109,7 +111,6 @@ void compactar()
 		if(entrySize%strlen(valor))
 		{
 			cantEntradaNecesarias++;
-			log_trace(pLog, "Quien Sabe...");
 		}
 
 		int k;
@@ -127,17 +128,12 @@ void compactar()
 		}
 
 		pointer=pointer+cantEntradaNecesarias*entrySize;
-//		if((strlen(valor)% entrySize)!=0)
-//
-//			pointer=pointer+entrySize-(entrySize%strlen(valor));//agrega al puntero la cantidad extra q falta para llegar al Entrycant.
-//		}
-
 	}
 
 	almacenamiento=almNuevo;
-	//free(almNuevo);
+	free(almNuevo);
 	log_trace(pLog, "Compactacion Terminada");
-	//free(entrada);
+	free(entrada);
 }
 
 void actualizarRegistro (char * claveN)
@@ -227,6 +223,11 @@ rtdoEjec_t agregarEntrada(char * clave, char *valor)
 			compacto=deboCompactar(valor);
 			if(compacto==0)
 			{
+			//Se dice al Coordinador qe todas deben compactar
+			rtdoEjec_t orden=ORDEN_COMPACTAR;
+			sendWithBasicProtocol(coord_socket, &orden, sizeof(rtdoEjec_t));
+			log_trace(pLog, "Resultado enviado al Coordinador");
+
 			compactar();
 			yaCompacto=1;
 			rtdo=agregarEntrada( clave,valor);
@@ -258,7 +259,7 @@ rtdoEjec_t agregarATabla(char * clave, int pointerAEntrada, int sizeValor)
 	t_entrada_tabla* entradaTE =new_entrada_tabla(clave, pointerAEntrada, sizeValor);
 	list_add (tablaDeEntradas, entradaTE);
 	entrada_LRU * entrLRU=malloc(sizeof(entrada_LRU));
-	entrLRU->entrada=  entradaTE;
+	entrLRU->entrada=entradaTE;
 	entrLRU->cant=0;
 	list_add (registroLRU, entrLRU);
 
@@ -282,6 +283,7 @@ void dump(t_config * pConf)
 
 		}
 	}
+	free(entrada);
 }
 
 rtdoEjec_t storeRecurso(char * clave)
@@ -296,6 +298,7 @@ rtdoEjec_t storeRecurso(char * clave)
 	char dir[strlen(pathMontaje)+4+strlen(clave)];
 	strcpy(dir,pathMontaje);
 	strcat(dir,clave);
+	strcat(dir,".txt");
 
 	fp=fopen(dir,"w");
 
@@ -310,14 +313,14 @@ rtdoEjec_t storeRecurso(char * clave)
 //Reemplazar
 rtdoEjec_t algoritmoLRU(char * claveNew, char *valorNew)
 {
-	//rtdoEjec_t rtdo;
 	int max=0;
 	//t_entrada_tabla entrada;
 	t_entrada_tabla* old;
 
 	void search_max( entrada_LRU  * pEntry)
 			{
-				if(max<pEntry->cant){
+				if(max<pEntry->cant)
+				{
 					max=pEntry->cant;
 					old=pEntry->entrada;
 				}
@@ -353,9 +356,7 @@ rtdoEjec_t algoritmoBSU(char * claveN, char *valorN)
 				seEncontroValor=1;
 			}
 		}
-
 	}
-
 
 	if(seEncontroValor==1)
 	{
@@ -370,8 +371,8 @@ rtdoEjec_t algoritmoBSU(char * claveN, char *valorN)
 		rtdo= FAILURE;
 	}
 
-	//free(entradaElegida);
-	//free(entrada);
+	free(entradaElegida);
+	free(entrada);
 
 	return rtdo;
 	//Biggest Space Used
@@ -394,7 +395,6 @@ rtdoEjec_t algoritmoCIRC(char * claveN, char *valorN)
 			//cambia almacenamiento
 			reemplazarEnAlmacenamiento(entrada,valorN);
 			puntero=entrada->pointerEntrada+entrySize;
-
 			return SUCCESS;
 		}
 	}
@@ -522,10 +522,10 @@ void nueva_entrada(char *valor, int  pointer){
 	{
 		bitarray_set_bit(bitarray,(pointer/entrySize)+j);
 	}
+
 	int i;
 	for(i=0; strlen(valor)!=i;i++)
 	{
-		log_trace(pLog, "PUNTEROOO---------%d",pointer);
 		almacenamiento[pointer]=valor[i];
 		pointer++;
 	}
@@ -535,16 +535,11 @@ void nueva_entrada(char *valor, int  pointer){
 
 void cargarTablaDeEntradasYAlmacenamiento(t_config * pConf)
 {
-	//almacenamiento = calloc(entryCant,entrySize);
 	almacenamiento = calloc((entryCant*entrySize),sizeof(char));
 	char * datoBitArray=calloc(entryCant,sizeof(char));
 	bitarray = bitarray_create_with_mode(datoBitArray,entryCant,LSB_FIRST);
 	tablaDeEntradas = list_create();
 	registroLRU = list_create();
-
-	//HAY TABLA A CARGAR? CARGARLA O CREARLA
-		//agregarATabla(CLAVEL, POINTER A LA PRIEMRA ENTRADA, TAMAÑO DEL VALOR )
-		//agregarATabla("",NULL, 0 )
 
 	return;
 }
@@ -578,8 +573,5 @@ void obtenerIPyPuertoDeCoordinador(t_config * pConf, int * ip, int * puerto)
 {
 	char * strIP = config_get_string_value(pConf, "COORD_IP");
 	*ip = inet_addr(strIP);
-
-	//puts(strIP);
-
 	*puerto= htons(config_get_int_value(pConf, "COORD_PUERTO"));
 }

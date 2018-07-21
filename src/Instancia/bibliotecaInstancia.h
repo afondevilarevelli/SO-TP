@@ -41,7 +41,7 @@ typedef struct
 	t_log * pLog;
 	//Variables
 	int coord_socket ;
-	typedef enum{EXITO, REEMPLAZAR} validacionReemplazo;
+	//typedef enum{EXITO, REEMPLAZAR} validacionReemplazo;
 	algReemplazo algReemp;
 	int entrySize, entryCant, instanciaActiva;
 	char * pathMontaje;
