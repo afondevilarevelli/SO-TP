@@ -217,32 +217,113 @@ void finalizarProceso(ESI_t* esi){  // ACÁ DEBERÍA TAMBIEN ELIMINARLO DE LA CO
 		abortESI(pESI);
 	else
 		printf("No se ha encontrado un proceso con el id %d en el sistema\n",esi->id);
-}//kill
+}
+//kill
+
+/*
+void limpiarColaClave(int id){// ASE FALTA LIMPIAR primero donde esta la cola de claves si no quien lo elimina despues
+	//se llamaba kill pero ahora puede llamrse limpiar y solo borro la ultima linea de eliminarESIDelSistema(ID)
+	int i = 0;
+	ESI_t *e ;
+	t_link_element* p = ListaColas -> head ;
+	cola_clave* c;
+	
+	if (id == (pESIEnEjecucion -> id)){//Si es el que esta ejecutando
+	printf("Que casualidad, intenta matar el proceso en ejecucion, [usted es incorregible]");
+	}
+	
+	printf("Claves a Liberar: ");
+	while (p != NULL){
+		c = (cola_clave*)(p -> data);
+		if(c-> idEsiUsandoClave == id){
+			printf(" %s ",c->clave);
+			i++;
+			(c-> idEsiUsandoClave) = 0;//lo dejo en 0  pero no se que onda
+		}
+		else{
+			e = buscarProcesoEnColas(c->cola,id);
+			if(e != NULL){
+				e = get_and_remove_ESI_by_ID(c->cola, id);
+			}
+		}
+	p = p -> next ;
+	}
+	if(i==0){printf("ninguna");}
+	eliminarESIDelSistema(id); 
+}
+
+
+*/
+
+
+//STATUS
+
+/*
+void valor(char* clave){
+	t_entrada_tabla * pEntry = findEnTablaEntrada(clave);
+	if(pEntry != NULL){
+		char*valor = obtenerValor(clave);
+		printf("La clave: %s tiene valor: %s \n",clave,valor);
+	}
+	else {
+	printf("No hay valor con esta clave");
+	}
+}
+void buscarInstancia(char* clave){
+	 inst_* i = instanciaDeLaClave(clave);
+	 printf("Instancia actual %i en donde se encuentra la clave %s",i,clave);
+	 while(i != NULL){
+		i = i -> next;	
+	}
+	 printf("Proxima instancia vacia",i);
+	NO PROBADO FALTA
+	printf("FAlta");
+} 
+*/
+
+
 void informacionDeInstancias(char * clave)
 {
+	//valor(clave);
 	printf("Valor:\n");
+	//buscarInstancia(clave);
 	printf("Instancia:\n");
 	printf("Instancia correcta actual:\n");
 	printf("ESIs bloqueados:\n");
 	listar(clave);
-}//status
-void analizarDeadlockDelSistema(){}
-
-char* claveESIenEjecucion(){
-	ESI_t* e = pESIEnEjecucion;
-	return "La clave que usa dicho esi";
 }
-//esiEjecucion() devuelve el ESI_t* que esta ejecutando
-void deadlock(){
-	t_queue* c;
-	ESI_t* e;
-	char* clave = claveESIenEjecucion();
-	c = colaAsociada(clave);
-	if(queue_size(c)> 0){
-		e = queue_peek(c);//queue_peek devuelve el primer elemento sin extraerlo
-		printf("El ESI en ejecucion con ID = %d usa la clave:%s ,que esta esperando el ESI ID = %d",pESIEnEjecucion->id,clave,e->id);
+
+//DEADLOCK
+//bool esiPerteneceCola(t_queue* cola,int id){
+//	ESI_t* e = buscarProcesoEnColas(cola,id);
+//	return (e != NULL);
+//}
+
+void analizarDeadlockDelSistema(){
+/*
+int j=0;
+	int id1;
+	int id2;
+	t_link_element* p = ListaColas -> head ;
+	t_link_element* q;
+	cola_clave* c1;
+	cola_clave* c2;
+	
+	while (p != NULL){
+		q = p -> next;
+		c1 = (cola_clave*)(p -> data);
+		id1 = c1 -> idEsiUsandoClave ;
+		while(q != NULL){
+			c2 = (cola_clave*)(q -> data);
+			id2 = c2 -> idEsiUsandoClave ;
+				if(esiPerteneceCola(c1,id2) && esiPerteneceCola(c2,id1) && id1 != id2){
+					printf("Deadblock de esis %d y %d ",id1,id2);//poner un barra invertida n al final
+					j++;
+				}
+			q = q -> next ;
+		}
+	 p = p -> next	;
 	}
-	else{
-	printf("No hay clave(recurso) que un ESI use y que otro ESI espere este recurso");
-	}
+	if(j == 0){ printf("No hay clave(recurso) que un ESI use y que otro ESI espere este recurso");}
+*/
 }
