@@ -18,9 +18,16 @@ int main(void)
 {
 
 {SET, "alfa", "toro"},
+{SET, "alfa", "to"},
 {GET, "beta", NULL},
 {SET, "ceta", "hongo"},
-{GET, "deta", NULL}
+{STORE, "alfa", NULL},
+{SET, "re", "ooo"},
+{SET, "df", "hoo"},
+//{SET, "jh", "hongoooooo"},
+{SET, "cetiia", "oo"},
+{SET, "ceuyta", "hooo"}
+//{GET, "deta", NULL}
 
 };
   //obtiene datos de inicializacion
