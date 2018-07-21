@@ -170,6 +170,7 @@ cola_clave* new_cola_clave(char * clave, int idESI)
   pCClave->clave = malloc(strlen(clave)+1);
   strcpy(pCClave->clave, clave);
   pCClave->idEsiUsandoClave = idESI;
+  pCClave->cola = queue_create();
 
   return pCClave;
 }

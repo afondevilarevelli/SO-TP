@@ -78,7 +78,7 @@ bool puedeEjecutar(int idESI, int op, char * clave)
       int idEsiConClave = c -> idEsiUsandoClave;
       if(idEsiConClave == idESI)
       {
-        if(c->cola != NULL ){ 
+        if( !queue_is_empty(c->cola) ){ 
         c->idEsiUsandoClave = ( (ESI_t*)(queue_pop(c->cola)) )->id;
         ESI_t* elEsi = buscarProcesoESI(c->idEsiUsandoClave);
         esiADesbloquear = elEsi;

@@ -12927,3 +12927,55 @@ Cerrando instancia...
  op=STORE, clave=jugador, valor=No corresponde
 
 [TRACE] 18:22:05:392 INSTANCIA/(4245:4245): 1
+[TRACE] 00:42:58:417 INSTANCIA/(5348:5348): Iniciando...
+[TRACE] 00:42:58:428 INSTANCIA/(5348:5348): Conectada a Coordinador
+[TRACE] 00:42:58:432 INSTANCIA/(5348:5348): Tabla de entradas cargada
+[TRACE] 00:42:58:432 INSTANCIA/(5348:5348): Almacenamiento creado
+[TRACE] 00:42:58:432 INSTANCIA/(5348:5348): A la espera de solicitudes
+[DEBUG] 00:43:41:321 INSTANCIA/(5348:5348): Solicitud recibida
+[TRACE] 00:43:41:321 INSTANCIA/(5348:5348): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 00:43:41:321 INSTANCIA/(5348:5348): Sentencia recibida:
+ op=GET, clave=jugador, valor=No corresponde
+
+[TRACE] 00:43:41:321 INSTANCIA/(5348:5348): QUIERE HACER GET
+[DEBUG] 00:43:41:321 INSTANCIA/(5348:5348): El resultado de la sentencia fue SUCCESS
+[TRACE] 00:43:41:321 INSTANCIA/(5348:5348): Resultado enviado al Coordinador
+[TRACE] 00:43:41:321 INSTANCIA/(5348:5348): A la espera de solicitudes
+[DEBUG] 00:43:41:828 INSTANCIA/(5348:5348): Solicitud recibida
+[TRACE] 00:43:41:829 INSTANCIA/(5348:5348): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 00:43:41:829 INSTANCIA/(5348:5348): Sentencia recibida:
+ op=SET, clave=jugador, valor=abondanzieri
+
+[DEBUG] 00:43:41:829 INSTANCIA/(5348:5348): El resultado de la sentencia fue SUCCESS
+[TRACE] 00:43:41:829 INSTANCIA/(5348:5348): Resultado enviado al Coordinador
+[TRACE] 00:43:41:829 INSTANCIA/(5348:5348): A la espera de solicitudes
+[ERROR] 00:43:42:870 INSTANCIA/(5348:5348): Se ha cortado la conexion con el Coordinador
+Cerrando instancia...
+[TRACE] 00:55:38:540 INSTANCIA/(5790:5790): Iniciando...
+[TRACE] 00:55:38:542 INSTANCIA/(5790:5790): Conectada a Coordinador
+[TRACE] 00:55:38:545 INSTANCIA/(5790:5790): Tabla de entradas cargada
+[TRACE] 00:55:38:545 INSTANCIA/(5790:5790): Almacenamiento creado
+[TRACE] 00:55:38:545 INSTANCIA/(5790:5790): A la espera de solicitudes
+[DEBUG] 00:55:51:427 INSTANCIA/(5790:5790): Solicitud recibida
+[TRACE] 00:55:51:427 INSTANCIA/(5790:5790): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 00:55:51:427 INSTANCIA/(5790:5790): Sentencia recibida:
+ op=GET, clave=jugador, valor=No corresponde
+
+[TRACE] 00:55:51:427 INSTANCIA/(5790:5790): QUIERE HACER GET
+[DEBUG] 00:55:51:427 INSTANCIA/(5790:5790): El resultado de la sentencia fue SUCCESS
+[TRACE] 00:55:51:427 INSTANCIA/(5790:5790): Resultado enviado al Coordinador
+[TRACE] 00:55:51:427 INSTANCIA/(5790:5790): A la espera de solicitudes
+[DEBUG] 00:55:51:930 INSTANCIA/(5790:5790): Solicitud recibida
+[TRACE] 00:55:51:930 INSTANCIA/(5790:5790): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 00:55:51:930 INSTANCIA/(5790:5790): Sentencia recibida:
+ op=SET, clave=jugador, valor=abondanzieri
+
+[DEBUG] 00:55:51:930 INSTANCIA/(5790:5790): El resultado de la sentencia fue SUCCESS
+[TRACE] 00:55:51:930 INSTANCIA/(5790:5790): Resultado enviado al Coordinador
+[TRACE] 00:55:51:930 INSTANCIA/(5790:5790): A la espera de solicitudes
+[DEBUG] 00:55:52:436 INSTANCIA/(5790:5790): Solicitud recibida
+[TRACE] 00:55:52:436 INSTANCIA/(5790:5790): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 00:55:52:436 INSTANCIA/(5790:5790): Sentencia recibida:
+ op=STORE, clave=jugador, valor=No corresponde
+
+[TRACE] 00:55:52:436 INSTANCIA/(5790:5790): 1

@@ -2085,3 +2085,82 @@ Valor = No corresponde
 [TRACE] 18:22:05:895 ESI/(4669:4669): Se envio el resultado al Planificador
 [TRACE] 18:22:05:895 ESI/(4669:4669): Esperando orden de Planificador
 [ERROR] 18:22:28:598 ESI/(4669:4669): No se pudo recibir la orden del planificador porque se desconecto.
+[TRACE] 00:43:41:306 ESI/(5464:5464): Iniciando...
+[TRACE] 00:43:41:312 ESI/(5464:5464): Se obtiene ID 7 del archivo de configuracion
+[TRACE] 00:43:41:316 ESI/(5464:5464): Se conecto al Coordinador en el socket 4
+[TRACE] 00:43:41:317 ESI/(5464:5464): Se conecto al Planificador en el socket 5
+[TRACE] 00:43:41:317 ESI/(5464:5464): Script ejemplo.esi abierto
+[TRACE] 00:43:41:317 ESI/(5464:5464): Esperando orden de Planificador
+[DEBUG] 00:43:41:317 ESI/(5464:5464): La orden recibida fue EJECUTAR
+[DEBUG] 00:43:41:318 ESI/(5464:5464): La sentencia parseada es:
+Op = GET
+Clave = jugador
+Valor = No corresponde
+
+[TRACE] 00:43:41:318 ESI/(5464:5464): Se envio la sentencia al Coordinador
+[TRACE] 00:43:41:318 ESI/(5464:5464): Esperando resultado de ejeucion de Coordinador
+[DEBUG] 00:43:41:826 ESI/(5464:5464): El resultado recibido es de SUCCESS
+[TRACE] 00:43:41:826 ESI/(5464:5464): Se envio el resultado al Planificador
+[TRACE] 00:43:41:827 ESI/(5464:5464): Esperando orden de Planificador
+[DEBUG] 00:43:41:827 ESI/(5464:5464): La orden recibida fue EJECUTAR
+[DEBUG] 00:43:41:827 ESI/(5464:5464): La sentencia parseada es:
+Op = SET
+Clave = jugador
+Valor = abondanzieri
+
+[TRACE] 00:43:41:827 ESI/(5464:5464): Se envio la sentencia al Coordinador
+[TRACE] 00:43:41:827 ESI/(5464:5464): Esperando resultado de ejeucion de Coordinador
+[DEBUG] 00:43:42:331 ESI/(5464:5464): El resultado recibido es de SUCCESS
+[TRACE] 00:43:42:331 ESI/(5464:5464): Se envio el resultado al Planificador
+[TRACE] 00:43:42:332 ESI/(5464:5464): Esperando orden de Planificador
+[DEBUG] 00:43:42:332 ESI/(5464:5464): La orden recibida fue EJECUTAR
+[DEBUG] 00:43:42:332 ESI/(5464:5464): La sentencia parseada es:
+Op = STORE
+Clave = jugador
+Valor = No corresponde
+
+[TRACE] 00:43:42:332 ESI/(5464:5464): Se envio la sentencia al Coordinador
+[TRACE] 00:43:42:332 ESI/(5464:5464): Esperando resultado de ejeucion de Coordinador
+[DEBUG] 00:43:42:870 ESI/(5464:5464): El resultado recibido es de SUCCESS
+[TRACE] 00:43:42:871 ESI/(5464:5464): Se envio el resultado al Planificador
+[TRACE] 00:43:42:871 ESI/(5464:5464): Esperando orden de Planificador
+[ERROR] 00:43:42:871 ESI/(5464:5464): No se pudo recibir la orden del planificador porque se desconecto.
+[TRACE] 00:55:51:412 ESI/(5837:5837): Iniciando...
+[TRACE] 00:55:51:414 ESI/(5837:5837): Se obtiene ID 7 del archivo de configuracion
+[TRACE] 00:55:51:416 ESI/(5837:5837): Se conecto al Coordinador en el socket 4
+[TRACE] 00:55:51:417 ESI/(5837:5837): Se conecto al Planificador en el socket 5
+[TRACE] 00:55:51:417 ESI/(5837:5837): Script ejemplo.esi abierto
+[TRACE] 00:55:51:417 ESI/(5837:5837): Esperando orden de Planificador
+[DEBUG] 00:55:51:417 ESI/(5837:5837): La orden recibida fue EJECUTAR
+[DEBUG] 00:55:51:417 ESI/(5837:5837): La sentencia parseada es:
+Op = GET
+Clave = jugador
+Valor = No corresponde
+
+[TRACE] 00:55:51:418 ESI/(5837:5837): Se envio la sentencia al Coordinador
+[TRACE] 00:55:51:419 ESI/(5837:5837): Esperando resultado de ejeucion de Coordinador
+[DEBUG] 00:55:51:928 ESI/(5837:5837): El resultado recibido es de SUCCESS
+[TRACE] 00:55:51:928 ESI/(5837:5837): Se envio el resultado al Planificador
+[TRACE] 00:55:51:929 ESI/(5837:5837): Esperando orden de Planificador
+[DEBUG] 00:55:51:929 ESI/(5837:5837): La orden recibida fue EJECUTAR
+[DEBUG] 00:55:51:929 ESI/(5837:5837): La sentencia parseada es:
+Op = SET
+Clave = jugador
+Valor = abondanzieri
+
+[TRACE] 00:55:51:929 ESI/(5837:5837): Se envio la sentencia al Coordinador
+[TRACE] 00:55:51:929 ESI/(5837:5837): Esperando resultado de ejeucion de Coordinador
+[DEBUG] 00:55:52:433 ESI/(5837:5837): El resultado recibido es de SUCCESS
+[TRACE] 00:55:52:433 ESI/(5837:5837): Se envio el resultado al Planificador
+[TRACE] 00:55:52:433 ESI/(5837:5837): Esperando orden de Planificador
+[DEBUG] 00:55:52:433 ESI/(5837:5837): La orden recibida fue EJECUTAR
+[DEBUG] 00:55:52:433 ESI/(5837:5837): La sentencia parseada es:
+Op = STORE
+Clave = jugador
+Valor = No corresponde
+
+[TRACE] 00:55:52:433 ESI/(5837:5837): Se envio la sentencia al Coordinador
+[TRACE] 00:55:52:434 ESI/(5837:5837): Esperando resultado de ejeucion de Coordinador
+[DEBUG] 00:55:52:939 ESI/(5837:5837): El resultado recibido es de ERROR
+[TRACE] 00:55:52:940 ESI/(5837:5837): Se envio el resultado al Planificador
+[TRACE] 00:55:52:940 ESI/(5837:5837): Esperando orden de Planificador

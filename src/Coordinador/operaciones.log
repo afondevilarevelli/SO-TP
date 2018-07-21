@@ -5,3 +5,8 @@
 [INFO] 18:22:04:879 COORDINADOR/(4197:4670): ESI 7	GET jugador(Instancia 5) 
 [INFO] 18:22:05:388 COORDINADOR/(4197:4670): ESI 7	SET jugador(Instancia 5) abondanzieri
 [INFO] 18:22:05:894 COORDINADOR/(4197:4670): ESI 7	STORE jugador(Instancia 5) 
+[INFO] 00:43:41:822 COORDINADOR/(5299:5465): ESI 7	GET jugador(Instancia 5) 
+[INFO] 00:43:42:331 COORDINADOR/(5299:5465): ESI 7	SET jugador(Instancia 5) abondanzieri
+[INFO] 00:55:51:928 COORDINADOR/(5778:5838): ESI 7	GET jugador(Instancia 5) 
+[INFO] 00:55:52:432 COORDINADOR/(5778:5838): ESI 7	SET jugador(Instancia 5) abondanzieri
+[INFO] 00:55:52:939 COORDINADOR/(5778:5838): ESI 7	STORE jugador(Instancia 5) 
