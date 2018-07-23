@@ -294,14 +294,13 @@ void informacionDeInstancias(char * clave)
 }
 
 //DEADLOCK
-//bool esiPerteneceCola(t_queue* cola,int id){
-//	ESI_t* e = buscarProcesoEnColas(cola,id);
-//	return (e != NULL);
-//}
+bool esiPerteneceCola(t_queue* cola,int id){
+	ESI_t* e = buscarProcesoEnColas(cola,id);
+	return e != NULL;
+}
 
 void analizarDeadlockDelSistema(){
-/*
-int j=0;
+	int j=0;
 	int id1;
 	int id2;
 	t_link_element* p = ListaColas -> head ;
@@ -316,7 +315,7 @@ int j=0;
 		while(q != NULL){
 			c2 = (cola_clave*)(q -> data);
 			id2 = c2 -> idEsiUsandoClave ;
-				if(esiPerteneceCola(c1,id2) && esiPerteneceCola(c2,id1) && id1 != id2){
+				if(esiPerteneceCola(c1->cola,id2) && esiPerteneceCola(c2->cola,id1) && id1 != id2){
 					printf("Deadblock de esis %d y %d ",id1,id2);//poner un barra invertida n al final
 					j++;
 				}
@@ -325,5 +324,5 @@ int j=0;
 	 p = p -> next	;
 	}
 	if(j == 0){ printf("No hay clave(recurso) que un ESI use y que otro ESI espere este recurso");}
-*/
+
 }
