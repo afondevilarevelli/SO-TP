@@ -135,7 +135,7 @@ int main(void)
 			}
 	log_trace(pLog, "Se creo un hilo para planificar segun %s", tipoPlanificacion->planificacion==FIFO?"FIFO":tipoPlanificacion->planificacion==SJF?"SJF":tipoPlanificacion->planificacion==SRT?"SRT":"HRRN");
 
-	pthread_create(&hiloConsolaPlanificador, NULL, (void*)&consolaPlanificador, NULL);
+	//pthread_create(&hiloConsolaPlanificador, NULL, (void*)&consolaPlanificador, NULL);
 	log_trace(pLog, "Se creo un hilo para la consola");
 
 	pthread_join(hiloCoordinador, NULL);

@@ -46,24 +46,30 @@ bool puedeEjecutar(int idESI, int op, char * clave)
   cola_clave* c = buscarElementoDeLista(clave);
   if(op == GET)
   { // operacion GET
-    if( !c )
+    if( c == NULL )
     {
       list_add(ListaColas, new_cola_clave(clave, idESI));
       return true;
     }
     else
     {
-      ESI_t* esi = buscarProcesoESI(idESI);
-      queue_push(c->cola,esi);
-      pthread_mutex_lock(&m_colaBloqueados);
-      queue_push(ESIsBloqueados, esi);
-      pthread_mutex_unlock(&m_colaBloqueados);
-      return false;
+      if(c->idEsiUsandoClave != 0){ 
+        ESI_t* esi = buscarProcesoESI(idESI);
+        queue_push(c->cola,esi);
+        pthread_mutex_lock(&m_colaBloqueados);
+        queue_push(ESIsBloqueados, esi);
+        pthread_mutex_unlock(&m_colaBloqueados);
+        return false;
+      }
+      else{
+        c->idEsiUsandoClave = idESI;
+        return true;
+      }
     }
   }
   else if(op == SET)
   { //operacion SET
-      if(c){ 
+      if(c != NULL){ 
         int idEsiConClave = c -> idEsiUsandoClave;
         return idEsiConClave == idESI;
       }
@@ -89,6 +95,7 @@ bool puedeEjecutar(int idESI, int op, char * clave)
         }
         else{
           c->idEsiUsandoClave = 0;
+          return true;
         }
       }
       else

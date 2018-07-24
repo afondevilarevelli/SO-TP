@@ -31,7 +31,6 @@ void ejecutarProxSent(ESI_t * pESI){
 	orden_t orden = EJECUTAR;
 	sendWithBasicProtocol(pESI->socket, &orden, sizeof(orden_t));
 	pESI->tiempoEsperandoCPU = 0;
-	pESIEnEjecucion = pESI;
 } //BIEN
 
 void planificarSegunFIFO(){

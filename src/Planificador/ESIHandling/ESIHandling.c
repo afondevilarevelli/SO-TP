@@ -151,7 +151,7 @@ void freeESI(ESI_t * pESI)
   free(pESI);
 }
 
-cola_clave* buscarElementoDeLista(char* clave){//busca de mi ListaColas la que se identifiqua con la clave
+cola_clave* buscarElementoDeLista(char* clave){//busca de mi ListaColas la que se identifica con la clave
 	t_link_element* p = ListaColas -> head ;
 	cola_clave* c;
 	while (p != NULL){
@@ -167,8 +167,9 @@ cola_clave* buscarElementoDeLista(char* clave){//busca de mi ListaColas la que s
 cola_clave* new_cola_clave(char * clave, int idESI)
 {
   cola_clave * pCClave = malloc(sizeof(cola_clave));
-  pCClave->clave = malloc(strlen(clave)+1);
-  strcpy(pCClave->clave, clave);
+  //pCClave->clave = malloc(strlen(clave)+1);
+  //strcpy(pCClave->clave, clave);
+  pCClave->clave = clave;
   pCClave->idEsiUsandoClave = idESI;
   pCClave->cola = queue_create();
 
