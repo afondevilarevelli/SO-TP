@@ -167,9 +167,8 @@ cola_clave* buscarElementoDeLista(char* clave){//busca de mi ListaColas la que s
 cola_clave* new_cola_clave(char * clave, int idESI)
 {
   cola_clave * pCClave = malloc(sizeof(cola_clave));
-  //pCClave->clave = malloc(strlen(clave)+1);
-  //strcpy(pCClave->clave, clave);
-  pCClave->clave = clave;
+  pCClave->clave = malloc(strlen(clave)+1);
+  strcpy(pCClave->clave, clave);
   pCClave->idEsiUsandoClave = idESI;
   pCClave->cola = queue_create();
 
