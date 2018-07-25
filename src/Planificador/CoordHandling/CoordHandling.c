@@ -43,6 +43,10 @@ void procesarSolicitudCoordinador(void * solicitud, int size)
 
 bool puedeEjecutar(int idESI, int op, char * clave)
 {
+  if(claveEstaBloqueada(clave)){
+      return false;
+  }
+  else{ 
   cola_clave* c = buscarElementoDeLista(clave);
   if(op == GET)
   { // operacion GET
@@ -107,7 +111,7 @@ bool puedeEjecutar(int idESI, int op, char * clave)
     {
       return false;
     }
-  }
+  } }
 }
 void coordinadorDesconectado()
 {

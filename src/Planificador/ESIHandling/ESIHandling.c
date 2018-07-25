@@ -167,13 +167,35 @@ cola_clave* buscarElementoDeLista(char* clave){//busca de mi ListaColas la que s
 cola_clave* new_cola_clave(char * clave, int idESI)
 {
   cola_clave * pCClave = malloc(sizeof(cola_clave));
-  //pCClave->clave = malloc(strlen(clave)+1);
-  //strcpy(pCClave->clave, clave);
-  pCClave->clave = clave;
+  pCClave->clave = malloc(strlen(clave)+1);
+  strcpy(pCClave->clave, clave);
   pCClave->idEsiUsandoClave = idESI;
   pCClave->cola = queue_create();
 
   return pCClave;
+}
+
+bool claveEstaBloqueada(char* clave){
+  claveAVerSiSatisface = clave;
+  return list_any_satisfy(clavesBloqueadas, (void*) condicionSatisfy);
+}
+
+bool condicionSatisfy(char* clave){
+    return clave == claveAVerSiSatisface;
+}
+
+void bloquearClaves(t_config* conf){
+	int i = 1;
+	int posicion = 14;
+	char claveBloqueada[] = "claveBloqueadaX";
+	claveBloqueada[posicion] = i + '0';
+	char* clave = config_get_string_value(conf, claveBloqueada);
+	while(clave != NULL){
+		list_add(clavesBloqueadas, (void*)clave );
+		i++;
+		claveBloqueada[posicion] = i + '0';	
+		char* clave = config_get_string_value(conf, claveBloqueada);
+	}
 }
 
 /*----------CONEXIONES---------*/

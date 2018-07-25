@@ -97,7 +97,10 @@ int main(void)
 	ESIsBloqueados = queue_create();
 	ESIsFinalizados = queue_create();
 	ListaColas = list_create();
+	clavesBloqueadas = list_create();
 	pESIEnEjecucion = NULL;
+	claveAVerSiSatisface = NULL;
+
 
 	log_trace(pLog, "Inicializacion de variables globales completada");
 
@@ -135,7 +138,7 @@ int main(void)
 			}
 	log_trace(pLog, "Se creo un hilo para planificar segun %s", tipoPlanificacion->planificacion==FIFO?"FIFO":tipoPlanificacion->planificacion==SJF?"SJF":tipoPlanificacion->planificacion==SRT?"SRT":"HRRN");
 
-	//pthread_create(&hiloConsolaPlanificador, NULL, (void*)&consolaPlanificador, NULL);
+	pthread_create(&hiloConsolaPlanificador, NULL, (void*)&consolaPlanificador, pConf);
 	log_trace(pLog, "Se creo un hilo para la consola");
 
 	pthread_join(hiloCoordinador, NULL);
@@ -186,4 +189,3 @@ void obtenerIPyPuerto(t_config * pConf, int * ip, int * puerto, char * ipKey, ch
 
 	*puerto= htons(config_get_int_value(pConf, portKey));
 }
-

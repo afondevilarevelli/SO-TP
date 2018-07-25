@@ -20,6 +20,8 @@ typedef struct {
 
 t_list* ListaColas;
 
+t_list* clavesBloqueadas;
+
 typedef enum{NORMAL, ABORTADO, FINALIZADO} ESIState;
 
 typedef struct
@@ -40,6 +42,8 @@ ESI_t * pESIEnEjecucion;
 rtdoEjec_t rtdoEjecucion;
 
 t_list * hilos;
+
+char* claveAVerSiSatisface;
 
 pthread_mutex_t m_listaColas;
 pthread_mutex_t m_colaListos;
@@ -66,5 +70,8 @@ cola_clave* buscarElementoDeLista(char* clave);
 cola_clave* new_cola_clave(char * clave, int idESI);
 
 void atenderConexionEntrante(int listener,int estimacionInicialESI);
+bool claveEstaBloqueada(char* clave);
+bool condicionSatisfy(char* clave);
+void bloquearClaves(t_config* conf);
 
 #endif

@@ -2,10 +2,12 @@
 
 int isnum(char * str);
 
-void consolaPlanificador(){
+void consolaPlanificador(t_config* pConf){
 	char* linea=NULL;
 	char espaBlan[4]=" \n\t";
 	int debeContinuar = 1; //TRUE
+	bloquearClaves(pConf);
+	log_trace(pLog,"Se bloquearon las claves");
 
 	do{
 
