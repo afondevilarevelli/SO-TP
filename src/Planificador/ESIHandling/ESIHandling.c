@@ -23,7 +23,7 @@ void atenderESI(ESI_t * pESI)
     log_trace(pLog, "A la espera de respuesta del ESI %d", pESI->id);
     size = recvWithBasicProtocol(pESI->socket, &rtdoEjec);
 
-    if( size  ) // SI NO SE DESCONECTO
+    if( size ) // SI NO SE DESCONECTO
     {
       rtdoEjecucion = *((rtdoEjec_t*)rtdoEjec);
       log_debug(pLog, "Se recibio el rtdoEjec = %s", rtdoEjecucion==SUCCESS?"SUCCESS":rtdoEjecucion==FAILURE?"FAILURE":rtdoEjecucion==FIN_DE_EJECUCION?"FIN DE EJECUCION":rtdoEjecucion==DISCONNECTED?"DESCONECTADO":rtdoEjecucion==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":rtdoEjecucion==ABORTED?"ABORTADO":"SENTENCIA");
@@ -176,12 +176,14 @@ cola_clave* new_cola_clave(char * clave, int idESI)
 }
 
 bool claveEstaBloqueada(char* clave){
+  bool estaBloqueada;
   claveAVerSiSatisface = clave;
-  return list_any_satisfy(clavesBloqueadas, (void*) condicionSatisfy);
+  estaBloqueada = list_any_satisfy(clavesBloqueadas, (void*) condicionSatisfy);
+  return estaBloqueada;
 }
 
 bool condicionSatisfy(char* clave){
-    return clave == claveAVerSiSatisface;
+    return claveAVerSiSatisface != clave;
 }
 
 void bloquearClaves(t_config* conf){
@@ -192,9 +194,10 @@ void bloquearClaves(t_config* conf){
 	char* clave = config_get_string_value(conf, claveBloqueada);
 	while(clave != NULL){
 		list_add(clavesBloqueadas, (void*)clave );
+    log_trace(pLog, "Se ha bloqueado la clave %s", clave);
 		i++;
 		claveBloqueada[posicion] = i + '0';	
-		char* clave = config_get_string_value(conf, claveBloqueada);
+		clave = config_get_string_value(conf, claveBloqueada);
 	}
 }
 

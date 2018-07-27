@@ -7,7 +7,6 @@ void consolaPlanificador(t_config* pConf){
 	char espaBlan[4]=" \n\t";
 	int debeContinuar = 1; //TRUE
 	bloquearClaves(pConf);
-	log_trace(pLog,"Se bloquearon las claves");
 
 	do{
 

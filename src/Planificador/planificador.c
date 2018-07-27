@@ -99,6 +99,7 @@ int main(void)
 	ListaColas = list_create();
 	clavesBloqueadas = list_create();
 	pESIEnEjecucion = NULL;
+	claveAVerSiSatisface = malloc(sizeof(char)*30);
 	claveAVerSiSatisface = NULL;
 
 
@@ -152,6 +153,7 @@ int main(void)
 	log_trace(pLog, "Se destruyeron las listas globales"); 
 	
 	free(tipoPlanificacion);
+	free(claveAVerSiSatisface);
 	return 0; 
 }
 

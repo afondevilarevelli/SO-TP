@@ -1,5 +1,3 @@
-GET jugador  
 GET papa
 SET papa loco
 STORE papa
-STORE jugador

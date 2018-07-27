@@ -40,7 +40,7 @@ void planificarSegunFIFO(){
 			if(queue_size(ESIsListos) == 0){
 				log_trace(pLog, "Se espera a que haya ESIs en la cola de listos");
 			}
-			sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
+			sem_wait(&sem_cantESIsListos);
 
 			pEsiAEjecutar = obtenerEsiAEjecutarSegunFIFO();
 			log_trace(pLog, "Segun FIFO el ESI a ejecutar ahora es el de id = %d", pEsiAEjecutar->id);
@@ -61,7 +61,7 @@ void planificarSegunFIFO(){
 			switch( rtdoEjecucion )
 			{
 				case FAILURE:
-					log_error(pLog, "El ESI de id = %d ha fallado");
+					log_error(pLog, "El ESI de id = %d ha fallado y fue bloqueado");
 					queue_push(ESIsBloqueados, pESIEnEjecucion);
 					break;
 				case NO_HAY_INSTANCIAS_CONECTADAS:
@@ -110,7 +110,7 @@ void planificarSegunSJF(){
 			pESIEnEjecucion->duracionAnterior = duracion;
 
 			if( rtdoEjecucion == FAILURE){
-			log_error(pLog, "El ESI de id = %d ha fallado");
+			log_error(pLog, "El ESI de id = %d ha fallado y se ha bloqueado");
 			queue_push(ESIsBloqueados, pESIEnEjecucion); 
 			}
 			else if( rtdoEjecucion == NO_HAY_INSTANCIAS_CONECTADAS )
@@ -157,11 +157,11 @@ void planificarSegunSRT(){
 				log_trace(pLog,"Se espera la respuesta del ESI en ejecucion");
 				sem_wait(&sem_respuestaESI);
 			}
-			while( rtdoEjecucion == SUCCESS && queue_size(ESIsListos) == sizeColaReadyAntesDeEjecutar );
+			while( rtdoEjecucion == SUCCESS && queue_size(ESIsListos) <= sizeColaReadyAntesDeEjecutar );
 			pESIEnEjecucion->duracionAnterior = duracion;
 
 			if( rtdoEjecucion == FAILURE){
-			log_error(pLog, "El ESI de id = %d ha fallado");
+			log_error(pLog, "El ESI de id = %d ha fallado y se ha bloqueado");
 			queue_push(ESIsBloqueados, pESIEnEjecucion); 
 			}
 			else
@@ -214,7 +214,7 @@ void planificarSegunHRRN(){
 			pESIEnEjecucion->duracionAnterior = duracion;
 
 			if( rtdoEjecucion == FAILURE){
-			log_error(pLog, "El ESI de id = %d ha fallado");
+			log_error(pLog, "El ESI de id = %d ha fallado y se ha bloqueado");
 			queue_push(ESIsBloqueados, pESIEnEjecucion); 
 			}
 			else if( rtdoEjecucion == NO_HAY_INSTANCIAS_CONECTADAS )

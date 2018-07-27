@@ -38,11 +38,11 @@ int main(void)
 
   //Primero me conecto al Coordinador
   socketCoord = conectarseACoordinador(pConf, id);
-  log_trace(pLog, "Se conecto al Coordinador en el socket %d", socketCoord);
+  log_trace(pLog, "El esi de id = %d se conecto al Coordinador en el socket %d",id, socketCoord);
 
   //Ahora me conecto al Planificador
   socketPlanif = conectarseAPlanificador(pConf, id);
-  log_trace(pLog, "Se conecto al Planificador en el socket %d", socketPlanif);
+  log_trace(pLog, "El esi de id = %d se conecto al Planificador en el socket %d",id, socketPlanif);
 
   //Le envio al coordinador una sentencia parseada
   FILE * scriptf = abrirScriptESI(config_get_string_value(pConf, "ESI_SCRIPT"));
@@ -52,17 +52,18 @@ int main(void)
   orden_t orden;
 
   //recibo de orden de ejecucion <--------------- PLANIFICADOR
-  log_trace(pLog, "Esperando orden de Planificador");
+  log_trace(pLog, "El esi de id = %d esta esperando orden de Planificador");
   while( (orden = ordenDePlanificador()) == EJECUTAR )
   {
     int prevPos = ftell(scriptf);
     pSent = obtenerSentenciaParseada(scriptf);
     if(pSent)
     {
-      log_debug(pLog, "La sentencia parseada es:\n"
+      log_debug(pLog, "La sentencia parseada del esi con id = %d es:\n"
                       "Op = %s\n"
                       "Clave = %s\n"
                       "Valor = %s\n",
+                      id,
                       pSent->operacion==GET?"GET":pSent->operacion==SET?"SET":"STORE", pSent->clave, pSent->valor?pSent->valor:"No corresponde");
 
       rtdoEjec_t * pRtdo;
@@ -73,24 +74,24 @@ int main(void)
 
       //envio de sentenciaParseada -----------> COORDINADOR
       sendWithBasicProtocol(socketCoord, pBuffSent->data, pBuffSent->size);
-      log_trace(pLog, "Se envio la sentencia al Coordinador");
+      log_trace(pLog, "El esi de id = %d ha enviado la sentencia al Coordinador", id);
       freeBuffer(pBuffSent);
 
       //recibo de resultado de ejecucion <---------- COORDINADOR
-      log_trace(pLog, "Esperando resultado de ejeucion de Coordinador");
+      log_trace(pLog, "El esi de id = %d espera el resultado de ejecucion de Coordinador", id);
       bytes = recvWithBasicProtocol(socketCoord, (void**)&pRtdo);
-      log_debug(pLog, "El resultado recibido es de %s", *pRtdo==SUCCESS?"SUCCESS":*pRtdo==FAILURE?"FAILURE":"ERROR");
+      log_debug(pLog, "El esi de id = %d recibe el resultado de %s",id, *pRtdo==SUCCESS?"SUCCESS":*pRtdo==FAILURE?"FAILURE":"ERROR");
       if(*pRtdo == FAILURE)
         fseek(scriptf, prevPos, SEEK_CUR);
 
       //envio de resultado de ejecucion ------------> PLANIFICADOR
       sendWithBasicProtocol(socketPlanif, (void*)pRtdo, bytes);
-      log_trace(pLog, "Se envio el resultado al Planificador");
+      log_trace(pLog, "El esi de id = %d ha enviado el resultado al Planificador",id);
     }
     else
       break;
 
-    log_trace(pLog, "Esperando orden de Planificador");
+    log_trace(pLog, "El esi de id = %d espera orden de Planificador", id);
   }
 
   fclose(scriptf);
@@ -98,20 +99,20 @@ int main(void)
   if( orden == ABORTAR )
   {
     rtdoEjec_t aborted = ABORTED;
-    log_error(pLog, "El ESI fue abortado");
+    log_error(pLog, "El ESI de id = %d fue abortado", id);
     sendWithBasicProtocol(socketCoord, (void*)&aborted, sizeof(rtdoEjec_t));
-    log_trace(pLog, "Se informa del aborto al Coordinador");
+    log_trace(pLog, "Se informa del aborto del esi de id = %d al Coordinador", id);
   }
   else if(!pSent)
   {
     rtdoEjec_t finDeEjec = FIN_DE_EJECUCION;
-    log_trace(pLog, "El ESI finalizo su ejecucion correctamente");
+    log_trace(pLog, "El ESI de id = %d finalizo su ejecucion correctamente", id );
 
     sendWithBasicProtocol(socketCoord, (void*)&finDeEjec, sizeof(rtdoEjec_t));
-    log_trace(pLog, "Se informa del fin de ejecucion al Coordinador");
+    log_trace(pLog, "Se informa del fin de ejecucion del esi de id = %d al Coordinador", id);
 
     sendWithBasicProtocol(socketPlanif, (void*)&finDeEjec, sizeof(rtdoEjec_t));
-    log_trace(pLog, "Se informa del fin de ejecucion al PLanificador");
+    log_trace(pLog, "Se informa del fin de ejecucion del esi de id = %d al PLanificador", id );
   }
   else
   {
