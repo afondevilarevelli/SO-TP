@@ -13,27 +13,23 @@ int fueFinalizado(ESI_t * pESI)
 
 void atenderESI(ESI_t * pESI)
 {
-  log_trace(pLog, "Atendiendo ESI de ID=%d", pESI->id);
 
   while(!fueAbortado(pESI) && !fueFinalizado(pESI))
   {
     int size;
     void * rtdoEjec;
 
-    log_trace(pLog, "A la espera de respuesta del ESI %d", pESI->id);
     size = recvWithBasicProtocol(pESI->socket, &rtdoEjec);
 
     if( size ) // SI NO SE DESCONECTO
     {
       rtdoEjecucion = *((rtdoEjec_t*)rtdoEjec);
-      log_debug(pLog, "Se recibio el rtdoEjec = %s", rtdoEjecucion==SUCCESS?"SUCCESS":rtdoEjecucion==FAILURE?"FAILURE":rtdoEjecucion==FIN_DE_EJECUCION?"FIN DE EJECUCION":rtdoEjecucion==DISCONNECTED?"DESCONECTADO":rtdoEjecucion==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":rtdoEjecucion==ABORTED?"ABORTADO":"SENTENCIA");
+      log_debug(pLog, "Se recibio del esi de id = %d el rtdoEjec = %s", pESI->id,rtdoEjecucion==SUCCESS?"SUCCESS":rtdoEjecucion==FAILURE?"FAILURE":rtdoEjecucion==FIN_DE_EJECUCION?"FIN DE EJECUCION":rtdoEjecucion==DISCONNECTED?"DESCONECTADO":rtdoEjecucion==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":rtdoEjecucion==ABORTED?"ABORTADO":"SENTENCIA");
       sem_post(&sem_respuestaESI);
     }
     else
     {
       ESIDesconectado( pESI->id );
-      rtdoEjecucion = DISCONNECTED;
-      sem_post(&sem_respuestaESI);
       eliminarESIDelSistema(pESI->id);
       break;
     }
@@ -176,14 +172,15 @@ cola_clave* new_cola_clave(char * clave, int idESI)
 }
 
 bool claveEstaBloqueada(char* clave){
-  bool estaBloqueada;
+  int estaBloqueada;
   claveAVerSiSatisface = clave;
-  estaBloqueada = list_any_satisfy(clavesBloqueadas, (void*) condicionSatisfy);
-  return estaBloqueada;
+  estaBloqueada = list_count_satisfying(clavesBloqueadas, (void*) condicionSatisfy);
+  return estaBloqueada > 0;
 }
 
-bool condicionSatisfy(char* clave){
-    return claveAVerSiSatisface != clave;
+bool condicionSatisfy(void* cl){
+    int result = strcmp(claveAVerSiSatisface, cl);
+    return result == 0;
 }
 
 void bloquearClaves(t_config* conf){
@@ -231,6 +228,7 @@ void atenderConexionEntrante(int listener, int estimacionInicialESI)
   if(recvWithBasicProtocol(newSock, &pID))
   {
     ESI_t * pESI = newESI(newSock, *((int*)pID),estimacionInicialESI );
+    log_trace(pLog, "Atendiendo ESI de ID=%d", pESI->id);
     pthread_mutex_lock(&m_colaListos);
     queue_push(ESIsListos, pESI);
     pthread_mutex_unlock(&m_colaListos);

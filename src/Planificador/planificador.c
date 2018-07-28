@@ -15,6 +15,7 @@ int conectarseACoordinador(t_config * pConf);
 void obtenerIPyPuertoDeCoordinador(t_config * pConf, int * ip, int * puerto);
 void obtenerIPyPuertoDePlanificador(t_config * pConf, int * ip, int * puerto);
 void obtenerIPyPuerto(t_config * pConf, int * ip, int * puerto, char * ipKey, char * portKey);
+void destruirListaColas();
 
 pthread_mutex_t m_puedeEjecutar;
 
@@ -150,6 +151,9 @@ int main(void)
 	log_trace(pLog, "Se destruyeron todos los hilos secundarios");
 	queue_destroy_and_destroy_elements(ESIsListos, (void*)&freeESI);
 	queue_destroy_and_destroy_elements(ESIsBloqueados, (void*)&freeESI);
+	queue_destroy_and_destroy_elements(ESIsFinalizados, (void*)&freeESI);
+	list_destroy(clavesBloqueadas);
+	destruirListaColas();
 	log_trace(pLog, "Se destruyeron las listas globales"); 
 	
 	free(tipoPlanificacion);
@@ -190,4 +194,8 @@ void obtenerIPyPuerto(t_config * pConf, int * ip, int * puerto, char * ipKey, ch
 	//puts(strIP);
 
 	*puerto= htons(config_get_int_value(pConf, portKey));
+}
+
+void destruirListaColas(){
+
 }

@@ -6,6 +6,7 @@
 #include <commons/config.h>
 #include <commons/log.h>
 #include <commons/collections/queue.h>
+#include <commons/collections/list.h>
 
 #include "../../shared/protocolo.h"
 #include "../../shared/mySocket.h"
@@ -71,7 +72,7 @@ cola_clave* new_cola_clave(char * clave, int idESI);
 
 void atenderConexionEntrante(int listener,int estimacionInicialESI);
 bool claveEstaBloqueada(char* clave);
-bool condicionSatisfy(char* clave);
+bool condicionSatisfy(void* clave);
 void bloquearClaves(t_config* conf);
 
 #endif

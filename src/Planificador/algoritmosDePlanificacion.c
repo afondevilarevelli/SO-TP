@@ -69,15 +69,12 @@ void planificarSegunFIFO(){
 					abortESI(pESIEnEjecucion);
 					break;
 				case FIN_DE_EJECUCION:
-					queue_push(ESIsFinalizados, pESIEnEjecucion);
 					finalizarESI(pESIEnEjecucion);
+					queue_push(ESIsFinalizados, pESIEnEjecucion);
 					log_trace(pLog, "El ESI de id = %d pasa a finalizados", pESIEnEjecucion->id);
 					break;
-				case DISCONNECTED:
-					log_trace(pLog, "El ESI de id = %d se desconecto inesperadamente", pESIEnEjecucion->id);
-					break;
 				default:
-					log_error(pLog, "ERROR: rtdoEjecucion desconocido");
+					log_trace(pLog, "El ESI de id = %d se desconecto inesperadamente", pESIEnEjecucion->id);
 			}
 	}
 }
