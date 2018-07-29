@@ -204,7 +204,7 @@ void listar(char* clave){//recurso == clave
 		while(pElem != NULL){// si la cola no esta vacia
 
 			p = (ESI_t*)(pElem->data);//use el mecanismo de Antonio de Las Carreras todos los creditos a EL
-			printf("El proceso con id : %d \n", p->id);
+			printf("El proceso con id : %d espera la clave %s\n", p->id, clave);
 			pElem = pElem->next;
 		}
 	}
@@ -212,7 +212,7 @@ void listar(char* clave){//recurso == clave
 		printf("No hay procesos esperando esa clave\n");
 }
 
-void finalizarProceso(ESI_t* esi){  // ACÁ DEBERÍA TAMBIEN ELIMINARLO DE LA COLA DE UNA CLAVE, SI ES QUE ESTÁ BLOQUEADO POR UNA CLAVE!
+void finalizarProceso(ESI_t* esi){ 
 	ESI_t * pESI = quitarESIDeSuListaActual(esi->id);
 	if(pESI)
 		abortESI(pESI);

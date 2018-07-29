@@ -85,34 +85,43 @@ bool puedeEjecutar(int idESI, int op, char * clave)
   { //operacion STORE
     if(c != NULL)
     {
+      ESI_t* elEsi;
       int idEsiConClave = c -> idEsiUsandoClave;
       if(idEsiConClave == idESI)
       {
-        if( !queue_is_empty(c->cola) ){ 
-        c->idEsiUsandoClave = ( (ESI_t*)(queue_pop(c->cola)) )->id;
-        ESI_t* elEsi = buscarProcesoESI(c->idEsiUsandoClave);
-        esiADesbloquear = elEsi;
-        pthread_mutex_lock(&m_colaBloqueados);
-        list_remove_by_condition(ESIsBloqueados->elements, (void*) condicionRemover);
-        pthread_mutex_unlock(&m_colaBloqueados);
-        return true;
+        while( !queue_is_empty(c->cola) ){ 
+            c->idEsiUsandoClave = ( (ESI_t*)(queue_pop(c->cola)) )->id;
+            elEsi = buscarProcesoESI(c->idEsiUsandoClave);
+            if(elEsi->state != ABORTADO){
+              break;
+            } 
+            else{
+              freeESI(elEsi);
+            }
         }
-        else{
-          c->idEsiUsandoClave = 0;
-          return true;
-        }
+            if( elEsi != NULL ){   
+                esiADesbloquear = elEsi;
+                pthread_mutex_lock(&m_colaBloqueados);
+                list_remove_by_condition(ESIsBloqueados->elements, (void*) condicionRemover);
+                pthread_mutex_unlock(&m_colaBloqueados);
+                return true; 
+            }
+            else{
+              c->idEsiUsandoClave = 0;
+              return true;
+            }
       }
-      else
-      {
+      else{
         return false;
       }
-    }
-    else 
-    {
+    } 
+    else{
       return false;
-    }
-  } }
+    } 
+  }
+  }
 }
+
 void coordinadorDesconectado()
 {
   socketCoord = -1;
