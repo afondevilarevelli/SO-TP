@@ -1,3 +1,3 @@
 #!/bin/bash
 
-(cd Instancia && ./instancia)&(cd Instancia2 && ./instancia)
+(cd Inst1 && ./instancia)&(cd Inst2 && ./instancia)&(cd Inst3 && ./instancia)
