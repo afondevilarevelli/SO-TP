@@ -41,6 +41,7 @@ t_queue * ESIsFinalizados;
 
 ESI_t * pESIEnEjecucion;
 rtdoEjec_t rtdoEjecucion;
+int tiempoParaIterar;
 
 t_list * hilos;
 
@@ -75,5 +76,7 @@ void atenderConexionEntrante(int listener,int estimacionInicialESI);
 bool claveEstaBloqueada(char* clave);
 bool condicionSatisfy(void* clave);
 void bloquearClaves(t_config* conf);
+void sumarTiempoEsperandoCPU(int tiempo);
+void closureParaIterar(ESI_t* esi);
 
 #endif

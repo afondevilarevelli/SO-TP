@@ -108,6 +108,7 @@ void planificarSegunSJF(){
 		    }
 			while(rtdoEjecucion == SUCCESS);
 			pESIEnEjecucion->duracionAnterior = duracion;
+			sumarTiempoEsperandoCPU(duracion);
 
 			if( rtdoEjecucion == FAILURE){
 			log_error(pLog, "El ESI de id = %d ha fallado y se ha bloqueado");
@@ -161,6 +162,7 @@ void planificarSegunSRT(){
 			}
 			while( rtdoEjecucion == SUCCESS && queue_size(ESIsListos) <= sizeColaReadyAntesDeEjecutar );
 			pESIEnEjecucion->duracionAnterior = duracion;
+			sumarTiempoEsperandoCPU(duracion);
 
 			if( rtdoEjecucion == FAILURE){
 			log_error(pLog, "El ESI de id = %d ha fallado y se ha bloqueado");
@@ -218,6 +220,7 @@ void planificarSegunHRRN(){
 		    }
 			while(rtdoEjecucion == SUCCESS);
 			pESIEnEjecucion->duracionAnterior = duracion;
+			sumarTiempoEsperandoCPU(duracion);
 
 			if( rtdoEjecucion == FAILURE){
 			log_error(pLog, "El ESI de id = %d ha fallado y se ha bloqueado");

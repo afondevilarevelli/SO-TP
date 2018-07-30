@@ -195,6 +195,15 @@ void bloquearClaves(t_config* conf){
 	}
 }
 
+void sumarTiempoEsperandoCPU(int tiempo){
+    tiempoParaIterar = tiempo;
+    list_iterate(ESIsListos->elements, (void *)&closureParaIterar);
+}
+
+void closureParaIterar(ESI_t* esi){
+    esi->tiempoEsperandoCPU += tiempoParaIterar;
+}
+
 /*----------CONEXIONES---------*/
 
 void recibirNuevosESI(t_config * pConf)
