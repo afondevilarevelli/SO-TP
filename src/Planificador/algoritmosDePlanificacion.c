@@ -55,6 +55,7 @@ void planificarSegunFIFO(){
 
 				log_trace(pLog,"Se espera la respuesta del ESI en ejecucion");
 				sem_wait(&sem_respuestaESI);
+				log_debug(pLog, "Se recibio del esi de id = %d el rtdoEjec = %s", pESIEnEjecucion->id,rtdoEjecucion==SUCCESS?"SUCCESS":rtdoEjecucion==FAILURE?"FAILURE":rtdoEjecucion==FIN_DE_EJECUCION?"FIN DE EJECUCION":rtdoEjecucion==DISCONNECTED?"DESCONECTADO":rtdoEjecucion==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":rtdoEjecucion==ABORTED?"ABORTADO":"SENTENCIA");
 		  }
 			while(rtdoEjecucion == SUCCESS);
 
@@ -70,6 +71,7 @@ void planificarSegunFIFO(){
 					break;
 				case FIN_DE_EJECUCION:
 					finalizarESI(pESIEnEjecucion);
+					sem_post(&sem_esperarFinalizarESI);
 					queue_push(ESIsFinalizados, pESIEnEjecucion);
 					log_trace(pLog, "El ESI de id = %d pasa a finalizados", pESIEnEjecucion->id);
 					break;
@@ -102,6 +104,7 @@ void planificarSegunSJF(){
 
 			log_trace(pLog,"Se espera la respuesta del ESI en ejecucion");
 			sem_wait(&sem_respuestaESI);
+			log_debug(pLog, "Se recibio del esi de id = %d el rtdoEjec = %s", pESIEnEjecucion->id,rtdoEjecucion==SUCCESS?"SUCCESS":rtdoEjecucion==FAILURE?"FAILURE":rtdoEjecucion==FIN_DE_EJECUCION?"FIN DE EJECUCION":rtdoEjecucion==DISCONNECTED?"DESCONECTADO":rtdoEjecucion==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":rtdoEjecucion==ABORTED?"ABORTADO":"SENTENCIA");
 		    }
 			while(rtdoEjecucion == SUCCESS);
 			pESIEnEjecucion->duracionAnterior = duracion;
@@ -117,8 +120,9 @@ void planificarSegunSJF(){
 			}
 			else if( rtdoEjecucion == FIN_DE_EJECUCION )
 			{
-			queue_push(ESIsFinalizados, pESIEnEjecucion);
 			finalizarESI(pESIEnEjecucion);
+			sem_post(&sem_esperarFinalizarESI);
+			queue_push(ESIsFinalizados, pESIEnEjecucion);
 			log_trace(pLog, "El ESI de id = %d pasa a finalizados", pESIEnEjecucion->id);
 			}
 			else
@@ -153,6 +157,7 @@ void planificarSegunSRT(){
 
 				log_trace(pLog,"Se espera la respuesta del ESI en ejecucion");
 				sem_wait(&sem_respuestaESI);
+				log_debug(pLog, "Se recibio del esi de id = %d el rtdoEjec = %s", pESIEnEjecucion->id,rtdoEjecucion==SUCCESS?"SUCCESS":rtdoEjecucion==FAILURE?"FAILURE":rtdoEjecucion==FIN_DE_EJECUCION?"FIN DE EJECUCION":rtdoEjecucion==DISCONNECTED?"DESCONECTADO":rtdoEjecucion==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":rtdoEjecucion==ABORTED?"ABORTADO":"SENTENCIA");
 			}
 			while( rtdoEjecucion == SUCCESS && queue_size(ESIsListos) <= sizeColaReadyAntesDeEjecutar );
 			pESIEnEjecucion->duracionAnterior = duracion;
@@ -168,13 +173,16 @@ void planificarSegunSRT(){
 				}
 				else
 					if( rtdoEjecucion == FIN_DE_EJECUCION ){
-						queue_push(ESIsFinalizados, pESIEnEjecucion);
 						finalizarESI(pESIEnEjecucion);
+						sem_post(&sem_esperarFinalizarESI);
+						queue_push(ESIsFinalizados, pESIEnEjecucion);
 						log_trace(pLog, "El ESI de id = %d pasa a finalizados", pESIEnEjecucion->id);
 					}
 					else
 						if(rtdoEjecucion == SUCCESS){
+							pthread_mutex_lock(&m_colaListos);
 							list_add_in_index( (t_list *)ESIsListos, 0, (void *)pEsiAEjecutar ); // para que si empata con otro esi, se aplique la regla FIFO
+							pthread_mutex_unlock(&m_colaListos);
 						}
 						else
 							log_error(pLog, "ERROR: rtdoEjecucion desconocido");
@@ -206,6 +214,7 @@ void planificarSegunHRRN(){
 
 			log_trace(pLog,"Se espera la respuesta del ESI en ejecucion");
 			sem_wait(&sem_respuestaESI);
+			log_debug(pLog, "Se recibio del esi de id = %d el rtdoEjec = %s", pESIEnEjecucion->id,rtdoEjecucion==SUCCESS?"SUCCESS":rtdoEjecucion==FAILURE?"FAILURE":rtdoEjecucion==FIN_DE_EJECUCION?"FIN DE EJECUCION":rtdoEjecucion==DISCONNECTED?"DESCONECTADO":rtdoEjecucion==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":rtdoEjecucion==ABORTED?"ABORTADO":"SENTENCIA");
 		    }
 			while(rtdoEjecucion == SUCCESS);
 			pESIEnEjecucion->duracionAnterior = duracion;
@@ -221,9 +230,10 @@ void planificarSegunHRRN(){
 			}
 			else if( rtdoEjecucion == FIN_DE_EJECUCION )
 			{
-			queue_push(ESIsFinalizados, pESIEnEjecucion);
 			finalizarESI(pESIEnEjecucion);
+			sem_post(&sem_esperarFinalizarESI);
 			log_trace(pLog, "El ESI de id = %d pasa a finalizados", pESIEnEjecucion->id);
+			queue_push(ESIsFinalizados, pESIEnEjecucion);
 			}
 			else
 			log_error(pLog, "ERROR: rtdoEjecucion desconocido");
@@ -232,21 +242,27 @@ void planificarSegunHRRN(){
 }
 
 ESI_t*  obtenerEsiAEjecutarSegunFIFO(){
+	pthread_mutex_lock(&m_colaListos);
     ESI_t* pEsiAEjecutar = queue_pop(ESIsListos);
+	pthread_mutex_unlock(&m_colaListos);
 	return pEsiAEjecutar;
 } //BIEN
 
 ESI_t*  obtenerEsiAEjecutarSegunSJF(){
+	pthread_mutex_lock(&m_colaListos);
 	list_sort( ESIsListos->elements, (void*) condicionParaListSortSJF );
 	ESI_t* pEsiAEjecutar = queue_pop(ESIsListos);
+	pthread_mutex_unlock(&m_colaListos);
 	pEsiAEjecutar->estimacionAnterior = algoritmoDeEstimacionProximaRafaga(pEsiAEjecutar);
 	pEsiAEjecutar->duracionAnterior = 0;
 	return pEsiAEjecutar;
 } //BIEN
 
 ESI_t* obtenerEsiAEjecutarSegunHRRN(){
+	pthread_mutex_lock(&m_colaListos);
 	list_sort( ESIsListos->elements, (void*) condicionParaListSortHRRN );
 	ESI_t* pEsiAEjecutar = queue_pop(ESIsListos);
+	pthread_mutex_unlock(&m_colaListos);
 	pEsiAEjecutar->estimacionAnterior = algoritmoDeEstimacionProximaRafaga(pEsiAEjecutar);
 	pEsiAEjecutar->duracionAnterior = 0;
 	pEsiAEjecutar->tiempoEsperandoCPU = 0;

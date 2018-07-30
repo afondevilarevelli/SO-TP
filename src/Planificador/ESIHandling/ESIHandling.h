@@ -52,6 +52,7 @@ pthread_mutex_t m_colaBloqueados;
 extern pthread_mutex_t m_puedeEjecutar;
 sem_t sem_cantESIsListos;
 sem_t sem_respuestaESI;
+sem_t sem_esperarFinalizarESI;
 
 
 void terminarHilo( pthread_t * pHilo );

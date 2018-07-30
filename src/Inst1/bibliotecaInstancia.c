@@ -326,13 +326,13 @@ rtdoEjec_t storeRecurso(char * clave)
 		char* val = obtenerValor(clave);
 
 		//Extencion completa del archivo
-		char dir[strlen(pathMontaje)+4+strlen(clave)];
+		char dir[strlen(pathMontaje)+strlen(clave)+4];
 		strcpy(dir,pathMontaje);
 		strcat(dir,clave);
 		strcat(dir,".txt");
 		fp=fopen(dir,"w");
 
-		fwrite(val,sizeof(val),1,fp);
+		fwrite(val,sizeof(char),strlen(val)+1,fp);
 
 		fclose(fp);
 		//Archivos guardados

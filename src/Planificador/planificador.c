@@ -2,6 +2,7 @@
 #include <commons/config.h>
 #include <commons/log.h>
 #include <commons/collections/queue.h>
+#include <commons/collections/list.h>
 #include "consolaPlanificador.h"
 #include "../shared/protocolo.h"
 #include "../shared/mySocket.h"
@@ -16,6 +17,8 @@ void obtenerIPyPuertoDeCoordinador(t_config * pConf, int * ip, int * puerto);
 void obtenerIPyPuertoDePlanificador(t_config * pConf, int * ip, int * puerto);
 void obtenerIPyPuerto(t_config * pConf, int * ip, int * puerto, char * ipKey, char * portKey);
 void destruirListaColas();
+void elementoDestructorLista(cola_clave* c);
+void elementoDestructorClaves(char* c);
 
 pthread_mutex_t m_puedeEjecutar;
 
@@ -92,6 +95,7 @@ int main(void)
 	pthread_mutex_init(&m_colaBloqueados, NULL);
 	sem_init(&sem_cantESIsListos, 0, 0);
 	sem_init(&sem_respuestaESI, 0, 0);
+	sem_init(&sem_esperarFinalizarESI, 0, 0);
 	hilos = list_create();
 
 	ESIsListos = queue_create();
@@ -152,7 +156,7 @@ int main(void)
 	queue_destroy_and_destroy_elements(ESIsListos, (void*)&freeESI);
 	queue_destroy_and_destroy_elements(ESIsBloqueados, (void*)&freeESI);
 	queue_destroy_and_destroy_elements(ESIsFinalizados, (void*)&freeESI);
-	list_destroy(clavesBloqueadas);
+	list_destroy_and_destroy_elements(clavesBloqueadas, (void *)&elementoDestructorClaves);
 	destruirListaColas();
 	log_trace(pLog, "Se destruyeron las listas globales"); 
 	
@@ -197,5 +201,14 @@ void obtenerIPyPuerto(t_config * pConf, int * ip, int * puerto, char * ipKey, ch
 }
 
 void destruirListaColas(){
+	list_destroy_and_destroy_elements(ListaColas, (void *)&elementoDestructorLista);
+}
 
+void elementoDestructorLista(cola_clave* c){
+	free(c->clave);
+	queue_destroy_and_destroy_elements(c->cola,(void *)&freeESI);
+}
+
+void elementoDestructorClaves(char* c){
+	free(c);
 }

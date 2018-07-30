@@ -13,7 +13,6 @@ int fueFinalizado(ESI_t * pESI)
 
 void atenderESI(ESI_t * pESI)
 {
-
   while(!fueAbortado(pESI) && !fueFinalizado(pESI))
   {
     int size;
@@ -24,21 +23,19 @@ void atenderESI(ESI_t * pESI)
     if( size ) // SI NO SE DESCONECTO
     {
       rtdoEjecucion = *((rtdoEjec_t*)rtdoEjec);
-      log_debug(pLog, "Se recibio del esi de id = %d el rtdoEjec = %s", pESI->id,rtdoEjecucion==SUCCESS?"SUCCESS":rtdoEjecucion==FAILURE?"FAILURE":rtdoEjecucion==FIN_DE_EJECUCION?"FIN DE EJECUCION":rtdoEjecucion==DISCONNECTED?"DESCONECTADO":rtdoEjecucion==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":rtdoEjecucion==ABORTED?"ABORTADO":"SENTENCIA");
       sem_post(&sem_respuestaESI);
     }
     else
     {
       ESIDesconectado( pESI->id );
-      eliminarESIDelSistema(pESI->id);
       break;
     }
   }
 
+  sem_wait(&sem_esperarFinalizarESI);
   if(fueAbortado(pESI)){ 
     eliminarESIDelSistema(pESI->id); }
   else{ 
-    finalizarESI(pESI);
     log_warning(pLog, "El ESI con ID = %d finalizo y no atendera mas solicitudes", pESI->id);
   }
 }
@@ -58,7 +55,7 @@ int fueAbortado(ESI_t * pESI)
 
 void ESIDesconectado( int ESI_ID )
 {
-  log_error(pLog, "El ESI con ID = %d, se desconecto\n", ESI_ID);
+  log_warning(pLog, "El ESI con ID = %d, se desconecto\n", ESI_ID);
 }
 
 ESI_t * quitarESIDeSuListaActual(int ESI_ID)
@@ -228,7 +225,7 @@ void atenderConexionEntrante(int listener, int estimacionInicialESI)
   if(recvWithBasicProtocol(newSock, &pID))
   {
     ESI_t * pESI = newESI(newSock, *((int*)pID),estimacionInicialESI );
-    log_trace(pLog, "Atendiendo ESI de ID=%d", pESI->id);
+    //log_trace(pLog, "Atendiendo ESI de ID=%d", *(int*)pID);
     pthread_mutex_lock(&m_colaListos);
     queue_push(ESIsListos, pESI);
     pthread_mutex_unlock(&m_colaListos);
