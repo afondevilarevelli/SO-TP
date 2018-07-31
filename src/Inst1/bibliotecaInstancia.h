@@ -88,6 +88,7 @@ typedef struct
 	rtdoEjec_t agregarATabla(char * clave, int pointerAEntrada, int sizeValor);
 	//Aux
 	void avisarCoordTamanioOcupado();
+	void restaurar(void);
 
 
 

@@ -131,7 +131,7 @@ fgetInstAlg obtenerAlgoritmoDeDistribucion(t_config * pConf)
 	char * alg = config_get_string_value(pConf, "ALG_DISTR");
 	fgetInstAlg fAlg = NULL;
 
-	if( !strcmp(alg, "EQL") )
+	if( !strcmp(alg, "EQL") || !strcmp(alg, "EL") )
 		fAlg = &getInstByEquitativeLoad;
 	else if( !strcmp(alg, "LSU") )
 		fAlg = &getInstByLSU;

@@ -63,7 +63,7 @@ void atenderESI( int socket )
           else
           {
             rtdo = NO_HAY_INSTANCIAS_CONECTADAS;
-            log_warning(pLog, "No hay instancias conectas");
+            log_warning(pLog, "No hay instancias conectadas");
           }
           free(solicitud);
 

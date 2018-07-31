@@ -586,7 +586,7 @@ void cargarTablaDeEntradasYAlmacenamiento(t_config * pConf)
 
 	return;
 }
-void restaurar(t_config * pConf)
+void restaurar(void)
 {
 	almacenamiento = calloc((entryCant*entrySize),sizeof(char));
 	char * datoBitArray=calloc(entryCant,sizeof(char));
