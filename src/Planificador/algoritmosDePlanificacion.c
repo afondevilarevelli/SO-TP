@@ -107,8 +107,8 @@ void planificarSegunSJF(){
 			log_debug(pLog, "Se recibio del esi de id = %d el rtdoEjec = %s", pESIEnEjecucion->id,rtdoEjecucion==SUCCESS?"SUCCESS":rtdoEjecucion==FAILURE?"FAILURE":rtdoEjecucion==FIN_DE_EJECUCION?"FIN DE EJECUCION":rtdoEjecucion==DISCONNECTED?"DESCONECTADO":rtdoEjecucion==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":rtdoEjecucion==ABORTED?"ABORTADO":"SENTENCIA");
 		    }
 			while(rtdoEjecucion == SUCCESS);
-			pESIEnEjecucion->duracionAnterior = duracion;
-			sumarTiempoEsperandoCPU(duracion);
+			pESIEnEjecucion->duracionAnterior = duracion - 1;
+			sumarTiempoEsperandoCPU(duracion - 1);
 
 			if( rtdoEjecucion == FAILURE){
 			log_error(pLog, "El ESI de id = %d ha fallado y se ha bloqueado");
@@ -161,8 +161,8 @@ void planificarSegunSRT(){
 				log_debug(pLog, "Se recibio del esi de id = %d el rtdoEjec = %s", pESIEnEjecucion->id,rtdoEjecucion==SUCCESS?"SUCCESS":rtdoEjecucion==FAILURE?"FAILURE":rtdoEjecucion==FIN_DE_EJECUCION?"FIN DE EJECUCION":rtdoEjecucion==DISCONNECTED?"DESCONECTADO":rtdoEjecucion==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":rtdoEjecucion==ABORTED?"ABORTADO":"SENTENCIA");
 			}
 			while( rtdoEjecucion == SUCCESS && queue_size(ESIsListos) <= sizeColaReadyAntesDeEjecutar );
-			pESIEnEjecucion->duracionAnterior = duracion;
-			sumarTiempoEsperandoCPU(duracion);
+			pESIEnEjecucion->duracionAnterior = duracion - 1;
+			sumarTiempoEsperandoCPU(duracion - 1);
 
 			if( rtdoEjecucion == FAILURE){
 			log_error(pLog, "El ESI de id = %d ha fallado y se ha bloqueado");
@@ -219,8 +219,8 @@ void planificarSegunHRRN(){
 			log_debug(pLog, "Se recibio del esi de id = %d el rtdoEjec = %s", pESIEnEjecucion->id,rtdoEjecucion==SUCCESS?"SUCCESS":rtdoEjecucion==FAILURE?"FAILURE":rtdoEjecucion==FIN_DE_EJECUCION?"FIN DE EJECUCION":rtdoEjecucion==DISCONNECTED?"DESCONECTADO":rtdoEjecucion==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":rtdoEjecucion==ABORTED?"ABORTADO":"SENTENCIA");
 		    }
 			while(rtdoEjecucion == SUCCESS);
-			pESIEnEjecucion->duracionAnterior = duracion;
-			sumarTiempoEsperandoCPU(duracion);
+			pESIEnEjecucion->duracionAnterior = duracion - 1;
+			sumarTiempoEsperandoCPU(duracion - 1);
 
 			if( rtdoEjecucion == FAILURE){
 			log_error(pLog, "El ESI de id = %d ha fallado y se ha bloqueado");
@@ -257,7 +257,6 @@ ESI_t*  obtenerEsiAEjecutarSegunSJF(){
 	ESI_t* pEsiAEjecutar = queue_pop(ESIsListos);
 	pthread_mutex_unlock(&m_colaListos);
 	pEsiAEjecutar->estimacionAnterior = algoritmoDeEstimacionProximaRafaga(pEsiAEjecutar);
-	pEsiAEjecutar->duracionAnterior = 0;
 	return pEsiAEjecutar;
 } //BIEN
 
@@ -267,7 +266,6 @@ ESI_t* obtenerEsiAEjecutarSegunHRRN(){
 	ESI_t* pEsiAEjecutar = queue_pop(ESIsListos);
 	pthread_mutex_unlock(&m_colaListos);
 	pEsiAEjecutar->estimacionAnterior = algoritmoDeEstimacionProximaRafaga(pEsiAEjecutar);
-	pEsiAEjecutar->duracionAnterior = 0;
 	pEsiAEjecutar->tiempoEsperandoCPU = 0;
 	return pEsiAEjecutar;
 } //BIEN

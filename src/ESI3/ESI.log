@@ -141,3 +141,10 @@ Valor = No corresponde
 [TRACE] 07:53:46:213 ESI/(9113:9113): Se envio el resultado al Planificador
 [TRACE] 07:53:46:213 ESI/(9113:9113): Esperando orden de Planificador
 [ERROR] 13:29:03:501 ESI/(9113:9113): No se pudo recibir la orden del planificador porque se desconecto.
+[TRACE] 21:27:39:970 ESI/(5375:5375): Iniciando...
+[TRACE] 21:27:39:977 ESI/(5375:5375): Se obtiene ID 3 del archivo de configuracion
+[TRACE] 21:27:39:977 ESI/(5375:5375): El esi de id = 3 se conecto al Coordinador en el socket 4
+[TRACE] 21:27:39:978 ESI/(5375:5375): El esi de id = 3 se conecto al Planificador en el socket 5
+[TRACE] 21:27:39:978 ESI/(5375:5375): Script ejemplo.esi abierto
+[TRACE] 21:27:39:978 ESI/(5375:5375): El esi de id = 3 esta esperando orden de Planificador
+[ERROR] 21:27:40:260 ESI/(5375:5375): No se pudo recibir la orden del planificador porque se desconecto.

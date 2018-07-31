@@ -7,6 +7,7 @@ esi:
 	cp esi ../ESI2/esi
 	cp esi ../ESI3/esi
 	cp esi ../ESI4/esi
+	cp esi ../ESI5/esi
 
 clean:
 	rm esi

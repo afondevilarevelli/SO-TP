@@ -1843,3 +1843,146 @@ Valor = No corresponde
 [TRACE] 17:11:00:277 ESI/(8014:8014): El ESI de id = 2 finalizo su ejecucion correctamente
 [TRACE] 17:11:00:277 ESI/(8014:8014): Se informa del fin de ejecucion del esi de id = 2 al Coordinador
 [TRACE] 17:11:00:277 ESI/(8014:8014): Se informa del fin de ejecucion del esi de id = 2 al PLanificador
+[TRACE] 20:50:22:181 ESI/(3132:3132): Iniciando...
+[TRACE] 20:50:22:186 ESI/(3132:3132): Se obtiene ID 2 del archivo de configuracion
+[TRACE] 20:50:22:188 ESI/(3132:3132): El esi de id = 2 se conecto al Coordinador en el socket 4
+[TRACE] 20:50:22:188 ESI/(3132:3132): El esi de id = 2 se conecto al Planificador en el socket 5
+[TRACE] 20:50:22:189 ESI/(3132:3132): Script ejemplo.esi abierto
+[TRACE] 20:50:22:189 ESI/(3132:3132): El esi de id = 2 esta esperando orden de Planificador
+[ERROR] 20:58:45:313 ESI/(3132:3132): No se pudo recibir la orden del planificador porque se desconecto.
+[TRACE] 20:59:22:700 ESI/(3669:3669): Iniciando...
+[TRACE] 20:59:22:710 ESI/(3669:3669): Se obtiene ID 2 del archivo de configuracion
+[TRACE] 20:59:22:711 ESI/(3669:3669): El esi de id = 2 se conecto al Coordinador en el socket 4
+[TRACE] 20:59:22:711 ESI/(3669:3669): El esi de id = 2 se conecto al Planificador en el socket 5
+[TRACE] 20:59:22:711 ESI/(3669:3669): Script ejemplo.esi abierto
+[TRACE] 20:59:22:712 ESI/(3669:3669): El esi de id = 2 esta esperando orden de Planificador
+[DEBUG] 21:01:06:120 ESI/(3669:3669): La orden recibida fue EJECUTAR
+[DEBUG] 21:01:06:125 ESI/(3669:3669): La sentencia parseada del esi con id = 2 es:
+Op = GET
+Clave = papa
+Valor = No corresponde
+
+[TRACE] 21:01:06:125 ESI/(3669:3669): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 21:01:06:127 ESI/(3669:3669): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 21:01:07:128 ESI/(3669:3669): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 21:01:07:128 ESI/(3669:3669): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 21:01:07:128 ESI/(3669:3669): El esi de id = 2 espera orden de Planificador
+[DEBUG] 21:01:07:128 ESI/(3669:3669): La orden recibida fue EJECUTAR
+[DEBUG] 21:01:07:129 ESI/(3669:3669): La sentencia parseada del esi con id = 2 es:
+Op = SET
+Clave = papa
+Valor = loco
+
+[TRACE] 21:01:07:129 ESI/(3669:3669): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 21:01:07:129 ESI/(3669:3669): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 21:01:08:132 ESI/(3669:3669): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 21:01:08:133 ESI/(3669:3669): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 21:01:08:133 ESI/(3669:3669): El esi de id = 2 espera orden de Planificador
+[DEBUG] 21:01:08:133 ESI/(3669:3669): La orden recibida fue EJECUTAR
+[DEBUG] 21:01:08:133 ESI/(3669:3669): La sentencia parseada del esi con id = 2 es:
+Op = STORE
+Clave = papa
+Valor = No corresponde
+
+[TRACE] 21:01:08:133 ESI/(3669:3669): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 21:01:08:133 ESI/(3669:3669): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 21:01:09:138 ESI/(3669:3669): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 21:01:09:138 ESI/(3669:3669): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 21:01:09:138 ESI/(3669:3669): El esi de id = 2 espera orden de Planificador
+[DEBUG] 21:01:09:138 ESI/(3669:3669): La orden recibida fue EJECUTAR
+[TRACE] 21:01:09:139 ESI/(3669:3669): El ESI de id = 2 finalizo su ejecucion correctamente
+[TRACE] 21:01:09:139 ESI/(3669:3669): Se informa del fin de ejecucion del esi de id = 2 al Coordinador
+[TRACE] 21:01:09:139 ESI/(3669:3669): Se informa del fin de ejecucion del esi de id = 2 al PLanificador
+[TRACE] 21:02:58:324 ESI/(4255:4255): Iniciando...
+[TRACE] 21:02:58:328 ESI/(4255:4255): Se obtiene ID 2 del archivo de configuracion
+[TRACE] 21:02:58:337 ESI/(4255:4255): El esi de id = 2 se conecto al Coordinador en el socket 4
+[TRACE] 21:02:58:338 ESI/(4255:4255): El esi de id = 2 se conecto al Planificador en el socket 5
+[TRACE] 21:02:58:338 ESI/(4255:4255): Script ejemplo.esi abierto
+[TRACE] 21:02:58:338 ESI/(4255:4255): El esi de id = 2 esta esperando orden de Planificador
+[DEBUG] 21:07:05:818 ESI/(4255:4255): La orden recibida fue EJECUTAR
+[DEBUG] 21:07:05:820 ESI/(4255:4255): La sentencia parseada del esi con id = 2 es:
+Op = GET
+Clave = papa
+Valor = No corresponde
+
+[TRACE] 21:07:05:821 ESI/(4255:4255): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 21:07:05:821 ESI/(4255:4255): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 21:07:06:825 ESI/(4255:4255): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 21:07:06:825 ESI/(4255:4255): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 21:07:06:826 ESI/(4255:4255): El esi de id = 2 espera orden de Planificador
+[DEBUG] 21:07:06:826 ESI/(4255:4255): La orden recibida fue EJECUTAR
+[DEBUG] 21:07:06:826 ESI/(4255:4255): La sentencia parseada del esi con id = 2 es:
+Op = SET
+Clave = papa
+Valor = loco
+
+[TRACE] 21:07:06:826 ESI/(4255:4255): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 21:07:06:827 ESI/(4255:4255): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 21:07:07:834 ESI/(4255:4255): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 21:07:07:834 ESI/(4255:4255): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 21:07:07:835 ESI/(4255:4255): El esi de id = 2 espera orden de Planificador
+[DEBUG] 21:07:07:835 ESI/(4255:4255): La orden recibida fue EJECUTAR
+[DEBUG] 21:07:07:835 ESI/(4255:4255): La sentencia parseada del esi con id = 2 es:
+Op = STORE
+Clave = papa
+Valor = No corresponde
+
+[TRACE] 21:07:07:835 ESI/(4255:4255): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 21:07:07:835 ESI/(4255:4255): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 21:07:08:839 ESI/(4255:4255): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 21:07:08:839 ESI/(4255:4255): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 21:07:08:839 ESI/(4255:4255): El esi de id = 2 espera orden de Planificador
+[DEBUG] 21:07:08:839 ESI/(4255:4255): La orden recibida fue EJECUTAR
+[TRACE] 21:07:08:840 ESI/(4255:4255): El ESI de id = 2 finalizo su ejecucion correctamente
+[TRACE] 21:07:08:840 ESI/(4255:4255): Se informa del fin de ejecucion del esi de id = 2 al Coordinador
+[TRACE] 21:07:08:842 ESI/(4255:4255): Se informa del fin de ejecucion del esi de id = 2 al PLanificador
+[TRACE] 21:07:38:175 ESI/(4410:4410): Iniciando...
+[TRACE] 21:07:38:177 ESI/(4410:4410): Se obtiene ID 2 del archivo de configuracion
+[TRACE] 21:07:38:177 ESI/(4410:4410): El esi de id = 2 se conecto al Coordinador en el socket 4
+[TRACE] 21:07:38:178 ESI/(4410:4410): El esi de id = 2 se conecto al Planificador en el socket 5
+[TRACE] 21:07:38:178 ESI/(4410:4410): Script ejemplo.esi abierto
+[TRACE] 21:07:38:179 ESI/(4410:4410): El esi de id = 2 esta esperando orden de Planificador
+[DEBUG] 21:07:41:191 ESI/(4410:4410): La orden recibida fue EJECUTAR
+[DEBUG] 21:07:41:191 ESI/(4410:4410): La sentencia parseada del esi con id = 2 es:
+Op = GET
+Clave = papa
+Valor = No corresponde
+
+[TRACE] 21:07:41:191 ESI/(4410:4410): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 21:07:41:191 ESI/(4410:4410): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 21:07:42:198 ESI/(4410:4410): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 21:07:42:198 ESI/(4410:4410): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 21:07:42:198 ESI/(4410:4410): El esi de id = 2 espera orden de Planificador
+[DEBUG] 21:07:42:199 ESI/(4410:4410): La orden recibida fue EJECUTAR
+[DEBUG] 21:07:42:199 ESI/(4410:4410): La sentencia parseada del esi con id = 2 es:
+Op = SET
+Clave = papa
+Valor = loco
+
+[TRACE] 21:07:42:199 ESI/(4410:4410): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 21:07:42:199 ESI/(4410:4410): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 21:07:43:204 ESI/(4410:4410): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 21:07:43:204 ESI/(4410:4410): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 21:07:43:204 ESI/(4410:4410): El esi de id = 2 espera orden de Planificador
+[DEBUG] 21:07:43:204 ESI/(4410:4410): La orden recibida fue EJECUTAR
+[DEBUG] 21:07:43:204 ESI/(4410:4410): La sentencia parseada del esi con id = 2 es:
+Op = STORE
+Clave = papa
+Valor = No corresponde
+
+[TRACE] 21:07:43:204 ESI/(4410:4410): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 21:07:43:204 ESI/(4410:4410): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 21:07:44:209 ESI/(4410:4410): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 21:07:44:209 ESI/(4410:4410): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 21:07:44:210 ESI/(4410:4410): El esi de id = 2 espera orden de Planificador
+[DEBUG] 21:07:44:210 ESI/(4410:4410): La orden recibida fue EJECUTAR
+[TRACE] 21:07:44:210 ESI/(4410:4410): El ESI de id = 2 finalizo su ejecucion correctamente
+[TRACE] 21:07:44:210 ESI/(4410:4410): Se informa del fin de ejecucion del esi de id = 2 al Coordinador
+[TRACE] 21:07:44:210 ESI/(4410:4410): Se informa del fin de ejecucion del esi de id = 2 al PLanificador
+[TRACE] 21:27:39:975 ESI/(5376:5376): Iniciando...
+[TRACE] 21:27:39:978 ESI/(5376:5376): Se obtiene ID 2 del archivo de configuracion
+[TRACE] 21:27:39:978 ESI/(5376:5376): El esi de id = 2 se conecto al Coordinador en el socket 4
+[TRACE] 21:27:39:979 ESI/(5376:5376): El esi de id = 2 se conecto al Planificador en el socket 5
+[TRACE] 21:27:39:979 ESI/(5376:5376): Script ejemplo.esi abierto
+[TRACE] 21:27:39:979 ESI/(5376:5376): El esi de id = 2 esta esperando orden de Planificador
+[ERROR] 21:27:40:260 ESI/(5376:5376): No se pudo recibir la orden del planificador porque se desconecto.
