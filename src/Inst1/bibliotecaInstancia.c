@@ -1,4 +1,8 @@
 #include "bibliotecaInstancia.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
 
 void mostrarEntrada(t_entrada_tabla * pEntry)
 {
@@ -326,13 +330,18 @@ rtdoEjec_t storeRecurso(char * clave)
 		char* val = obtenerValor(clave);
 
 		//Extencion completa del archivo
-		char dir[strlen(pathMontaje)+strlen(clave)+4];
-		strcpy(dir,pathMontaje);
-		strcat(dir,clave);
-		strcat(dir,".txt");
+		char * dir = malloc(strlen(pathMontaje)+1+strlen(clave)+1);
+		sprintf(dir, "%s/%s", pathMontaje, clave);
+
+		struct stat st = {0};
+
+		if (stat(pathMontaje, &st) == -1)
+				mkdir(pathMontaje, 0700);
+
 		fp=fopen(dir,"w");
 
 		fwrite(val,sizeof(char),strlen(val)+1,fp);
+		log_debug(pLog, "Se escribio %s en el archivo %s", val, clave);
 
 		fclose(fp);
 		//Archivos guardados
@@ -597,14 +606,14 @@ void restaurar(void)
 	return;
 }
 void avisarCoordTamanioOcupado(){
-	int tamanio;
+	int tamanio = 0;
 	int i;
 	for(i=0;entryCant!=i;i++)
 	{
 		if(bitarray_test_bit(bitarray,i)==1)
 			tamanio++;
 	}
-	//sendWithBasicProtocol(coord_socket, &tamanio, sizeof(int));
+	sendWithBasicProtocol(coord_socket, &tamanio, sizeof(int));
 	log_trace(pLog, "Resultado de tamanio ocupado enviado");
 
 }

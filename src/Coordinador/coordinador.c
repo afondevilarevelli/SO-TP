@@ -48,7 +48,7 @@ int main(void)
 	hilos = list_create();
 
 	pLog = log_create("coord.log", "COORDINADOR", true, LOG_LEVEL_TRACE);
-	pOpLog = log_create("operaciones.log", "COORDINADOR", false, LOG_LEVEL_TRACE);
+	pOpLog = log_create("operaciones.log", "COORDOP", false, LOG_LEVEL_TRACE);
 	log_trace(pLog, "Iniciando...");
 
 	unsigned int ip, puerto;

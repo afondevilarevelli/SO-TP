@@ -154,6 +154,13 @@ rtdoEjec_t procesarSolicitudESI(int id, void * solicitud, int size)
           sendWithBasicProtocol( pInst->socket, solicitud, size);
           log_trace(pLog, "Se le envio la sentencia a la instancia %d", pInst->id);
           usleep(retardo*1000);
+          if( sent.operacion == SET)
+          {
+            int * pCantEntrOcupadas;
+            recvWithBasicProtocol(pInst->socket, (void**)&pCantEntrOcupadas);
+            pInst->spaceUsed = *pCantEntrOcupadas;
+          }
+
           recvWithBasicProtocol(pInst->socket, (void**)&rtdo);
           log_trace(pLog, "Se recibio el resultado de ejecucion de la sentencia en la instancia %d", pInst->id);
 

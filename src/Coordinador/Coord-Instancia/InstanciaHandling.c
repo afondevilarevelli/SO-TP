@@ -53,7 +53,13 @@ inst_t * getInstByEquitativeLoad(char * clave)
 
 inst_t * getInstByLSU(char * clave)
 {
+  int i, min = entryCant + 1;
+  inst_t * pInst = NULL;
+  for(i = 0; i < coord_Insts.count; i++)
+    if( coord_Insts.insts[i]->spaceUsed < min )
+      pInst = coord_Insts.insts[i];
 
+  return pInst;
 }
 
 inst_t * getInstByKE(char * clave)
