@@ -2,6 +2,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <dirent.h>
+#include <stdlib.h>
 
 
 void mostrarEntrada(t_entrada_tabla * pEntry)
@@ -84,7 +86,7 @@ rtdoEjec_t setRecurso(char * clave, char * valor)
 			while(cantEntradasNuevo!=j)
 			{
 				j--;
-				log_trace(pLog, "elimino uno=%d",poiterDelBit+j);
+				//log_trace(pLog, "elimino uno=%d",poiterDelBit+j);
 				bitarray_clean_bit(bitarray,poiterDelBit+j);
 				}
 
@@ -212,7 +214,6 @@ int punteroLugarDisponible(char *valor){
 		{
 			cantAux=cantEntradaNecesarias;
 		}
-
 
 		if(cantAux==0)
 		{
@@ -595,16 +596,52 @@ void cargarTablaDeEntradasYAlmacenamiento(t_config * pConf)
 
 	return;
 }
-void restaurar(void)
+void restaurar()
 {
-	almacenamiento = calloc((entryCant*entrySize),sizeof(char));
-	char * datoBitArray=calloc(entryCant,sizeof(char));
-	bitarray = bitarray_create_with_mode(datoBitArray,entryCant,LSB_FIRST);
-	tablaDeEntradas = list_create();
-	registroLRU = list_create();
 
+	struct dirent* directorio;
+	struct stat buf;
+	char fichero [PATH_MAX];
+	char valor[100];
+
+	DIR* dirp = opendir (pathMontaje);
+	if (dirp == NULL)
+	{
+		perror (pathMontaje);
+		return;
+	}
+
+	while ((directorio = readdir (dirp)) != NULL )
+	{
+		printf("%s\n",directorio->d_name);
+		//Obtengo la clave
+		sprintf (fichero, "%s/%s", pathMontaje, directorio->d_name);
+		if (lstat (fichero, & buf) == -1)
+		{
+			perror(fichero);
+			exit(1);
+		}
+		//Obtengo el valor. Entro al archivo con esa clave
+		FILE *arch;
+		arch=fopen(fichero,"r");
+
+		//Obtengo el valor
+		fgets(valor,100,arch);
+		log_debug(pLog, "La clave es %s  y el valor es %s", directorio->d_name, valor);
+		fclose(arch);
+		//Agregar entrada con los datos
+		rtdoEjec_t rt = setRecurso(directorio->d_name, valor);
+		if(rt==SUCCESS)
+			log_debug(pLog, "Se agrego la entrada con exito.");
+		else
+			log_debug(pLog, "No se ha logrado cargar la entrada.");
+
+	}
+	//cierra el directorio
+	closedir (dirp);
 	return;
 }
+
 void avisarCoordTamanioOcupado(){
 	int tamanio = 0;
 	int i;

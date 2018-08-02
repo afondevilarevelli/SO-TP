@@ -54,7 +54,7 @@ typedef struct
 	rtdoEjec_t agregarEntrada(char * clave, char *valor);
 	void cargarTablaDeEntradasYAlmacenamiento(t_config * pConf);
 	rtdoEjec_t accederRecurso(op_t operacion, char * clave, char * valor);
-
+	void restaurar();
 	//Set
 	rtdoEjec_t setRecurso(char * clave, char * valor);
 	//Reemplazo de Entradas
@@ -88,8 +88,5 @@ typedef struct
 	rtdoEjec_t agregarATabla(char * clave, int pointerAEntrada, int sizeValor);
 	//Aux
 	void avisarCoordTamanioOcupado();
-	void restaurar(void);
-
-
 
 #endif

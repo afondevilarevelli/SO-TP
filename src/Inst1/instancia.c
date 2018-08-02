@@ -27,6 +27,7 @@ int main(void)
 		freeBuffer(pBuff);
 		/////////////////////////////////////////////////////////////////
 
+		pathMontaje = config_get_string_value(pConf, "PTO_MONTAJE");
 
 		cargarTablaDeEntradasYAlmacenamiento(pConf);
 		log_trace(pLog, "Tabla de entradas cargada");
@@ -39,8 +40,6 @@ int main(void)
 			algReemp=LRU;
 		else if( strcmp(algoritmoReemplazo,"BSU")==0)
 			algReemp=BSU;
-
-		pathMontaje = config_get_string_value(pConf, "PTO_MONTAJE");
 
 		pthread_t hiloDump;
 		pthread_create(&hiloDump, NULL, (void*)&dump, (void*)pConf);
