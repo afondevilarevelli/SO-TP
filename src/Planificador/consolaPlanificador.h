@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <readline/readline.h>
 #include "ESIHandling/ESIHandling.h"//importar librearias
-//#include "../Instancia/bibliotecaInstancia.h"
+#include "../Inst1/bibliotecaInstancia.h"
 
 
 typedef enum{PAUSADO, PLANIFICANDO} est_Planif;
