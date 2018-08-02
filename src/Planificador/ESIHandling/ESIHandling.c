@@ -81,14 +81,13 @@ ESI_t * quitarESIDeSuListaActual(int ESI_ID)
     if(!pESI){
       pESI = get_and_remove_ESI_by_ID( ESIsFinalizados->elements, ESI_ID); }
 
-
   return pESI;
 }
 
 void eliminarESIDelSistema( int ESI_ID )
 {
   ESI_t * pESI = quitarESIDeSuListaActual(ESI_ID);
-
+  borrarEsiDeListaColas(pESI);
 
   freeESI(pESI);
   log_warning(pLog, "El ESI con ID = %d, fue eliminado del sistema\n", ESI_ID);
@@ -222,6 +221,34 @@ bool closureSatisfyBlock(ESI_t* esi){
     return EsiAVerSiEstaBloqueado->id == esi->id;
 }
 
+bool estaBloqueadoPorOtraClave(ESI_t* esi){
+  bool booleano;
+  idAVerSiSatisfaceBloqueo = esi->id;
+  booleano = list_any_satisfy(ListaColas, (void*)&satisfaceBloqueo);
+  return booleano;
+}
+
+bool satisfaceBloqueo(cola_clave* c){
+  return list_any_satisfy((c->cola)->elements, (void*)&satisfaceBloqueoANivelCola );
+}
+
+bool satisfaceBloqueoANivelCola(ESI_t* esi){
+  return idAVerSiSatisfaceBloqueo == esi->id;
+}
+
+void borrarEsiDeListaColas(ESI_t* esi){
+    esiParaEliminarDeListaColas = esi;
+    list_iterate(ListaColas, (void*)&closureIterateBorrado);
+}
+
+void closureIterateBorrado(cola_clave* c){
+    list_remove_by_condition((c->cola)->elements, (void*)&condicionEliminarEsi);
+    list_remove_by_condition(c->esisBloqueadosParaClave, (void*)&condicionEliminarEsi);
+}
+
+bool condicionEliminarEsi(ESI_t* esi){
+  return esi->id == esiParaEliminarDeListaColas->id;
+}
 /*----------CONEXIONES---------*/
 
 void recibirNuevosESI(t_config * pConf)

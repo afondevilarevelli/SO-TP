@@ -39,16 +39,10 @@ void consolaPlanificador(t_config* pConf){
 			bloquearProcesoESI(p2,id);
 		}
 		else
-		if(strcmp(p1,"desbloquear")== 0 && p2 != NULL && p3 != NULL)
+		if(strcmp(p1,"desbloquear")== 0 && p2 != NULL && p3 == NULL)
 		{
-			if(!isnum(p3))
-				printf("El segundo parametro debe ser un numero.\n");
-			else
-			{
-				int id = atoi(p3);
-				printf("se intentara desbloquear la clave %s para el proceso %s\n",p2, p3);//la clave se guarda en p2
-				desbloquearProcesoESI(p2, id);//si le pasas un cuarto parametro no lo toma y ejecuta igual
-			}
+				printf("se intentara desbloquear la clave %s para el siguiente proceso bloqueado\n",p2);//la clave se guarda en p2
+				desbloquearProcesoESI(p2);//si le pasas un cuarto parametro no lo toma y ejecuta igual
 		}
 		else
 		if(strcmp(p1,"listar")== 0 && p2 != NULL )
@@ -191,29 +185,50 @@ bool estaBloqueado(ESI_t* esi){
 }
 
 //3)desbloquear
-void desbloquearProcesoESI(char* clave, int id){
-	ESI_t* p = buscarProcesoESI(id);
-	if(p!=NULL){ 
-		if(claveBloqueadaParaESI(clave,p)){ 
-			cola_clave* c = buscarElementoDeLista(clave); 
+void desbloquearProcesoESI(char* clave){
+	cola_clave* c = buscarElementoDeLista(clave);
+	if(c!=NULL){ 
+		 ESI_t* esi = list_remove(c->esisBloqueadosParaClave,0);
+		 if(esi!=NULL){
 			pthread_mutex_lock(&m_listaColas);
-			p = get_and_remove_ESI_by_ID(c->esisBloqueadosParaClave, id);
-		    pthread_mutex_unlock(&m_listaColas); 
-			
-			esiAVerSiDesbloqueo = p;
-			if(!list_any_satisfy(ESIsListos->elements, (void *)&closureAVerSiSatisfaceDesbloqueo)){  
-				pthread_mutex_lock(&m_colaListos);
-				queue_push(ESIsListos,p);
-				pthread_mutex_unlock(&m_colaListos); 
-			}	    	
+			queue_push(c->cola, esi);
+			pthread_mutex_unlock(&m_listaColas);
+
+			esiAVerSiDesbloqueo = esi;
+			if(!estaBloqueadoPorOtraClave(esiAVerSiDesbloqueo)){ 
+				if(!list_any_satisfy(ESIsListos->elements, (void *)&closureAVerSiSatisfaceDesbloqueo)){  
+					pthread_mutex_lock(&m_colaListos);
+					queue_push(ESIsListos,esiAVerSiDesbloqueo);
+					pthread_mutex_unlock(&m_colaListos); 
+					sem_post(&sem_cantESIsListos);
+				}
+				if(list_any_satisfy(ESIsBloqueados->elements, (void *)&closureAVerSiSatisfaceDesbloqueo) ){  
+					pthread_mutex_lock(&m_colaBloqueados);
+					list_remove_by_condition(ESIsBloqueados->elements, (void*) &closureAVerSiSatisfaceDesbloqueo);
+					pthread_mutex_unlock(&m_colaBloqueados); 
+				}	 
+			}
+			else{
+				if(list_any_satisfy(ESIsListos->elements, (void *)&closureAVerSiSatisfaceDesbloqueo)){  
+					pthread_mutex_lock(&m_colaListos);
+					list_remove_by_condition(ESIsListos->elements,(void*)&closureAVerSiSatisfaceDesbloqueo);
+					pthread_mutex_unlock(&m_colaListos); 
+					sem_wait(&sem_cantESIsListos);
+				}
+				if(!list_any_satisfy(ESIsBloqueados->elements, (void *)&closureAVerSiSatisfaceDesbloqueo) ){  
+					pthread_mutex_lock(&m_colaBloqueados);
+					queue_push(ESIsBloqueados, esiAVerSiDesbloqueo);
+					pthread_mutex_unlock(&m_colaBloqueados); 
+				}	
+			} 
+		 }
+		 else{
+			printf("No quedan ESIS bloqueados para dicha clave\n");
+		 }
 		}
 		else{
-			printf("Esa clave no estaba bloqueada para el ESI.\n");
+			printf("Esa clave no existe.\n");
 		}
-	}
-	else{
-		printf("Esa clave no existe.\n");
-	}
 }
 
 bool closureAVerSiSatisfaceDesbloqueo(ESI_t* esi){

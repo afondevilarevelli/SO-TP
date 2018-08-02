@@ -59,7 +59,7 @@ bool puedeEjecutar(int idESI, int op, char * clave)
         return true;
       }
       else
-      {  
+      {   
           if(c->idEsiUsandoClave != 0){ 
             queue_push(c->cola,esi);
             pthread_mutex_lock(&m_colaBloqueados);
@@ -70,7 +70,7 @@ bool puedeEjecutar(int idESI, int op, char * clave)
           else{
             c->idEsiUsandoClave = idESI;
             return true;
-          }
+          }     
       }
     }
     else{
@@ -107,7 +107,7 @@ bool puedeEjecutar(int idESI, int op, char * clave)
               freeESI(esi);
             }
         }
-            if( esi->state != ABORTADO){   
+            if( esi != NULL){   
                 esiADesbloquear = esi;
                 pthread_mutex_lock(&m_colaBloqueados);
                 list_remove_by_condition(ESIsBloqueados->elements, (void*) condicionRemover);
@@ -116,7 +116,12 @@ bool puedeEjecutar(int idESI, int op, char * clave)
                 return true; 
             }
             else{
-              c->idEsiUsandoClave = 0;
+              if( list_is_empty(c->esisBloqueadosParaClave) ){ 
+                destruirElementoDeListaColas(c);
+              }
+              else{
+                c->idEsiUsandoClave = 0;
+              }
               return true;
             }
       }
@@ -140,4 +145,13 @@ void coordinadorDesconectado()
 
 bool condicionRemover(ESI_t* esi){
     return esi->id == esiADesbloquear->id;
+}
+
+void destruirElementoDeListaColas(cola_clave* c){
+  claveAVerSiSatisfaceCondicionListaColas = c->clave;
+  list_remove_by_condition(ListaColas, (void*)&condicionRemoverElementoDeListaColas);
+}
+
+bool condicionRemoverElementoDeListaColas(cola_clave* c){
+    return !strcmp(claveAVerSiSatisfaceCondicionListaColas, c->clave);
 }

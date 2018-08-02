@@ -21,7 +21,7 @@ void continuarPlanificacion();
 
 void bloquearProcesoESI(char* clave,int id);
 
-void desbloquearProcesoESI(char* clave, int id);
+void desbloquearProcesoESI(char* clave);
 
 void listar(char* clave);
 

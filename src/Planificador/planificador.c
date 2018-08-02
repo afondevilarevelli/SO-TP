@@ -106,6 +106,8 @@ int main(void)
 	pESIEnEjecucion = NULL;
 	claveAVerSiSatisface = malloc(sizeof(char)*40);
 	claveAVerSiSatisface = NULL;
+	claveAVerSiSatisfaceCondicionListaColas = malloc(sizeof(char)*40);
+	claveAVerSiSatisfaceCondicionListaColas = NULL;
 
 
 	log_trace(pLog, "Inicializacion de variables globales completada");
@@ -162,6 +164,7 @@ int main(void)
 	
 	free(tipoPlanificacion);
 	free(claveAVerSiSatisface);
+	free(claveAVerSiSatisfaceCondicionListaColas);
 	return 0; 
 }
 
@@ -207,6 +210,7 @@ void destruirListaColas(){
 void elementoDestructorLista(cola_clave* c){
 	free(c->clave);
 	queue_destroy_and_destroy_elements(c->cola,(void *)&freeESI);
+	list_destroy_and_destroy_elements(c->esisBloqueadosParaClave, (void*)&freeESI);
 }
 
 void elementoDestructorClaves(char* c){

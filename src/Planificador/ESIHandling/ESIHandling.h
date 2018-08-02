@@ -48,6 +48,8 @@ t_list * hilos;
 
 char* claveAVerSiSatisface;
 ESI_t* EsiAVerSiEstaBloqueado;
+int idAVerSiSatisfaceBloqueo;
+ESI_t* esiParaEliminarDeListaColas;
 
 pthread_mutex_t m_listaColas;
 pthread_mutex_t m_colaListos;
@@ -82,5 +84,11 @@ void sumarTiempoEsperandoCPU(int tiempo);
 void closureParaIterar(ESI_t* esi);
 bool claveBloqueadaParaESI(char* clave, ESI_t* esi);
 bool closureSatisfyBlock(ESI_t* esi);
+bool estaBloqueadoPorOtraClave(ESI_t* esi);
+bool satisfaceBloqueo(cola_clave* c);
+bool satisfaceBloqueoANivelCola(ESI_t* esi);
+void borrarEsiDeListaColas(ESI_t* esi);
+void closureIterateBorrado(cola_clave* c);
+bool condicionEliminarEsi(ESI_t* esi);
 
 #endif

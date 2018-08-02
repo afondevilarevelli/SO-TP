@@ -17,11 +17,14 @@ extern int socketCoord;
 extern t_log * pLog;
 
 ESI_t* esiADesbloquear;
+char* claveAVerSiSatisfaceCondicionListaColas;
 
 void atenderCoordinador(int socket);
 void coordinadorDesconectado(void);
 void procesarSolicitudCoordinador(void * solicitud, int size);
 bool puedeEjecutar(int idESI, int op, char * clave);
 bool condicionRemover(ESI_t* esi);
+void destruirElementoDeListaColas(cola_clave* c);
+bool condicionRemoverElementoDeListaColas(cola_clave* c);
 
 #endif

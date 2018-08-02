@@ -8,6 +8,7 @@
 #include "ESIHandling/ESIHandling.h"
 #include "consolaPlanificador.h"
 #include <commons/config.h>
+#include <unistd.h>
 
 
 typedef struct{

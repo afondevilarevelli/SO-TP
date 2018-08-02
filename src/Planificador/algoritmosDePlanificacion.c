@@ -41,6 +41,7 @@ void planificarSegunFIFO(){
 				log_trace(pLog, "Se espera a que haya ESIs en la cola de listos");
 			}
 			sem_wait(&sem_cantESIsListos);
+			usleep(500);
 
 			pEsiAEjecutar = obtenerEsiAEjecutarSegunFIFO();
 			log_trace(pLog, "Segun FIFO el ESI a ejecutar ahora es el de id = %d", pEsiAEjecutar->id);
@@ -90,6 +91,7 @@ void planificarSegunSJF(){
 				log_trace(pLog, "Se espera a que haya ESIs en la cola de listos");
 			}
 			sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
+			usleep(500);
 
 			pEsiAEjecutar = obtenerEsiAEjecutarSegunSJF();
 			log_trace(pLog, "Segun SJF el ESI a ejecutar ahora es el de id = %d", pEsiAEjecutar->id);
@@ -142,6 +144,7 @@ void planificarSegunSRT(){
 				log_trace(pLog, "Se espera a que haya ESIs en la cola de listos");
 			}
 			sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
+			usleep(500);
 
 			pEsiAEjecutar = obtenerEsiAEjecutarSegunSJF();
 			log_trace(pLog, "Segun SRT el ESI a ejecutar ahora es el de id = %d", pEsiAEjecutar->id);
@@ -202,6 +205,7 @@ void planificarSegunHRRN(){
 				log_trace(pLog, "Se espera a que haya ESIs en la cola de listos");
 			}
 			sem_wait(&sem_cantESIsListos);//if(!queue_is_empty(ESIsListos))	//solo planifica si hay ESIs que planificar
+			usleep(500);
 
 			pEsiAEjecutar = obtenerEsiAEjecutarSegunHRRN();
 			log_trace(pLog, "Segun HRRN el ESI a ejecutar ahora es el de id = %d", pEsiAEjecutar->id);
