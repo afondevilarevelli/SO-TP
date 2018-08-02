@@ -17,6 +17,7 @@ typedef struct {
 	t_queue* cola ;
 	char* clave;
   int idEsiUsandoClave;
+  t_list* esisBloqueadosParaClave;
 }cola_clave;
 
 t_list* ListaColas;
@@ -46,6 +47,7 @@ int tiempoParaIterar;
 t_list * hilos;
 
 char* claveAVerSiSatisface;
+ESI_t* EsiAVerSiEstaBloqueado;
 
 pthread_mutex_t m_listaColas;
 pthread_mutex_t m_colaListos;
@@ -78,5 +80,7 @@ bool condicionSatisfy(void* clave);
 void bloquearClaves(t_config* conf);
 void sumarTiempoEsperandoCPU(int tiempo);
 void closureParaIterar(ESI_t* esi);
+bool claveBloqueadaParaESI(char* clave, ESI_t* esi);
+bool closureSatisfyBlock(ESI_t* esi);
 
 #endif

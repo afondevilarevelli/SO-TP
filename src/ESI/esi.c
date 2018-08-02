@@ -1,4 +1,4 @@
-#include <parsi/parser.h>
+#include "parsi/src/parsi/parser.h"
 #include <errno.h>
 
 #include <commons/config.h>

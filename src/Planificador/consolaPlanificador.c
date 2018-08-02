@@ -129,16 +129,27 @@ t_queue* colaAsociada(char* clave){//busca de mi ListaColas la que se identifiqu
 //2) bloquear el proceso ESI por consola
 void bloquearProcesoESI(char* clave,int id){
 	ESI_t* p = buscarProcesoESI(id);
-	t_queue *c = colaAsociada(clave);
+	cola_clave* c = buscarElementoDeLista(clave);
 
-	if( p!= NULL ){
-		p->tiempoEsperandoCPU = 0;
-		 queue_push(c, (ESI_t *)p);//Agrega un elemento al  de la cola
-		 printf("Correctamente bloqueado el ESI.\n");
+	if(c != NULL){ 
+		if( p!= NULL ){
+			p->tiempoEsperandoCPU = 0;
+			list_add(c->esisBloqueadosParaClave, p);
+			printf("Correctamente bloqueado el ESI de id = %d para la clave %s.\n", id,clave);
+		}
+		else{
+			printf("No hay proceso ESI con este ID\n");
+		}
 	}
-	else
-	{
-	printf("No hay procesoESI con este ID o ya esta bloqueado\n");
+	else{
+		if(p!=NULL){ 
+			c = new_cola_clave(clave, 0);
+			list_add(c->esisBloqueadosParaClave,p);
+			list_add(ListaColas, c);
+		}
+		else{
+			printf("No hay proceso ESI con este ID\n");
+		}
 	}
 }
 
@@ -181,18 +192,34 @@ bool estaBloqueado(ESI_t* esi){
 
 //3)desbloquear
 void desbloquearProcesoESI(char* clave, int id){
-	t_queue*c = colaAsociada(clave);
-	ESI_t* p = NULL;
-	if(c!= NULL ){  pthread_mutex_lock(&m_listaColas);
-					p = get_and_remove_ESI_by_ID(c->elements, id);
-				    pthread_mutex_unlock(&m_listaColas); }
-	if(p!= NULL ){//p es el proceso buscado, ahora hay que mandarlo al final de la cola de donde se saco
-			pthread_mutex_lock(&m_colaListos);
-			queue_push(ESIsListos,p);
-			pthread_mutex_unlock(&m_colaListos);
-	}else
-	printf("Esa clave no existe.\n");
+	ESI_t* p = buscarProcesoESI(id);
+	if(p!=NULL){ 
+		if(claveBloqueadaParaESI(clave,p)){ 
+			cola_clave* c = buscarElementoDeLista(clave); 
+			pthread_mutex_lock(&m_listaColas);
+			p = get_and_remove_ESI_by_ID(c->esisBloqueadosParaClave, id);
+		    pthread_mutex_unlock(&m_listaColas); 
+			
+			esiAVerSiDesbloqueo = p;
+			if(!list_any_satisfy(ESIsListos->elements, (void *)&closureAVerSiSatisfaceDesbloqueo)){  
+				pthread_mutex_lock(&m_colaListos);
+				queue_push(ESIsListos,p);
+				pthread_mutex_unlock(&m_colaListos); 
+			}	    	
+		}
+		else{
+			printf("Esa clave no estaba bloqueada para el ESI.\n");
+		}
+	}
+	else{
+		printf("Esa clave no existe.\n");
+	}
 }
+
+bool closureAVerSiSatisfaceDesbloqueo(ESI_t* esi){
+		return esiAVerSiDesbloqueo->id == esi->id;
+}
+
 //4)
 void listar(char* clave){//recurso == clave
 		t_queue* c = colaAsociada(clave);

@@ -1986,3 +1986,178 @@ Valor = No corresponde
 [TRACE] 21:27:39:979 ESI/(5376:5376): Script ejemplo.esi abierto
 [TRACE] 21:27:39:979 ESI/(5376:5376): El esi de id = 2 esta esperando orden de Planificador
 [ERROR] 21:27:40:260 ESI/(5376:5376): No se pudo recibir la orden del planificador porque se desconecto.
+[TRACE] 16:26:13:715 ESI/(6766:6766): Iniciando...
+[TRACE] 16:26:13:718 ESI/(6766:6766): Se obtiene ID 2 del archivo de configuracion
+[TRACE] 16:26:13:723 ESI/(6766:6766): El esi de id = 2 se conecto al Coordinador en el socket 4
+[TRACE] 16:26:13:724 ESI/(6766:6766): El esi de id = 2 se conecto al Planificador en el socket 5
+[TRACE] 16:26:13:724 ESI/(6766:6766): Script ejemplo.esi abierto
+[TRACE] 16:26:13:724 ESI/(6766:6766): El esi de id = 2 esta esperando orden de Planificador
+[DEBUG] 16:26:13:724 ESI/(6766:6766): La orden recibida fue EJECUTAR
+[DEBUG] 16:26:13:725 ESI/(6766:6766): La sentencia parseada del esi con id = 2 es:
+Op = GET
+Clave = platoprincipal:ingrediente5
+Valor = No corresponde
+
+[TRACE] 16:26:13:725 ESI/(6766:6766): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 16:26:13:725 ESI/(6766:6766): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 16:26:13:928 ESI/(6766:6766): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 16:26:13:929 ESI/(6766:6766): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 16:26:13:929 ESI/(6766:6766): El esi de id = 2 espera orden de Planificador
+[DEBUG] 16:26:13:929 ESI/(6766:6766): La orden recibida fue EJECUTAR
+[DEBUG] 16:26:13:929 ESI/(6766:6766): La sentencia parseada del esi con id = 2 es:
+Op = GET
+Clave = platoprincipal:ingrediente4
+Valor = No corresponde
+
+[TRACE] 16:26:13:929 ESI/(6766:6766): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 16:26:13:929 ESI/(6766:6766): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 16:26:14:132 ESI/(6766:6766): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 16:26:14:132 ESI/(6766:6766): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 16:26:14:132 ESI/(6766:6766): El esi de id = 2 espera orden de Planificador
+[DEBUG] 16:26:14:132 ESI/(6766:6766): La orden recibida fue EJECUTAR
+[DEBUG] 16:26:14:132 ESI/(6766:6766): La sentencia parseada del esi con id = 2 es:
+Op = GET
+Clave = platoprincipal:ingrediente3
+Valor = No corresponde
+
+[TRACE] 16:26:14:132 ESI/(6766:6766): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 16:26:14:132 ESI/(6766:6766): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 16:26:14:335 ESI/(6766:6766): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 16:26:14:335 ESI/(6766:6766): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 16:26:14:335 ESI/(6766:6766): El esi de id = 2 espera orden de Planificador
+[DEBUG] 16:26:14:335 ESI/(6766:6766): La orden recibida fue EJECUTAR
+[DEBUG] 16:26:14:336 ESI/(6766:6766): La sentencia parseada del esi con id = 2 es:
+Op = GET
+Clave = platoprincipal:ingrediente2
+Valor = No corresponde
+
+[TRACE] 16:26:14:336 ESI/(6766:6766): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 16:26:14:337 ESI/(6766:6766): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 16:26:14:539 ESI/(6766:6766): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 16:26:14:539 ESI/(6766:6766): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 16:26:14:539 ESI/(6766:6766): El esi de id = 2 espera orden de Planificador
+[DEBUG] 16:26:14:540 ESI/(6766:6766): La orden recibida fue EJECUTAR
+[DEBUG] 16:26:14:540 ESI/(6766:6766): La sentencia parseada del esi con id = 2 es:
+Op = GET
+Clave = platoprincipal:ingrediente1
+Valor = No corresponde
+
+[TRACE] 16:26:14:540 ESI/(6766:6766): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 16:26:14:540 ESI/(6766:6766): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 16:26:14:742 ESI/(6766:6766): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 16:26:14:742 ESI/(6766:6766): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 16:26:14:743 ESI/(6766:6766): El esi de id = 2 espera orden de Planificador
+[DEBUG] 16:26:14:743 ESI/(6766:6766): La orden recibida fue EJECUTAR
+[DEBUG] 16:26:14:743 ESI/(6766:6766): La sentencia parseada del esi con id = 2 es:
+Op = SET
+Clave = platoprincipal:ingrediente1
+Valor = milanesadecarne
+
+[TRACE] 16:26:14:743 ESI/(6766:6766): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 16:26:14:744 ESI/(6766:6766): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 16:26:14:947 ESI/(6766:6766): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 16:26:14:947 ESI/(6766:6766): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 16:26:14:947 ESI/(6766:6766): El esi de id = 2 espera orden de Planificador
+[DEBUG] 16:26:14:947 ESI/(6766:6766): La orden recibida fue EJECUTAR
+[DEBUG] 16:26:14:947 ESI/(6766:6766): La sentencia parseada del esi con id = 2 es:
+Op = SET
+Clave = platoprincipal:ingrediente2
+Valor = queso
+
+[TRACE] 16:26:14:947 ESI/(6766:6766): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 16:26:14:948 ESI/(6766:6766): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 16:26:15:150 ESI/(6766:6766): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 16:26:15:151 ESI/(6766:6766): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 16:26:15:151 ESI/(6766:6766): El esi de id = 2 espera orden de Planificador
+[DEBUG] 16:26:15:151 ESI/(6766:6766): La orden recibida fue EJECUTAR
+[DEBUG] 16:26:15:151 ESI/(6766:6766): La sentencia parseada del esi con id = 2 es:
+Op = SET
+Clave = platoprincipal:ingrediente3
+Valor = jamon
+
+[TRACE] 16:26:15:151 ESI/(6766:6766): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 16:26:15:151 ESI/(6766:6766): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 16:26:15:354 ESI/(6766:6766): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 16:26:15:354 ESI/(6766:6766): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 16:26:15:354 ESI/(6766:6766): El esi de id = 2 espera orden de Planificador
+[DEBUG] 16:26:15:354 ESI/(6766:6766): La orden recibida fue EJECUTAR
+[DEBUG] 16:26:15:355 ESI/(6766:6766): La sentencia parseada del esi con id = 2 es:
+Op = SET
+Clave = platoprincipal:ingrediente4
+Valor = lechuga
+
+[TRACE] 16:26:15:355 ESI/(6766:6766): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 16:26:15:355 ESI/(6766:6766): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 16:26:15:559 ESI/(6766:6766): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 16:26:15:559 ESI/(6766:6766): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 16:26:15:559 ESI/(6766:6766): El esi de id = 2 espera orden de Planificador
+[DEBUG] 16:26:15:559 ESI/(6766:6766): La orden recibida fue EJECUTAR
+[DEBUG] 16:26:15:559 ESI/(6766:6766): La sentencia parseada del esi con id = 2 es:
+Op = SET
+Clave = platoprincipal:ingrediente5
+Valor = tomate
+
+[TRACE] 16:26:15:560 ESI/(6766:6766): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 16:26:15:560 ESI/(6766:6766): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 16:26:15:764 ESI/(6766:6766): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 16:26:15:764 ESI/(6766:6766): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 16:26:15:764 ESI/(6766:6766): El esi de id = 2 espera orden de Planificador
+[DEBUG] 16:26:15:764 ESI/(6766:6766): La orden recibida fue EJECUTAR
+[DEBUG] 16:26:15:764 ESI/(6766:6766): La sentencia parseada del esi con id = 2 es:
+Op = STORE
+Clave = platoprincipal:ingrediente1
+Valor = No corresponde
+
+[TRACE] 16:26:15:764 ESI/(6766:6766): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 16:26:15:764 ESI/(6766:6766): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 16:26:15:966 ESI/(6766:6766): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 16:26:15:966 ESI/(6766:6766): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 16:26:15:967 ESI/(6766:6766): El esi de id = 2 espera orden de Planificador
+[DEBUG] 16:26:15:967 ESI/(6766:6766): La orden recibida fue EJECUTAR
+[DEBUG] 16:26:15:967 ESI/(6766:6766): La sentencia parseada del esi con id = 2 es:
+Op = STORE
+Clave = platoprincipal:ingrediente2
+Valor = No corresponde
+
+[TRACE] 16:26:15:967 ESI/(6766:6766): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 16:26:15:968 ESI/(6766:6766): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 16:26:16:170 ESI/(6766:6766): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 16:26:16:170 ESI/(6766:6766): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 16:26:16:171 ESI/(6766:6766): El esi de id = 2 espera orden de Planificador
+[DEBUG] 16:26:16:171 ESI/(6766:6766): La orden recibida fue EJECUTAR
+[DEBUG] 16:26:16:171 ESI/(6766:6766): La sentencia parseada del esi con id = 2 es:
+Op = STORE
+Clave = platoprincipal:ingrediente3
+Valor = No corresponde
+
+[TRACE] 16:26:16:171 ESI/(6766:6766): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 16:26:16:171 ESI/(6766:6766): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 16:26:16:374 ESI/(6766:6766): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 16:26:16:374 ESI/(6766:6766): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 16:26:16:374 ESI/(6766:6766): El esi de id = 2 espera orden de Planificador
+[DEBUG] 16:26:16:374 ESI/(6766:6766): La orden recibida fue EJECUTAR
+[DEBUG] 16:26:16:374 ESI/(6766:6766): La sentencia parseada del esi con id = 2 es:
+Op = STORE
+Clave = platoprincipal:ingrediente4
+Valor = No corresponde
+
+[TRACE] 16:26:16:374 ESI/(6766:6766): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 16:26:16:375 ESI/(6766:6766): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 16:26:16:579 ESI/(6766:6766): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 16:26:16:579 ESI/(6766:6766): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 16:26:16:580 ESI/(6766:6766): El esi de id = 2 espera orden de Planificador
+[DEBUG] 16:26:16:580 ESI/(6766:6766): La orden recibida fue EJECUTAR
+[DEBUG] 16:26:16:580 ESI/(6766:6766): La sentencia parseada del esi con id = 2 es:
+Op = STORE
+Clave = platoprincipal:ingrediente5
+Valor = No corresponde
+
+[TRACE] 16:26:16:580 ESI/(6766:6766): El esi de id = 2 ha enviado la sentencia al Coordinador
+[TRACE] 16:26:16:580 ESI/(6766:6766): El esi de id = 2 espera el resultado de ejecucion de Coordinador
+[DEBUG] 16:26:16:784 ESI/(6766:6766): El esi de id = 2 recibe el resultado de SUCCESS
+[TRACE] 16:26:16:784 ESI/(6766:6766): El esi de id = 2 ha enviado el resultado al Planificador
+[TRACE] 16:26:16:784 ESI/(6766:6766): El esi de id = 2 espera orden de Planificador
+[DEBUG] 16:26:16:784 ESI/(6766:6766): La orden recibida fue EJECUTAR
+[TRACE] 16:26:16:784 ESI/(6766:6766): El ESI de id = 2 finalizo su ejecucion correctamente
+[TRACE] 16:26:16:784 ESI/(6766:6766): Se informa del fin de ejecucion del esi de id = 2 al Coordinador
+[TRACE] 16:26:16:785 ESI/(6766:6766): Se informa del fin de ejecucion del esi de id = 2 al PLanificador

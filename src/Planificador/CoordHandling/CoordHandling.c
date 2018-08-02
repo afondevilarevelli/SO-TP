@@ -51,25 +51,33 @@ bool puedeEjecutar(int idESI, int op, char * clave)
   cola_clave* c = buscarElementoDeLista(clave);
   if(op == GET)
   { // operacion GET
-    if( c == NULL )
-    {
-      list_add(ListaColas, new_cola_clave(clave, idESI));
-      return true;
+    esi = buscarProcesoESI(idESI);
+    if(!claveBloqueadaParaESI(clave,esi)){ 
+      if( c == NULL )
+      {
+        list_add(ListaColas, new_cola_clave(clave, idESI));
+        return true;
+      }
+      else
+      {  
+          if(c->idEsiUsandoClave != 0){ 
+            queue_push(c->cola,esi);
+            pthread_mutex_lock(&m_colaBloqueados);
+            queue_push(ESIsBloqueados, esi);
+            pthread_mutex_unlock(&m_colaBloqueados);
+            return false;
+          }
+          else{
+            c->idEsiUsandoClave = idESI;
+            return true;
+          }
+      }
     }
-    else
-    {
-      if(c->idEsiUsandoClave != 0){ 
-        esi = buscarProcesoESI(idESI);
-        queue_push(c->cola,esi);
+    else{
         pthread_mutex_lock(&m_colaBloqueados);
         queue_push(ESIsBloqueados, esi);
         pthread_mutex_unlock(&m_colaBloqueados);
         return false;
-      }
-      else{
-        c->idEsiUsandoClave = idESI;
-        return true;
-      }
     }
   }
   else if(op == SET)
@@ -99,12 +107,12 @@ bool puedeEjecutar(int idESI, int op, char * clave)
               freeESI(esi);
             }
         }
-            if( esi != NULL ){   
+            if( esi->state != ABORTADO){   
                 esiADesbloquear = esi;
                 pthread_mutex_lock(&m_colaBloqueados);
                 list_remove_by_condition(ESIsBloqueados->elements, (void*) condicionRemover);
                 pthread_mutex_unlock(&m_colaBloqueados);
-                c->idEsiUsandoClave = 0;
+                c->idEsiUsandoClave = esi->id;
                 return true; 
             }
             else{

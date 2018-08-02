@@ -104,7 +104,7 @@ int main(void)
 	ListaColas = list_create();
 	clavesBloqueadas = list_create();
 	pESIEnEjecucion = NULL;
-	claveAVerSiSatisface = malloc(sizeof(char)*30);
+	claveAVerSiSatisface = malloc(sizeof(char)*40);
 	claveAVerSiSatisface = NULL;
 
 

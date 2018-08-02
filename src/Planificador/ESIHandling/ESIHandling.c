@@ -164,6 +164,7 @@ cola_clave* new_cola_clave(char * clave, int idESI)
   strcpy(pCClave->clave, clave);
   pCClave->idEsiUsandoClave = idESI;
   pCClave->cola = queue_create();
+  pCClave->esisBloqueadosParaClave = list_create();
 
   return pCClave;
 }
@@ -202,6 +203,23 @@ void sumarTiempoEsperandoCPU(int tiempo){
 
 void closureParaIterar(ESI_t* esi){
     esi->tiempoEsperandoCPU += tiempoParaIterar;
+}
+
+bool claveBloqueadaParaESI(char* clave, ESI_t* esi){
+    cola_clave* c = buscarElementoDeLista(clave);
+    if(c!=NULL){ 
+      bool bloqueada;
+      EsiAVerSiEstaBloqueado = esi;
+      bloqueada = list_any_satisfy(c->esisBloqueadosParaClave, (void *)&closureSatisfyBlock);
+      return bloqueada;
+    }
+    else{
+      return false;
+    }
+}
+
+bool closureSatisfyBlock(ESI_t* esi){
+    return EsiAVerSiEstaBloqueado->id == esi->id;
 }
 
 /*----------CONEXIONES---------*/
