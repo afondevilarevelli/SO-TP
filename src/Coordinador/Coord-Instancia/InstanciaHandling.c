@@ -84,7 +84,9 @@ inst_t * getInstByKE(char * clave)
 
 void atenderInstancia( int socket )
 {
-  int * pID, id;
+  int * pID, id, i;
+  char * emptyString = "";
+  inst_t * pInst = NULL;
 
   if( !recvWithBasicProtocol( socket, (void **)&pID ) )
   {
@@ -99,6 +101,40 @@ void atenderInstancia( int socket )
   addIntToBuffer(pBInfoEntries, entrySize);
   sendWithBasicProtocol(socket, pBInfoEntries->data, pBInfoEntries->size);
   free(pBInfoEntries);
+
+  pBInfoEntries = newBuffer();
+  for( i = 0; i < coord_Insts.count; i++ )
+  {
+    if( id == coord_Insts.insts[i]->id )
+    {
+      pInst = coord_Insts.insts[i];
+      pInst->connected=true;
+      break;
+    }
+  }
+
+  if( pInst )
+  {
+    t_list * claves = pInst->claves;
+    t_link_element pElem = claves->head;
+
+    tBuffer * pBClaves = newBuffer();
+
+    while(pElem)
+    {
+      clave_t * pClave = pElem->data;
+      addStringToBuffer(pBClaves, pClave->clave);
+      pElem = pElem->next;
+    }
+
+    sendWithBasicProtocol(socket, pBClaves->data, pBClaves->size);
+
+    freeBuffer(pBClaves);
+  }
+  else
+  {
+    sendWithBasicProtocol(socket, emptyString, 1);
+  }
 
   while(1)
   {
