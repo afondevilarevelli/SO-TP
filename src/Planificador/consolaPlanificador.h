@@ -8,6 +8,7 @@
 #include <readline/readline.h>
 #include "ESIHandling/ESIHandling.h"//importar librearias
 #include "../Inst1/bibliotecaInstancia.h"
+#include "CoordHandling/CoordHandling.h"
 
 
 typedef enum{PAUSADO, PLANIFICANDO} est_Planif;

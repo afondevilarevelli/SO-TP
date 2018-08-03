@@ -223,14 +223,21 @@ void desbloquearProcesoESI(char* clave){
 	else{
 		claveParaDesbloquearSiEstaBloqueada = clave;
 		list_remove_by_condition(clavesBloqueadas, (void*)&closureParaDesbloquearClaveBloqueada);
+		printf("se ha desbloqueado la clave %s\n",clave);
 		if(c!=NULL){ 
 			pthread_mutex_lock(&m_listaColas);
-			esi = queue_pop(c->cola);
+			esi = (ESI_t*)queue_pop(c->cola);
 			pthread_mutex_unlock(&m_listaColas);
 			if(esi!=NULL){ 
 				pthread_mutex_lock(&m_colaListos);
         		queue_push(ESIsListos, esi);
         		pthread_mutex_unlock(&m_colaListos);
+				sem_post(&sem_cantESIsListos);
+			}
+			else{
+				if(list_is_empty(c->esisBloqueadosParaClave)){
+					destruirElementoDeListaColas(c);
+				}
 			}
 		}
 	}

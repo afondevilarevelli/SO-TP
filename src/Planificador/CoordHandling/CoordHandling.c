@@ -46,7 +46,7 @@ bool puedeEjecutar(int idESI, int op, char * clave)
   ESI_t* esi = NULL;
   cola_clave* c=NULL;
   if(claveEstaBloqueada(clave)){
-    c = new_cola_clave(clave, idESI);
+    c = new_cola_clave(clave, 0);
     esi = buscarProcesoESI(idESI);
     queue_push(c->cola, esi);
     pthread_mutex_lock(&m_colaBloqueados);
