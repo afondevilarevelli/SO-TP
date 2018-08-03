@@ -116,7 +116,7 @@ void atenderInstancia( int socket )
   if( pInst )
   {
     t_list * claves = pInst->claves;
-    t_link_element pElem = claves->head;
+    t_link_element* pElem = claves->head;
 
     tBuffer * pBClaves = newBuffer();
 
