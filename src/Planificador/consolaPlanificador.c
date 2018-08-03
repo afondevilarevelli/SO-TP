@@ -191,10 +191,11 @@ bool estaBloqueado(ESI_t* esi){
 
 //3)desbloquear
 void desbloquearProcesoESI(char* clave){
-	if(!claveEstaBloqueada(clave)){ 
 	cola_clave* c = buscarElementoDeLista(clave);
+	ESI_t* esi = NULL;
+	if(!claveEstaBloqueada(clave)){ 
 	if(c!=NULL){ 
-		 ESI_t* esi = list_remove(c->esisBloqueadosParaClave,0);
+		 esi = list_remove(c->esisBloqueadosParaClave,0);
 		 if(esi!=NULL){
 			pthread_mutex_lock(&m_listaColas);
 			queue_push(c->cola, esi);
@@ -222,6 +223,16 @@ void desbloquearProcesoESI(char* clave){
 	else{
 		claveParaDesbloquearSiEstaBloqueada = clave;
 		list_remove_by_condition(clavesBloqueadas, (void*)&closureParaDesbloquearClaveBloqueada);
+		if(c!=NULL){ 
+			pthread_mutex_lock(&m_listaColas);
+			esi = queue_pop(c->cola);
+			pthread_mutex_unlock(&m_listaColas);
+			if(esi!=NULL){ 
+				pthread_mutex_lock(&m_colaListos);
+        		queue_push(ESIsListos, esi);
+        		pthread_mutex_unlock(&m_colaListos);
+			}
+		}
 	}
 }
 

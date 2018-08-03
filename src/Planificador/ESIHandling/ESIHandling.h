@@ -26,6 +26,11 @@ t_list* clavesBloqueadas;
 
 typedef enum{NORMAL, ABORTADO, FINALIZADO} ESIState;
 
+typedef struct{
+	op_t operacion;
+	char * clave;
+}operacionESI;
+
 typedef struct
 {
 	ESIState state;
@@ -34,6 +39,7 @@ typedef struct
   float estimacionAnterior;
   float duracionAnterior;
   int tiempoEsperandoCPU;
+  operacionESI* operacionPendiente;
 }ESI_t;
 
 t_queue * ESIsListos;
@@ -90,5 +96,6 @@ bool satisfaceBloqueoANivelCola(ESI_t* esi);
 void borrarEsiDeListaColas(ESI_t* esi);
 void closureIterateBorrado(cola_clave* c);
 bool condicionEliminarEsi(ESI_t* esi);
+void establecerOperacionPendiente(ESI_t* esi, op_t op, char* clave);
 
 #endif

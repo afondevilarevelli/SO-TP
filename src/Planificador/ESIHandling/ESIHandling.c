@@ -134,12 +134,25 @@ ESI_t * newESI( int socket, int id, int rafagaInicial)
   pESI->duracionAnterior = rafagaInicial;
   pESI->state = NORMAL;
   pESI->tiempoEsperandoCPU = 0;
+  pESI->operacionPendiente = malloc(sizeof(operacionESI));
+  pESI->operacionPendiente->clave = malloc(sizeof(char)*40);
+  pESI->operacionPendiente->clave = NULL;
+  pESI->operacionPendiente->operacion = ORDEN_COMPACTAR; //le meto cualquier orden (basura)
 
   return pESI;
 }
 
+void establecerOperacionPendiente(ESI_t* esi, op_t op, char* clave){ //solo voy a establecer las operaciones GET
+  if(esi!=NULL){
+      esi->operacionPendiente->operacion = op;
+      esi->operacionPendiente->clave = clave;
+  }
+}
+
 void freeESI(ESI_t * pESI)
 {
+  free(pESI->operacionPendiente->clave);
+  free(pESI->operacionPendiente);
   free(pESI);
 }
 

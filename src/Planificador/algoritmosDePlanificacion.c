@@ -29,6 +29,10 @@ bool condicionParaListSortHRRN(ESI_t* esi_1, ESI_t* esi_2){
 
 void ejecutarProxSent(ESI_t * pESI){
 	orden_t orden = EJECUTAR;
+	if(pESI->operacionPendiente->operacion == GET){
+		cola_clave* c = buscarElementoDeLista(pESI->operacionPendiente->clave);
+		c->idEsiUsandoClave = pESI->id;
+	}
 	sendWithBasicProtocol(pESI->socket, &orden, sizeof(orden_t));
 	pESI->tiempoEsperandoCPU = 0;
 } //BIEN
