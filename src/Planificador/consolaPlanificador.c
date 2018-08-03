@@ -127,8 +127,9 @@ void bloquearProcesoESI(char* clave,int id){
 
 	if(c != NULL){ 
 		if( p!= NULL ){
-			p->tiempoEsperandoCPU = 0;
+			pthread_mutex_lock(&m_listaColas);
 			list_add(c->esisBloqueadosParaClave, p);
+			pthread_mutex_unlock(&m_listaColas);
 			printf("Correctamente bloqueado el ESI de id = %d para la clave %s.\n", id,clave);
 		}
 		else{
@@ -138,8 +139,11 @@ void bloquearProcesoESI(char* clave,int id){
 	else{
 		if(p!=NULL){ 
 			c = new_cola_clave(clave, 0);
+			pthread_mutex_lock(&m_listaColas);
 			list_add(c->esisBloqueadosParaClave,p);
 			list_add(ListaColas, c);
+			pthread_mutex_unlock(&m_listaColas);
+			printf("Correctamente bloqueado el ESI de id = %d para la clave %s.\n", id,clave);
 		}
 		else{
 			printf("No hay proceso ESI con este ID\n");
@@ -148,8 +152,10 @@ void bloquearProcesoESI(char* clave,int id){
 }
 
 ESI_t* buscarProcesoESI(int id){// busca en el sistema en la lista de listos y si el proceso esta ejecutando
-		if(pESIEnEjecucion->id == id){
-			return pESIEnEjecucion;
+		if(pESIEnEjecucion != NULL){ 
+			if(pESIEnEjecucion->id == id){
+				return pESIEnEjecucion;
+			}
 		}
 		ESI_t* p = buscarProcesoEnColas(ESIsListos,id);
 		if(p != NULL ){
@@ -161,7 +167,6 @@ ESI_t* buscarProcesoESI(int id){// busca en el sistema en la lista de listos y s
 				return p;
 			}
 		}
-		printf("No esta ejecutando y tampoco esta en la cola de listos ni de bloqueados\n");
 		return p;
 }
 
@@ -186,6 +191,7 @@ bool estaBloqueado(ESI_t* esi){
 
 //3)desbloquear
 void desbloquearProcesoESI(char* clave){
+	if(!claveEstaBloqueada(clave)){ 
 	cola_clave* c = buscarElementoDeLista(clave);
 	if(c!=NULL){ 
 		 ESI_t* esi = list_remove(c->esisBloqueadosParaClave,0);
@@ -193,33 +199,16 @@ void desbloquearProcesoESI(char* clave){
 			pthread_mutex_lock(&m_listaColas);
 			queue_push(c->cola, esi);
 			pthread_mutex_unlock(&m_listaColas);
+			printf("se ha desbloqueado el esi de id = %d para la clave %s\n",esi->id,clave);
 
 			esiAVerSiDesbloqueo = esi;
-			if(!estaBloqueadoPorOtraClave(esiAVerSiDesbloqueo)){ 
-				if(!list_any_satisfy(ESIsListos->elements, (void *)&closureAVerSiSatisfaceDesbloqueo)){  
+			if(!estaBloqueadoPorOtraClave(esi)){ 
+				if(!list_any_satisfy(ESIsListos->elements, (void *)&closureAVerSiSatisfaceDesbloqueo) && pESIEnEjecucion->id != esi->id){  
 					pthread_mutex_lock(&m_colaListos);
-					queue_push(ESIsListos,esiAVerSiDesbloqueo);
+					queue_push(ESIsListos,esi);
 					pthread_mutex_unlock(&m_colaListos); 
 					sem_post(&sem_cantESIsListos);
-				}
-				if(list_any_satisfy(ESIsBloqueados->elements, (void *)&closureAVerSiSatisfaceDesbloqueo) ){  
-					pthread_mutex_lock(&m_colaBloqueados);
-					list_remove_by_condition(ESIsBloqueados->elements, (void*) &closureAVerSiSatisfaceDesbloqueo);
-					pthread_mutex_unlock(&m_colaBloqueados); 
 				}	 
-			}
-			else{
-				if(list_any_satisfy(ESIsListos->elements, (void *)&closureAVerSiSatisfaceDesbloqueo)){  
-					pthread_mutex_lock(&m_colaListos);
-					list_remove_by_condition(ESIsListos->elements,(void*)&closureAVerSiSatisfaceDesbloqueo);
-					pthread_mutex_unlock(&m_colaListos); 
-					sem_wait(&sem_cantESIsListos);
-				}
-				if(!list_any_satisfy(ESIsBloqueados->elements, (void *)&closureAVerSiSatisfaceDesbloqueo) ){  
-					pthread_mutex_lock(&m_colaBloqueados);
-					queue_push(ESIsBloqueados, esiAVerSiDesbloqueo);
-					pthread_mutex_unlock(&m_colaBloqueados); 
-				}	
 			} 
 		 }
 		 else{
@@ -229,6 +218,15 @@ void desbloquearProcesoESI(char* clave){
 		else{
 			printf("Esa clave no existe.\n");
 		}
+	}
+	else{
+		claveParaDesbloquearSiEstaBloqueada = clave;
+		list_remove_by_condition(clavesBloqueadas, (void*)&closureParaDesbloquearClaveBloqueada);
+	}
+}
+
+bool closureParaDesbloquearClaveBloqueada(char* c){
+	return !strcmp(claveParaDesbloquearSiEstaBloqueada, c);
 }
 
 bool closureAVerSiSatisfaceDesbloqueo(ESI_t* esi){

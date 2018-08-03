@@ -47,7 +47,7 @@ int tiempoParaIterar;
 t_list * hilos;
 
 char* claveAVerSiSatisface;
-ESI_t* EsiAVerSiEstaBloqueado;
+ESI_t* esiAVerSiEstaBloqueado;
 int idAVerSiSatisfaceBloqueo;
 ESI_t* esiParaEliminarDeListaColas;
 

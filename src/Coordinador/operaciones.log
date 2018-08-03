@@ -539,3 +539,192 @@
 [INFO] 18:43:23:395 COORDOP/(10086:10119): ESI 2	STORE platoprincipal:ingrediente3(Instancia 1) 
 [INFO] 18:43:23:597 COORDOP/(10086:10119): ESI 2	STORE platoprincipal:ingrediente4(Instancia 1) 
 [INFO] 18:43:23:798 COORDOP/(10086:10119): ESI 2	STORE platoprincipal:ingrediente5(Instancia 1) 
+[INFO] 00:43:16:419 COORDOP/(4634:4662): ESI 1	GET e3:sony:juegos(Instancia 1) 
+[INFO] 00:43:18:602 COORDOP/(4634:4662): ESI 1	GET e3:microsoft:juegos(Instancia 1) 
+[INFO] 00:43:19:568 COORDOP/(4634:4662): ESI 1	SET e3:sony:juegos(Instancia 1) TLOU2
+[INFO] 00:43:20:613 COORDOP/(4634:4662): ESI 1	SET e3:sony:juegos(Instancia 1) Spiderman
+[INFO] 00:43:21:551 COORDOP/(4634:4662): ESI 1	SET e3:sony:juegos(Instancia 1) GhostOfTsushima
+[INFO] 00:43:22:282 COORDOP/(4634:4662): ESI 1	SET e3:sony:juegos(Instancia 1) DeathStranding
+[INFO] 00:43:22:933 COORDOP/(4634:4662): ESI 1	SET e3:sony:juegos(Instancia 1) ResidenEvil2Remake
+[INFO] 00:43:23:525 COORDOP/(4634:4662): ESI 1	SET e3:sony:juegos(Instancia 1) Destiny2DLCForsaken
+[INFO] 00:43:24:129 COORDOP/(4634:4662): ESI 1	SET e3:microsoft:juegos(Instancia 1) DLCCuphead
+[INFO] 00:43:24:682 COORDOP/(4634:4662): ESI 1	SET e3:microsoft:juegos(Instancia 1) ForzaHorizon4
+[INFO] 00:43:25:254 COORDOP/(4634:4662): ESI 1	SET e3:microsoft:juegos(Instancia 1) Gears5
+[INFO] 00:43:25:865 COORDOP/(4634:4662): ESI 1	SET e3:microsoft:juegos(Instancia 1) MetroExodus
+[INFO] 00:43:26:613 COORDOP/(4634:4662): ESI 1	SET e3:microsoft:juegos(Instancia 1) Fallout76
+[INFO] 00:43:27:427 COORDOP/(4634:4662): ESI 1	SET e3:microsoft:juegos(Instancia 1) TheDivision2
+[INFO] 00:43:28:322 COORDOP/(4634:4662): ESI 1	SET e3:microsoft:juegos(Instancia 1) DyingLight2
+[INFO] 00:43:29:245 COORDOP/(4634:4662): ESI 1	SET e3:microsoft:juegos(Instancia 1) Crackdown3
+[INFO] 00:43:30:142 COORDOP/(4634:4662): ESI 1	SET e3:microsoft:juegos(Instancia 1) HaloInfinite
+[INFO] 00:43:31:525 COORDOP/(4634:4662): ESI 1	SET e3:microsoft:juegos(Instancia 1) KingdomHearts3
+[INFO] 00:43:35:706 COORDOP/(4634:4662): ESI 1	STORE e3:microsoft:juegos(Instancia 1) 
+[INFO] 00:43:39:206 COORDOP/(4634:4662): ESI 1	STORE e3:sony:juegos(Instancia 1) 
+[INFO] 00:46:57:649 COORDOP/(4634:5129): ESI 2	GET platoprincipal:ingrediente5(Instancia 1) 
+[INFO] 00:47:04:435 COORDOP/(4634:5129): ESI 2	GET platoprincipal:ingrediente4(Instancia 1) 
+[INFO] 00:47:07:764 COORDOP/(4634:5129): ESI 2	GET platoprincipal:ingrediente3(Instancia 1) 
+[INFO] 00:47:13:473 COORDOP/(4634:5129): ESI 2	GET platoprincipal:ingrediente2(Instancia 1) 
+[INFO] 00:47:23:148 COORDOP/(4634:5129): ESI 2	GET platoprincipal:ingrediente1(Instancia 1) 
+[INFO] 00:48:04:925 COORDOP/(4634:5129): ESI 2	SET platoprincipal:ingrediente1(Instancia 1) milanesadecarne
+[INFO] 00:48:08:845 COORDOP/(4634:5129): ESI 2	SET platoprincipal:ingrediente2(Instancia 1) queso
+[INFO] 00:48:11:98 COORDOP/(4634:5129): ESI 2	SET platoprincipal:ingrediente3(Instancia 1) jamon
+[INFO] 00:48:14:444 COORDOP/(4634:5129): ESI 2	SET platoprincipal:ingrediente4(Instancia 1) lechuga
+[INFO] 00:48:16:129 COORDOP/(4634:5129): ESI 2	SET platoprincipal:ingrediente5(Instancia 1) tomate
+[INFO] 00:48:17:548 COORDOP/(4634:5129): ESI 2	STORE platoprincipal:ingrediente1(Instancia 1) 
+[INFO] 00:48:19:30 COORDOP/(4634:5129): ESI 2	STORE platoprincipal:ingrediente2(Instancia 1) 
+[INFO] 00:48:20:385 COORDOP/(4634:5129): ESI 2	STORE platoprincipal:ingrediente3(Instancia 1) 
+[INFO] 00:48:22:201 COORDOP/(4634:5129): ESI 2	STORE platoprincipal:ingrediente4(Instancia 1) 
+[INFO] 00:48:25:604 COORDOP/(4634:5129): ESI 2	STORE platoprincipal:ingrediente5(Instancia 1) 
+[INFO] 01:21:54:505 COORDOP/(6478:6516): ESI 2	GET platoprincipal:ingrediente5(Instancia 1) 
+[INFO] 01:21:54:714 COORDOP/(6478:6516): ESI 2	GET platoprincipal:ingrediente4(Instancia 1) 
+[INFO] 01:21:54:918 COORDOP/(6478:6516): ESI 2	GET platoprincipal:ingrediente3(Instancia 1) 
+[INFO] 01:21:55:121 COORDOP/(6478:6516): ESI 2	GET platoprincipal:ingrediente2(Instancia 1) 
+[INFO] 01:21:55:325 COORDOP/(6478:6516): ESI 2	GET platoprincipal:ingrediente1(Instancia 1) 
+[INFO] 01:21:55:530 COORDOP/(6478:6516): ESI 2	SET platoprincipal:ingrediente1(Instancia 1) milanesadecarne
+[INFO] 01:21:55:734 COORDOP/(6478:6516): ESI 2	SET platoprincipal:ingrediente2(Instancia 1) queso
+[INFO] 01:22:48:113 COORDOP/(6576:6604): ESI 2	GET platoprincipal:ingrediente5(Instancia 1) 
+[INFO] 01:22:49:117 COORDOP/(6576:6604): ESI 2	GET platoprincipal:ingrediente4(Instancia 1) 
+[INFO] 01:22:50:123 COORDOP/(6576:6604): ESI 2	GET platoprincipal:ingrediente3(Instancia 1) 
+[INFO] 01:22:51:128 COORDOP/(6576:6604): ESI 2	GET platoprincipal:ingrediente2(Instancia 1) 
+[INFO] 01:40:23:604 COORDOP/(6932:6975): ESI 2	GET platoprincipal:ingrediente5(Instancia 1) 
+[INFO] 01:40:24:609 COORDOP/(6932:6975): ESI 2	GET platoprincipal:ingrediente4(Instancia 1) 
+[INFO] 01:40:25:614 COORDOP/(6932:6975): ESI 2	GET platoprincipal:ingrediente3(Instancia 1) 
+[INFO] 01:40:26:619 COORDOP/(6932:6975): ESI 2	GET platoprincipal:ingrediente2(Instancia 1) 
+[INFO] 01:52:37:48 COORDOP/(7133:7177): ESI 2	GET platoprincipal:ingrediente5(Instancia 1) 
+[INFO] 01:52:38:53 COORDOP/(7133:7177): ESI 2	GET platoprincipal:ingrediente4(Instancia 1) 
+[INFO] 01:52:39:59 COORDOP/(7133:7177): ESI 2	GET platoprincipal:ingrediente3(Instancia 1) 
+[INFO] 01:52:40:63 COORDOP/(7133:7177): ESI 2	GET platoprincipal:ingrediente2(Instancia 1) 
+[INFO] 01:59:55:53 COORDOP/(7282:7313): ESI 2	GET platoprincipal:ingrediente5(Instancia 1) 
+[INFO] 01:59:56:58 COORDOP/(7282:7313): ESI 2	GET platoprincipal:ingrediente4(Instancia 1) 
+[INFO] 01:59:57:63 COORDOP/(7282:7313): ESI 2	GET platoprincipal:ingrediente3(Instancia 1) 
+[INFO] 01:59:58:67 COORDOP/(7282:7313): ESI 2	GET platoprincipal:ingrediente2(Instancia 1) 
+[INFO] 01:59:59:74 COORDOP/(7282:7313): ESI 2	GET platoprincipal:ingrediente1(Instancia 1) 
+[INFO] 02:00:26:260 COORDOP/(7350:7379): ESI 2	GET platoprincipal:ingrediente5(Instancia 1) 
+[INFO] 02:00:27:264 COORDOP/(7350:7379): ESI 2	GET platoprincipal:ingrediente4(Instancia 1) 
+[INFO] 02:00:28:270 COORDOP/(7350:7379): ESI 2	GET platoprincipal:ingrediente3(Instancia 1) 
+[INFO] 02:00:55:227 COORDOP/(7350:7379): ESI 2	GET platoprincipal:ingrediente2(Instancia 1) 
+[INFO] 02:06:00:691 COORDOP/(7434:7488): ESI 2	GET platoprincipal:ingrediente5(Instancia 1) 
+[INFO] 02:06:01:695 COORDOP/(7434:7488): ESI 2	GET platoprincipal:ingrediente4(Instancia 1) 
+[INFO] 02:06:02:700 COORDOP/(7434:7488): ESI 2	GET platoprincipal:ingrediente3(Instancia 1) 
+[INFO] 02:06:03:706 COORDOP/(7434:7488): ESI 2	GET platoprincipal:ingrediente2(Instancia 1) 
+[INFO] 02:16:49:887 COORDOP/(7749:7778): ESI 2	GET platoprincipal:ingrediente5(Instancia 1) 
+[INFO] 02:16:50:892 COORDOP/(7749:7778): ESI 2	GET platoprincipal:ingrediente4(Instancia 1) 
+[INFO] 02:16:51:897 COORDOP/(7749:7778): ESI 2	GET platoprincipal:ingrediente3(Instancia 1) 
+[INFO] 02:17:30:866 COORDOP/(7826:7865): ESI 2	GET platoprincipal:ingrediente5(Instancia 1) 
+[INFO] 02:17:31:870 COORDOP/(7826:7865): ESI 2	GET platoprincipal:ingrediente4(Instancia 1) 
+[INFO] 02:17:32:874 COORDOP/(7826:7865): ESI 2	GET platoprincipal:ingrediente3(Instancia 1) 
+[INFO] 02:18:52:980 COORDOP/(7826:7865): ESI 2	GET platoprincipal:ingrediente2(Instancia 1) 
+[INFO] 02:18:53:994 COORDOP/(7826:7867): ESI 1	GET e3:sony:juegos(Instancia 1) 
+[INFO] 02:18:54:999 COORDOP/(7826:7867): ESI 1	GET e3:microsoft:juegos(Instancia 1) 
+[INFO] 02:18:56:5 COORDOP/(7826:7867): ESI 1	SET e3:sony:juegos(Instancia 1) TLOU2
+[INFO] 02:18:57:10 COORDOP/(7826:7867): ESI 1	SET e3:sony:juegos(Instancia 1) Spiderman
+[INFO] 02:18:58:15 COORDOP/(7826:7867): ESI 1	SET e3:sony:juegos(Instancia 1) GhostOfTsushima
+[INFO] 02:18:59:21 COORDOP/(7826:7867): ESI 1	SET e3:sony:juegos(Instancia 1) DeathStranding
+[INFO] 02:19:00:27 COORDOP/(7826:7867): ESI 1	SET e3:sony:juegos(Instancia 1) ResidenEvil2Remake
+[INFO] 02:19:01:31 COORDOP/(7826:7867): ESI 1	SET e3:sony:juegos(Instancia 1) Destiny2DLCForsaken
+[INFO] 02:19:02:37 COORDOP/(7826:7867): ESI 1	SET e3:microsoft:juegos(Instancia 1) DLCCuphead
+[INFO] 02:19:03:43 COORDOP/(7826:7867): ESI 1	SET e3:microsoft:juegos(Instancia 1) ForzaHorizon4
+[INFO] 02:19:04:48 COORDOP/(7826:7867): ESI 1	SET e3:microsoft:juegos(Instancia 1) Gears5
+[INFO] 02:19:05:54 COORDOP/(7826:7867): ESI 1	SET e3:microsoft:juegos(Instancia 1) MetroExodus
+[INFO] 02:19:06:58 COORDOP/(7826:7867): ESI 1	SET e3:microsoft:juegos(Instancia 1) Fallout76
+[INFO] 02:19:07:64 COORDOP/(7826:7867): ESI 1	SET e3:microsoft:juegos(Instancia 1) TheDivision2
+[INFO] 02:19:08:73 COORDOP/(7826:7867): ESI 1	SET e3:microsoft:juegos(Instancia 1) DyingLight2
+[INFO] 02:19:09:78 COORDOP/(7826:7867): ESI 1	SET e3:microsoft:juegos(Instancia 1) Crackdown3
+[INFO] 02:19:10:83 COORDOP/(7826:7867): ESI 1	SET e3:microsoft:juegos(Instancia 1) HaloInfinite
+[INFO] 02:19:11:90 COORDOP/(7826:7867): ESI 1	SET e3:microsoft:juegos(Instancia 1) KingdomHearts3
+[INFO] 02:19:12:95 COORDOP/(7826:7867): ESI 1	STORE e3:microsoft:juegos(Instancia 1) 
+[INFO] 02:19:13:101 COORDOP/(7826:7867): ESI 1	STORE e3:sony:juegos(Instancia 1) 
+[INFO] 02:45:02:260 COORDOP/(8290:8352): ESI 2	GET platoprincipal:ingrediente5(Instancia 1) 
+[INFO] 02:45:03:267 COORDOP/(8290:8352): ESI 2	GET platoprincipal:ingrediente4(Instancia 1) 
+[INFO] 02:45:04:270 COORDOP/(8290:8352): ESI 2	GET platoprincipal:ingrediente3(Instancia 1) 
+[INFO] 02:45:05:273 COORDOP/(8290:8352): ESI 2	GET platoprincipal:ingrediente2(Instancia 1) 
+[INFO] 02:45:35:386 COORDOP/(8290:8355): ESI 1	GET e3:sony:juegos(Instancia 1) 
+[INFO] 02:45:36:389 COORDOP/(8290:8355): ESI 1	GET e3:microsoft:juegos(Instancia 1) 
+[INFO] 02:45:37:393 COORDOP/(8290:8355): ESI 1	SET e3:sony:juegos(Instancia 1) TLOU2
+[INFO] 02:45:38:395 COORDOP/(8290:8355): ESI 1	SET e3:sony:juegos(Instancia 1) Spiderman
+[INFO] 02:45:39:398 COORDOP/(8290:8355): ESI 1	SET e3:sony:juegos(Instancia 1) GhostOfTsushima
+[INFO] 02:45:40:401 COORDOP/(8290:8355): ESI 1	SET e3:sony:juegos(Instancia 1) DeathStranding
+[INFO] 02:45:41:405 COORDOP/(8290:8355): ESI 1	SET e3:sony:juegos(Instancia 1) ResidenEvil2Remake
+[INFO] 02:45:42:409 COORDOP/(8290:8355): ESI 1	SET e3:sony:juegos(Instancia 1) Destiny2DLCForsaken
+[INFO] 02:45:43:412 COORDOP/(8290:8355): ESI 1	SET e3:microsoft:juegos(Instancia 1) DLCCuphead
+[INFO] 02:45:44:415 COORDOP/(8290:8355): ESI 1	SET e3:microsoft:juegos(Instancia 1) ForzaHorizon4
+[INFO] 02:45:45:417 COORDOP/(8290:8355): ESI 1	SET e3:microsoft:juegos(Instancia 1) Gears5
+[INFO] 02:45:46:421 COORDOP/(8290:8355): ESI 1	SET e3:microsoft:juegos(Instancia 1) MetroExodus
+[INFO] 02:45:47:424 COORDOP/(8290:8355): ESI 1	SET e3:microsoft:juegos(Instancia 1) Fallout76
+[INFO] 02:45:48:428 COORDOP/(8290:8355): ESI 1	SET e3:microsoft:juegos(Instancia 1) TheDivision2
+[INFO] 02:45:49:431 COORDOP/(8290:8355): ESI 1	SET e3:microsoft:juegos(Instancia 1) DyingLight2
+[INFO] 02:45:50:434 COORDOP/(8290:8355): ESI 1	SET e3:microsoft:juegos(Instancia 1) Crackdown3
+[INFO] 02:45:51:436 COORDOP/(8290:8355): ESI 1	SET e3:microsoft:juegos(Instancia 1) HaloInfinite
+[INFO] 02:45:52:439 COORDOP/(8290:8355): ESI 1	SET e3:microsoft:juegos(Instancia 1) KingdomHearts3
+[INFO] 02:45:53:441 COORDOP/(8290:8355): ESI 1	STORE e3:microsoft:juegos(Instancia 1) 
+[INFO] 02:45:54:444 COORDOP/(8290:8355): ESI 1	STORE e3:sony:juegos(Instancia 1) 
+[INFO] 02:47:21:18 COORDOP/(8436:8477): ESI 2	GET platoprincipal:ingrediente5(Instancia 1) 
+[INFO] 02:47:22:21 COORDOP/(8436:8477): ESI 2	GET platoprincipal:ingrediente4(Instancia 1) 
+[INFO] 02:47:23:24 COORDOP/(8436:8477): ESI 2	GET platoprincipal:ingrediente3(Instancia 1) 
+[INFO] 02:47:45:890 COORDOP/(8436:8477): ESI 2	GET platoprincipal:ingrediente2(Instancia 1) 
+[INFO] 02:47:46:894 COORDOP/(8436:8479): ESI 1	GET e3:sony:juegos(Instancia 1) 
+[INFO] 02:47:47:896 COORDOP/(8436:8479): ESI 1	GET e3:microsoft:juegos(Instancia 1) 
+[INFO] 02:47:48:899 COORDOP/(8436:8479): ESI 1	SET e3:sony:juegos(Instancia 1) TLOU2
+[INFO] 02:47:49:902 COORDOP/(8436:8479): ESI 1	SET e3:sony:juegos(Instancia 1) Spiderman
+[INFO] 02:47:50:905 COORDOP/(8436:8479): ESI 1	SET e3:sony:juegos(Instancia 1) GhostOfTsushima
+[INFO] 02:47:51:908 COORDOP/(8436:8479): ESI 1	SET e3:sony:juegos(Instancia 1) DeathStranding
+[INFO] 02:47:52:912 COORDOP/(8436:8479): ESI 1	SET e3:sony:juegos(Instancia 1) ResidenEvil2Remake
+[INFO] 02:47:53:915 COORDOP/(8436:8479): ESI 1	SET e3:sony:juegos(Instancia 1) Destiny2DLCForsaken
+[INFO] 02:47:54:919 COORDOP/(8436:8479): ESI 1	SET e3:microsoft:juegos(Instancia 1) DLCCuphead
+[INFO] 02:47:55:922 COORDOP/(8436:8479): ESI 1	SET e3:microsoft:juegos(Instancia 1) ForzaHorizon4
+[INFO] 02:47:56:925 COORDOP/(8436:8479): ESI 1	SET e3:microsoft:juegos(Instancia 1) Gears5
+[INFO] 02:47:57:928 COORDOP/(8436:8479): ESI 1	SET e3:microsoft:juegos(Instancia 1) MetroExodus
+[INFO] 02:47:58:931 COORDOP/(8436:8479): ESI 1	SET e3:microsoft:juegos(Instancia 1) Fallout76
+[INFO] 02:47:59:934 COORDOP/(8436:8479): ESI 1	SET e3:microsoft:juegos(Instancia 1) TheDivision2
+[INFO] 02:48:00:937 COORDOP/(8436:8479): ESI 1	SET e3:microsoft:juegos(Instancia 1) DyingLight2
+[INFO] 02:48:01:940 COORDOP/(8436:8479): ESI 1	SET e3:microsoft:juegos(Instancia 1) Crackdown3
+[INFO] 02:48:02:943 COORDOP/(8436:8479): ESI 1	SET e3:microsoft:juegos(Instancia 1) HaloInfinite
+[INFO] 02:48:03:946 COORDOP/(8436:8479): ESI 1	SET e3:microsoft:juegos(Instancia 1) KingdomHearts3
+[INFO] 02:48:04:950 COORDOP/(8436:8479): ESI 1	STORE e3:microsoft:juegos(Instancia 1) 
+[INFO] 02:48:05:954 COORDOP/(8436:8479): ESI 1	STORE e3:sony:juegos(Instancia 1) 
+[INFO] 02:55:27:13 COORDOP/(8680:8714): ESI 2	GET platoprincipal:ingrediente5(Instancia 1) 
+[INFO] 02:55:47:734 COORDOP/(8680:8714): ESI 2	GET platoprincipal:ingrediente4(Instancia 1) 
+[INFO] 02:55:52:693 COORDOP/(8680:8714): ESI 2	GET platoprincipal:ingrediente3(Instancia 1) 
+[INFO] 02:55:55:94 COORDOP/(8680:8714): ESI 2	GET platoprincipal:ingrediente2(Instancia 1) 
+[INFO] 02:58:44:397 COORDOP/(8680:8716): ESI 1	GET e3:sony:juegos(Instancia 1) 
+[INFO] 02:58:59:234 COORDOP/(8680:8716): ESI 1	GET e3:microsoft:juegos(Instancia 1) 
+[INFO] 02:59:30:346 COORDOP/(8680:8716): ESI 1	SET e3:sony:juegos(Instancia 1) TLOU2
+[INFO] 02:59:53:595 COORDOP/(8680:8716): ESI 1	SET e3:sony:juegos(Instancia 1) Spiderman
+[INFO] 03:00:05:891 COORDOP/(8680:8716): ESI 1	SET e3:sony:juegos(Instancia 1) GhostOfTsushima
+[INFO] 03:00:11:392 COORDOP/(8680:8716): ESI 1	SET e3:sony:juegos(Instancia 1) DeathStranding
+[INFO] 03:00:20:974 COORDOP/(8680:8716): ESI 1	SET e3:sony:juegos(Instancia 1) ResidenEvil2Remake
+[INFO] 03:00:32:813 COORDOP/(8680:8716): ESI 1	SET e3:sony:juegos(Instancia 1) Destiny2DLCForsaken
+[INFO] 03:00:37:249 COORDOP/(8680:8716): ESI 1	SET e3:microsoft:juegos(Instancia 1) DLCCuphead
+[INFO] 03:00:52:316 COORDOP/(8680:8716): ESI 1	SET e3:microsoft:juegos(Instancia 1) ForzaHorizon4
+[INFO] 03:00:55:699 COORDOP/(8680:8716): ESI 1	SET e3:microsoft:juegos(Instancia 1) Gears5
+[INFO] 03:00:59:693 COORDOP/(8680:8716): ESI 1	SET e3:microsoft:juegos(Instancia 1) MetroExodus
+[INFO] 03:01:03:133 COORDOP/(8680:8716): ESI 1	SET e3:microsoft:juegos(Instancia 1) Fallout76
+[INFO] 03:01:05:778 COORDOP/(8680:8716): ESI 1	SET e3:microsoft:juegos(Instancia 1) TheDivision2
+[INFO] 03:01:08:856 COORDOP/(8680:8716): ESI 1	SET e3:microsoft:juegos(Instancia 1) DyingLight2
+[INFO] 03:01:12:193 COORDOP/(8680:8716): ESI 1	SET e3:microsoft:juegos(Instancia 1) Crackdown3
+[INFO] 03:01:14:877 COORDOP/(8680:8716): ESI 1	SET e3:microsoft:juegos(Instancia 1) HaloInfinite
+[INFO] 03:01:17:345 COORDOP/(8680:8716): ESI 1	SET e3:microsoft:juegos(Instancia 1) KingdomHearts3
+[INFO] 03:05:06:849 COORDOP/(8680:8716): ESI 1	STORE e3:microsoft:juegos(Instancia 1) 
+[INFO] 03:06:11:698 COORDOP/(9053:9097): ESI 2	GET platoprincipal:ingrediente5(Instancia 1) 
+[INFO] 03:06:12:701 COORDOP/(9053:9097): ESI 2	GET platoprincipal:ingrediente4(Instancia 1) 
+[INFO] 03:06:13:703 COORDOP/(9053:9097): ESI 2	GET platoprincipal:ingrediente3(Instancia 1) 
+[INFO] 03:06:14:706 COORDOP/(9053:9097): ESI 2	GET platoprincipal:ingrediente2(Instancia 1) 
+[INFO] 03:06:15:710 COORDOP/(9053:9099): ESI 1	GET e3:sony:juegos(Instancia 1) 
+[INFO] 03:06:16:713 COORDOP/(9053:9099): ESI 1	GET e3:microsoft:juegos(Instancia 1) 
+[INFO] 03:06:17:714 COORDOP/(9053:9099): ESI 1	SET e3:sony:juegos(Instancia 1) TLOU2
+[INFO] 03:06:18:717 COORDOP/(9053:9099): ESI 1	SET e3:sony:juegos(Instancia 1) Spiderman
+[INFO] 03:06:19:719 COORDOP/(9053:9099): ESI 1	SET e3:sony:juegos(Instancia 1) GhostOfTsushima
+[INFO] 03:06:20:723 COORDOP/(9053:9099): ESI 1	SET e3:sony:juegos(Instancia 1) DeathStranding
+[INFO] 03:06:21:725 COORDOP/(9053:9099): ESI 1	SET e3:sony:juegos(Instancia 1) ResidenEvil2Remake
+[INFO] 03:06:22:729 COORDOP/(9053:9099): ESI 1	SET e3:sony:juegos(Instancia 1) Destiny2DLCForsaken
+[INFO] 03:06:23:733 COORDOP/(9053:9099): ESI 1	SET e3:microsoft:juegos(Instancia 1) DLCCuphead
+[INFO] 03:06:24:737 COORDOP/(9053:9099): ESI 1	SET e3:microsoft:juegos(Instancia 1) ForzaHorizon4
+[INFO] 03:06:25:740 COORDOP/(9053:9099): ESI 1	SET e3:microsoft:juegos(Instancia 1) Gears5
+[INFO] 03:06:26:742 COORDOP/(9053:9099): ESI 1	SET e3:microsoft:juegos(Instancia 1) MetroExodus
+[INFO] 03:06:27:745 COORDOP/(9053:9099): ESI 1	SET e3:microsoft:juegos(Instancia 1) Fallout76
+[INFO] 03:06:28:748 COORDOP/(9053:9099): ESI 1	SET e3:microsoft:juegos(Instancia 1) TheDivision2
+[INFO] 03:06:29:751 COORDOP/(9053:9099): ESI 1	SET e3:microsoft:juegos(Instancia 1) DyingLight2
+[INFO] 03:06:30:756 COORDOP/(9053:9099): ESI 1	SET e3:microsoft:juegos(Instancia 1) Crackdown3
+[INFO] 03:06:31:759 COORDOP/(9053:9099): ESI 1	SET e3:microsoft:juegos(Instancia 1) HaloInfinite
+[INFO] 03:06:32:761 COORDOP/(9053:9099): ESI 1	SET e3:microsoft:juegos(Instancia 1) KingdomHearts3
+[INFO] 03:06:33:764 COORDOP/(9053:9099): ESI 1	STORE e3:microsoft:juegos(Instancia 1) 
+[INFO] 03:06:34:767 COORDOP/(9053:9099): ESI 1	STORE e3:sony:juegos(Instancia 1) 

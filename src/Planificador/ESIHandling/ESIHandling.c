@@ -207,10 +207,8 @@ void closureParaIterar(ESI_t* esi){
 bool claveBloqueadaParaESI(char* clave, ESI_t* esi){
     cola_clave* c = buscarElementoDeLista(clave);
     if(c!=NULL){ 
-      bool bloqueada;
-      EsiAVerSiEstaBloqueado = esi;
-      bloqueada = list_any_satisfy(c->esisBloqueadosParaClave, (void *)&closureSatisfyBlock);
-      return bloqueada;
+      esiAVerSiEstaBloqueado = esi;
+      return list_any_satisfy(c->esisBloqueadosParaClave, (void *)&closureSatisfyBlock);
     }
     else{
       return false;
@@ -218,7 +216,7 @@ bool claveBloqueadaParaESI(char* clave, ESI_t* esi){
 }
 
 bool closureSatisfyBlock(ESI_t* esi){
-    return EsiAVerSiEstaBloqueado->id == esi->id;
+    return esiAVerSiEstaBloqueado->id == esi->id;
 }
 
 bool estaBloqueadoPorOtraClave(ESI_t* esi){
@@ -229,7 +227,7 @@ bool estaBloqueadoPorOtraClave(ESI_t* esi){
 }
 
 bool satisfaceBloqueo(cola_clave* c){
-  return list_any_satisfy((c->cola)->elements, (void*)&satisfaceBloqueoANivelCola );
+  return list_any_satisfy((c->cola)->elements, (void*)&satisfaceBloqueoANivelCola ) && c->idEsiUsandoClave != 0;
 }
 
 bool satisfaceBloqueoANivelCola(ESI_t* esi){

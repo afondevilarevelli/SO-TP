@@ -108,6 +108,8 @@ int main(void)
 	claveAVerSiSatisface = NULL;
 	claveAVerSiSatisfaceCondicionListaColas = malloc(sizeof(char)*40);
 	claveAVerSiSatisfaceCondicionListaColas = NULL;
+	claveParaDesbloquearSiEstaBloqueada = malloc(sizeof(char)*40);
+	claveParaDesbloquearSiEstaBloqueada = NULL;
 
 
 	log_trace(pLog, "Inicializacion de variables globales completada");
@@ -165,6 +167,7 @@ int main(void)
 	free(tipoPlanificacion);
 	free(claveAVerSiSatisface);
 	free(claveAVerSiSatisfaceCondicionListaColas);
+	free(claveParaDesbloquearSiEstaBloqueada);
 	return 0; 
 }
 
