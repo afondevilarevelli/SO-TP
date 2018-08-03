@@ -101,7 +101,7 @@ void atenderInstancia( int socket )
   addIntToBuffer(pBInfoEntries, entrySize);
   sendWithBasicProtocol(socket, pBInfoEntries->data, pBInfoEntries->size);
   free(pBInfoEntries);
-
+/* ENVIO E CLAVES A INSTANCIAAAAA
   pBInfoEntries = newBuffer();
   for( i = 0; i < coord_Insts.count; i++ )
   {
@@ -135,7 +135,7 @@ void atenderInstancia( int socket )
   {
     sendWithBasicProtocol(socket, emptyString, 1);
   }
-
+*/
   while(1)
   {
     int size;
