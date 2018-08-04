@@ -1160,3 +1160,1940 @@ Valor = Halo
 [TRACE] 22:20:19:600 ESI/(20675:20675): El ESI de id = 3 finalizo su ejecucion correctamente
 [TRACE] 22:20:19:600 ESI/(20675:20675): Se informa del fin de ejecucion del esi de id = 3 al Coordinador
 [TRACE] 22:20:19:600 ESI/(20675:20675): Se informa del fin de ejecucion del esi de id = 3 al PLanificador
+[TRACE] 23:00:07:191 ESI/(22134:22134): Iniciando...
+[TRACE] 23:00:07:195 ESI/(22134:22134): Se obtiene ID 3 del archivo de configuracion
+[TRACE] 23:00:07:199 ESI/(22134:22134): El esi de id = 3 se conecto al Coordinador en el socket 4
+[TRACE] 23:00:07:201 ESI/(22134:22134): El esi de id = 3 se conecto al Planificador en el socket 5
+[TRACE] 23:00:07:202 ESI/(22134:22134): Script ejemplo.esi abierto
+[TRACE] 23:00:07:203 ESI/(22134:22134): El esi de id = 3 esta esperando orden de Planificador
+[DEBUG] 23:00:07:207 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:07:207 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps1
+Valor = No corresponde
+
+[TRACE] 23:00:07:208 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:07:208 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:08:210 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:08:210 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:08:210 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:08:211 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:08:211 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps2
+Valor = No corresponde
+
+[TRACE] 23:00:08:211 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:08:211 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:09:215 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:09:215 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:09:215 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:09:215 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:09:215 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps3
+Valor = No corresponde
+
+[TRACE] 23:00:09:215 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:09:215 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:10:218 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:10:218 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:10:218 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:10:218 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:10:218 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps4
+Valor = No corresponde
+
+[TRACE] 23:00:10:218 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:10:218 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:11:222 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:11:222 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:11:222 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:11:222 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:11:222 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = microsoft:consola:xbox
+Valor = No corresponde
+
+[TRACE] 23:00:11:222 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:11:222 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:12:225 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:12:225 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:12:225 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:12:225 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:12:225 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = microsoft:consola:xbox360
+Valor = No corresponde
+
+[TRACE] 23:00:12:225 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:12:225 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:13:229 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:13:229 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:13:229 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:13:229 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:13:229 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = microsoft:consola:xboxone
+Valor = No corresponde
+
+[TRACE] 23:00:13:229 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:13:230 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:14:232 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:14:232 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:14:232 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:14:232 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:14:232 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:nes
+Valor = No corresponde
+
+[TRACE] 23:00:14:233 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:14:233 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:15:236 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:15:236 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:15:236 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:15:236 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:15:236 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:snes
+Valor = No corresponde
+
+[TRACE] 23:00:15:236 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:15:236 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:16:240 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:16:240 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:16:240 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:16:240 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:16:240 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:nintendo64
+Valor = No corresponde
+
+[TRACE] 23:00:16:241 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:16:241 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:17:244 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:17:244 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:17:244 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:17:244 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:17:244 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:gamecube
+Valor = No corresponde
+
+[TRACE] 23:00:17:244 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:17:244 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:18:247 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:18:247 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:18:247 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:18:247 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:18:247 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:wii
+Valor = No corresponde
+
+[TRACE] 23:00:18:247 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:18:248 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:19:251 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:19:251 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:19:251 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:19:251 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:19:251 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:wiiu
+Valor = No corresponde
+
+[TRACE] 23:00:19:251 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:19:251 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:20:254 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:20:254 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:20:254 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:20:254 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:20:254 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:switch
+Valor = No corresponde
+
+[TRACE] 23:00:20:254 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:20:254 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:21:258 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:21:258 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:21:258 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:21:258 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:21:258 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:nes
+Valor = Mario
+
+[TRACE] 23:00:21:258 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:21:259 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:22:263 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:22:263 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:22:263 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:22:263 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:22:263 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:snes
+Valor = SuperMario
+
+[TRACE] 23:00:22:263 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:22:263 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:23:266 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:23:266 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:23:266 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:23:266 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:23:266 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:nintendo64
+Valor = Mario64
+
+[TRACE] 23:00:23:266 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:23:266 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:24:269 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:24:269 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:24:269 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:24:269 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:24:269 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:gamecube
+Valor = Mario
+
+[TRACE] 23:00:24:269 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:24:269 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:25:273 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:25:273 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:25:273 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:25:273 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:25:273 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:wii
+Valor = MarioGalaxy
+
+[TRACE] 23:00:25:273 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:25:273 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:26:277 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:26:277 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:26:277 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:26:277 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:26:277 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:wiiu
+Valor = RIP
+
+[TRACE] 23:00:26:278 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:26:278 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:27:283 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:27:283 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:27:284 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:27:284 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:27:284 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:switch
+Valor = MarioOddysey
+
+[TRACE] 23:00:27:284 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:27:284 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:28:288 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:28:288 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:28:289 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:28:289 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:28:289 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps1
+Valor = FinalFantasy
+
+[TRACE] 23:00:28:289 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:28:289 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:29:293 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:29:293 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:29:293 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:29:293 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:29:293 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps2
+Valor = GodOfWar
+
+[TRACE] 23:00:29:293 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:29:294 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:30:297 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:30:298 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:30:298 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:30:298 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:30:298 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps3
+Valor = TLOU
+
+[TRACE] 23:00:30:298 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:30:298 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:31:303 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:31:303 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:31:303 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:31:303 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:31:303 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps4
+Valor = Bloodborne
+
+[TRACE] 23:00:31:303 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:31:303 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:32:308 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:32:308 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:32:308 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:32:308 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:32:308 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = microsoft:consola:xbox
+Valor = Halo
+
+[TRACE] 23:00:32:309 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:32:309 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:33:311 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:33:311 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:33:311 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:33:311 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:33:311 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = microsoft:consola:xbox360
+Valor = Halo
+
+[TRACE] 23:00:33:311 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:33:312 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:34:314 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:34:315 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:34:315 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:34:315 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[DEBUG] 23:00:34:315 ESI/(22134:22134): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = microsoft:consola:xboxone
+Valor = Halo
+
+[TRACE] 23:00:34:315 ESI/(22134:22134): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:00:34:315 ESI/(22134:22134): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:00:35:319 ESI/(22134:22134): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:00:35:319 ESI/(22134:22134): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:00:35:319 ESI/(22134:22134): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:00:35:319 ESI/(22134:22134): La orden recibida fue EJECUTAR
+[TRACE] 23:00:35:319 ESI/(22134:22134): El ESI de id = 3 finalizo su ejecucion correctamente
+[TRACE] 23:00:35:319 ESI/(22134:22134): Se informa del fin de ejecucion del esi de id = 3 al Coordinador
+[TRACE] 23:00:35:319 ESI/(22134:22134): Se informa del fin de ejecucion del esi de id = 3 al PLanificador
+[TRACE] 23:03:31:71 ESI/(22339:22339): Iniciando...
+[TRACE] 23:03:31:75 ESI/(22339:22339): Se obtiene ID 3 del archivo de configuracion
+[TRACE] 23:03:31:75 ESI/(22339:22339): El esi de id = 3 se conecto al Coordinador en el socket 4
+[TRACE] 23:03:31:75 ESI/(22339:22339): El esi de id = 3 se conecto al Planificador en el socket 5
+[TRACE] 23:03:31:75 ESI/(22339:22339): Script ejemplo.esi abierto
+[TRACE] 23:03:31:76 ESI/(22339:22339): El esi de id = 3 esta esperando orden de Planificador
+[DEBUG] 23:03:31:88 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:31:88 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps1
+Valor = No corresponde
+
+[TRACE] 23:03:31:88 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:31:88 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:32:90 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:32:90 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:32:90 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:32:90 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:32:90 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps2
+Valor = No corresponde
+
+[TRACE] 23:03:32:90 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:32:90 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:33:94 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:33:94 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:33:94 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:33:94 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:33:94 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps3
+Valor = No corresponde
+
+[TRACE] 23:03:33:94 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:33:94 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:34:96 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:34:96 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:34:96 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:34:96 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:34:96 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps4
+Valor = No corresponde
+
+[TRACE] 23:03:34:97 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:34:97 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:35:100 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:35:100 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:35:100 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:35:100 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:35:100 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = microsoft:consola:xbox
+Valor = No corresponde
+
+[TRACE] 23:03:35:100 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:35:100 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:36:105 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:36:105 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:36:105 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:36:105 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:36:105 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = microsoft:consola:xbox360
+Valor = No corresponde
+
+[TRACE] 23:03:36:105 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:36:105 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:37:108 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:37:108 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:37:108 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:37:108 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:37:108 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = microsoft:consola:xboxone
+Valor = No corresponde
+
+[TRACE] 23:03:37:108 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:37:109 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:38:111 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:38:111 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:38:111 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:38:111 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:38:111 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:nes
+Valor = No corresponde
+
+[TRACE] 23:03:38:111 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:38:111 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:39:114 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:39:114 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:39:114 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:39:114 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:39:114 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:snes
+Valor = No corresponde
+
+[TRACE] 23:03:39:114 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:39:114 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:40:117 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:40:117 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:40:118 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:40:118 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:40:118 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:nintendo64
+Valor = No corresponde
+
+[TRACE] 23:03:40:118 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:40:118 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:41:123 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:41:123 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:41:123 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:41:124 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:41:124 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:gamecube
+Valor = No corresponde
+
+[TRACE] 23:03:41:124 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:41:124 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:42:127 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:42:127 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:42:127 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:42:127 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:42:127 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:wii
+Valor = No corresponde
+
+[TRACE] 23:03:42:127 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:42:128 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:43:130 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:43:130 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:43:130 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:43:130 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:43:130 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:wiiu
+Valor = No corresponde
+
+[TRACE] 23:03:43:130 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:43:130 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:44:134 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:44:134 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:44:134 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:44:134 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:44:134 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:switch
+Valor = No corresponde
+
+[TRACE] 23:03:44:134 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:44:134 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:45:138 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:45:138 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:45:138 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:45:138 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:45:138 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:nes
+Valor = Mario
+
+[TRACE] 23:03:45:138 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:45:138 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:46:142 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:46:142 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:46:143 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:46:143 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:46:143 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:snes
+Valor = SuperMario
+
+[TRACE] 23:03:46:143 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:46:143 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:47:148 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:47:148 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:47:148 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:47:148 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:47:148 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:nintendo64
+Valor = Mario64
+
+[TRACE] 23:03:47:148 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:47:148 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:48:152 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:48:152 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:48:152 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:48:152 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:48:152 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:gamecube
+Valor = Mario
+
+[TRACE] 23:03:48:152 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:48:152 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:49:154 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:49:154 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:49:154 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:49:155 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:49:155 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:wii
+Valor = MarioGalaxy
+
+[TRACE] 23:03:49:155 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:49:155 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:50:157 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:50:158 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:50:158 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:50:158 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:50:158 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:wiiu
+Valor = RIP
+
+[TRACE] 23:03:50:158 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:50:158 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:51:162 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:51:162 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:51:162 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:51:162 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:51:162 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:switch
+Valor = MarioOddysey
+
+[TRACE] 23:03:51:163 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:51:163 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:52:166 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:52:166 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:52:166 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:52:166 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:52:166 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps1
+Valor = FinalFantasy
+
+[TRACE] 23:03:52:167 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:52:167 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:53:170 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:53:170 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:53:170 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:53:170 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:53:170 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps2
+Valor = GodOfWar
+
+[TRACE] 23:03:53:170 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:53:171 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:54:173 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:54:173 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:54:173 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:54:173 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:54:173 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps3
+Valor = TLOU
+
+[TRACE] 23:03:54:173 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:54:173 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:55:177 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:55:177 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:55:177 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:55:177 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:55:177 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps4
+Valor = Bloodborne
+
+[TRACE] 23:03:55:177 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:55:177 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:56:182 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:56:182 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:56:182 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:56:182 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:56:182 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = microsoft:consola:xbox
+Valor = Halo
+
+[TRACE] 23:03:56:182 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:56:182 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:57:187 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:57:187 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:57:187 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:57:187 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:57:187 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = microsoft:consola:xbox360
+Valor = Halo
+
+[TRACE] 23:03:57:187 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:57:188 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:58:191 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:58:191 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:58:191 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:58:191 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[DEBUG] 23:03:58:191 ESI/(22339:22339): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = microsoft:consola:xboxone
+Valor = Halo
+
+[TRACE] 23:03:58:191 ESI/(22339:22339): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:03:58:191 ESI/(22339:22339): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:03:59:194 ESI/(22339:22339): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:03:59:194 ESI/(22339:22339): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:03:59:194 ESI/(22339:22339): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:03:59:194 ESI/(22339:22339): La orden recibida fue EJECUTAR
+[TRACE] 23:03:59:194 ESI/(22339:22339): El ESI de id = 3 finalizo su ejecucion correctamente
+[TRACE] 23:03:59:194 ESI/(22339:22339): Se informa del fin de ejecucion del esi de id = 3 al Coordinador
+[TRACE] 23:03:59:194 ESI/(22339:22339): Se informa del fin de ejecucion del esi de id = 3 al PLanificador
+[TRACE] 23:09:09:498 ESI/(22504:22504): Iniciando...
+[TRACE] 23:09:09:503 ESI/(22504:22504): Se obtiene ID 3 del archivo de configuracion
+[TRACE] 23:09:09:504 ESI/(22504:22504): El esi de id = 3 se conecto al Coordinador en el socket 4
+[TRACE] 23:09:09:510 ESI/(22504:22504): El esi de id = 3 se conecto al Planificador en el socket 5
+[TRACE] 23:09:09:511 ESI/(22504:22504): Script ejemplo.esi abierto
+[TRACE] 23:09:09:511 ESI/(22504:22504): El esi de id = 3 esta esperando orden de Planificador
+[DEBUG] 23:09:09:514 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:09:514 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps1
+Valor = No corresponde
+
+[TRACE] 23:09:09:514 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:09:514 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:10:516 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:10:516 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:10:516 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:10:516 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:10:516 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps2
+Valor = No corresponde
+
+[TRACE] 23:09:10:516 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:10:516 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:11:518 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:11:519 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:11:519 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:11:519 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:11:519 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps3
+Valor = No corresponde
+
+[TRACE] 23:09:11:519 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:11:519 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:12:521 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:12:521 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:12:522 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:12:522 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:12:522 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps4
+Valor = No corresponde
+
+[TRACE] 23:09:12:522 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:12:522 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:13:525 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:13:525 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:13:525 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:13:525 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:13:525 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = microsoft:consola:xbox
+Valor = No corresponde
+
+[TRACE] 23:09:13:525 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:13:526 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:14:530 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:14:530 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:14:530 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:14:530 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:14:530 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = microsoft:consola:xbox360
+Valor = No corresponde
+
+[TRACE] 23:09:14:530 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:14:530 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:15:534 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:15:534 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:15:534 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:15:534 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:15:534 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = microsoft:consola:xboxone
+Valor = No corresponde
+
+[TRACE] 23:09:15:534 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:15:534 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:16:537 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:16:537 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:16:537 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:16:537 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:16:537 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:nes
+Valor = No corresponde
+
+[TRACE] 23:09:16:537 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:16:537 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:17:540 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:17:540 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:17:540 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:17:540 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:17:540 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:snes
+Valor = No corresponde
+
+[TRACE] 23:09:17:540 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:17:540 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:18:543 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:18:543 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:18:543 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:18:543 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:18:544 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:nintendo64
+Valor = No corresponde
+
+[TRACE] 23:09:18:544 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:18:544 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:19:547 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:19:547 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:19:548 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:19:548 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:19:548 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:gamecube
+Valor = No corresponde
+
+[TRACE] 23:09:19:548 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:19:548 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:20:550 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:20:550 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:20:550 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:20:550 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:20:550 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:wii
+Valor = No corresponde
+
+[TRACE] 23:09:20:550 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:20:550 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:21:552 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:21:552 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:21:553 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:21:553 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:21:553 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:wiiu
+Valor = No corresponde
+
+[TRACE] 23:09:21:553 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:21:553 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:22:555 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:22:555 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:22:555 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:22:555 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:22:555 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:switch
+Valor = No corresponde
+
+[TRACE] 23:09:22:555 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:22:555 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:23:557 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:23:557 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:23:557 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:23:557 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:23:558 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:nes
+Valor = Mario
+
+[TRACE] 23:09:23:558 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:23:558 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:24:561 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:24:561 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:24:561 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:24:561 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:24:561 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:snes
+Valor = SuperMario
+
+[TRACE] 23:09:24:561 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:24:562 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:25:564 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:25:564 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:25:565 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:25:565 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:25:565 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:nintendo64
+Valor = Mario64
+
+[TRACE] 23:09:25:565 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:25:565 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:26:568 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:26:568 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:26:568 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:26:568 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:26:568 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:gamecube
+Valor = Mario
+
+[TRACE] 23:09:26:568 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:26:568 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:27:571 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:27:571 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:27:571 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:27:571 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:27:571 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:wii
+Valor = MarioGalaxy
+
+[TRACE] 23:09:27:571 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:27:571 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:28:573 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:28:574 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:28:574 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:28:574 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:28:574 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:wiiu
+Valor = RIP
+
+[TRACE] 23:09:28:574 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:28:574 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:29:577 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:29:577 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:29:577 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:29:577 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:29:577 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:switch
+Valor = MarioOddysey
+
+[TRACE] 23:09:29:577 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:29:577 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:30:580 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:30:580 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:30:581 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:30:581 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:30:581 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps1
+Valor = FinalFantasy
+
+[TRACE] 23:09:30:581 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:30:581 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:31:585 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:31:585 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:31:585 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:31:585 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:31:585 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps2
+Valor = GodOfWar
+
+[TRACE] 23:09:31:585 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:31:586 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:32:589 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:32:589 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:32:590 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:32:590 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:32:590 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps3
+Valor = TLOU
+
+[TRACE] 23:09:32:590 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:32:590 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:33:592 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:33:592 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:33:592 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:33:592 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:33:592 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps4
+Valor = Bloodborne
+
+[TRACE] 23:09:33:592 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:33:592 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:34:596 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:34:596 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:34:596 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:34:596 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:34:596 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = microsoft:consola:xbox
+Valor = Halo
+
+[TRACE] 23:09:34:596 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:34:596 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:35:598 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:35:598 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:35:598 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:35:598 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:35:598 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = microsoft:consola:xbox360
+Valor = Halo
+
+[TRACE] 23:09:35:599 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:35:599 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:36:601 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:36:601 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:36:601 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:36:601 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[DEBUG] 23:09:36:601 ESI/(22504:22504): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = microsoft:consola:xboxone
+Valor = Halo
+
+[TRACE] 23:09:36:601 ESI/(22504:22504): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:09:36:602 ESI/(22504:22504): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:09:37:605 ESI/(22504:22504): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:09:37:605 ESI/(22504:22504): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:09:37:605 ESI/(22504:22504): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:09:37:605 ESI/(22504:22504): La orden recibida fue EJECUTAR
+[TRACE] 23:09:37:605 ESI/(22504:22504): El ESI de id = 3 finalizo su ejecucion correctamente
+[TRACE] 23:09:37:605 ESI/(22504:22504): Se informa del fin de ejecucion del esi de id = 3 al Coordinador
+[TRACE] 23:09:37:605 ESI/(22504:22504): Se informa del fin de ejecucion del esi de id = 3 al PLanificador
+[TRACE] 23:17:58:658 ESI/(22734:22734): Iniciando...
+[TRACE] 23:17:58:662 ESI/(22734:22734): Se obtiene ID 3 del archivo de configuracion
+[TRACE] 23:17:58:664 ESI/(22734:22734): El esi de id = 3 se conecto al Coordinador en el socket 4
+[TRACE] 23:17:58:665 ESI/(22734:22734): El esi de id = 3 se conecto al Planificador en el socket 5
+[TRACE] 23:17:58:665 ESI/(22734:22734): Script ejemplo.esi abierto
+[TRACE] 23:17:58:669 ESI/(22734:22734): El esi de id = 3 esta esperando orden de Planificador
+[DEBUG] 23:17:58:674 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:17:58:674 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps1
+Valor = No corresponde
+
+[TRACE] 23:17:58:674 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:17:58:674 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:17:59:676 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:17:59:676 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:17:59:676 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:17:59:676 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:17:59:676 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps2
+Valor = No corresponde
+
+[TRACE] 23:17:59:676 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:17:59:676 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:00:678 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:00:678 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:00:678 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:00:678 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:00:678 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps3
+Valor = No corresponde
+
+[TRACE] 23:18:00:678 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:00:678 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:01:681 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:01:681 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:01:681 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:01:681 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:01:681 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps4
+Valor = No corresponde
+
+[TRACE] 23:18:01:682 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:01:682 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:02:684 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:02:684 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:02:684 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:02:684 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:02:684 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = microsoft:consola:xbox
+Valor = No corresponde
+
+[TRACE] 23:18:02:684 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:02:684 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:03:688 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:03:688 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:03:689 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:03:689 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:03:689 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = microsoft:consola:xbox360
+Valor = No corresponde
+
+[TRACE] 23:18:03:689 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:03:690 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:04:692 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:04:693 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:04:693 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:04:693 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:04:693 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = microsoft:consola:xboxone
+Valor = No corresponde
+
+[TRACE] 23:18:04:693 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:04:693 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:05:695 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:05:695 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:05:695 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:05:695 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:05:695 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:nes
+Valor = No corresponde
+
+[TRACE] 23:18:05:695 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:05:695 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:06:698 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:06:698 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:06:698 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:06:698 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:06:698 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:snes
+Valor = No corresponde
+
+[TRACE] 23:18:06:698 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:06:699 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:07:702 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:07:702 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:07:702 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:07:702 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:07:702 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:nintendo64
+Valor = No corresponde
+
+[TRACE] 23:18:07:702 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:07:702 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:08:705 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:08:705 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:08:705 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:08:705 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:08:705 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:gamecube
+Valor = No corresponde
+
+[TRACE] 23:18:08:706 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:08:706 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:09:708 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:09:708 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:09:708 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:09:708 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:09:708 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:wii
+Valor = No corresponde
+
+[TRACE] 23:18:09:708 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:09:708 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:10:712 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:10:712 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:10:712 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:10:712 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:10:712 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:wiiu
+Valor = No corresponde
+
+[TRACE] 23:18:10:712 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:10:712 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:11:714 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:11:714 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:11:714 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:11:714 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:11:714 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:switch
+Valor = No corresponde
+
+[TRACE] 23:18:11:715 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:11:715 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:12:717 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:12:717 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:12:717 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:12:717 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:12:717 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:nes
+Valor = Mario
+
+[TRACE] 23:18:12:717 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:12:717 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:13:720 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:13:720 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:13:720 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:13:720 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:13:720 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:snes
+Valor = SuperMario
+
+[TRACE] 23:18:13:720 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:13:721 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:14:722 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:14:722 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:14:723 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:14:723 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:14:723 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:nintendo64
+Valor = Mario64
+
+[TRACE] 23:18:14:723 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:14:723 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:15:725 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:15:725 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:15:725 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:15:725 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:15:725 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:gamecube
+Valor = Mario
+
+[TRACE] 23:18:15:725 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:15:725 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:16:728 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:16:728 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:16:728 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:16:728 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:16:728 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:wii
+Valor = MarioGalaxy
+
+[TRACE] 23:18:16:728 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:16:728 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:17:732 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:17:733 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:17:733 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:17:733 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:17:733 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:wiiu
+Valor = RIP
+
+[TRACE] 23:18:17:733 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:17:733 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:18:737 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:18:737 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:18:738 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:18:738 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:18:738 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:switch
+Valor = MarioOddysey
+
+[TRACE] 23:18:18:738 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:18:738 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:19:740 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:19:740 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:19:741 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:19:741 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:19:741 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps1
+Valor = FinalFantasy
+
+[TRACE] 23:18:19:741 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:19:741 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:20:743 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:20:743 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:20:743 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:20:743 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:20:743 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps2
+Valor = GodOfWar
+
+[TRACE] 23:18:20:744 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:20:744 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:21:746 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:21:746 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:21:746 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:21:746 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:21:746 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps3
+Valor = TLOU
+
+[TRACE] 23:18:21:746 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:21:746 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:22:750 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:22:750 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:22:750 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:22:750 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:22:750 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps4
+Valor = Bloodborne
+
+[TRACE] 23:18:22:750 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:22:750 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:23:754 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:23:754 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:23:754 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:23:754 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:23:754 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = microsoft:consola:xbox
+Valor = Halo
+
+[TRACE] 23:18:23:754 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:23:754 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:24:757 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:24:757 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:24:757 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:24:757 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:24:757 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = microsoft:consola:xbox360
+Valor = Halo
+
+[TRACE] 23:18:24:757 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:24:758 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:25:760 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:25:760 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:25:760 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:25:760 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[DEBUG] 23:18:25:760 ESI/(22734:22734): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = microsoft:consola:xboxone
+Valor = Halo
+
+[TRACE] 23:18:25:760 ESI/(22734:22734): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:18:25:760 ESI/(22734:22734): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:18:26:764 ESI/(22734:22734): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:18:26:764 ESI/(22734:22734): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:18:26:764 ESI/(22734:22734): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:18:26:764 ESI/(22734:22734): La orden recibida fue EJECUTAR
+[TRACE] 23:18:26:764 ESI/(22734:22734): El ESI de id = 3 finalizo su ejecucion correctamente
+[TRACE] 23:18:26:764 ESI/(22734:22734): Se informa del fin de ejecucion del esi de id = 3 al Coordinador
+[TRACE] 23:18:26:764 ESI/(22734:22734): Se informa del fin de ejecucion del esi de id = 3 al PLanificador
+[TRACE] 23:27:36:141 ESI/(23015:23015): Iniciando...
+[TRACE] 23:27:36:146 ESI/(23015:23015): Se obtiene ID 3 del archivo de configuracion
+[TRACE] 23:27:36:147 ESI/(23015:23015): El esi de id = 3 se conecto al Coordinador en el socket 4
+[TRACE] 23:27:36:147 ESI/(23015:23015): El esi de id = 3 se conecto al Planificador en el socket 5
+[TRACE] 23:27:36:148 ESI/(23015:23015): Script ejemplo.esi abierto
+[TRACE] 23:27:36:148 ESI/(23015:23015): El esi de id = 3 esta esperando orden de Planificador
+[DEBUG] 23:27:36:151 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:36:152 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps1
+Valor = No corresponde
+
+[TRACE] 23:27:36:152 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:36:152 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:37:155 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:37:155 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:37:155 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:37:155 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:37:155 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps2
+Valor = No corresponde
+
+[TRACE] 23:27:37:155 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:37:155 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:38:158 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:38:158 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:38:158 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:38:158 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:38:158 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps3
+Valor = No corresponde
+
+[TRACE] 23:27:38:158 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:38:158 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:39:161 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:39:161 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:39:161 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:39:161 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:39:161 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps4
+Valor = No corresponde
+
+[TRACE] 23:27:39:161 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:39:161 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:40:165 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:40:165 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:40:165 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:40:165 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:40:165 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = microsoft:consola:xbox
+Valor = No corresponde
+
+[TRACE] 23:27:40:165 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:40:165 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:41:168 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:41:168 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:41:168 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:41:168 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:41:168 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = microsoft:consola:xbox360
+Valor = No corresponde
+
+[TRACE] 23:27:41:168 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:41:168 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:42:170 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:42:170 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:42:171 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:42:171 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:42:171 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = microsoft:consola:xboxone
+Valor = No corresponde
+
+[TRACE] 23:27:42:171 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:42:171 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:43:174 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:43:174 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:43:174 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:43:174 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:43:175 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:nes
+Valor = No corresponde
+
+[TRACE] 23:27:43:175 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:43:175 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:44:177 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:44:178 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:44:178 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:44:178 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:44:178 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:snes
+Valor = No corresponde
+
+[TRACE] 23:27:44:178 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:44:178 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:45:181 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:45:181 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:45:181 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:45:181 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:45:181 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:nintendo64
+Valor = No corresponde
+
+[TRACE] 23:27:45:181 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:45:181 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:46:184 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:46:184 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:46:184 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:46:184 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:46:184 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:gamecube
+Valor = No corresponde
+
+[TRACE] 23:27:46:184 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:46:184 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:47:187 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:47:187 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:47:187 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:47:187 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:47:187 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:wii
+Valor = No corresponde
+
+[TRACE] 23:27:47:187 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:47:187 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:48:189 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:48:189 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:48:190 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:48:190 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:48:190 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:wiiu
+Valor = No corresponde
+
+[TRACE] 23:27:48:190 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:48:190 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:49:192 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:49:192 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:49:192 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:49:192 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:49:192 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:switch
+Valor = No corresponde
+
+[TRACE] 23:27:49:192 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:49:192 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:50:195 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:50:195 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:50:195 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:50:195 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:50:195 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:nes
+Valor = Mario
+
+[TRACE] 23:27:50:195 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:50:195 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:51:198 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:51:198 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:51:198 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:51:198 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:51:198 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:snes
+Valor = SuperMario
+
+[TRACE] 23:27:51:198 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:51:198 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:52:200 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:52:200 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:52:201 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:52:201 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:52:201 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:nintendo64
+Valor = Mario64
+
+[TRACE] 23:27:52:201 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:52:201 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:53:203 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:53:203 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:53:203 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:53:203 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:53:203 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:gamecube
+Valor = Mario
+
+[TRACE] 23:27:53:203 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:53:204 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:54:206 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:54:206 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:54:206 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:54:206 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:54:206 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:wii
+Valor = MarioGalaxy
+
+[TRACE] 23:27:54:207 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:54:207 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:55:209 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:55:209 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:55:209 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:55:209 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:55:209 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:wiiu
+Valor = RIP
+
+[TRACE] 23:27:55:209 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:55:209 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:56:211 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:56:211 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:56:212 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:56:212 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:56:212 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:switch
+Valor = MarioOddysey
+
+[TRACE] 23:27:56:212 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:56:212 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:57:215 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:57:215 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:57:215 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:57:215 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:57:215 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps1
+Valor = FinalFantasy
+
+[TRACE] 23:27:57:215 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:57:216 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:58:218 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:58:218 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:58:219 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:58:219 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:58:219 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps2
+Valor = GodOfWar
+
+[TRACE] 23:27:58:219 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:58:220 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:27:59:223 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:27:59:223 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:27:59:223 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:27:59:223 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:27:59:223 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps3
+Valor = TLOU
+
+[TRACE] 23:27:59:223 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:27:59:223 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:28:00:226 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:28:00:226 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:28:00:226 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:28:00:226 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:28:00:227 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps4
+Valor = Bloodborne
+
+[TRACE] 23:28:00:227 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:28:00:227 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:28:01:229 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:28:01:230 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:28:01:230 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:28:01:230 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:28:01:230 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = microsoft:consola:xbox
+Valor = Halo
+
+[TRACE] 23:28:01:230 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:28:01:231 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:28:02:232 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:28:02:232 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:28:02:233 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:28:02:233 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:28:02:233 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = microsoft:consola:xbox360
+Valor = Halo
+
+[TRACE] 23:28:02:233 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:28:02:234 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:28:03:236 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:28:03:236 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:28:03:236 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:28:03:236 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[DEBUG] 23:28:03:236 ESI/(23015:23015): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = microsoft:consola:xboxone
+Valor = Halo
+
+[TRACE] 23:28:03:237 ESI/(23015:23015): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:28:03:237 ESI/(23015:23015): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:28:04:240 ESI/(23015:23015): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:28:04:240 ESI/(23015:23015): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:28:04:240 ESI/(23015:23015): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:28:04:240 ESI/(23015:23015): La orden recibida fue EJECUTAR
+[TRACE] 23:28:04:240 ESI/(23015:23015): El ESI de id = 3 finalizo su ejecucion correctamente
+[TRACE] 23:28:04:240 ESI/(23015:23015): Se informa del fin de ejecucion del esi de id = 3 al Coordinador
+[TRACE] 23:28:04:240 ESI/(23015:23015): Se informa del fin de ejecucion del esi de id = 3 al PLanificador
+[TRACE] 23:36:59:803 ESI/(23527:23527): Iniciando...
+[TRACE] 23:36:59:805 ESI/(23527:23527): Se obtiene ID 3 del archivo de configuracion
+[TRACE] 23:36:59:806 ESI/(23527:23527): El esi de id = 3 se conecto al Coordinador en el socket 4
+[TRACE] 23:36:59:806 ESI/(23527:23527): El esi de id = 3 se conecto al Planificador en el socket 5
+[TRACE] 23:36:59:808 ESI/(23527:23527): Script ejemplo.esi abierto
+[TRACE] 23:36:59:809 ESI/(23527:23527): El esi de id = 3 esta esperando orden de Planificador
+[DEBUG] 23:39:52:900 ESI/(23527:23527): La orden recibida fue EJECUTAR
+[DEBUG] 23:39:52:901 ESI/(23527:23527): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps1
+Valor = No corresponde
+
+[TRACE] 23:39:52:901 ESI/(23527:23527): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:39:52:901 ESI/(23527:23527): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:39:53:902 ESI/(23527:23527): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 23:39:53:902 ESI/(23527:23527): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:39:53:903 ESI/(23527:23527): El esi de id = 3 espera orden de Planificador
+[DEBUG] 23:39:53:903 ESI/(23527:23527): La orden recibida fue EJECUTAR
+[DEBUG] 23:39:53:903 ESI/(23527:23527): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps2
+Valor = No corresponde
+
+[TRACE] 23:39:53:903 ESI/(23527:23527): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 23:39:53:903 ESI/(23527:23527): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 23:39:54:906 ESI/(23527:23527): El esi de id = 3 recibe el resultado de ERROR
+[TRACE] 23:39:54:906 ESI/(23527:23527): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 23:39:54:906 ESI/(23527:23527): El esi de id = 3 espera orden de Planificador
+[ERROR] 00:01:00:332 ESI/(23527:23527): No se pudo recibir la orden del planificador porque se desconecto.
+[TRACE] 00:06:06:697 ESI/(24153:24153): Iniciando...
+[TRACE] 00:06:06:704 ESI/(24153:24153): Se obtiene ID 3 del archivo de configuracion
+[TRACE] 00:06:06:706 ESI/(24153:24153): El esi de id = 3 se conecto al Coordinador en el socket 4
+[TRACE] 00:06:06:706 ESI/(24153:24153): El esi de id = 3 se conecto al Planificador en el socket 5
+[TRACE] 00:06:06:706 ESI/(24153:24153): Script ejemplo.esi abierto
+[TRACE] 00:06:06:707 ESI/(24153:24153): El esi de id = 3 esta esperando orden de Planificador
+[DEBUG] 00:06:48:430 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:06:48:430 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps1
+Valor = No corresponde
+
+[TRACE] 00:06:48:430 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:06:48:430 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:06:49:432 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:06:49:432 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:06:49:432 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:06:49:432 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:06:49:432 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps2
+Valor = No corresponde
+
+[TRACE] 00:06:49:432 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:06:49:433 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:06:50:435 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:06:50:435 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:06:50:435 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:12:789 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:12:790 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps3
+Valor = No corresponde
+
+[TRACE] 00:07:12:790 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:12:791 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:13:792 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:13:792 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:13:793 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:13:793 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:13:793 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps4
+Valor = No corresponde
+
+[TRACE] 00:07:13:793 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:13:793 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:14:794 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:14:795 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:14:795 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:14:795 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:14:795 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = microsoft:consola:xbox
+Valor = No corresponde
+
+[TRACE] 00:07:14:795 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:14:795 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:15:798 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:15:798 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:15:798 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:15:798 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:15:798 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = microsoft:consola:xbox360
+Valor = No corresponde
+
+[TRACE] 00:07:15:798 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:15:798 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:16:802 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:16:802 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:16:802 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:16:802 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:16:802 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = microsoft:consola:xboxone
+Valor = No corresponde
+
+[TRACE] 00:07:16:802 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:16:802 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:17:805 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:17:805 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:17:805 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:17:805 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:17:805 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:nes
+Valor = No corresponde
+
+[TRACE] 00:07:17:805 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:17:805 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:18:809 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:18:809 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:18:809 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:18:809 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:18:809 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:snes
+Valor = No corresponde
+
+[TRACE] 00:07:18:809 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:18:809 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:19:811 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:19:811 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:19:811 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:19:811 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:19:811 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:nintendo64
+Valor = No corresponde
+
+[TRACE] 00:07:19:812 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:19:812 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:20:814 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:20:814 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:20:815 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:20:815 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:20:815 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:gamecube
+Valor = No corresponde
+
+[TRACE] 00:07:20:815 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:20:815 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:21:817 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:21:817 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:21:817 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:21:818 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:21:818 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:wii
+Valor = No corresponde
+
+[TRACE] 00:07:21:818 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:21:818 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:22:821 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:22:821 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:22:821 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:22:821 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:22:822 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:wiiu
+Valor = No corresponde
+
+[TRACE] 00:07:22:822 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:22:823 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:23:825 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:23:825 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:23:825 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:23:825 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:23:825 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = nintendo:consola:switch
+Valor = No corresponde
+
+[TRACE] 00:07:23:825 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:23:825 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:24:827 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:24:827 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:24:828 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:24:828 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:24:828 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:nes
+Valor = Mario
+
+[TRACE] 00:07:24:828 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:24:828 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:25:830 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:25:830 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:25:830 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:25:830 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:25:830 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:snes
+Valor = SuperMario
+
+[TRACE] 00:07:25:830 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:25:830 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:26:833 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:26:833 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:26:833 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:26:833 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:26:833 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:nintendo64
+Valor = Mario64
+
+[TRACE] 00:07:26:834 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:26:834 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:27:837 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:27:837 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:27:837 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:27:837 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:27:837 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:gamecube
+Valor = Mario
+
+[TRACE] 00:07:27:837 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:27:837 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:28:842 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:28:842 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:28:842 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:28:842 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:28:842 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:wii
+Valor = MarioGalaxy
+
+[TRACE] 00:07:28:842 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:28:842 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:29:846 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:29:846 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:29:846 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:29:846 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:29:846 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:wiiu
+Valor = RIP
+
+[TRACE] 00:07:29:846 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:29:846 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:30:849 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:30:849 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:30:850 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:30:850 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:30:850 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = nintendo:consola:switch
+Valor = MarioOddysey
+
+[TRACE] 00:07:30:850 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:30:850 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:31:852 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:31:852 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:31:852 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:31:852 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:31:852 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps1
+Valor = FinalFantasy
+
+[TRACE] 00:07:31:852 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:31:852 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:32:856 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:32:856 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:32:856 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:32:856 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:32:856 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps2
+Valor = GodOfWar
+
+[TRACE] 00:07:32:856 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:32:856 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:33:860 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:33:860 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:33:860 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:33:861 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:33:861 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps3
+Valor = TLOU
+
+[TRACE] 00:07:33:861 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:33:861 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:34:865 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:34:865 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:34:865 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:34:865 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:34:865 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = sony:consola:ps4
+Valor = Bloodborne
+
+[TRACE] 00:07:34:865 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:34:865 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:35:868 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:35:868 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:35:868 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:35:868 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:35:868 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = microsoft:consola:xbox
+Valor = Halo
+
+[TRACE] 00:07:35:868 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:35:868 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:36:873 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:36:874 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:36:874 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:36:874 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:36:875 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = microsoft:consola:xbox360
+Valor = Halo
+
+[TRACE] 00:07:36:875 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:36:875 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:37:882 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:37:882 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:37:882 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:37:883 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[DEBUG] 00:07:37:883 ESI/(24153:24153): La sentencia parseada del esi con id = 3 es:
+Op = SET
+Clave = microsoft:consola:xboxone
+Valor = Halo
+
+[TRACE] 00:07:37:883 ESI/(24153:24153): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 00:07:37:884 ESI/(24153:24153): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 00:07:38:887 ESI/(24153:24153): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 00:07:38:887 ESI/(24153:24153): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 00:07:38:887 ESI/(24153:24153): El esi de id = 3 espera orden de Planificador
+[DEBUG] 00:07:38:887 ESI/(24153:24153): La orden recibida fue EJECUTAR
+[TRACE] 00:07:38:887 ESI/(24153:24153): El ESI de id = 3 finalizo su ejecucion correctamente
+[TRACE] 00:07:38:887 ESI/(24153:24153): Se informa del fin de ejecucion del esi de id = 3 al Coordinador
+[TRACE] 00:07:38:887 ESI/(24153:24153): Se informa del fin de ejecucion del esi de id = 3 al PLanificador

@@ -33,10 +33,12 @@ void ejecutarProxSent(ESI_t * pESI){
 			orden_t orden = EJECUTAR;
 			if(pESI->operacionPendiente->operacion == GET){
 				cola_clave* c = buscarElementoDeLista(pESI->operacionPendiente->clave);
-				c->idEsiUsandoClave = pESI->id;
-				idEsiParaRemoverDeCola = pESI->id;
-				list_remove_by_condition(c->cola->elements, (void*)&condicionParaRemoverDeLaCola);
-				free(pESI->operacionPendiente->clave);
+				if(c != NULL){ 
+					c->idEsiUsandoClave = pESI->id;
+					idEsiParaRemoverDeCola = pESI->id;
+					list_remove_by_condition(c->cola->elements, (void*)&condicionParaRemoverDeLaCola);
+					free(pESI->operacionPendiente->clave);
+				}
 			}
 			sendWithBasicProtocol(pESI->socket, &orden, sizeof(orden_t));
 			pESI->tiempoEsperandoCPU = 0;
@@ -124,7 +126,7 @@ void planificarSegunSJF(){
 
 			log_trace(pLog,"Se espera la respuesta del ESI en ejecucion");
 			sem_wait(&sem_respuestaESI);
-			log_debug(pLog, "Se recibio del esi de id = %d el rtdoEjec = %s", pESIEnEjecucion->id,rtdoEjecucion==SUCCESS?"SUCCESS":rtdoEjecucion==FAILURE?"FAILURE":rtdoEjecucion==FIN_DE_EJECUCION?"FIN DE EJECUCION":rtdoEjecucion==DISCONNECTED?"DESCONECTADO":rtdoEjecucion==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":rtdoEjecucion==ABORTED?"ABORTADO":"SENTENCIA");
+			log_debug(pLog, "Se recibio del esi de id = %d el rtdoEjec = %s", pESIEnEjecucion->id,rtdoEjecucion==SUCCESS?"SUCCESS":rtdoEjecucion==FAILURE?"FAILURE":rtdoEjecucion==FIN_DE_EJECUCION?"FIN DE EJECUCION":rtdoEjecucion==DISCONNECTED?"DESCONECTADO":rtdoEjecucion==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":rtdoEjecucion==ABORTED?"ABORTADO":"DESCONOCIDO");
 		    }
 			while(rtdoEjecucion == SUCCESS);
 			pESIEnEjecucion->duracionAnterior = duracion - 1;
@@ -179,7 +181,7 @@ void planificarSegunSRT(){
 
 				log_trace(pLog,"Se espera la respuesta del ESI en ejecucion");
 				sem_wait(&sem_respuestaESI);
-				log_debug(pLog, "Se recibio del esi de id = %d el rtdoEjec = %s", pESIEnEjecucion->id,rtdoEjecucion==SUCCESS?"SUCCESS":rtdoEjecucion==FAILURE?"FAILURE":rtdoEjecucion==FIN_DE_EJECUCION?"FIN DE EJECUCION":rtdoEjecucion==DISCONNECTED?"DESCONECTADO":rtdoEjecucion==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":rtdoEjecucion==ABORTED?"ABORTADO":"SENTENCIA");
+				log_debug(pLog, "Se recibio del esi de id = %d el rtdoEjec = %s", pESIEnEjecucion->id,rtdoEjecucion==SUCCESS?"SUCCESS":rtdoEjecucion==FAILURE?"FAILURE":rtdoEjecucion==FIN_DE_EJECUCION?"FIN DE EJECUCION":rtdoEjecucion==DISCONNECTED?"DESCONECTADO":rtdoEjecucion==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":rtdoEjecucion==ABORTED?"ABORTADO":"DESCONOCIDO");
 			}
 			while( rtdoEjecucion == SUCCESS && queue_size(ESIsListos) <= sizeColaReadyAntesDeEjecutar );
 			pESIEnEjecucion->duracionAnterior = duracion - 1;
@@ -238,7 +240,7 @@ void planificarSegunHRRN(){
 
 			log_trace(pLog,"Se espera la respuesta del ESI en ejecucion");
 			sem_wait(&sem_respuestaESI);
-			log_debug(pLog, "Se recibio del esi de id = %d el rtdoEjec = %s", pESIEnEjecucion->id,rtdoEjecucion==SUCCESS?"SUCCESS":rtdoEjecucion==FAILURE?"FAILURE":rtdoEjecucion==FIN_DE_EJECUCION?"FIN DE EJECUCION":rtdoEjecucion==DISCONNECTED?"DESCONECTADO":rtdoEjecucion==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":rtdoEjecucion==ABORTED?"ABORTADO":"SENTENCIA");
+			log_debug(pLog, "Se recibio del esi de id = %d el rtdoEjec = %s", pESIEnEjecucion->id,rtdoEjecucion==SUCCESS?"SUCCESS":rtdoEjecucion==FAILURE?"FAILURE":rtdoEjecucion==FIN_DE_EJECUCION?"FIN DE EJECUCION":rtdoEjecucion==DISCONNECTED?"DESCONECTADO":rtdoEjecucion==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":rtdoEjecucion==ABORTED?"ABORTADO":"DESCONOCIDO");
 		    }
 			while(rtdoEjecucion == SUCCESS);
 			pESIEnEjecucion->duracionAnterior = duracion - 1;

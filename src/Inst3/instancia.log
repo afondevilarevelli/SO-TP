@@ -5,3 +5,343 @@
 [TRACE] 21:26:06:996 INSTANCIA/(5314:5314): A la espera de solicitudes
 [ERROR] 21:27:40:258 INSTANCIA/(5314:5314): Se ha cortado la conexion con el Coordinador
 Cerrando instancia...
+[TRACE] 23:32:19:706 INSTANCIA/(23412:23412): Iniciando...
+[TRACE] 23:32:19:717 INSTANCIA/(23412:23412): Conectada a Coordinador
+[TRACE] 23:32:19:720 INSTANCIA/(23412:23412): Tabla de entradas cargada
+[TRACE] 23:32:19:720 INSTANCIA/(23412:23412): Almacenamiento creado
+[TRACE] 23:32:19:720 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:39:48:888 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:39:48:888 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:39:48:888 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=GET, clave=e3:microsoft:juegos, valor=No corresponde
+
+[TRACE] 23:39:48:888 INSTANCIA/(23412:23412): QUIERE HACER GET
+[DEBUG] 23:39:48:888 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:39:48:888 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:39:48:888 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:39:54:909 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:39:54:909 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:39:54:909 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=GET, clave=platoprincipal:ingrediente5, valor=No corresponde
+
+[TRACE] 23:39:54:909 INSTANCIA/(23412:23412): QUIERE HACER GET
+[DEBUG] 23:39:54:909 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:39:54:909 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:39:54:909 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:40:21:32 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:40:21:32 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:40:21:33 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=GET, clave=sandwich:bondiola:simple, valor=No corresponde
+
+[TRACE] 23:40:21:33 INSTANCIA/(23412:23412): QUIERE HACER GET
+[DEBUG] 23:40:21:33 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:40:21:33 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:40:21:33 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:40:24:39 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:40:24:39 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:40:24:39 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=GET, clave=sandwich:lomo:simple, valor=No corresponde
+
+[TRACE] 23:40:24:39 INSTANCIA/(23412:23412): QUIERE HACER GET
+[DEBUG] 23:40:24:39 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:40:24:39 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:40:24:39 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:40:27:47 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:40:27:47 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:40:27:47 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=GET, clave=sandwich:vacio:simple, valor=No corresponde
+
+[TRACE] 23:40:27:47 INSTANCIA/(23412:23412): QUIERE HACER GET
+[DEBUG] 23:40:27:47 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:40:27:47 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:40:27:48 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:40:30:57 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:40:30:57 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:40:30:57 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=GET, clave=sandwich:choripan, valor=No corresponde
+
+[TRACE] 23:40:30:57 INSTANCIA/(23412:23412): QUIERE HACER GET
+[DEBUG] 23:40:30:57 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:40:30:57 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:40:30:57 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:40:33:66 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:40:33:66 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:40:33:66 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=GET, clave=parrilla:rinion, valor=No corresponde
+
+[TRACE] 23:40:33:66 INSTANCIA/(23412:23412): QUIERE HACER GET
+[DEBUG] 23:40:33:66 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:40:33:67 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:40:33:67 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:40:36:75 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:40:36:75 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:40:36:75 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=GET, clave=parrilla:entrania, valor=No corresponde
+
+[TRACE] 23:40:36:75 INSTANCIA/(23412:23412): QUIERE HACER GET
+[DEBUG] 23:40:36:75 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:40:36:75 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:40:36:75 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:40:39:85 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:40:39:85 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:40:39:85 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=GET, clave=parrilla:matambre:alapizza, valor=No corresponde
+
+[TRACE] 23:40:39:85 INSTANCIA/(23412:23412): QUIERE HACER GET
+[DEBUG] 23:40:39:85 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:40:39:85 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:40:39:85 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:40:42:97 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:40:42:97 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:40:42:97 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=GET, clave=parrilla:pareja, valor=No corresponde
+
+[TRACE] 23:40:42:97 INSTANCIA/(23412:23412): QUIERE HACER GET
+[DEBUG] 23:40:42:97 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:40:42:97 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:40:42:97 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:40:45:109 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:40:45:109 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:40:45:109 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=GET, clave=cocina:tallarines, valor=No corresponde
+
+[TRACE] 23:40:45:109 INSTANCIA/(23412:23412): QUIERE HACER GET
+[DEBUG] 23:40:45:109 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:40:45:109 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:40:45:109 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:40:48:117 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:40:48:117 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:40:48:117 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=GET, clave=cocina:suprema, valor=No corresponde
+
+[TRACE] 23:40:48:117 INSTANCIA/(23412:23412): QUIERE HACER GET
+[DEBUG] 23:40:48:117 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:40:48:117 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:40:48:117 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:40:51:127 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:40:51:127 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:40:51:127 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=SET, clave=sandwich:bondiola:simple, valor=panbondiola
+
+[TRACE] 23:40:51:127 INSTANCIA/(23412:23412): Resultado de tamanio ocupado enviado
+[DEBUG] 23:40:51:127 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:40:51:127 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:40:51:127 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:40:54:136 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:40:54:136 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:40:54:136 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=SET, clave=sandwich:lomo:simple, valor=panlomo
+
+[TRACE] 23:40:54:136 INSTANCIA/(23412:23412): Resultado de tamanio ocupado enviado
+[DEBUG] 23:40:54:136 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:40:54:136 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:40:54:136 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:40:57:147 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:40:57:147 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:40:57:147 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=SET, clave=sandwich:vacio:simple, valor=panvacio
+
+[TRACE] 23:40:57:147 INSTANCIA/(23412:23412): Resultado de tamanio ocupado enviado
+[DEBUG] 23:40:57:147 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:40:57:147 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:40:57:147 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:41:00:156 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:41:00:156 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:41:00:156 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=SET, clave=sandwich:choripan, valor=panchorizo
+
+[TRACE] 23:41:00:156 INSTANCIA/(23412:23412): Resultado de tamanio ocupado enviado
+[DEBUG] 23:41:00:157 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:41:00:157 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:41:00:157 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:41:03:166 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:41:03:166 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:41:03:166 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=SET, clave=parrilla:rinion, valor=rinionylimon
+
+[TRACE] 23:41:03:166 INSTANCIA/(23412:23412): Resultado de tamanio ocupado enviado
+[DEBUG] 23:41:03:166 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:41:03:166 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:41:03:166 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:41:06:175 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:41:06:176 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:41:06:176 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=SET, clave=parrilla:entrania, valor=entraniaconfritas
+
+[TRACE] 23:41:06:176 INSTANCIA/(23412:23412): Resultado de tamanio ocupado enviado
+[DEBUG] 23:41:06:176 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:41:06:176 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:41:06:176 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:41:09:187 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:41:09:187 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:41:09:187 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=SET, clave=parrilla:matambre:alapizza, valor=matambrejamonquesooregano
+
+[TRACE] 23:41:09:187 INSTANCIA/(23412:23412): Resultado de tamanio ocupado enviado
+[DEBUG] 23:41:09:187 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:41:09:187 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:41:09:188 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:41:12:195 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:41:12:195 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:41:12:195 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=SET, clave=parrilla:pareja, valor=chorizoymorcilla
+
+[TRACE] 23:41:12:195 INSTANCIA/(23412:23412): Resultado de tamanio ocupado enviado
+[DEBUG] 23:41:12:195 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:41:12:195 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:41:12:195 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:41:15:206 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:41:15:206 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:41:15:206 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=SET, clave=cocina:tallarines, valor=tallarinescontuco
+
+[TRACE] 23:41:15:206 INSTANCIA/(23412:23412): Resultado de tamanio ocupado enviado
+[DEBUG] 23:41:15:206 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:41:15:206 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:41:15:206 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:41:18:216 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:41:18:216 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:41:18:216 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=SET, clave=cocina:suprema, valor=supremaalamaryland
+
+[TRACE] 23:41:18:216 INSTANCIA/(23412:23412): Resultado de tamanio ocupado enviado
+[DEBUG] 23:41:18:216 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:41:18:216 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:41:18:216 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:41:21:227 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:41:21:227 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:41:21:227 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=STORE, clave=sandwich:bondiola:simple, valor=No corresponde
+
+[DEBUG] 23:41:21:231 INSTANCIA/(23412:23412): Se escribio panbondiola en el archivo sandwich:bondiola:simple
+[DEBUG] 23:41:21:232 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:41:21:232 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:41:21:232 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:41:24:236 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:41:24:236 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:41:24:236 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=STORE, clave=sandwich:lomo:simple, valor=No corresponde
+
+[DEBUG] 23:41:24:236 INSTANCIA/(23412:23412): Se escribio panlomo en el archivo sandwich:lomo:simple
+[DEBUG] 23:41:24:237 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:41:24:237 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:41:24:237 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:41:27:246 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:41:27:246 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:41:27:246 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=STORE, clave=sandwich:vacio:simple, valor=No corresponde
+
+[DEBUG] 23:41:27:246 INSTANCIA/(23412:23412): Se escribio panvacio en el archivo sandwich:vacio:simple
+[DEBUG] 23:41:27:247 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:41:27:247 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:41:27:247 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:41:30:257 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:41:30:257 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:41:30:257 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=STORE, clave=sandwich:choripan, valor=No corresponde
+
+[DEBUG] 23:41:30:257 INSTANCIA/(23412:23412): Se escribio panchorizo en el archivo sandwich:choripan
+[DEBUG] 23:41:30:258 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:41:30:258 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:41:30:258 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:41:33:268 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:41:33:268 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:41:33:268 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=STORE, clave=parrilla:rinion, valor=No corresponde
+
+[DEBUG] 23:41:33:268 INSTANCIA/(23412:23412): Se escribio rinionylimon en el archivo parrilla:rinion
+[DEBUG] 23:41:33:269 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:41:33:269 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:41:33:269 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:41:36:278 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:41:36:278 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:41:36:279 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=STORE, clave=parrilla:entrania, valor=No corresponde
+
+[DEBUG] 23:41:36:279 INSTANCIA/(23412:23412): Se escribio entraniaconfritas en el archivo parrilla:entrania
+[DEBUG] 23:41:36:279 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:41:36:279 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:41:36:279 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:41:39:290 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:41:39:290 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:41:39:290 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=STORE, clave=parrilla:matambre:alapizza, valor=No corresponde
+
+[DEBUG] 23:41:39:290 INSTANCIA/(23412:23412): Se escribio matambrejamonquesooregano en el archivo parrilla:matambre:alapizza
+[DEBUG] 23:41:39:291 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:41:39:291 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:41:39:291 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:41:42:300 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:41:42:300 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:41:42:300 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=STORE, clave=parrilla:pareja, valor=No corresponde
+
+[DEBUG] 23:41:42:305 INSTANCIA/(23412:23412): Se escribio chorizoymorcilla en el archivo parrilla:pareja
+[DEBUG] 23:41:42:306 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:41:42:307 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:41:42:307 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:41:45:312 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:41:45:312 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:41:45:312 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=STORE, clave=cocina:tallarines, valor=No corresponde
+
+[DEBUG] 23:41:45:312 INSTANCIA/(23412:23412): Se escribio tallarinescontuco en el archivo cocina:tallarines
+[DEBUG] 23:41:45:312 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:41:45:312 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:41:45:313 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:41:48:321 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:41:48:321 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:41:48:321 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=STORE, clave=cocina:suprema, valor=No corresponde
+
+[DEBUG] 23:41:48:322 INSTANCIA/(23412:23412): Se escribio supremaalamaryland en el archivo cocina:suprema
+[DEBUG] 23:41:48:322 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:41:48:322 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:41:48:322 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:41:51:333 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:41:51:333 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:41:51:333 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=GET, clave=postre:ingrediente2, valor=No corresponde
+
+[TRACE] 23:41:51:333 INSTANCIA/(23412:23412): QUIERE HACER GET
+[DEBUG] 23:41:51:335 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:41:51:335 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:41:51:335 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:41:54:343 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:41:54:343 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:41:54:343 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=GET, clave=postre:ingrediente5, valor=No corresponde
+
+[TRACE] 23:41:54:343 INSTANCIA/(23412:23412): QUIERE HACER GET
+[DEBUG] 23:41:54:344 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:41:54:344 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:41:54:344 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:41:57:354 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:41:57:354 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:41:57:354 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=GET, clave=postre:ingrediente8, valor=No corresponde
+
+[TRACE] 23:41:57:354 INSTANCIA/(23412:23412): QUIERE HACER GET
+[DEBUG] 23:41:57:355 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:41:57:355 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:41:57:355 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:42:00:368 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:42:00:368 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:42:00:368 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=SET, clave=postre:ingrediente1, valor=huevos
+
+[TRACE] 23:42:00:368 INSTANCIA/(23412:23412): Resultado de tamanio ocupado enviado
+[DEBUG] 23:42:00:369 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:42:00:369 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:42:00:369 INSTANCIA/(23412:23412): A la espera de solicitudes
+[DEBUG] 23:42:01:372 INSTANCIA/(23412:23412): Solicitud recibida
+[TRACE] 23:42:01:372 INSTANCIA/(23412:23412): Se informa al Coordinador que su solicitud esta siendo atendida (13)
+[DEBUG] 23:42:01:372 INSTANCIA/(23412:23412): Sentencia recibida:
+ op=SET, clave=postre:ingrediente2, valor=azucar
+
+[TRACE] 23:42:01:372 INSTANCIA/(23412:23412): Resultado de tamanio ocupado enviado
+[DEBUG] 23:42:01:372 INSTANCIA/(23412:23412): El resultado de la sentencia fue SUCCESS
+[TRACE] 23:42:01:372 INSTANCIA/(23412:23412): Resultado enviado al Coordinador
+[TRACE] 23:42:01:373 INSTANCIA/(23412:23412): A la espera de solicitudes
+[ERROR] 00:01:00:335 INSTANCIA/(23412:23412): Se ha cortado la conexion con el Coordinador
+Cerrando instancia...

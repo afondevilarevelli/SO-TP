@@ -31,8 +31,6 @@ void informacionDeInstancias();//status
 void analizarDeadlockDelSistema();//deadlock
 void consolaPlanificador();
 
-ESI_t* buscarProcesoESI(int id);
-ESI_t* buscarProcesoEnColas(t_queue* cola, int id);
 bool estaBloqueado(ESI_t* esi);
 bool closureAVerSiSatisfaceDesbloqueo(ESI_t* esi);
 bool closureParaDesbloquearClaveBloqueada(char* c);

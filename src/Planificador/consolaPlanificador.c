@@ -189,10 +189,10 @@ void desbloquearProcesoESI(char* clave){
 	}
 	else{
 		claveParaDesbloquearSiEstaBloqueada = malloc(strlen(clave)+1);
-		claveParaDesbloquearSiEstaBloqueada = clave;
+		strcpy(claveParaDesbloquearSiEstaBloqueada, clave);
 		list_remove_by_condition(clavesBloqueadas, (void*)&closureParaDesbloquearClaveBloqueada);
+		printf("se ha desbloqueado la clave %s\n",claveParaDesbloquearSiEstaBloqueada);
 		free(claveParaDesbloquearSiEstaBloqueada);
-		printf("se ha desbloqueado la clave %s\n",clave);
 		if(c!=NULL){ 
 			pthread_mutex_lock(&m_listaColas);
 			esi = (ESI_t*)queue_pop(c->cola);
