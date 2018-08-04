@@ -104,13 +104,6 @@ int main(void)
 	ListaColas = list_create();
 	clavesBloqueadas = list_create();
 	pESIEnEjecucion = NULL;
-	claveAVerSiSatisface = malloc(sizeof(char)*40);
-	claveAVerSiSatisface = NULL;
-	claveAVerSiSatisfaceCondicionListaColas = malloc(sizeof(char)*40);
-	claveAVerSiSatisfaceCondicionListaColas = NULL;
-	claveParaDesbloquearSiEstaBloqueada = malloc(sizeof(char)*40);
-	claveParaDesbloquearSiEstaBloqueada = NULL;
-
 
 	log_trace(pLog, "Inicializacion de variables globales completada");
 
@@ -165,9 +158,6 @@ int main(void)
 	log_trace(pLog, "Se destruyeron las listas globales"); 
 	
 	free(tipoPlanificacion);
-	free(claveAVerSiSatisface);
-	free(claveAVerSiSatisfaceCondicionListaColas);
-	free(claveParaDesbloquearSiEstaBloqueada);
 	return 0; 
 }
 

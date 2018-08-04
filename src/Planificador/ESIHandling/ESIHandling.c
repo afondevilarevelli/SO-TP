@@ -4,6 +4,8 @@
 void finalizarESI(ESI_t * pESI)
 {
   pESI->state = FINALIZADO;
+  pESI->operacionPendiente->operacion=ORDEN_COMPACTAR;
+
 }
 
 int fueFinalizado(ESI_t * pESI)
@@ -134,24 +136,29 @@ ESI_t * newESI( int socket, int id, int rafagaInicial)
   pESI->duracionAnterior = rafagaInicial;
   pESI->state = NORMAL;
   pESI->tiempoEsperandoCPU = 0;
-  pESI->operacionPendiente = malloc(sizeof(operacionESI));
-  pESI->operacionPendiente->clave = malloc(sizeof(char)*40);
+  pESI->operacionPendiente = malloc(sizeof(operacionESI)); 
+  pESI->operacionPendiente->operacion = ORDEN_COMPACTAR; // le meto basura
   pESI->operacionPendiente->clave = NULL;
-  pESI->operacionPendiente->operacion = ORDEN_COMPACTAR; //le meto cualquier orden (basura)
 
   return pESI;
 }
 
 void establecerOperacionPendiente(ESI_t* esi, op_t op, char* clave){ //solo voy a establecer las operaciones GET
   if(esi!=NULL){
-      esi->operacionPendiente->operacion = op;
-      esi->operacionPendiente->clave = clave;
+    if(esi->operacionPendiente->clave != NULL){
+      free(esi->operacionPendiente->clave);
+    }
+    esi->operacionPendiente->clave = malloc(strlen(clave)+1);
+    esi->operacionPendiente->operacion = op;
+    strcpy(esi->operacionPendiente->clave, clave);
   }
 }
 
 void freeESI(ESI_t * pESI)
 {
+  if(pESI->operacionPendiente->clave != NULL){
   free(pESI->operacionPendiente->clave);
+  }
   free(pESI->operacionPendiente);
   free(pESI);
 }
@@ -183,8 +190,10 @@ cola_clave* new_cola_clave(char * clave, int idESI)
 
 bool claveEstaBloqueada(char* clave){
   int estaBloqueada;
-  claveAVerSiSatisface = clave;
+  claveAVerSiSatisface = malloc(sizeof(char)*40);
+  strcpy(claveAVerSiSatisface, clave);
   estaBloqueada = list_count_satisfying(clavesBloqueadas, (void*) condicionSatisfy);
+  free(claveAVerSiSatisface);
   return estaBloqueada > 0;
 }
 

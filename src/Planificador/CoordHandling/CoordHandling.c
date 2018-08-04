@@ -55,7 +55,9 @@ bool puedeEjecutar(int idESI, int op, char * clave)
     if(op==GET){
       establecerOperacionPendiente(esi,GET,clave);
     }
+    pthread_mutex_lock(&m_listaColas);
     list_add(ListaColas, c);
+    pthread_mutex_unlock(&m_listaColas);
       return false;
   }
   else{ 
@@ -66,7 +68,9 @@ bool puedeEjecutar(int idESI, int op, char * clave)
     if(!claveBloqueadaParaESI(clave,esi)){ 
       if( c == NULL )
       {
+        pthread_mutex_lock(&m_listaColas);
         list_add(ListaColas, new_cola_clave(clave, idESI));
+        pthread_mutex_unlock(&m_listaColas);
         return true;
       }
       else
@@ -152,8 +156,10 @@ bool condicionRemover(ESI_t* esi){
 }
 
 void destruirElementoDeListaColas(cola_clave* c){
+  claveAVerSiSatisfaceCondicionListaColas = malloc(strlen(c->clave)+1);
   claveAVerSiSatisfaceCondicionListaColas = c->clave;
   list_remove_by_condition(ListaColas, (void*)&condicionRemoverElementoDeListaColas);
+  free(claveAVerSiSatisfaceCondicionListaColas);
 }
 
 bool condicionRemoverElementoDeListaColas(cola_clave* c){

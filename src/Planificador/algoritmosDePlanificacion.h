@@ -19,6 +19,8 @@ typedef struct{
 
 tipoPlanif* tipoPlanificacion;
 
+int idEsiParaRemoverDeCola;
+
 ESI_t* obtenerEsiAEjecutarSegunFIFO();
 
 ESI_t* obtenerEsiAEjecutarSegunSJF();
@@ -44,6 +46,8 @@ void ejecutarProxSent(ESI_t * pESI);
 void obtenerEstructuraDePlanificacion(t_config * pConf);
 
 float calcularRatio(ESI_t* pEsi);
+
+bool condicionParaRemoverDeLaCola(ESI_t* e);
 
 // ordena la cola y elige el siguiente ESI a ejecutar
 #endif

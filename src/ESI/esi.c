@@ -81,8 +81,8 @@ int main(void)
       log_trace(pLog, "El esi de id = %d espera el resultado de ejecucion de Coordinador", id);
       bytes = recvWithBasicProtocol(socketCoord, (void**)&pRtdo);
       log_debug(pLog, "El esi de id = %d recibe el resultado de %s",id, *pRtdo==SUCCESS?"SUCCESS":*pRtdo==FAILURE?"FAILURE":"ERROR");
-      if(*pRtdo == FAILURE)
-        fseek(scriptf, prevPos, SEEK_CUR);
+     // if(*pRtdo == FAILURE)
+       // fseek(scriptf, prevPos, SEEK_SET);
 
       //envio de resultado de ejecucion ------------> PLANIFICADOR
       sendWithBasicProtocol(socketPlanif, (void*)pRtdo, bytes);

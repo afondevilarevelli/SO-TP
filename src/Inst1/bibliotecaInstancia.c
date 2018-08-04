@@ -592,7 +592,7 @@ void cargarTablaDeEntradasYAlmacenamiento(t_config * pConf)
 	bitarray = bitarray_create_with_mode(datoBitArray,entryCant,LSB_FIRST);
 	tablaDeEntradas = list_create();
 	registroLRU = list_create();
-	restaurar();
+	//restaurar();
 
 	return;
 }

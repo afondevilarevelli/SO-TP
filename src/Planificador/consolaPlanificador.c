@@ -204,11 +204,11 @@ void desbloquearProcesoESI(char* clave){
 
 			esiAVerSiDesbloqueo = esi;
 			if(!estaBloqueadoPorOtraClave(esi)){ 
-				if(!list_any_satisfy(ESIsListos->elements, (void *)&closureAVerSiSatisfaceDesbloqueo) && pESIEnEjecucion->id != esi->id){  
-					pthread_mutex_lock(&m_colaListos);
-					queue_push(ESIsListos,esi);
-					pthread_mutex_unlock(&m_colaListos); 
-					sem_post(&sem_cantESIsListos);
+				if(!list_any_satisfy(ESIsListos->elements, (void *)&closureAVerSiSatisfaceDesbloqueo)){  
+						pthread_mutex_lock(&m_colaListos);
+						queue_push(ESIsListos,esi);
+						pthread_mutex_unlock(&m_colaListos); 
+						sem_post(&sem_cantESIsListos);
 				}	 
 			} 
 		 }
@@ -221,8 +221,10 @@ void desbloquearProcesoESI(char* clave){
 		}
 	}
 	else{
+		claveParaDesbloquearSiEstaBloqueada = malloc(strlen(clave)+1);
 		claveParaDesbloquearSiEstaBloqueada = clave;
 		list_remove_by_condition(clavesBloqueadas, (void*)&closureParaDesbloquearClaveBloqueada);
+		free(claveParaDesbloquearSiEstaBloqueada);
 		printf("se ha desbloqueado la clave %s\n",clave);
 		if(c!=NULL){ 
 			pthread_mutex_lock(&m_listaColas);

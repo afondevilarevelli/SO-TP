@@ -506,3 +506,27 @@ Valor = No corresponde
 [TRACE] 16:56:17:647 ESI/(8196:8196): El ESI de id = 4 finalizo su ejecucion correctamente
 [TRACE] 16:56:17:647 ESI/(8196:8196): Se informa del fin de ejecucion del esi de id = 4 al Coordinador
 [TRACE] 16:56:17:648 ESI/(8196:8196): Se informa del fin de ejecucion del esi de id = 4 al PLanificador
+[TRACE] 18:06:57:451 ESI/(11526:11526): Iniciando...
+[TRACE] 18:06:57:461 ESI/(11526:11526): Se obtiene ID 4 del archivo de configuracion
+[TRACE] 18:06:57:461 ESI/(11526:11526): El esi de id = 4 se conecto al Coordinador en el socket 4
+[TRACE] 18:06:57:462 ESI/(11526:11526): El esi de id = 4 se conecto al Planificador en el socket 5
+[TRACE] 18:06:57:462 ESI/(11526:11526): Script ejemplo.esi abierto
+[TRACE] 18:06:57:462 ESI/(11526:11526): El esi de id = 4 esta esperando orden de Planificador
+[ERROR] 18:08:25:943 ESI/(11526:11526): No se pudo recibir la orden del planificador porque se desconecto.
+[TRACE] 18:18:02:304 ESI/(11995:11995): Iniciando...
+[TRACE] 18:18:02:308 ESI/(11995:11995): Se obtiene ID 4 del archivo de configuracion
+[TRACE] 18:18:02:311 ESI/(11995:11995): El esi de id = 4 se conecto al Coordinador en el socket 4
+[TRACE] 18:18:02:316 ESI/(11995:11995): El esi de id = 4 se conecto al Planificador en el socket 5
+[TRACE] 18:18:02:316 ESI/(11995:11995): Script ejemplo.esi abierto
+[TRACE] 18:18:02:317 ESI/(11995:11995): El esi de id = 4 esta esperando orden de Planificador
+[DEBUG] 18:18:54:15 ESI/(11995:11995): La orden recibida fue EJECUTAR
+[DEBUG] 18:18:54:16 ESI/(11995:11995): La sentencia parseada del esi con id = 4 es:
+Op = GET
+Clave = postre:ingrediente1
+Valor = No corresponde
+
+[TRACE] 18:18:54:16 ESI/(11995:11995): El esi de id = 4 ha enviado la sentencia al Coordinador
+[TRACE] 18:18:54:16 ESI/(11995:11995): El esi de id = 4 espera el resultado de ejecucion de Coordinador
+[DEBUG] 18:18:54:16 ESI/(11995:11995): El esi de id = 4 recibe el resultado de FAILURE
+[TRACE] 18:18:54:16 ESI/(11995:11995): El esi de id = 4 ha enviado el resultado al Planificador
+[TRACE] 18:18:54:16 ESI/(11995:11995): El esi de id = 4 espera orden de Planificador

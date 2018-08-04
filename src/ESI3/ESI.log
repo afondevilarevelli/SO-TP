@@ -784,3 +784,61 @@ Valor = Halo
 [TRACE] 16:55:31:736 ESI/(8197:8197): El ESI de id = 3 finalizo su ejecucion correctamente
 [TRACE] 16:55:31:737 ESI/(8197:8197): Se informa del fin de ejecucion del esi de id = 3 al Coordinador
 [TRACE] 16:55:31:737 ESI/(8197:8197): Se informa del fin de ejecucion del esi de id = 3 al PLanificador
+[TRACE] 18:06:57:453 ESI/(11525:11525): Iniciando...
+[TRACE] 18:06:57:457 ESI/(11525:11525): Se obtiene ID 3 del archivo de configuracion
+[TRACE] 18:06:57:460 ESI/(11525:11525): El esi de id = 3 se conecto al Coordinador en el socket 4
+[TRACE] 18:06:57:460 ESI/(11525:11525): El esi de id = 3 se conecto al Planificador en el socket 5
+[TRACE] 18:06:57:460 ESI/(11525:11525): Script ejemplo.esi abierto
+[TRACE] 18:06:57:460 ESI/(11525:11525): El esi de id = 3 esta esperando orden de Planificador
+[ERROR] 18:08:25:943 ESI/(11525:11525): No se pudo recibir la orden del planificador porque se desconecto.
+[TRACE] 18:18:02:302 ESI/(11994:11994): Iniciando...
+[TRACE] 18:18:02:304 ESI/(11994:11994): Se obtiene ID 3 del archivo de configuracion
+[TRACE] 18:18:02:304 ESI/(11994:11994): El esi de id = 3 se conecto al Coordinador en el socket 4
+[TRACE] 18:18:02:309 ESI/(11994:11994): El esi de id = 3 se conecto al Planificador en el socket 5
+[TRACE] 18:18:02:310 ESI/(11994:11994): Script ejemplo.esi abierto
+[TRACE] 18:18:02:310 ESI/(11994:11994): El esi de id = 3 esta esperando orden de Planificador
+[DEBUG] 18:18:02:311 ESI/(11994:11994): La orden recibida fue EJECUTAR
+[DEBUG] 18:18:02:316 ESI/(11994:11994): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps1
+Valor = No corresponde
+
+[TRACE] 18:18:02:316 ESI/(11994:11994): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 18:18:02:316 ESI/(11994:11994): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 18:18:03:321 ESI/(11994:11994): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 18:18:03:321 ESI/(11994:11994): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 18:18:03:321 ESI/(11994:11994): El esi de id = 3 espera orden de Planificador
+[DEBUG] 18:18:03:321 ESI/(11994:11994): La orden recibida fue EJECUTAR
+[DEBUG] 18:18:03:321 ESI/(11994:11994): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps2
+Valor = No corresponde
+
+[TRACE] 18:18:03:321 ESI/(11994:11994): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 18:18:03:321 ESI/(11994:11994): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 18:18:04:325 ESI/(11994:11994): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 18:18:04:325 ESI/(11994:11994): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 18:18:04:325 ESI/(11994:11994): El esi de id = 3 espera orden de Planificador
+[DEBUG] 18:18:04:325 ESI/(11994:11994): La orden recibida fue EJECUTAR
+[DEBUG] 18:18:04:325 ESI/(11994:11994): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps3
+Valor = No corresponde
+
+[TRACE] 18:18:04:326 ESI/(11994:11994): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 18:18:04:326 ESI/(11994:11994): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 18:18:05:330 ESI/(11994:11994): El esi de id = 3 recibe el resultado de SUCCESS
+[TRACE] 18:18:05:330 ESI/(11994:11994): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 18:18:05:330 ESI/(11994:11994): El esi de id = 3 espera orden de Planificador
+[DEBUG] 18:18:54:12 ESI/(11994:11994): La orden recibida fue EJECUTAR
+[DEBUG] 18:18:54:13 ESI/(11994:11994): La sentencia parseada del esi con id = 3 es:
+Op = GET
+Clave = sony:consola:ps4
+Valor = No corresponde
+
+[TRACE] 18:18:54:13 ESI/(11994:11994): El esi de id = 3 ha enviado la sentencia al Coordinador
+[TRACE] 18:18:54:14 ESI/(11994:11994): El esi de id = 3 espera el resultado de ejecucion de Coordinador
+[DEBUG] 18:18:54:14 ESI/(11994:11994): El esi de id = 3 recibe el resultado de FAILURE
+[TRACE] 18:18:54:14 ESI/(11994:11994): El esi de id = 3 ha enviado el resultado al Planificador
+[TRACE] 18:18:54:14 ESI/(11994:11994): El esi de id = 3 espera orden de Planificador
+[DEBUG] 18:19:13:331 ESI/(11994:11994): La orden recibida fue EJECUTAR

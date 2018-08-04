@@ -32,10 +32,17 @@ void ejecutarProxSent(ESI_t * pESI){
 	if(pESI->operacionPendiente->operacion == GET){
 		cola_clave* c = buscarElementoDeLista(pESI->operacionPendiente->clave);
 		c->idEsiUsandoClave = pESI->id;
+		idEsiParaRemoverDeCola = pESI->id;
+		list_remove_by_condition(c->cola->elements, (void*)&condicionParaRemoverDeLaCola);
+		free(pESI->operacionPendiente->clave);
 	}
 	sendWithBasicProtocol(pESI->socket, &orden, sizeof(orden_t));
 	pESI->tiempoEsperandoCPU = 0;
 } //BIEN
+
+bool condicionParaRemoverDeLaCola(ESI_t* e){
+	return idEsiParaRemoverDeCola == e->id;
+}
 
 void planificarSegunFIFO(){
 	ESI_t* pEsiAEjecutar;
