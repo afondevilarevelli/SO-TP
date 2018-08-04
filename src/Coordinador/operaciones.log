@@ -1430,3 +1430,67 @@
 [INFO] 21:16:58:538 COORDOP/(17969:18035): ESI 2	STORE platoprincipal:ingrediente3(Instancia 1) 
 [INFO] 21:17:00:6 COORDOP/(17969:18035): ESI 2	STORE platoprincipal:ingrediente4(Instancia 1) 
 [INFO] 21:17:01:645 COORDOP/(17969:18035): ESI 2	STORE platoprincipal:ingrediente5(Instancia 1) 
+[INFO] 22:18:29:42 COORDOP/(20537:20588): ESI 2	GET platoprincipal:ingrediente5(Instancia 1) 
+[INFO] 22:18:30:48 COORDOP/(20537:20588): ESI 2	GET platoprincipal:ingrediente4(Instancia 1) 
+[INFO] 22:18:31:51 COORDOP/(20537:20588): ESI 2	GET platoprincipal:ingrediente3(Instancia 1) 
+[INFO] 22:18:32:54 COORDOP/(20537:20588): ESI 2	GET platoprincipal:ingrediente2(Instancia 1) 
+[INFO] 22:18:33:57 COORDOP/(20537:20588): ESI 2	GET platoprincipal:ingrediente1(Instancia 1) 
+[INFO] 22:18:34:61 COORDOP/(20537:20588): ESI 2	SET platoprincipal:ingrediente1(Instancia 1) milanesadecarne
+[INFO] 22:18:35:63 COORDOP/(20537:20588): ESI 2	SET platoprincipal:ingrediente2(Instancia 1) queso
+[INFO] 22:18:36:66 COORDOP/(20537:20588): ESI 2	SET platoprincipal:ingrediente3(Instancia 1) jamon
+[INFO] 22:18:37:69 COORDOP/(20537:20588): ESI 2	SET platoprincipal:ingrediente4(Instancia 1) lechuga
+[INFO] 22:18:38:73 COORDOP/(20537:20588): ESI 2	SET platoprincipal:ingrediente5(Instancia 1) tomate
+[INFO] 22:18:39:76 COORDOP/(20537:20588): ESI 2	STORE platoprincipal:ingrediente1(Instancia 1) 
+[INFO] 22:18:40:80 COORDOP/(20537:20588): ESI 2	STORE platoprincipal:ingrediente2(Instancia 1) 
+[INFO] 22:18:41:82 COORDOP/(20537:20588): ESI 2	STORE platoprincipal:ingrediente3(Instancia 1) 
+[INFO] 22:18:42:85 COORDOP/(20537:20588): ESI 2	STORE platoprincipal:ingrediente4(Instancia 1) 
+[INFO] 22:18:43:88 COORDOP/(20537:20588): ESI 2	STORE platoprincipal:ingrediente5(Instancia 1) 
+[INFO] 22:19:52:502 COORDOP/(20537:20678): ESI 3	GET sony:consola:ps1(Instancia 1) 
+[INFO] 22:19:53:503 COORDOP/(20537:20678): ESI 3	GET sony:consola:ps2(Instancia 1) 
+[INFO] 22:19:54:506 COORDOP/(20537:20678): ESI 3	GET sony:consola:ps3(Instancia 1) 
+[INFO] 22:19:55:509 COORDOP/(20537:20678): ESI 3	GET sony:consola:ps4(Instancia 1) 
+[INFO] 22:19:56:513 COORDOP/(20537:20678): ESI 3	GET microsoft:consola:xbox(Instancia 1) 
+[INFO] 22:19:57:518 COORDOP/(20537:20678): ESI 3	GET microsoft:consola:xbox360(Instancia 1) 
+[INFO] 22:19:58:521 COORDOP/(20537:20678): ESI 3	GET microsoft:consola:xboxone(Instancia 1) 
+[INFO] 22:19:59:524 COORDOP/(20537:20678): ESI 3	GET nintendo:consola:nes(Instancia 1) 
+[INFO] 22:20:00:527 COORDOP/(20537:20678): ESI 3	GET nintendo:consola:snes(Instancia 1) 
+[INFO] 22:20:01:531 COORDOP/(20537:20678): ESI 3	GET nintendo:consola:nintendo64(Instancia 1) 
+[INFO] 22:20:02:536 COORDOP/(20537:20678): ESI 3	GET nintendo:consola:gamecube(Instancia 1) 
+[INFO] 22:20:03:540 COORDOP/(20537:20678): ESI 3	GET nintendo:consola:wii(Instancia 1) 
+[INFO] 22:20:04:542 COORDOP/(20537:20678): ESI 3	GET nintendo:consola:wiiu(Instancia 1) 
+[INFO] 22:20:05:546 COORDOP/(20537:20678): ESI 3	GET nintendo:consola:switch(Instancia 1) 
+[INFO] 22:20:06:549 COORDOP/(20537:20678): ESI 3	SET nintendo:consola:nes(Instancia 1) Mario
+[INFO] 22:20:07:553 COORDOP/(20537:20678): ESI 3	SET nintendo:consola:snes(Instancia 1) SuperMario
+[INFO] 22:20:08:556 COORDOP/(20537:20678): ESI 3	SET nintendo:consola:nintendo64(Instancia 1) Mario64
+[INFO] 22:20:09:560 COORDOP/(20537:20678): ESI 3	SET nintendo:consola:gamecube(Instancia 1) Mario
+[INFO] 22:20:10:564 COORDOP/(20537:20678): ESI 3	SET nintendo:consola:wii(Instancia 1) MarioGalaxy
+[INFO] 22:20:11:567 COORDOP/(20537:20678): ESI 3	SET nintendo:consola:wiiu(Instancia 1) RIP
+[INFO] 22:20:12:572 COORDOP/(20537:20678): ESI 3	SET nintendo:consola:switch(Instancia 1) MarioOddysey
+[INFO] 22:20:13:577 COORDOP/(20537:20678): ESI 3	SET sony:consola:ps1(Instancia 1) FinalFantasy
+[INFO] 22:20:14:580 COORDOP/(20537:20678): ESI 3	SET sony:consola:ps2(Instancia 1) GodOfWar
+[INFO] 22:20:15:583 COORDOP/(20537:20678): ESI 3	SET sony:consola:ps3(Instancia 1) TLOU
+[INFO] 22:20:16:586 COORDOP/(20537:20678): ESI 3	SET sony:consola:ps4(Instancia 1) Bloodborne
+[INFO] 22:20:17:592 COORDOP/(20537:20678): ESI 3	SET microsoft:consola:xbox(Instancia 1) Halo
+[INFO] 22:20:18:595 COORDOP/(20537:20678): ESI 3	SET microsoft:consola:xbox360(Instancia 1) Halo
+[INFO] 22:20:19:599 COORDOP/(20537:20678): ESI 3	SET microsoft:consola:xboxone(Instancia 1) Halo
+[INFO] 22:33:29:709 COORDOP/(21114:21157): ESI 1	GET e3:sony:juegos(Instancia 1) 
+[INFO] 22:53:23:99 COORDOP/(21593:21654): ESI 1	GET e3:sony:juegos(Instancia 1) 
+[INFO] 22:53:24:102 COORDOP/(21593:21654): ESI 1	GET e3:microsoft:juegos(Instancia 1) 
+[INFO] 22:53:25:106 COORDOP/(21593:21654): ESI 1	SET e3:sony:juegos(Instancia 1) TLOU2
+[INFO] 22:53:26:109 COORDOP/(21593:21654): ESI 1	SET e3:sony:juegos(Instancia 1) Spiderman
+[INFO] 22:53:27:112 COORDOP/(21593:21654): ESI 1	SET e3:sony:juegos(Instancia 1) GhostOfTsushima
+[INFO] 22:53:28:116 COORDOP/(21593:21654): ESI 1	SET e3:sony:juegos(Instancia 1) DeathStranding
+[INFO] 22:53:29:119 COORDOP/(21593:21654): ESI 1	SET e3:sony:juegos(Instancia 1) ResidenEvil2Remake
+[INFO] 22:53:30:123 COORDOP/(21593:21654): ESI 1	SET e3:sony:juegos(Instancia 1) Destiny2DLCForsaken
+[INFO] 22:53:31:126 COORDOP/(21593:21654): ESI 1	SET e3:microsoft:juegos(Instancia 1) DLCCuphead
+[INFO] 22:53:32:130 COORDOP/(21593:21654): ESI 1	SET e3:microsoft:juegos(Instancia 1) ForzaHorizon4
+[INFO] 22:53:33:134 COORDOP/(21593:21654): ESI 1	SET e3:microsoft:juegos(Instancia 1) Gears5
+[INFO] 22:53:34:138 COORDOP/(21593:21654): ESI 1	SET e3:microsoft:juegos(Instancia 1) MetroExodus
+[INFO] 22:53:35:141 COORDOP/(21593:21654): ESI 1	SET e3:microsoft:juegos(Instancia 1) Fallout76
+[INFO] 22:53:36:144 COORDOP/(21593:21654): ESI 1	SET e3:microsoft:juegos(Instancia 1) TheDivision2
+[INFO] 22:53:37:147 COORDOP/(21593:21654): ESI 1	SET e3:microsoft:juegos(Instancia 1) DyingLight2
+[INFO] 22:53:38:151 COORDOP/(21593:21654): ESI 1	SET e3:microsoft:juegos(Instancia 1) Crackdown3
+[INFO] 22:53:39:153 COORDOP/(21593:21654): ESI 1	SET e3:microsoft:juegos(Instancia 1) HaloInfinite
+[INFO] 22:53:40:158 COORDOP/(21593:21654): ESI 1	SET e3:microsoft:juegos(Instancia 1) KingdomHearts3
+[INFO] 22:53:41:161 COORDOP/(21593:21654): ESI 1	STORE e3:microsoft:juegos(Instancia 1) 
+[INFO] 22:53:42:163 COORDOP/(21593:21654): ESI 1	STORE e3:sony:juegos(Instancia 1) 

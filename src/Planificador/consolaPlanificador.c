@@ -151,39 +151,6 @@ void bloquearProcesoESI(char* clave,int id){
 	}
 }
 
-ESI_t* buscarProcesoESI(int id){// busca en el sistema en la lista de listos y si el proceso esta ejecutando
-		if(pESIEnEjecucion != NULL){ 
-			if(pESIEnEjecucion->id == id){
-				return pESIEnEjecucion;
-			}
-		}
-		ESI_t* p = buscarProcesoEnColas(ESIsListos,id);
-		if(p != NULL ){
-			return p;
-		}
-		else{
-			p = buscarProcesoEnColas(ESIsBloqueados, id);
-			if(p!=NULL){
-				return p;
-			}
-		}
-		return p;
-}
-
-ESI_t* buscarProcesoEnColas(t_queue* cola,int id){
-	ESI_t* p ;
-	t_link_element* pElem = (cola -> elements) -> head ; //
-	while(pElem != NULL){
-
-		p = (ESI_t*)(pElem->data);//use el mecanismo de Antonio de Las Carreras todos los creditos a EL
-		if(id == p->id){
-		return p;
-		}
-		pElem = pElem->next;
-	}
-	return NULL;// SI NO ESTA EN LA cola BOTA NULL la funcion
-}
-
 bool estaBloqueado(ESI_t* esi){
 	ESI_t* pEsi = buscarProcesoEnColas(ESIsBloqueados, esi->id);
 	return pEsi != NULL;
@@ -268,16 +235,25 @@ void listar(char* clave){//recurso == clave
 			pElem = pElem->next;
 		}
 	}
-	else
+	else{ 
 		printf("No hay procesos esperando esa clave\n");
+	}
 }
 
 void finalizarProceso(ESI_t* esi){ 
 	ESI_t * pESI = quitarESIDeSuListaActual(esi->id);
-	if(pESI)
-		abortESI(pESI);
-	else
+	if(pESI){ 
+		borrarEsiDeListaColas(pESI);
+		if(pESI->id == pESIEnEjecucion->id){ 
+			pESI->state = MATADO;
+		}
+		else{
+			matarESI(pESI);
+		}
+	}
+	else{ 
 		printf("No se ha encontrado un proceso con el id %d en el sistema\n",esi->id);
+	}
 }
 //kill
 

@@ -24,7 +24,7 @@ t_list* ListaColas;
 
 t_list* clavesBloqueadas;
 
-typedef enum{NORMAL, ABORTADO, FINALIZADO} ESIState;
+typedef enum{NORMAL,MATADO, ABORTADO, FINALIZADO} ESIState;
 
 typedef struct{
 	op_t operacion;
@@ -56,6 +56,7 @@ char* claveAVerSiSatisface;
 ESI_t* esiAVerSiEstaBloqueado;
 int idAVerSiSatisfaceBloqueo;
 ESI_t* esiParaEliminarDeListaColas;
+ESI_t* esiADesbloquearPorMatado;
 
 pthread_mutex_t m_listaColas;
 pthread_mutex_t m_colaListos;
@@ -97,5 +98,9 @@ void borrarEsiDeListaColas(ESI_t* esi);
 void closureIterateBorrado(cola_clave* c);
 bool condicionEliminarEsi(ESI_t* esi);
 void establecerOperacionPendiente(ESI_t* esi, op_t op, char* clave);
+bool condicionRemoverAlMatado(ESI_t* e);
+ESI_t* buscarProcesoESI(int id);
+ESI_t* buscarProcesoEnColas(t_queue* cola, int id);
+void matarESI(ESI_t* pESI);
 
 #endif

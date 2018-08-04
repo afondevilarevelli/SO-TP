@@ -28,16 +28,23 @@ bool condicionParaListSortHRRN(ESI_t* esi_1, ESI_t* esi_2){
 } //BIEN
 
 void ejecutarProxSent(ESI_t * pESI){
-	orden_t orden = EJECUTAR;
-	if(pESI->operacionPendiente->operacion == GET){
-		cola_clave* c = buscarElementoDeLista(pESI->operacionPendiente->clave);
-		c->idEsiUsandoClave = pESI->id;
-		idEsiParaRemoverDeCola = pESI->id;
-		list_remove_by_condition(c->cola->elements, (void*)&condicionParaRemoverDeLaCola);
-		free(pESI->operacionPendiente->clave);
+	if(pESI != NULL){
+		if(pESI->state != MATADO){ 
+			orden_t orden = EJECUTAR;
+			if(pESI->operacionPendiente->operacion == GET){
+				cola_clave* c = buscarElementoDeLista(pESI->operacionPendiente->clave);
+				c->idEsiUsandoClave = pESI->id;
+				idEsiParaRemoverDeCola = pESI->id;
+				list_remove_by_condition(c->cola->elements, (void*)&condicionParaRemoverDeLaCola);
+				free(pESI->operacionPendiente->clave);
+			}
+			sendWithBasicProtocol(pESI->socket, &orden, sizeof(orden_t));
+			pESI->tiempoEsperandoCPU = 0;
+		}
+		else{
+			matarESI(pESI);
+		}
 	}
-	sendWithBasicProtocol(pESI->socket, &orden, sizeof(orden_t));
-	pESI->tiempoEsperandoCPU = 0;
 } //BIEN
 
 bool condicionParaRemoverDeLaCola(ESI_t* e){
@@ -67,7 +74,7 @@ void planificarSegunFIFO(){
 
 				log_trace(pLog,"Se espera la respuesta del ESI en ejecucion");
 				sem_wait(&sem_respuestaESI);
-				log_debug(pLog, "Se recibio del esi de id = %d el rtdoEjec = %s", pESIEnEjecucion->id,rtdoEjecucion==SUCCESS?"SUCCESS":rtdoEjecucion==FAILURE?"FAILURE":rtdoEjecucion==FIN_DE_EJECUCION?"FIN DE EJECUCION":rtdoEjecucion==DISCONNECTED?"DESCONECTADO":rtdoEjecucion==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":rtdoEjecucion==ABORTED?"ABORTADO":"SENTENCIA");
+				log_debug(pLog, "Se recibio del esi de id = %d el rtdoEjec = %s", pESIEnEjecucion->id,rtdoEjecucion==SUCCESS?"SUCCESS":rtdoEjecucion==FAILURE?"FAILURE":rtdoEjecucion==FIN_DE_EJECUCION?"FIN DE EJECUCION":rtdoEjecucion==DISCONNECTED?"DESCONECTADO":rtdoEjecucion==NO_HAY_INSTANCIAS_CONECTADAS?"NO HAY INSTANCIAS CONECTADAS":rtdoEjecucion==ABORTED?"ABORTADO":"DESCONOCIDO");
 		  }
 			while(rtdoEjecucion == SUCCESS);
 

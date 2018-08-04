@@ -34,11 +34,20 @@ void atenderESI(ESI_t * pESI)
     }
   }
 
-  sem_wait(&sem_esperarFinalizarESI);
   if(fueAbortado(pESI)){ 
     eliminarESIDelSistema(pESI->id); }
   else{ 
-    log_warning(pLog, "El ESI con ID = %d finalizo y no atendera mas solicitudes", pESI->id);
+    if(pESI->state != MATADO){
+      sem_wait(&sem_esperarFinalizarESI);
+      log_warning(pLog, "El ESI con ID = %d finalizo y no atendera mas solicitudes", pESI->id);   
+    }
+    else{ // si fue matado
+      if(pESIEnEjecucion->id == pESI->id){
+        rtdoEjecucion = 10;
+		    sem_post(&sem_respuestaESI);
+      }
+      freeESI(pESI);
+    }
   }
 }
 
@@ -47,6 +56,13 @@ void abortESI(ESI_t * pESI)
   pESI->state = ABORTADO;
   orden_t orden = ABORTAR;
   log_error(pLog, "El ESI con ID = %d, fue abortado\n", pESI->id);
+  sendWithBasicProtocol(pESI->socket, &orden, sizeof(orden_t));
+}
+
+void matarESI(ESI_t* pESI){
+  pESI->state = MATADO;
+  orden_t orden = ABORTAR;
+  log_error(pLog, "El ESI con ID = %d, fue matado\n", pESI->id);
   sendWithBasicProtocol(pESI->socket, &orden, sizeof(orden_t));
 }
 
@@ -157,7 +173,7 @@ void establecerOperacionPendiente(ESI_t* esi, op_t op, char* clave){ //solo voy 
 void freeESI(ESI_t * pESI)
 {
   if(pESI->operacionPendiente->clave != NULL){
-  free(pESI->operacionPendiente->clave);
+    free(pESI->operacionPendiente->clave);
   }
   free(pESI->operacionPendiente);
   free(pESI);
@@ -262,12 +278,66 @@ void borrarEsiDeListaColas(ESI_t* esi){
 }
 
 void closureIterateBorrado(cola_clave* c){
+    if(c->idEsiUsandoClave == esiParaEliminarDeListaColas->id){
+      c->idEsiUsandoClave = 0;
+      if(!queue_is_empty(c->cola)){
+                int idEsiConClave = ( (ESI_t*)(queue_pop(c->cola)) )->id;
+                ESI_t* esi = buscarProcesoESI(idEsiConClave);
+   
+                esiADesbloquearPorMatado = esi;
+                pthread_mutex_lock(&m_colaBloqueados);
+                list_remove_by_condition(ESIsBloqueados->elements, (void*) condicionRemoverAlMatado);
+                pthread_mutex_unlock(&m_colaBloqueados);
+
+                pthread_mutex_lock(&m_colaListos);
+                queue_push(ESIsListos, esi);
+                pthread_mutex_unlock(&m_colaListos);
+                sem_post(&sem_cantESIsListos);
+    }
     list_remove_by_condition((c->cola)->elements, (void*)&condicionEliminarEsi);
     list_remove_by_condition(c->esisBloqueadosParaClave, (void*)&condicionEliminarEsi);
+}
 }
 
 bool condicionEliminarEsi(ESI_t* esi){
   return esi->id == esiParaEliminarDeListaColas->id;
+}
+
+bool condicionRemoverAlMatado(ESI_t* e){
+  return e->id == esiADesbloquearPorMatado->id;
+}
+
+ESI_t* buscarProcesoESI(int id){// busca en el sistema en la lista de listos y si el proceso esta ejecutando
+		if(pESIEnEjecucion != NULL){ 
+			if(pESIEnEjecucion->id == id){
+				return pESIEnEjecucion;
+			}
+		}
+		ESI_t* p = buscarProcesoEnColas(ESIsListos,id);
+		if(p != NULL ){
+			return p;
+		}
+		else{
+			p = buscarProcesoEnColas(ESIsBloqueados, id);
+			if(p!=NULL){
+				return p;
+			}
+		}
+		return p;
+}
+
+ESI_t* buscarProcesoEnColas(t_queue* cola,int id){
+	ESI_t* p ;
+	t_link_element* pElem = (cola -> elements) -> head ; //
+	while(pElem != NULL){
+
+		p = (ESI_t*)(pElem->data);//use el mecanismo de Antonio de Las Carreras todos los creditos a EL
+		if(id == p->id){
+		return p;
+		}
+		pElem = pElem->next;
+	}
+	return NULL;// SI NO ESTA EN LA cola BOTA NULL la funcion
 }
 /*----------CONEXIONES---------*/
 

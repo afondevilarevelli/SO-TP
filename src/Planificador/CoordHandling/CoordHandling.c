@@ -127,6 +127,7 @@ bool puedeEjecutar(int idESI, int op, char * clave)
                 pthread_mutex_lock(&m_colaListos);
                 queue_push(ESIsListos, esi);
                 pthread_mutex_unlock(&m_colaListos);
+                sem_post(&sem_cantESIsListos);
                 return true; 
             }
             else{

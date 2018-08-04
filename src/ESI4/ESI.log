@@ -530,3 +530,21 @@ Valor = No corresponde
 [DEBUG] 18:18:54:16 ESI/(11995:11995): El esi de id = 4 recibe el resultado de FAILURE
 [TRACE] 18:18:54:16 ESI/(11995:11995): El esi de id = 4 ha enviado el resultado al Planificador
 [TRACE] 18:18:54:16 ESI/(11995:11995): El esi de id = 4 espera orden de Planificador
+[TRACE] 22:19:51:479 ESI/(20674:20674): Iniciando...
+[TRACE] 22:19:51:485 ESI/(20674:20674): Se obtiene ID 4 del archivo de configuracion
+[TRACE] 22:19:51:487 ESI/(20674:20674): El esi de id = 4 se conecto al Coordinador en el socket 4
+[TRACE] 22:19:51:487 ESI/(20674:20674): El esi de id = 4 se conecto al Planificador en el socket 5
+[TRACE] 22:19:51:487 ESI/(20674:20674): Script ejemplo.esi abierto
+[TRACE] 22:19:51:487 ESI/(20674:20674): El esi de id = 4 esta esperando orden de Planificador
+[DEBUG] 22:19:51:488 ESI/(20674:20674): La orden recibida fue EJECUTAR
+[DEBUG] 22:19:51:489 ESI/(20674:20674): La sentencia parseada del esi con id = 4 es:
+Op = GET
+Clave = postre:ingrediente1
+Valor = No corresponde
+
+[TRACE] 22:19:51:489 ESI/(20674:20674): El esi de id = 4 ha enviado la sentencia al Coordinador
+[TRACE] 22:19:51:489 ESI/(20674:20674): El esi de id = 4 espera el resultado de ejecucion de Coordinador
+[DEBUG] 22:19:51:495 ESI/(20674:20674): El esi de id = 4 recibe el resultado de FAILURE
+[TRACE] 22:19:51:495 ESI/(20674:20674): El esi de id = 4 ha enviado el resultado al Planificador
+[TRACE] 22:19:51:495 ESI/(20674:20674): El esi de id = 4 espera orden de Planificador
+[ERROR] 22:22:16:782 ESI/(20674:20674): No se pudo recibir la orden del planificador porque se desconecto.
