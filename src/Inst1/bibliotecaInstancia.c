@@ -324,7 +324,6 @@ void dump(t_config * pConf)
 
 rtdoEjec_t storeRecurso(char * clave)
  {
-
 	if(anyEnTabla(clave)){
 		FILE *fp;
 		//Obtencion del valor
@@ -339,12 +338,13 @@ rtdoEjec_t storeRecurso(char * clave)
 		if (stat(pathMontaje, &st) == -1)
 				mkdir(pathMontaje, 0700);
 
-		fp=fopen(dir,"w");
+		fp=fopen(dir,"wt");
 
 		fwrite(val,sizeof(char),strlen(val)+1,fp);
 		log_debug(pLog, "Se escribio %s en el archivo %s", val, clave);
 
 		fclose(fp);
+		free(dir);
 		//Archivos guardados
 		return SUCCESS;
 	}else
@@ -592,53 +592,34 @@ void cargarTablaDeEntradasYAlmacenamiento(t_config * pConf)
 	bitarray = bitarray_create_with_mode(datoBitArray,entryCant,LSB_FIRST);
 	tablaDeEntradas = list_create();
 	registroLRU = list_create();
-	//restaurar();
+	restaurar();
 
 	return;
 }
 void restaurar()
 {
+	rtdoEjec_t rt;
+	FILE *fp;
+	char * dir;
+	char  valor [100];
+	char** claves;
+	clavesIniciar="hola$killme$now$please";
 
-	struct dirent* directorio;
-	struct stat buf;
-	char fichero [PATH_MAX];
-	char valor[100];
-
-	DIR* dirp = opendir (pathMontaje);
-	if (dirp == NULL)
-	{
-		perror (pathMontaje);
-		return;
-	}
-
-	while ((directorio = readdir (dirp)) != NULL )
-	{
-		printf("%s\n",directorio->d_name);
-		//Obtengo la clave
-		sprintf (fichero, "%s/%s", pathMontaje, directorio->d_name);
-		if (lstat (fichero, & buf) == -1)
+		claves=string_split(clavesIniciar, "$");
+		int i;
+		log_trace(pLog, "---------Cantidad de Claves encontradas=>%d-----------",strlen(claves)/sizeof(claves));
+		for(i=0;(strlen(claves)/sizeof(claves))!=i;i++)
 		{
-			perror(fichero);
-			exit(1);
+			dir = malloc(strlen(pathMontaje)+1+40+1);
+			sprintf(dir, "%s/%s", pathMontaje, claves[i]);
+			fp=fopen(dir,"rt");
+			fgets(valor,100,fp);
+			rt = setRecurso(claves[i], valor);
+
+			fclose(fp);
+			free(dir);
 		}
-		//Obtengo el valor. Entro al archivo con esa clave
-		FILE *arch;
-		arch=fopen(fichero,"r");
-
-		//Obtengo el valor
-		fgets(valor,100,arch);
-		log_debug(pLog, "La clave es %s  y el valor es %s", directorio->d_name, valor);
-		fclose(arch);
-		//Agregar entrada con los datos
-		rtdoEjec_t rt = setRecurso(directorio->d_name, valor);
-		if(rt==SUCCESS)
-			log_debug(pLog, "Se agrego la entrada con exito.");
-		else
-			log_debug(pLog, "No se ha logrado cargar la entrada.");
-
-	}
-	//cierra el directorio
-	closedir (dirp);
+		list_iterate(tablaDeEntradas, (void*)&mostrarEntrada);
 	return;
 }
 

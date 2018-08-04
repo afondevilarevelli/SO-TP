@@ -26,6 +26,12 @@ int main(void)
 		entrySize =readIntFromBuffer(pBuff);
 		freeBuffer(pBuff);
 		/////////////////////////////////////////////////////////////////
+		//Claves a cargar
+		void * infoClaves;
+		int bytesClave = recvWithBasicProtocol(coord_socket, &infoClaves);
+		tBuffer * pBuffClaves = makeBuffer(infoClaves, bytesClave);
+		clavesIniciar=readStringFromBuffer( pBuffClaves);
+		/////////////////////////////////////////////////////////////////
 
 		pathMontaje = config_get_string_value(pConf, "PTO_MONTAJE");
 

@@ -45,6 +45,7 @@ typedef struct
 	algReemplazo algReemp;
 	int entrySize, entryCant, instanciaActiva;
 	char * pathMontaje;
+	char * clavesIniciar;
 
 
 	//Funciones de Coonexion e Iniciaciones
